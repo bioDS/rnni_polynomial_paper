@@ -19,16 +19,16 @@ Then $\ell = d(T, R)$.
 \end{lemma}
 
 \proof
-Case 1: $R = [\{1, 2\}, \{2, 3\}]$.
+Case 1: $R = [\{1, 2\}, \{3, 4\}, \ldots]$.
 Follows from \autocite{Collienne2019-ca}.
 
-Case 2: $R = [\{1, 2\}, \{1, 2, 3\}]$.
+Case 2: $R = [\{1, 2\}, \{1, 2, 3\}, \ldots]$.
 Let $T'$ be the running tree after the first iteration of $\findpath(T, R)$.
 Define
 \[
-s(T, R) = (r(1, 2)_T - 1) + (r(1, 2, 3)_T' - 2)
+s(T, R) = (r(1, 2)_T - 1) + (r(1, 2, 3)_{T'} - 2)
 \]
-where $r(S)_T$ is the rank of the most recent common ancestor of clade $S$ in tree $T$.
+where $r(S)_T$ is the rank of the most recent common ancestor of cluster $S$ in tree $T$.
 Note that an inductive argument implies that it is enough to show that $s(T_1, R) \geq s(T, R) - 1$ for all $T_1 \in N_1(T)$.
 \endproof
 \end{document}
