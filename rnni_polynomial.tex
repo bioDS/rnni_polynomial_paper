@@ -9,6 +9,7 @@
 \addbibresource{rnni_polynomial.bib}
 
 \newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
 
 \newcommand{\rnni}{\mathrm{RNNI}}
 \newcommand{\findpath}{\textsc{FindPath}}
@@ -19,6 +20,50 @@
 \graphicspath{{figures/}}
 
 \begin{document}
+
+
+\begin{lemma}
+    Let $p = \findpath(T,R)$ be the path from tree $T$ to $R$ that is computed by the $\findpath$ algorithm.
+    For two clusters $C_i \neq C_j$ of $R$ where $(C_i)_T \neq (C_j)_T$, meaning that the most recent common ancestors of these clusters are not the same node in $T$, there is no tree $T'$ on $p$ such that $(C_i)_{T'} = (C_j)_{T'}$.
+\end{lemma}
+
+\proof
+
+For proving the theorem by contradiction we assume that clusters $C_i, C_j$ exist such that their most recent common ancestors coincide in a tree $T'$ on $p$, but not in $T$.
+We assume that $T_2$ is the first tree where the most recent common ancestors coincide and that $T_1$ is the tree on $p$ that is immediately followed by $T_2$.
+It is obvious that the $\rnni$ between $T_1$ and $T_2$ is an $\nni$ move.
+We assume without loss of generality $\rank((C_i)_{T_1}) = \rank((C_j)_{T_1}) + 1$ and $\rank((C_i)_{T_2}) = \rank((C_j)_{T_2})$.
+Considering the illustration in Figure~\ref{fig:nni_move}, we can follow from the first equality that $C_i \cap C \neq \emptyset$ and $C_j \subseteq (A \cup B)$.
+With the second equality it follows that $C_i$ and $C_j$ contain elements from $B$, as $(C_i)_{T_2} = (C_j)_{T_2}$ is the upper node incident to the edge on which the $\nni$ move between $T_1$ and $T_2$ is performed.
+
+By the definition of $\findpath$ we know that every $\rnni$ move on $p$ decreases the rank of a most recent common ancestor of a cluster of $R$.
+Let us assume that the move between $T_1$ and $T_2$ decreases the rank of $(C_k)$.
+Then it is $C_k \subseteq (A \cup B)$.
+By the nature of $\findpath$ it follows that every cluster containing elements contained in $C_k$ that has not been considered yet is a superset of $C_k$.
+%TODO: Do $C_j$ and $C_k$ overlap? If so, the proof is done.
+
+
+%TODO: here the proof becomes a bit tricky. Do we need the lemma in this version or is it sufficient to prove something like this for the case that mrca(C_i) moves down? -- This is what we've done in the proof fir two iterations!
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{NNI_move}
+\vspace{12pt}
+\caption{$\nni$ move}
+\label{fig:nni_move}
+\end{figure}
+
+\endproof
+
+\begin{theorem}
+    Let $T,R$ be trees and $p = \findpath(T,R)$ the path from $T$ to $R$ computed by $\findpath$.
+    Let $d_{FP}(T,R)$ denote the $\findpath$ distance from $T$ to $R$, that is the length of $p$.
+    For all $T_1 \in N_1(T)$ it is $d_{FP}(T_1,R) \geq d_{FP}(T,R) - 1$, where $N_1(T)$ is the one-neighbourhood of $T$.
+\end{theorem}
+
+\proof
+
+\endproof
 
 \begin{lemma}
 Let $T$ and $R$ be $\rnni$ trees such that $\findpath(T, R)$ terminates after two iterations and returns a path $p$ of length $\ell$.
@@ -75,9 +120,9 @@ So let now $T_1 \in N_1(T)$ and let $T''$ be the tree after the first iteration 
 
     \item The $\rnni$ move between $T$ and $T_1$ changes $\rank(\mrca(\{1,2\}))$, which is equal to $\rank(\mrca(\{3,4\}))$
 
-    If the move from $T$ to $T_1$ increases the rank of $(\mrca(\{1,2\})$, the first tree on $\findpath(T_1,R)$ is $T$, as there always is exactly one $\rnni$ move that moves $\mrca(\{1,2\})$ down, which in this case is the move that moves both $\mrca(\{1,2\})$ and $\mrca(\{3,4\})$ down.
+    If the move from $T$ to $T_1$ increases the rank of $\mrca(\{1,2\})$, the first tree on $\findpath(T_1,R)$ is $T$, as there always is exactly one $\rnni$ move that moves $\mrca(\{1,2\})$ down, which in this case is the move that moves both $\mrca(\{1,2\})$ and $\mrca(\{3,4\})$ down.
     Then it is $\rank(\{1,2\})_{T_1} = \rank(\{1,2\})_{T} + 1$ and $\rank(\{3,4\})_{T''} = \rank(\{3,4\})_{T'}$ and therefore $s(T_1,R) = s(T,R) + 1$ in this case.
-    And if the rank of $(\mrca(\{1,2\})$ decreases from $T$ to $T_1$, $T_1$ is the first tree on $\findpath(T,R)$, which results in $s(T_1,R) = s(T,R) - 1$.
+    And if the rank of $\mrca(\{1,2\})$ decreases from $T$ to $T_1$, $T_1$ is the first tree on $\findpath(T,R)$, which results in $s(T_1,R) = s(T,R) - 1$.
 
     \item The $\rnni$ move between $T$ and $T_1$ changes $\rank(\mrca(\{3,4\}))$, which is not equal to $\rank(\mrca(\{1,2\}))$
 
