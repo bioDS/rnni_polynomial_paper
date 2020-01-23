@@ -24,26 +24,18 @@
 
 \begin{lemma}
     Let $p = \findpath(T,R)$ be the path from tree $T$ to $R$ that is computed by the $\findpath$ algorithm.
-    For two clusters $C_i \neq C_j$ of $R$ where $(C_i)_T \neq (C_j)_T$, meaning that the most recent common ancestors of these clusters are not the same node in $T$, there is no tree $T'$ on $p$ such that $(C_i)_{T'} = (C_j)_{T'}$.
+    Let $\hat{T}$ be the tree at the beginning of iteration $i$ of the algorithm in which the most recent common ancestor of cluster $C_i$ is moved down.
+    Then there is no tree on $p$ where a cluster $C_j$ of $R$ with $\rank((C_i)_{\hat{T}}) \geq \rank((C_j)_{\hat{T}})$ and $i < j$ has the same most recent common ancestor as $C_i$.
 \end{lemma}
 
 \proof
 
-For proving the theorem by contradiction we assume that clusters $C_i, C_j$ exist such that their most recent common ancestors coincide in a tree $T'$ on $p$, but not in $T$.
-We assume that $T_2$ is the first tree where the most recent common ancestors coincide and that $T_1$ is the tree on $p$ that is immediately followed by $T_2$.
-It is obvious that the $\rnni$ between $T_1$ and $T_2$ is an $\nni$ move.
-We assume without loss of generality $\rank((C_i)_{T_1}) = \rank((C_j)_{T_1}) + 1$ and $\rank((C_i)_{T_2}) = \rank((C_j)_{T_2})$.
-Considering the illustration in Figure~\ref{fig:nni_move}, we can follow from the first equality that $C_i \cap C \neq \emptyset$ and $C_j \subseteq (A \cup B)$.
-With the second equality it follows that $C_i$ and $C_j$ contain elements from $B$, as $(C_i)_{T_2} = (C_j)_{T_2}$ is the upper node incident to the edge on which the $\nni$ move between $T_1$ and $T_2$ is performed.
+For proving the theorem by contradiction we assume that clusters $C_i, C_j$ exist such that their most recent common ancestors do not coincide in $\hat{T}$, but in some tree following this one on $p$.
+Let $T''$ be the first tree where the most recent common ancestors coincide and let $T'$ be the tree on $p$ that is immediately followed by $T''$.
+It is obvious that the $\rnni$ between $T'$ and $T''$ is an $\nni$ move.
+It is $\rank((C_i)_{T'}) = \rank((C_j)_{T'}) + 1$ and $\rank((C_i)_{T''}) = \rank((C_j)_{T''}) = \rank((C_j)_{T'})$.
+Considering the illustration in Figure~\ref{fig:nni_move}, we can follow from the second equality that $C_i, C_j \subseteq A \cup C$, which is contradicting $\rank((C_i)_{T'}) = \rank((C_j)_{T'}) + 1$, as this implies $C_j \cap B \neq \emptyset$ in that figure.
 
-By the definition of $\findpath$ we know that every $\rnni$ move on $p$ decreases the rank of a most recent common ancestor of a cluster of $R$.
-Let us assume that the move between $T_1$ and $T_2$ decreases the rank of $(C_k)$.
-Then it is $C_k \subseteq (A \cup B)$.
-By the nature of $\findpath$ it follows that every cluster containing elements contained in $C_k$ that has not been considered yet is a superset of $C_k$.
-%TODO: Do $C_j$ and $C_k$ overlap? If so, the proof is done.
-
-
-%TODO: here the proof becomes a bit tricky. Do we need the lemma in this version or is it sufficient to prove something like this for the case that mrca(C_i) moves down? -- This is what we've done in the proof fir two iterations!
 
 \begin{figure}[H]
 \centering
@@ -58,10 +50,19 @@ By the nature of $\findpath$ it follows that every cluster containing elements c
 \begin{theorem}
     Let $T,R$ be trees and $p = \findpath(T,R)$ the path from $T$ to $R$ computed by $\findpath$.
     Let $d_{FP}(T,R)$ denote the $\findpath$ distance from $T$ to $R$, that is the length of $p$.
-    For all $T_1 \in N_1(T)$ it is $d_{FP}(T_1,R) \geq d_{FP}(T,R) - 1$, where $N_1(T)$ is the one-neighbourhood of $T$.
+    For all $T' \in N_1(T)$ it is $d_{FP}(T',R) \geq d_{FP}(T,R) - 1$, where $N_1(T)$ is the one-neighbourhood of $T$.
 \end{theorem}
 
 \proof
+
+Let $p$ be the path computed by $\findpath(T,R)$ and let $T_0, \ldots, T_{n-1}$ be trees on $p$ such that $T_i$ is the tree after iteration $i$ of the algorithm, and $T_0 := T$.
+Define
+\[
+s(T, R) = \sum\limits_{i=1}^{n-1} (\rank((C_i)_{T_{i-1}}) - i)
+\]
+where $\rank(S)_T$ is the rank of the most recent common ancestor of cluster $S$ in tree $T$.
+Note that an inductive argument implies that it is enough to show that $s(T', R) \geq s(T, R) - 1$ for all $T' \in N_1(T)$.
+This means that there is no tree $T' \in N_1(T)$ that is more than one $\rnni$ move closer to $R$ than $T$.
 
 \endproof
 
