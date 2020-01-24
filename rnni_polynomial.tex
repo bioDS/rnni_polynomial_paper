@@ -64,6 +64,15 @@ where $\rank(S)_T$ is the rank of the most recent common ancestor of cluster $S$
 Note that an inductive argument implies that it is enough to show that $s(T', R) \geq s(T, R) - 1$ for all $T' \in N_1(T)$.
 This means that there is no tree $T' \in N_1(T)$ that is more than one $\rnni$ move closer to $R$ than $T$.
 
+For proving that $s(T', R) \geq s(T, R) - 1$ for all $T' \in N_1(T)$, we distinguish all possible $\rnni$ moves between $T' \in N_1(T)$ and $T$.
+
+\begin{enumerate}
+    \item It is $\rank((C_i)_{T}) = \rank((C_i)_{T'})$ for all $i = 1, \ldots, n-1$
+    \item It is $\rank((C_i)_{T}) \neq \rank((C_i)_{T'})$ for some $i = 1, \ldots, n-1$
+\end{enumerate}
+
+%TODO: prove this. In both cases  a proof via induction might work, basis should be trivial, step similar to proof for 2 clades!?
+
 \endproof
 
 \begin{lemma}
