@@ -30,7 +30,7 @@
 
 \proof
 
-For proving the theorem by contradiction we assume that clusters $C_i, C_j$ exist such that their most recent common ancestors do not coincide in $\hat{T}$, but in some tree following this one on $p$.
+For proving the lemma by contradiction we assume that clusters $C_i, C_j$ exist such that their most recent common ancestors do not coincide in $\hat{T}$, but in some tree following this one on $p$.
 Let $T''$ be the first tree where the most recent common ancestors coincide and let $T'$ be the tree on $p$ that is immediately followed by $T''$.
 It is obvious that the $\rnni$ between $T'$ and $T''$ is an $\nni$ move.
 It is $\rank((C_i)_{T'}) = \rank((C_j)_{T'}) + 1$ and $\rank((C_i)_{T''}) = \rank((C_j)_{T''}) = \rank((C_j)_{T'})$.
@@ -55,23 +55,70 @@ Considering the illustration in Figure~\ref{fig:nni_move}, we can follow from th
 
 \proof
 
-Let $p$ be the path computed by $\findpath(T,R)$ and let $T_0, \ldots, T_{n-1}$ be trees on $p$ such that $T_i$ is the tree after iteration $i$ of the algorithm, and $T_0 := T$.
-Define
-\[
-s(T, R) = \sum\limits_{i=1}^{n-1} (\rank((C_i)_{T_{i-1}}) - i)
-\]
-where $\rank(S)_T$ is the rank of the most recent common ancestor of cluster $S$ in tree $T$.
-Note that an inductive argument implies that it is enough to show that $s(T', R) \geq s(T, R) - 1$ for all $T' \in N_1(T)$.
-This means that there is no tree $T' \in N_1(T)$ that is more than one $\rnni$ move closer to $R$ than $T$.
+Let $p$ be a path from $T$ to $R$ computed by $\findpath$ and let $T' \in N_1(T)$ be an $\rnni$ neighbour of $T$.
+With $p'$ we denote the path that $\findpath$ computes from $T'$ to $R$.
+For proving the theorem we distinguish the two types of moves possible between $T'$ and $T$, that are $\nni$ or rank moves.
 
-For proving that $s(T', R) \geq s(T, R) - 1$ for all $T' \in N_1(T)$, we distinguish all possible $\rnni$ moves between $T' \in N_1(T)$ and $T$.
-
+At first we consider the case that there is an $\nni$ move between $T'$ and $T$.
+We assume that $T$ and $T'$ are the first trees on $p$ and $p'$, respectively, where a move is made that is changing one of the intervals incident to the edge $e = (v,w)$ (where $v$ is the node closer to the root) on which the $\nni$ move between $T$ and $T'$ is made.
+Let us consider the different possible moves that effect $v$ or $w$ on $p$.
 \begin{enumerate}
-    \item It is $\rank((C_i)_{T}) = \rank((C_i)_{T'})$ for all $i = 1, \ldots, n-1$
-    \item It is $\rank((C_i)_{T}) \neq \rank((C_i)_{T'})$ for some $i = 1, \ldots, n-1$
+    \item $\nni$ moves on $e$
+
+    If this $\nni$ move results in $T'$, it is $d_{FP}(T',R) = d_{FP}(T,R) - 1$.
+    Otherwise the $\nni$ neighbour of $T$ resulting from this move is the tree on $p'$ following $T'$ as well, meaning that the remaining part of $p$ and $p'$ coincide, and it follows $d_{FP}(T',R) = d_{FP}(T,R)$.
+    This is true as the $\mrca$ that is moved down by $\findpath$ on this move must contain taxa of $B$ and $C$ as depicted in Figure~\ref{fig:thm_fp_nni1}, and so this same $\mrca$ is moved down on $p'$ the same way.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{thm_fp_nni1}
+    \vspace{12pt}
+    \caption{$\nni$ move between $T$ and $T'$ on the dashed edge and the third $\rnni$ resulting from a move on that edge.}
+    \label{fig:thm_fp_nni1}
+    \end{figure}
+
+    \item $\nni$ moves on edge $f$ above $e$
+
+    As it is depicted in Figure~\ref{fig:thm_fp_nni1}, there are two $\nni$ moves on this edge.
+    We denote the subtrees that are children of $v$ and $w$ according to the labels in that figure.
+
+    %TODO: adjust figures
+    \begin{figure}[H]
+    \centering
+        \begin{minipage}{.5\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{thm_fp_nni2a.eps}
+            \caption{$\nni$ moves possible on edge $f$, the dashed edge in $T$.}
+            \label{fig:thm_fp_nni2a}
+        \end{minipage}%
+        \begin{minipage}{0.5\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{thm_fp_nni2b.eps}
+            \caption{}
+            \label{fig:thm_fp_nni2b}
+        \end{minipage}
+    \end{figure}
+
+    \item $\nni$ moves on edge $g$ below $e$
 \end{enumerate}
 
-%TODO: prove this. In both cases  a proof via induction might work, basis should be trivial, step similar to proof for 2 clades!?
+% Let $p$ be the path computed by $\findpath(T,R)$ and let $T_0, \ldots, T_{n-1}$ be trees on $p$ such that $T_i$ is the tree after iteration $i$ of the algorithm, and $T_0 := T$.
+% Define
+% \[
+% s(T, R) = \sum\limits_{i=1}^{n-1} (\rank((C_i)_{T_{i-1}}) - i)
+% \]
+% where $\rank(S)_T$ is the rank of the most recent common ancestor of cluster $S$ in tree $T$.
+% Note that an inductive argument implies that it is enough to show that $s(T', R) \geq s(T, R) - 1$ for all $T' \in N_1(T)$.
+% This means that there is no tree $T' \in N_1(T)$ that is more than one $\rnni$ move closer to $R$ than $T$.
+%
+% For proving that $s(T', R) \geq s(T, R) - 1$ for all $T' \in N_1(T)$, we distinguish all possible $\rnni$ moves between $T' \in N_1(T)$ and $T$.
+%
+% \begin{enumerate}
+%     \item It is $\rank((C_i)_{T}) = \rank((C_i)_{T'})$ for all $i = 1, \ldots, n-1$
+%     \item It is $\rank((C_i)_{T}) \neq \rank((C_i)_{T'})$ for some $i = 1, \ldots, n-1$
+% \end{enumerate}
+%
+% %TODO: prove this. In both cases  a proof via induction might work, basis should be trivial, step similar to proof for 2 clades!?
 
 \endproof
 
