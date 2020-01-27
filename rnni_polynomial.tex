@@ -1,6 +1,6 @@
 \documentclass{amsart}
 
-\usepackage[notref,notcite]{showkeys}
+% \usepackage[notref,notcite]{showkeys}
 \usepackage[style=authoryear,ibidtracker=false,uniquename=false,giveninits=true,terseinits=true,maxbibnames=5,backend=biber]{biblatex}
 \usepackage{float}
 \usepackage{graphicx}
@@ -57,11 +57,18 @@ Considering the illustration in Figure~\ref{fig:nni_move}, we can follow from th
 
 Let $p$ be a path from $T$ to $R$ computed by $\findpath$ and let $T' \in N_1(T)$ be an $\rnni$ neighbour of $T$.
 With $p'$ we denote the path that $\findpath$ computes from $T'$ to $R$.
-For proving the theorem we distinguish the two types of moves possible between $T'$ and $T$, that are $\nni$ or rank moves.
 
-At first we consider the case that there is an $\nni$ move between $T'$ and $T$.
-We assume that $T$ and $T'$ are the first trees on $p$ and $p'$, respectively, where a move is made that is changing one of the intervals incident to the edge $e = (v,w)$ (where $v$ is the node closer to the root) on which the $\nni$ move between $T$ and $T'$ is made.
-Let us consider the different possible moves that effect $v$ or $w$ on $p$.
+We assume that $T$ and $T'$ are the first trees on $p$ and $p'$, respectively, where a move is made that is changing one of the intervals incident to the interval $(v,w)$ (where $v$ is the node closer to the root) on which the $\rnni$ move between $T$ and $T'$ is made.
+\todo{introduce notion of interval}
+All moves on $p$ before this tree $T$ happen exactly the same way on $p'$ before $T'$.
+Specifically, all clusters, except for the two induced by $v$ and $w$, in the cluster representations of the all trees on this first part of $p$ and $p'$ are equal.
+It follows that the $\rnni$ move between the start trees of $p$ and $p'$ is the same as the move between $T$ and $T'$ as described here.
+Let us consider the different possible moves that effect $v$ or $w$ on $p$ and compare them to moves that happen on $p'$.
+Note that $p$ is a tree that is computed by $\findpath$ and therefore, there is a cluster $C_k$ whose most recent common ancestor is moves down by the $\rnni$ move following $T$ on $p$.
+
+At first we consider the case that there is an $\nni$ move between $T'$ and $T$ as illustrated in the top of Figure~\ref{fig:thm_fp_nni1}.
+We furthermore distinguish the different types of moves that are possible on $(v,w)$ and on the two incident intervals.
+
 \begin{enumerate}
     \item $\nni$ moves on $e$
 
@@ -69,7 +76,7 @@ Let us consider the different possible moves that effect $v$ or $w$ on $p$.
     Otherwise the $\nni$ neighbour of $T$ resulting from this move is the tree on $p'$ following $T'$ as well, meaning that the remaining part of $p$ and $p'$ coincide, and it follows $d_{FP}(T',R) = d_{FP}(T,R)$.
     This is true as the $\mrca$ that is moved down by $\findpath$ on this move must contain taxa of $B$ and $C$ as depicted in Figure~\ref{fig:thm_fp_nni1}, and so this same $\mrca$ is moved down on $p'$ the same way.
 
-    \begin{figure}[H]
+    \begin{figure}[!hbt]
     \centering
     \includegraphics[width=0.4\textwidth]{thm_fp_nni1}
     \vspace{12pt}
@@ -79,27 +86,67 @@ Let us consider the different possible moves that effect $v$ or $w$ on $p$.
 
     \item $\nni$ moves on edge $f$ above $e$
 
-    As it is depicted in Figure~\ref{fig:thm_fp_nni1}, there are two $\nni$ moves on this edge.
+    Notice that this is only possible if the interval above $e$ is an edge.
+    As it is depicted in the top of Figure~\ref{fig:thm_fp_nni2a}, there are two $\nni$ moves on this edge.
     We denote the subtrees that are children of $v$ and $w$ according to the labels in that figure.
 
-    %TODO: adjust figures
-    \begin{figure}[H]
+    \begin{figure}[!hbt]
     \centering
-        \begin{minipage}{.5\textwidth}
+        \begin{minipage}{.45\textwidth}
             \centering
             \includegraphics[width=0.9\linewidth]{thm_fp_nni2a.eps}
-            \caption{$\nni$ moves possible on edge $f$, the dashed edge in $T$.}
+            \vspace{12pt}
             \label{fig:thm_fp_nni2a}
-        \end{minipage}%
-        \begin{minipage}{0.5\textwidth}
+            \caption{$\nni$ moves possible on edge $f$, the dashed edge in $T$.}
+        \end{minipage}
+        \begin{minipage}{0.45\textwidth}
             \centering
             \includegraphics[width=0.9\linewidth]{thm_fp_nni2b.eps}
-            \caption{}
+            \vspace{12pt}
             \label{fig:thm_fp_nni2b}
+            \caption{$\nni$ moves possible on edge $f$, the dashed edge in $T$.}
         \end{minipage}
     \end{figure}
 
-    \item $\nni$ moves on edge $g$ below $e$
+    We are considering the moves on $T$ as they are depicted in Figure~\ref{fig:thm_fp_nni2a} where we assume that $A, B, C$, and $D$ are clusters in $T$.
+
+    If the $\nni$ move on $f$ results in the tree at the top left of Figure~\ref{fig:thm_fp_nni2a}, the cluster $C_k$ that is being moved down by $\findpath$ is either a subset of $A \cup B \cup D$, $A \cup D$ or $B \cup D$.
+
+    \begin{enumerate}
+        \item
+            If $C_k \subseteq A \cup B \cup D$, the subtree containing $A \cup B$ in $T$ is the same in $R$, by the nature of $\findpath$.
+            It follows that on $p'$ there is a move that moves the most recent common ancestor of $A \cup B$ down right before $C_k$ is being considered.
+            It follows that on $p'$ the tree following $T'$ is $T$, resulting in $d_{FP}(T',R) = d_{FP}(T,R) + 1$.
+        \item
+            If $C_k \subseteq A \cup D$, the move following $T$ on $p$ moves $(C_k)_T$ further down, resulting in the tree in the bottom left of Figure~\ref{fig:thm_fp_nni2a}.
+            As the same most recent common ancestor $(C_k)_{T'} \subseteq A \cup D$ moves down on $p'$, the moves that happen there starting at $T'$ are the one depicted on the left of Figure~\ref{fig:thm_fp_nni2b}.
+            Comparing the trees on $p$ and $p'$ after these two moves following $T$ and $T'$, respectively, shows that we are again at a stage where two trees on these paths that only differ in one edge, meaning that we can now consider these as $T$ and $T'$ and consider the next move changing the interval distinguishing these two.
+        \item
+            If $C_k \subseteq B \cup D$, the two $\rnni$ moves following $T$ and $T'$ on $p$ and $p'$, respectively, end up in the trees depicted in the middle tree at the bottom of Figures~\ref{fig:thm_fp_nni2a} and \ref{fig:thm_fp_nni2b}.
+            As in the previous case, these trees coincide in all but one interval and we can consider these trees as our new $T$ and $T'$.
+    \end{enumerate}
+
+    If the $\nni$ move on $f$ results in the tree on the top left of Figure~\ref{fig:thm_fp_nni2a}, it is $C_k \subseteq C \cup D$.
+    If $(C_k)_T$ does not move further down on $p$, it follows that $A \cup B$ is a cluster in $R$ and that before $C_k$ is considered on $p'$, $(A \cup B)_{T'}$ moves down by one $\rnni$ move.
+    This result in the tree $T$ on $p'$ right after $T'$ and it follows $d_{FP}(T',R) = d_{FP}(T,R) + 1$.
+    If on the other side the rank of $(C_k)_T$ decreases further on $p$, the next move is a rank swap as depicted in the bottom right of Figure~\ref{fig:thm_fp_nni2a}.
+    The moves on $p'$ that decreases the rank of $(C_k)_{T'}$ where $C_k \subseteq C \cup D$ are depicted on the right of Figure~\ref{fig:thm_fp_nni2b}.
+    As above, the two trees resulting from the two moves following $T$ and $T'$ on $p$ and $p'$, respectively, coincide by all but one interval.
+    Therefore, we can go back to the beginning and assume that these trees are $T$ and $T'$ now.
+
+    \item rank move on interval $f$ above $(v,w)$
+
+    Notice that this is only possible if the interval above $e$ is a rank interval.
+    If after this rank swap increasing the rank of $v$ there is another rank swap increasing the rank of $w$, the same rank swaps happen on $p'$ and the trees after these two moves on $p$ and $p'$ coincide in all but one interval again, and we can consider them as $T$ and $T'$ now.
+    If on the other side there is no such rank swap, then the cluster induced by $w$ is a cluster in $R$ as well.
+    In this case, the tree following $T'$ on $p$ is $T$ as it results from building this cluster in $T'$, which happens right before the cluster $C_k$ is being considered on $p'$.
+    This results in $d_{FP}(T',R) = d_{FP}(T,R) + 1$.
+
+    \item moves on interval $g$ below $e$
+
+    If there is a move on $g$, $C_k$ is a subset of $A \cup B$, following the notions of the trees in the top of Figure~\ref{fig:thm_fp_nni1}.
+    In this case, the move following $T'$ on $p'$ moves $(C_k)_{T'}$ down by an $\nni$ move that transforms $T'$ into $T$ and it follows $d_{FP}(T',R) = d_{FP}(T,R) + 1$.
+
 \end{enumerate}
 
 % Let $p$ be the path computed by $\findpath(T,R)$ and let $T_0, \ldots, T_{n-1}$ be trees on $p$ such that $T_i$ is the tree after iteration $i$ of the algorithm, and $T_0 := T$.
