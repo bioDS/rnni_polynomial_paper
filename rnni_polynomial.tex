@@ -50,6 +50,22 @@ Considering the illustration in Figure~\ref{fig:nni_move}, we can follow from th
 
 \endproof
 
+\begin{lemma}
+    Let $T$ and $R$ be ranked trees.
+    If for all neighbours $T' \in N_1(T)$ of $T$ it is $d_{FP}(T',R) \geq d_{FP}(T,R) - 1$, then it is $d_{\rnni}(T,R) = d_{FP}(T,R)$.
+\end{lemma}
+
+\proof
+    We prove this lemma by induction on the distance $d_{\rnni}(T,R)$.
+    It is easy to see that the statement is true for the base case $d_{\rnni}(T,R) = 1$.
+    Let us consider trees $T$ and $R$ with distance $d_{\rnni}(T,R) = d+1$ and assume that the lemma is true for all pairs of trees with distance less than $d+1$.
+    For contradiction we assume that $d_{FP}(T,R) > d_{\rnni}(T,R) = d+1$.
+    There must be a tree $T'' \in N_1(T)$ that has $\rnni$ distance $d_{\rnni}(T'',R) = d$.
+    With the induction hypothesis it follows $d_{FP}(T'',R) = d$, which contradicts that it is $d_{FP}(T',R) \geq d_{FP}(T,R) - 1 > d$ for all trees $T' \in N_1(T)$.
+    Therefore, it cannot be $d_{FP}(T,R) > d_{\rnni}(T,R)$ which concludes the proof of the lemma.
+\endproof
+
+
 \begin{theorem}
     Let $T,R$ be trees and $p = \findpath(T,R)$ the path from $T$ to $R$ computed by $\findpath$.
     Let $d_{FP}(T,R)$ denote the $\findpath$ distance from $T$ to $R$, that is the length of $p$.
