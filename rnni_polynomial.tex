@@ -192,7 +192,7 @@ We will again consider the different moves from $T$ to $\hat T$ that are possibl
 \begin{enumerate}
     \item Rank move on $[v,w]$
 
-    The only possible move on $(v,w)$ on $T$ is a rank move resulting in $\hat T = T'$.
+    The only possible move on $[v,w]$ on $T$ is a rank move resulting in $\hat T = T'$.
     It follows $d_{FP}(T',R) = d_{FP}(T,R) - 1$, which obviously contradicts our assumption $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
 
     \item $\nni$ move on edge above $[v,w]$
@@ -200,7 +200,7 @@ We will again consider the different moves from $T$ to $\hat T$ that are possibl
     Notice that this is only possible if the interval above $[v,w]$ is an edge $(u,v)$.
     In this case the $\nni$ move builds a new cluster containing taxa of $B$ and of the subtree $C$ that is the child of $u$ that does not contain $v$, as depicted in the top left of Figure~\ref{fig:thm_fp_rank2}.
     It follows that $C_k \subseteq C \cup B_1$ where $B_1$ is one of the subtrees that is child of $w$.
-    If there was rank move following on $\hat T$ decreasing the rank of $(C_k)_{\hat T}$, it follows that the node inducing cluster $A$ has the same rank in $T$ as in $R$.
+    If there was a rank move on $\hat T$ decreasing the rank of $(C_k)_{\hat T}$, the node inducing cluster $A$ has the same rank in $T$ as in $R$.
     In this case the tree following $T'$ on $p'$ must be $T$ as $(A)_{T'}$ moves to it's final position on $\findpath$ before $C_k$ is moved down.
     However, this contradicts $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
     Let us now consider what happens if there is a rank move on $\hat T$ that decreases the rank of $(C_k)_{\hat T}$ on $p$.
