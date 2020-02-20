@@ -177,7 +177,7 @@ Let us now distinguish different types of moves between $T$ and $\hat T$ on inte
     In this case, the move following $T'$ on $p'$ exchanges $B$ and $C$ by an $\nni$ move first, which moves $(C_k)_{T'}$ down and transforms $T'$ into $T$, contradicting $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
 \end{enumerate}
 
-Let us now assume that there is a rank move between $T$ and $T'$ where nodes $v$ and $w$ inducing clusters $A$ and $B$ swap ranks as depicted in Figure~\ref{fig:thm_fp_rank1}.
+Let us now assume that there is a rank move between $T$ and $T'$ where nodes $v$ and $w$ inducing clusters $A$ and $B$ swap ranks as depicted at the top of Figure~\ref{fig:thm_fp_rank1}.
 We will again consider the different moves from $T$ to $\hat T$ that are possible on intervals adjacent to $(v,w)$, which is the interval of the rank move between $T$ and $T'$.
 
 
@@ -185,7 +185,7 @@ We will again consider the different moves from $T$ to $\hat T$ that are possibl
 \centering
 \includegraphics[width=0.4\textwidth]{thm_fp_rank1}
 \vspace{12pt}
-\caption{Rank move between $T$ and $T'$ on the interval given by the highlighted nodes}
+\caption{Rank move between $T$ and $T'$ on the interval given by the highlighted nodes, and an $\nni$ move on $T$ if the edge $(u,v)$ has length one.}
 \label{fig:thm_fp_rank1}
 \end{figure}
 
@@ -198,6 +198,15 @@ We will again consider the different moves from $T$ to $\hat T$ that are possibl
     \item $\nni$ move on edge above $[v,w]$
 
     Notice that this is only possible if the interval above $[v,w]$ is an edge $(u,v)$.
+    We are now going to distinguish the case that $u$ is the parent of $w$ from the case that it is not.
+    At first we assume that $u$ is parent of $w$.
+    It follows, that after the $\nni$ move on $(u,v)$, there is a new cluster containing $A$ and $B_1$, which is one of the subtrees that are children of $v$.
+    This move is depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
+    If such a move happens the currently considered cluster $C_k$ must be subset of $A \cup B_1$, which means that $A$ is already at the same place in $T$ as in $R$.
+    Therefore, the move on $p'$ on $T'$ must be a rank swap leading to $T$, as $(A)_{T'}$ is moved to its correct position before $C_k$ is considered, which follows from how $\findpath$ works.
+    However, this means that $T$ is on the path $p'$ form $T'$ to $R$, which is a contradiction to $d_{FP}(T',R) < d_{FP}(T,R) - 1$
+
+    Let us now assume that $u$ is not the parent of $w$.
     In this case the $\nni$ move builds a new cluster containing taxa of $B$ and of the subtree $C$ that is the child of $u$ that does not contain $v$, as depicted in the top left of Figure~\ref{fig:thm_fp_rank2}.
     It follows that $C_k \subseteq C \cup B_1$ where $B_1$ is one of the subtrees that is child of $w$.
     If there was a rank move on $\hat T$ decreasing the rank of $(C_k)_{\hat T}$, the node inducing cluster $A$ has the same rank in $T$ as in $R$.
