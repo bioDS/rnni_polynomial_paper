@@ -67,9 +67,11 @@ Considering the illustration in Figure~\ref{fig:nni_move}, we can follow from th
 
 
 \begin{theorem}
-    Let $T,R$ be trees and $p = \findpath(T,R)$ the path from $T$ to $R$ computed by $\findpath$.
-    Let $d_{FP}(T,R)$ denote the $\findpath$ distance from $T$ to $R$, that is the length of $p$.
-    For all $T' \in N_1(T)$ it is $d_{FP}(T',R) \geq d_{FP}(T,R) - 1$, where $N_1(T)$ is the one-neighbourhood of $T$.
+Let $T,R$ be trees and $p = \findpath(T,R)$ the path from $T$ to $R$ computed by $\findpath$.
+Let $d_{FP}(T,R)$ denote the $\findpath$
+\todo{better not call it distance}
+distance from $T$ to $R$, that is the length of $p$.
+For all $T' \in N_1(T)$ it is $d_{FP}(T',R) \geq d_{FP}(T,R) - 1$, where $N_1(T)$ is the one-neighbourhood of $T$.
 \end{theorem}
 
 \proof
