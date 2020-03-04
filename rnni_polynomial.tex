@@ -26,18 +26,18 @@
 
 
 \begin{lemma}
-    Let $T$ and $R$ be ranked trees.
-    If for all neighbours $T' \in N_1(T)$ of $T$ it is $d_{FP}(T',R) \geq d_{FP}(T,R) - 1$, then it is $d_{\rnni}(T,R) = d_{FP}(T,R)$.
+    Assume that for all trees $T$ and $R$ and all neighbours $T' \in N_1(T)$ of $T$ it holds $d_{FP}(T',R) \geq d_{FP}(T,R) - 1$.
+    Then it is $d_{\rnni}(T,R) = d_{FP}(T,R)$ for all trees $T$ and $R$.
 \end{lemma}
 
 \proof
-    We prove this lemma by induction on the distance $d_{\rnni}(T,R)$.
-    It is easy to see that the statement is true for the base case $d_{\rnni}(T,R) = 1$.
-    Let us consider trees $T$ and $R$ with distance $d_{\rnni}(T,R) = d+1$ and assume that the lemma is true for all pairs of trees with distance less than $d+1$.
-    For contradiction we assume that $d_{FP}(T,R) > d_{\rnni}(T,R) = d+1$.
-    There must be a tree $T'' \in N_1(T)$ that has $\rnni$ distance $d_{\rnni}(T'',R) = d$.
-    With the induction hypothesis it follows $d_{FP}(T'',R) = d$, which contradicts that it is $d_{FP}(T',R) \geq d_{FP}(T,R) - 1 > d$ for all trees $T' \in N_1(T)$.
-    Therefore, it cannot be $d_{FP}(T,R) > d_{\rnni}(T,R)$ which concludes the proof of the lemma.
+    We suppose that the assumption of the lemma is true.
+    For contradiction we assume that $T$ and $R$ are two trees with minimum distance $d_{\rnni}(T,R)$ for which $d_{\rnni}(T,R) < d_{FP}(T,R)$.
+    Let $T''$ be the first tree on a shortest $\rnni$ path from $T$ to $R$.
+    Then it is $d_{\rnni}(T'',R) = d_{\rnni}(T,R) - 1$.
+    Because $T$ and $R$ are the pair of trees with smallest $\rnni$ distance for which the statement of the lemma is not true, it is $d_{FP}(T'',R) = d_{\rnni}(T'', R)$.
+    But then it is $d_{FP}(T'',R) = d_{\rnni}(T'', R) =  d_{\rnni}(T,R) - 1 < d_{FP}(T,R) - 1$ which contradicts the assumption of the lemma.
+
 \endproof
 
 
