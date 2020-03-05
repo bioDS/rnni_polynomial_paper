@@ -25,28 +25,36 @@
 \begin{document}
 
 
+\begin{theorem}
+Distances in the $\rnni$ space can be computed in polynomial time.
+\end{theorem}
+
+\begin{proof}
+We prove this theorem by showing that the algorithm $\findpath$ computes shortest paths in the $\rnni$ graph.
+According to Lemma~\ref{lemma:iff_inequality}, it is sufficient to prove that for all trees $T,R$ and all neighbours $T' \in N_1(T)$ of $T$ it is $d_{FP}(T',R) \geq d_{FP}(T,R) - 1$ where $d_{FP}(T,R)$ is the length of the path from $T$ to $R$ computed by $\findpath$.
+Lemma~\ref{lemma:inequality} proves that this inequality is true for all trees $T$ and $R$, which concludes the proof of this theorem.
+\end{proof}
+
 \begin{lemma}
-    Assume that for all trees $T$ and $R$ and all neighbours $T' \in N_1(T)$ of $T$ it holds $d_{FP}(T',R) \geq d_{FP}(T,R) - 1$.
-    Then it is $d_{\rnni}(T,R) = d_{FP}(T,R)$ for all trees $T$ and $R$.
+Assume that for all trees $T$ and $R$ and all neighbours $T' \in N_1(T)$ of $T$ it holds $d_{FP}(T',R) \geq d_{FP}(T,R) - 1$.
+Then it is $d_{\rnni}(T,R) = d_{FP}(T,R)$ for all trees $T$ and $R$.
+\label{lemma:iff_inequality}
 \end{lemma}
 
 \proof
-    We suppose that the assumption of the lemma is true.
-    For contradiction we assume that $T$ and $R$ are two trees with minimum distance $d_{\rnni}(T,R)$ for which $d_{\rnni}(T,R) < d_{FP}(T,R)$.
-    Let $T''$ be the first tree on a shortest $\rnni$ path from $T$ to $R$.
-    Then it is $d_{\rnni}(T'',R) = d_{\rnni}(T,R) - 1$.
-    Because $T$ and $R$ are the pair of trees with smallest $\rnni$ distance for which the statement of the lemma is not true, it is $d_{FP}(T'',R) = d_{\rnni}(T'', R)$.
-    But then it is $d_{FP}(T'',R) = d_{\rnni}(T'', R) =  d_{\rnni}(T,R) - 1 < d_{FP}(T,R) - 1$ which contradicts the assumption of the lemma.
+We suppose that the assumption of the lemma is true.
+For contradiction we assume that $T$ and $R$ are two trees with minimum distance $d_{\rnni}(T,R)$ for which $d_{\rnni}(T,R) < d_{FP}(T,R)$.
+Let $T''$ be the first tree on a shortest $\rnni$ path from $T$ to $R$.
+Then it is $d_{\rnni}(T'',R) = d_{\rnni}(T,R) - 1$.
+Because $T$ and $R$ are the pair of trees with smallest $\rnni$ distance for which the statement of the lemma is not true, it is $d_{FP}(T'',R) = d_{\rnni}(T'', R)$.
+But then it is $d_{FP}(T'',R) = d_{\rnni}(T'', R) =  d_{\rnni}(T,R) - 1 < d_{FP}(T,R) - 1$ which contradicts the assumption of the lemma.
 \endproof
 
 
-\begin{theorem}
-Let $T,R$ be trees and $p = \findpath(T,R)$ the path from $T$ to $R$ computed by $\findpath$.
-Let $d_{FP}(T,R)$ denote the $\findpath$
-\todo{better not call it distance}
-distance from $T$ to $R$, that is the length of $p$.
-For all $T' \in N_1(T)$ it is $d_{FP}(T',R) \geq d_{FP}(T,R) - 1$, where $N_1(T)$ is the one-neighbourhood of $T$.
-\end{theorem}
+\begin{lemma}
+For all trees $T$ and $R$ and all $T' \in N_1(T)$ it is $d_{FP}(T',R) \geq d_{FP}(T,R) - 1$.
+\label{lemma:inequality}
+\end{lemma}
 
 \proof
 For contradiction we assume that for a pair of trees $T,R$ there is a tree $T' \in N_1(T)$ with $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
