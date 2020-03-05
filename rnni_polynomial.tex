@@ -60,9 +60,10 @@ Let $T'$ be the first tree on a shortest $\rnni$ path from $T$ to $R$.
 Then $d(T',R) = d(T, R) - 1$ and the distance between $T'$ and $R$ is strictly smaller than that between $T$ and $R$.
 Hence $|\fp(T',R)| = d(T', R) = d(T, R) - 1 < |\fp(T,R)| - 1$, that is,
 
-\[
-|\fp(T',R)| < |\fp(T,R)| - 1
-\]
+\begin{equation}
+    |\fp(T',R)| < |\fp(T,R)| - 1
+    \label{eqn:iff_inequality}
+\end{equation}
 
 We finish the proof by showing that this inequality is impossible.
 
@@ -134,15 +135,17 @@ Let us now distinguish all possible moves between $T$ and $\hat T$, which are on
 
     \begin{enumerate}
         \item
-        If $C_k \subseteq A \cup B \cup D$, then $C_k$ reached its final position in $\hat T$ on $p$.
-            Specifically, it is $C_{k-1} = A \cup B$ in $T$ as $\findpath$ considers the cluster $C_1,\ldots C_{n-2}$ of $R$ in this order.
-            It follows that on $p'$ there is a move that moves the most recent common ancestor of $C_{k-1} = A \cup B$ down right before $C_k$ is considered, again because $\findpath$ considers the cluster $C_{k-1}$ before cluster $C_k$.
+            If $C_k$ contains elements of all three clusters $A, B$ and $D$, then $C_{k-1} = A \cup B$ as the two clusters of $R$ that join to $C_k$ must already be present in $T$.
+            \todo{Is this clear?}
+            It follows that on $p'$ there is a move that moves the most recent common ancestor of $C_{k-1} = A \cup B$ down right before $C_k$ is considered, because $\findpath$ considers the cluster $C_{k-1}$ before cluster $C_k$.
             As a result the tree following $T'$ on $p'$ is $T$, contradicting $|\fp(T',R)| < |\fp(T,R)| - 1$.
         \item
             If $C_k \subseteq A \cup D$, the move on $\hat T$ on $p$ moves $(C_k)_{\hat T}$ further down by exchanging $B$ and $D$, resulting in a tree as depicted in the bottom left of Figure~\ref{fig:thm_fp_nni2a}.
-            As the most recent common ancestor of the same cluster $C_k \subseteq A \cup D$ moves down on $p'$, the two moves following $T'$ exchange the subtree induce by $D$ down by exchanging it with its neighbours $B$ and $C$ as depicted on the left of Figure~\ref{fig:thm_fp_nni2b}.
-            Comparing the trees on $p$ and $p'$ after the two moves following $T$ and $T'$, respectively, shows that we are again at a stage where two trees on these paths only differ by one edge (dotted edges in the trees at the bottom left of Figures~\ref{fig:thm_fp_nni2a} and~\ref{fig:thm_fp_nni2b}).
-            Furthermore, the relation of the distances of these tree to $R$ are the same as the ones from $T$ and $T'$ to $R$, which contradicts the assumption that $T$ and $R$ are the closest pair of trees with this relation.
+            \todo{make sure this notion of mrca is introduced somewhere (if we really need it)}
+            As the most recent common ancestor of the same cluster $C_k \subseteq A \cup D$ moves down on $p'$, the two moves following $T'$ exchange the subtree induced by $D$ down by exchanging it with its neighbours $B$ and $C$ as depicted on the left of Figure~\ref{fig:thm_fp_nni2b}.
+            The trees on $p$ and $p'$ after these two moves following $T$ and $T'$, respectively, only differ by one edge (dotted edges in the trees at the bottom left of Figures~\ref{fig:thm_fp_nni2a} and~\ref{fig:thm_fp_nni2b}).
+            This and the fact that $\findpath$ computes paths from these trees to $R$ that are shorter than $p$ contradicts the assumption that $\fp(T,R)$ has minimum length among all $\findpath$ paths between pairs of trees fulfilling inequality~\ref{eqn:iff_inequality}.
+            \todo{I think we need the assumption that $|\fp(T,R)|$ is minimal here.}
         \item
             If $C_k \subseteq B \cup D$, the two $\rnni$ moves following $T$ and $T'$ on $p$ and $p'$, respectively, end up in the trees depicted in the tree in the middle at the bottom of Figures~\ref{fig:thm_fp_nni2a} and \ref{fig:thm_fp_nni2b}, analogous to the previous case.
             As in the previous case, these trees coincide in all but one interval (dotted edges in the figure), which again contradicts the assumptions on $T$ and $R$.
