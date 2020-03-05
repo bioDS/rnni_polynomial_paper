@@ -66,7 +66,7 @@ Hence $|\fp(T',R)| = d(T', R) = d(T, R) - 1 < |\fp(T,R)| - 1$, that is,
 
 We finish the proof by showing that this inequality is impossible.
 
-Let $p = \findpath(T,R)$ and $p' = \findpath(T', R)$.
+Let $p = \fp(T,R)$ and $p' = \fp(T', R)$.
 It follows that the first move on $p$ changes one of the nodes $v, w$ that bound the interval $[v,w]$ on which the $\rnni$ move between $T$ and $T'$ is performed.
 \todo{make sure the notion of an interval is introduced somewhere}
 This is due to the fact that otherwise the first steps on $p$ and $p'$ coincide, meaning that these moves change the same clusters in $T$ and $T'$ as these trees only differ by the interval $[v,w]$.
@@ -88,11 +88,11 @@ Let us now distinguish all possible moves between $T$ and $\hat T$, which are on
 \begin{enumerate}
     \item $\nni$ move on edge $(v,w)$
 
-    If this $\nni$ move results in $\hat T = T'$, it is $d_{FP}(T',R) = d_{FP}(T,R) - 1$, which contradicts the assumption on the choice of $T'$.
+    If this $\nni$ move results in $\hat T = T'$, it is $|FP(T',R)| = |FP(T,R)| - 1$, which contradicts the assumption on the choice of $T'$.
     If otherwise $\hat T \neq T'$, a new cluster $B \cup C$ is built in $\hat T$.
-    Because $\findpath(T,R)$ moves most recent common ancestors of clusters of $R$ down, it follows that the cluster $C_k$ that is currently considered by the algorithm contains taxa in $B$ and $C$.
-    From this observation it easily follows that $\hat T$ follows $T'$ on $p'$ as well, because the same cluster $C_k$ is being considered on $\findpath(T',R)$ in this step.
-    Therefore the remaining part of $p$ and $p'$ coincide, and it follows $d_{FP}(T',R) = d_{FP}(T,R)$, which again is a contradiction to the assumption $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
+    Because $\fp(T,R)$ moves most recent common ancestors of clusters of $R$ down, it follows that the cluster $C_k$ that is currently considered by the algorithm contains taxa in $B$ and $C$.
+    From this observation it easily follows that $\hat T$ follows $T'$ on $p'$ as well, because the same cluster $C_k$ is being considered on $\fp(T',R)$ in this step.
+    Therefore the remaining part of $p$ and $p'$ coincide, and it follows $|FP(T',R)| = |FP(T,R)|$, which again is a contradiction to the assumption $|FP(T',R)| < |FP(T,R)| - 1$.
 
     \begin{figure}[!hbt]
     \centering
@@ -137,7 +137,7 @@ Let us now distinguish all possible moves between $T$ and $\hat T$, which are on
         If $C_k \subseteq A \cup B \cup D$, then $C_k$ reached its final position in $\hat T$ on $p$.
             Specifically, it is $C_{k-1} = A \cup B$ in $T$ as $\findpath$ considers the cluster $C_1,\ldots C_{n-2}$ of $R$ in this order.
             It follows that on $p'$ there is a move that moves the most recent common ancestor of $C_{k-1} = A \cup B$ down right before $C_k$ is considered, again because $\findpath$ considers the cluster $C_{k-1}$ before cluster $C_k$.
-            As a result the tree following $T'$ on $p'$ is $T$, contradicting $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
+            As a result the tree following $T'$ on $p'$ is $T$, contradicting $|FP(T',R)| < |FP(T,R)| - 1$.
         \item
             If $C_k \subseteq A \cup D$, the move on $\hat T$ on $p$ moves $(C_k)_{\hat T}$ further down by exchanging $B$ and $D$, resulting in a tree as depicted in the bottom left of Figure~\ref{fig:thm_fp_nni2a}.
             As the most recent common ancestor of the same cluster $C_k \subseteq A \cup D$ moves down on $p'$, the two moves following $T'$ exchange the subtree induce by $D$ down by exchanging it with its neighbours $B$ and $C$ as depicted on the left of Figure~\ref{fig:thm_fp_nni2b}.
@@ -150,7 +150,7 @@ Let us now distinguish all possible moves between $T$ and $\hat T$, which are on
 
     If the $\nni$ move on $(u,v)$ results in a tree $\hat T$ containing a subtree $C \cup D$ as illustrated on the top right of Figure~\ref{fig:thm_fp_nni2a}, it is $C_k \subseteq C \cup D$.
     If $(C_k)_T$ does not move further down on $p$, it follows that $C_k = A \cup B$ is a cluster in $R$ and that before $C_k$ is considered on $p'$, the most recent common ancestor of $C_{k-1} = (A \cup B)_{T'}$ moves down by one $\rnni$ move.
-    Therefore $T$ follows $T'$ on $p'$, which contradicts $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
+    Therefore $T$ follows $T'$ on $p'$, which contradicts $|FP(T',R)| < |FP(T,R)| - 1$.
     If on the other side the rank of $(C_k)_T$ decreases by more than one after tree $T$ on $p$, the move on $\hat T$ is a rank swap as depicted in the bottom right of Figure~\ref{fig:thm_fp_nni2a}.
     The moves on $p'$ that decreases the rank of $(C_k)_{T'}$ are $\nni$ moves exchanging $D$ with $B$ and $A$, because it is $C_k \subseteq C \cup D$.
     These moves are shown on the right of Figure~\ref{fig:thm_fp_nni2b}.
@@ -161,18 +161,18 @@ Let us now distinguish all possible moves between $T$ and $\hat T$, which are on
 
     Notice that this is only possible if $[u,v]$ is a rank interval.
     If after the rank move, which increases the rank of $v$, there is a rank move on $\hat T$ that increases the rank of $w$, the same rank moves happen on $p'$ and the trees after these two moves on $p$ and $p'$ coincide in all but one interval.
-    As previously, this contradicts the assumption that $T$ and $R$ are the closest trees where there is a $T' \in N_1(T)$ with $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
+    As previously, this contradicts the assumption that $T$ and $R$ are the closest trees where there is a $T' \in N_1(T)$ with $|FP(T',R)| < |FP(T,R)| - 1$.
     If on the other side there is no such rank move on $\hat T$, then the cluster $C_{k-1} = A \cup B$ induced by $w$ is a cluster in $R$ as well.
     The tree following $T'$ on $p'$ is $T$ as it is the result of building this cluster in $T'$, which happens right before the cluster $C_k$ is being considered on $p'$.
     This is due to the order in which $\findpath$ considers most recent common ancestors of clusters.
-    This contradicts $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
+    This contradicts $|FP(T',R)| < |FP(T,R)| - 1$.
     \todo{add a figure for this case}
 
     \item $\rnni$ moves on interval below $[v,w]$
 
     If there is a move on the interval below $[v,w]$, it is $C_k \subseteq A \cup B$.
     In this case, the move following $T'$ on $p'$ exchanges $B$ and $C$ by an $\nni$ move first, because this moves the most recent common ancestor of $C_k \subseteq A \cup B$ down.
-    However, this transforms $T'$ into $T$, which contradicts $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
+    However, this transforms $T'$ into $T$, which contradicts $|FP(T',R)| < |FP(T,R)| - 1$.
 \end{enumerate}
 
 Let us now assume that there is a rank move between $T$ and $T'$ where nodes $v$ and $w$ inducing clusters $A$ and $B$ swap ranks as depicted at the top of Figure~\ref{fig:thm_fp_rank1}.
@@ -190,7 +190,7 @@ We will again consider the different moves from $T$ to $\hat T$ that are possibl
     \item Rank move on $[v,w]$
 
     The only possible move on $[v,w]$ on $T$ is a rank move resulting in $\hat T = T'$.
-    It follows $d_{FP}(T',R) = d_{FP}(T,R) - 1$, which obviously contradicts our assumption $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
+    It follows $|FP(T',R)| = |FP(T,R)| - 1$, which obviously contradicts our assumption $|FP(T',R)| < |FP(T,R)| - 1$.
 
     \item $\nni$ move on edge above $[v,w]$
 
@@ -201,20 +201,20 @@ We will again consider the different moves from $T$ to $\hat T$ that are possibl
     This move is depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
     If such a move happens the currently considered cluster $C_k$ must be subset of $A \cup B_1$, which means that $C_{k-1} = A$ is already at the same place in $T$ as in $R$.
     Therefore, the move on $p'$ on $T'$ must be a rank swap leading to $T$, as $(A)_{T'}$ is moved to its correct position before $C_k$ is considered, which follows from how $\findpath$ works.
-    However, this means that $T$ is on the path $p'$ form $T'$ to $R$, which is a contradiction to $d_{FP}(T',R) < d_{FP}(T,R) - 1$
+    However, this means that $T$ is on the path $p'$ form $T'$ to $R$, which is a contradiction to $|FP(T',R)| < |FP(T,R)| - 1$
 
     Let us now assume that $u$ is not the parent of $w$.
     In this case the $\nni$ move builds a new cluster containing taxa of $B$ and of the cluster $C$ that is induced by the child of $u$ that is not $v$, as depicted in the top left of Figure~\ref{fig:thm_fp_rank2}.
     It follows that $C_k \subseteq C \cup B_1$ where $B_1$ is one of the clusters that is induced by a child of $w$.
     If there was no rank move on $\hat T$ decreasing the rank of $(C_k)_{\hat T}$ further, it must be $C_{k-1} = A$ meaning that $A$ is in the same position in $T$ as in $R$.
     In this case the tree following $T'$ on $p'$ is be $T$ as $C_{k-1} = A$ moves to it's final position on $\findpath$ before $C_k$ is moved down.
-    However, this contradicts $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
+    However, this contradicts $|FP(T',R)| < |FP(T,R)| - 1$.
     Let us now consider what happens if there is a rank move on $\hat T$ that decreases the rank of $(C_k)_{\hat T}$ on $p$.
     This case is depicted on the left of Figure~\ref{fig:thm_fp_rank2}.
     The moves happening on $p'$ are as follows.
     As it is $C_k \subseteq C \cup B$, the rank of $(C_k)_{T'}$ decreases by a rank swap of $(C \cup B)_{T'}$ and $(A)_{T'}$ on $T'$ first and then an $\nni$ move exchanges $B_2$ and $C$, as it is depicted on the right in the same figure.
     One can easily see that the two trees on $p$ and $p'$ that are two $\rnni$ moves apart from $T$ and $T'$, respectively, only differ by one interval.
-    Again, this is a contradiction to the fact that $T$ and $R$ are the trees with minimum distance for which we can find a $T' \in N_1(T)$ with $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
+    Again, this is a contradiction to the fact that $T$ and $R$ are the trees with minimum distance for which we can find a $T' \in N_1(T)$ with $|FP(T',R)| < |FP(T,R)| - 1$.
 
     \begin{figure}[!hbt]
     \centering
@@ -230,18 +230,18 @@ We will again consider the different moves from $T$ to $\hat T$ that are possibl
     If there is a rank move increasing the rank of $v$, and no rank move increasing the rank of $w$ immediately afterwards, $C_k$ reaches it's final position in the tree $\hat T$ on $p$ following $T$.
     It follows that the cluster $A$ induced by $w$ in $T$ is the cluster $C_{k-1}$ in $R$.
     This means that the move following $T'$ on $p'$ leads to $T$, as the node inducing $A$ moves down before $C_k$ is considered on $\findpath$.
-    This contradicts $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
+    This contradicts $|FP(T',R)| < |FP(T,R)| - 1$.
     If on the other side the rank swap on $T$ is directly followed by a rank swap increasing the rank of $w$, such rank swaps happen on $p'$ as well and the trees following $T$ and $T'$ after two $\rnni$ moves on $p$ and $p'$, respectively, coincide in all but one interval.
     This is again a contradiction to our choice of $T$ and $R$.
 
     \item $\rnni$ moves on interval below $[v,w]$
 
     If there is a move on the interval below $[v,w]$, it follows that $\findpath$ moves $C_k \subseteq A$ down where $A$ is the cluster induced by $w$.
-    For decreasing the rank of the most recent common ancestor of $C_k \subseteq A$ in $T'$, the move on $T'$ must be a rank swap that results in $T$, contradicting  $d_{FP}(T',R) < d_{FP}(T,R) - 1$.
+    For decreasing the rank of the most recent common ancestor of $C_k \subseteq A$ in $T'$, the move on $T'$ must be a rank swap that results in $T$, contradicting  $|FP(T',R)| < |FP(T,R)| - 1$.
 \end{enumerate}
 
-We can conclude that in any of the above cases we end up in a contradiction, proving that a tree $T'$ with $d_{FP}(T',R) < d_{FP}(T,R) - 1$ does not exist in $N_1(T)$.
-Therefore we can follow that $d_{FP}(T',R) \geq d_{FP}(T,R) -1$ for all $T' \in N_1(T)$.
+We can conclude that in any of the above cases we end up in a contradiction, proving that a tree $T'$ with $|FP(T',R)| < |FP(T,R)| - 1$ does not exist in $N_1(T)$.
+Therefore we can follow that $|FP(T',R)| \geq |FP(T,R)| -1$ for all $T' \in N_1(T)$.
 \endproof
 
 \end{document}
