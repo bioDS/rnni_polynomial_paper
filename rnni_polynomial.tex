@@ -55,18 +55,16 @@ The time complexity of computing the $\rnni$ distance between trees on $n$ leave
 We prove this theorem by showing that for every pair of trees $T$ and $R$, the path computed by the $\findpath$ algorithm is a shortest $\rnni$ path.
 We denote this path by $\fp(T, R)$ and its length by $|\fp(T, R)|$.
 
-Assume to the contrary that $T$ and $R$ are two trees with minimum possible distance $d(T, R)$ such that $d(T,R) \neq |\fp(T,R)|$, that is, $d(T,R) < |\fp(T,R)|$.
+Assume to the contrary that $T$ and $R$ are two trees with a minimum possible distance $d(T, R)$ such that $d(T,R) \neq |\fp(T,R)|$, that is, $d(T,R) < |\fp(T,R)|$.
 Let $T'$ be the first tree on a shortest $\rnni$ path from $T$ to $R$.
 Then $d(T',R) = d(T, R) - 1$ and the distance between $T'$ and $R$ is strictly smaller than that between $T$ and $R$.
-Hence $|\fp(T',R)| = d(T', R)$.
-So $|\fp(T',R)| = d(T', R) =  d(T, R) - 1 < |\fp(T,R)| - 1$, that is,
+Hence $|\fp(T',R)| = d(T', R) = d(T, R) - 1 < |\fp(T,R)| - 1$, that is,
 
-\begin{equation}
+\[
 |\fp(T',R)| < |\fp(T,R)| - 1
-\label{eqn:iff_inequality}
-\end{equation}
+\]
 
-We finish the proof of this theorem by showing that inequality~\ref{eqn:iff_inequality} is impossible.
+We finish the proof by showing that this inequality is impossible.
 
 Let $p = \findpath(T,R)$ and $p' = \findpath(T', R)$.
 It follows that the first move on $p$ changes one of the nodes $v, w$ that bound the interval $[v,w]$ on which the $\rnni$ move between $T$ and $T'$ is performed.
