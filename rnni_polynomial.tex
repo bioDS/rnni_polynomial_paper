@@ -47,6 +47,14 @@ We present a quadratic algorithm to compute shortest paths, and hence the distan
 
 \maketitle
 
+Things to introduce:
+
+\begin{itemize}
+\item Trees with the notion of an interval in a tree.
+\item $\findpath$
+\item Note that $\findpath$ is deterministic, that is, an interval and a move on the interval are uniquely determined (this is necessary to concentrate on the $v, w$ nodes in the proof of main theorem).
+\end{itemize}
+
 \begin{theorem}
 The time complexity of computing the $\rnni$ distance between trees on $n$ leaves is $\O(n^2)$.
 \end{theorem}
@@ -68,11 +76,9 @@ Specifically, we will show that for all trees $T$, $R$, and $T'$ such that $T'$ 
 \end{equation}
 
 Assume to the contrary that $T$ and $R$ are trees for which there exists $T'$ violating inequality~(\ref{eqn:iff_inequality}).
-Out of all possible pairs $T, R$ of such trees choose one with $\fp(T, R)$ as short as possible.
-
-Denote the path $\fp(T,R)$ by $p$ and $\fp(T', R)$ by $p'$, and let $[v, w]$ be the interval in $T$ on which the $\rnni$ move connecting $T$ and $T'$ is performed.
-\todo{make sure the notion of an interval is introduced somewhere}
-Then the first move on $p$ must involve either the interval directly below $v$ or the interval directly above $w$, because otherwise the first move on $p$ and $p'$ coincide contradicting our assumption that $p$ is the shortest path violating inequality~(\ref{eqn:iff_inequality}).
+Out of all such pairs $T, R$ choose one with the path $\fp(T, R)$ as short as possible.  
+Denote $\fp(T,R)$ by $p$ and $\fp(T', R)$ by $p'$, and let $[v, w]$ be the interval in $T$ on which the $\rnni$ move connecting $T$ and $T'$ is performed.
+The first moves on $p$ must involve either the interval directly below $v$ or the interval directly above $w$, because otherwise these first moves must coincide contradicting our assumption that $p$ is the shortest path violating inequality~(\ref{eqn:iff_inequality}).
 
 , meaning that these moves change the same clusters in $T$ and $T'$ as these trees only differ by the interval $[v,w]$.
 But this contradicts the assumption that $T$ and $R$ are the closest pair of trees for which we can find such a $T'$, as the trees following $T$ and $T'$ after such moves have the same property.
