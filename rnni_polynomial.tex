@@ -78,10 +78,7 @@ Specifically, we will show that for all trees $T$, $R$, and $T'$ such that $T'$ 
 Assume to the contrary that $T$ and $R$ are trees for which there exists $T'$ violating inequality~(\ref{eqn:iff_inequality}).
 Out of all such pairs $T, R$ choose one with the path $\fp(T, R)$ as short as possible.  
 Denote $\fp(T,R)$ by $p$ and $\fp(T', R)$ by $p'$, and let $[v, w]$ be the interval in $T$ on which the $\rnni$ move connecting $T$ and $T'$ is performed.
-The first moves on $p$ must involve either the interval directly below $v$ or the interval directly above $w$, because otherwise these first moves must coincide contradicting our assumption that $p$ is the shortest path violating inequality~(\ref{eqn:iff_inequality}).
-
-, meaning that these moves change the same clusters in $T$ and $T'$ as these trees only differ by the interval $[v,w]$.
-But this contradicts the assumption that $T$ and $R$ are the closest pair of trees for which we can find such a $T'$, as the trees following $T$ and $T'$ after such moves have the same property.
+The first moves on $p$ and $p'$ must involve the interval either directly below $v$ or directly above $w$, because otherwise these first moves must coincide contradicting our assumption that $p$ is the shortest path violating inequality~(\ref{eqn:iff_inequality}).
 
 In this proof we will distinguish the two different $\rnni$ moves possible between $T$ and $T'$, namely $\nni$ move and rank move.
 For each of these we further distinguish all moves possible between $T$ and the tree following $T$ on $p$, which we will denote by $\hat T$.
