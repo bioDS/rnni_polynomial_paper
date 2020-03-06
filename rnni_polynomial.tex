@@ -80,11 +80,13 @@ Out of all such pairs $T, R$ choose one with the path $\fp(T, R)$ as short as po
 Denote $\fp(T,R)$ by $p$ and $\fp(T', R)$ by $p'$, and let $[v, w]$ be the interval in $T$ on which the $\rnni$ move connecting $T$ and $T'$ is performed.
 The first moves on $p$ and $p'$ must involve the interval either directly below $v$ or directly above $w$, because otherwise these first moves must coincide contradicting our assumption that $p$ is the shortest path violating inequality~(\ref{eqn:iff_inequality}).
 
+Denote the first tree after $T$ on $p$ by $\hat T$
+\todo{do we need any of these indices apart from $k$ in what follows?}
+and assume that the cluster representation of $R$ is $[C_1, \ldots, C_{n-1}]$.
+
 In this proof we will distinguish the two different $\rnni$ moves possible between $T$ and $T'$, namely $\nni$ move and rank move.
-For each of these we further distinguish all moves possible between $T$ and the tree following $T$ on $p$, which we will denote by $\hat T$.
-From the above we know that this is a move on an interval incident to $v$ or $w$.
+For each of these we further distinguish all moves possible between $T$ and the tree following $T$ on $p$.
 Note that $p$ because is the path computed by $\findpath$, there is a cluster $C_k$ whose most recent common ancestor moves down by the $\rnni$ move from $T$ to $\hat T$.
-More general, we assume that the cluster representation of $R$ is $[C_1, \ldots, C_{n-1}]$
 
 We start considering the case that there is an $\nni$ move between $T'$ and $T$ as illustrated in the top of Figure~\ref{fig:thm_fp_nni1}.
 It follows that $(v,w)$ is an edge in $T$.
