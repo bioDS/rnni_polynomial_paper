@@ -76,12 +76,11 @@ Specifically, we will show that for all trees $T$, $R$, and $T'$ such that $T'$ 
 \end{equation}
 
 Assume to the contrary that $T$ and $R$ are trees for which there exists $T'$ violating inequality~(\ref{eqn:iff_inequality}).
-Out of all such pairs $T, R$ choose one with the path $\fp(T, R)$ as short as possible.  
+Out of all such pairs $T, R$ choose one with the path $\fp(T, R)$ as short as possible.
 Denote $\fp(T,R)$ by $p$ and $\fp(T', R)$ by $p'$, and let $[v, w]$ be the interval in $T$ on which the $\rnni$ move connecting $T$ and $T'$ is performed.
-Both the first move on $p$ and the first move on $p'$ must involve the interval either directly below $v$ or directly above $w$.
-Indeed, otherwise
-\todo{What do we mean by ``$\rnni$ moves on two different trees coinciding?''}
-$\findpath$ would imply that these first moves must coincide contradicting our assumption that $p$ is the shortest path violating inequality~(\ref{eqn:iff_inequality}).
+The first move on $p$ is on an interval incident to either $v$ or $w$.
+Indeed, any other move on $T$ changes clusters that are clusters of $T'$ as well, such that the first move on $p'$ leads to the same changes in clusters as the first one of $p$.
+The existence of this pair of trees resulting from these moves on $T$ and $T'$, respectively, contradicts the assumption that we picked $T$ and $R$ with shortest $\fp(T,R)$ violating inequality~(\ref{eqn:iff_inequality}).
 
 Denote the first tree after $T$ on $p$ by $\hat T$
 \todo{do we need any of these indices apart from $k$ in what follows?}
