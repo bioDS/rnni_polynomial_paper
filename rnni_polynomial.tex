@@ -103,15 +103,14 @@ We will distinguish the two cases, depending on whether $T$ and $T'$ are connect
 For each of these we further distinguish all possible moves connecting $T$ and $T_1$.
 Because $p$ is a path computed by $\findpath$, there must exist a cluster $C_k$, the most recent common ancestor of which is moved down by the $\rnni$ move connecting $T$ and $T_1$.
 
-\begin{enumerate}[{Case} (1).]
-\item $T$ and $T'$ are connected by an $\nni$ move as illustrated in Figure~\ref{fig:thm_fp_nni1}.
+$T$ and $T'$ are connected by an $\nni$ move as illustrated in Figure~\ref{fig:thm_fp_nni1}.
 It follows that $(v,w)$ is an edge in $T$.
 By $A$ and $B$ we denote the clusters induced by the children of $w$ and by $C$ the cluster that is induced by the child of $v$ that is not $w$, as it is depicted in Figure~\ref{fig:thm_fp_nni1}.
 We assume without loss of generality, that the $\nni$ move from $T$ to $T'$ exchanges the subtrees induced by clusters $A$ and $B$.
 Let us now distinguish all possible moves between $T$ and $T_1$, which are on intervals incident to $v$ or $w$.
 
-
-If this $\nni$ move results in $T_1 = T'$, it is $|\fp(T',R)| = |\fp(T,R)| - 1$, which contradicts the assumption on the choice of $T'$.
+\begin{enumerate}[{Case} (1).]
+\item If this $\nni$ move results in $T_1 = T'$, it is $|\fp(T',R)| = |\fp(T,R)| - 1$, which contradicts the assumption on the choice of $T'$.
 If otherwise $T_1 \neq T'$, a new cluster $B \cup C$ is built in $T_1$.
 Because $\fp(T,R)$ moves most recent common ancestors of clusters of $R$ down, it follows that the cluster $C_k$ that is currently considered by the algorithm contains taxa in $B$ and $C$.
 From this observation it easily follows that $T_1$ follows $T'$ on $p'$ as well, because the same cluster $C_k$ is being considered on $\fp(T',R)$ in this step.
