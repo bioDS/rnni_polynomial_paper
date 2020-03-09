@@ -99,15 +99,14 @@ Denote the first tree after $T$ on $p$ by $T_1$ and assume that the cluster repr
 Think if we want to be minimising over $n$.}
 $[C_1, \ldots, C_{n-1}]$.
 
-We will distinguish the two cases, depending on whether $T$ and $T'$ are connected by an $\nni$ or a rank move.
-For each of these we further distinguish all possible moves connecting $T$ and $T_1$.
-Because $p$ is a path computed by $\findpath$, there must exist a cluster $C_k$, the most recent common ancestor of which is moved down by the $\rnni$ move connecting $T$ and $T_1$.
+We will distinguish two cases, depending on whether $T$ and $T'$ are connected by an $\nni$ or a rank move.
+For each of these we further distinguish all possible moves between $T$ and $T_1$.
 
-$T$ and $T'$ are connected by an $\nni$ move as illustrated in Figure~\ref{fig:thm_fp_nni1}.
-It follows that $(v,w)$ is an edge in $T$.
-By $A$ and $B$ we denote the clusters induced by the children of $w$ and by $C$ the cluster that is induced by the child of $v$ that is not $w$, as it is depicted in Figure~\ref{fig:thm_fp_nni1}.
-We assume without loss of generality, that the $\nni$ move from $T$ to $T'$ exchanges the subtrees induced by clusters $A$ and $B$.
-Let us now distinguish all possible moves between $T$ and $T_1$, which are on intervals incident to $v$ or $w$.
+Let $T$ and $T'$ be connected by an $\nni$ move as illustrated in Figure~\ref{fig:thm_fp_nni1}.
+It follows that $((T)_{t+1},(T)_t)$ is an edge in $T$.
+We denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster that is induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, as it is depicted in Figure~\ref{fig:thm_fp_nni1}.
+We assume without loss of generality that the $\nni$ move from $T$ to $T'$ exchanges the subtrees induced by clusters $A$ and $B$.
+In the following we distinguish all moves possible between $T$ and $T_1$, that are moves on intervals incident to $(T)_t$ or $(T)_{t+1}$.
 
 \begin{enumerate}[{Case} (1).]
 \item If this $\nni$ move results in $T_1 = T'$, it is $|\fp(T',R)| = |\fp(T,R)| - 1$, which contradicts the assumption on the choice of $T'$.
@@ -120,7 +119,7 @@ Therefore the remaining part of $p$ and $p'$ coincide, and it follows $|\fp(T',R
 \centering
 \includegraphics[width=0.4\textwidth]{thm_fp_nni1}
 \vspace{12pt}
-\caption{$\nni$ move between $T$ and $T'$ on the dashed edge $(v,w)$ and the third $\rnni$ neighbour resulting from a move on that edge.}
+\caption{$\nni$ move between $T$ and $T'$ on the dashed edge $((T)_{t+1},(T)_t)$ and the third $\rnni$ neighbour resulting from a move on that edge.}
 \label{fig:thm_fp_nni1}
 \end{figure}
 
