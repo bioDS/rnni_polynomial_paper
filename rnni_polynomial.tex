@@ -101,14 +101,18 @@ Let $T$ and $T'$ be connected by an $\nni$ move as illustrated in Figure~\ref{fi
 It follows that $((T)_{t+1},(T)_t)$ is an edge in $T$.
 We denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster that is induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, as it is depicted in Figure~\ref{fig:thm_fp_nni1}.
 We assume without loss of generality that the $\nni$ move from $T$ to $T'$ exchanges the subtrees induced by clusters $A$ and $B$.
-In the following we distinguish all moves possible between $T$ and $T_1$, that are moves on intervals incident to $(T)_t$ or $(T)_{t+1}$.
+In the following we distinguish all moves on $T$ that are possible on $p$, that are moves on intervals incident to $(T)_t$ or $(T)_{t+1}$, and show that either of them ends in a contradiction, which proves that inequality~(\ref{eqn:iff_inequality}) cannot be violated if $T$ and $T'$ are $\nni$ neighbours.
 
 \begin{enumerate}[{Case} (1).]
-\item If this $\nni$ move results in $T_1 = T'$, it is $|\fp(T',R)| = |\fp(T,R)| - 1$, which contradicts the assumption on the choice of $T'$.
-If otherwise $T_1 \neq T'$, a new cluster $B \cup C$ is built in $T_1$.
-Because $\fp(T,R)$ moves most recent common ancestors of clusters of $R$ down, it follows that the cluster $C_k$ that is currently considered by the algorithm contains taxa in $B$ and $C$.
-From this observation it easily follows that $T_1$ follows $T'$ on $p'$ as well, because the same cluster $C_k$ is being considered on $\fp(T',R)$ in this step.
-Therefore the remaining part of $p$ and $p'$ coincide, and it follows $|\fp(T',R)| = |\fp(T,R)|$, which again is a contradiction to the assumption $|\fp(T',R)| < |\fp(T,R)| - 1$.
+\item $\nni$ move on $((T)_{t+1},(T)_t)$
+
+If this $\nni$ move results in $T_1 = T'$, it is $|\fp(T',R)| = |\fp(T,R)| - 1$, which contradicts our choice of $T'$.
+If otherwise $T_1 \neq T'$, the cluster $B \cup C$ is built in $T_1$, as depicted in the bottom of Figure~\ref{fig:thm_fp_nni1}.
+It follows that the cluster $C_k$ that is currently considered by $\findpath$ contains taxa in $B$ and $C$.
+As the same cluster $C_k$ is considered in $\findpath$ on $T'$
+\todo{LC: Do we need to explain this?}
+ and the move on $T'$ decreasing the rank of $(C_k)_{T'}$ results in the same tree $T_1$, it is $T'_1 = T_1$.
+Hence $|\fp(T',R)| = |\fp(T,R)|$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
 \begin{figure}[!hbt]
 \centering
