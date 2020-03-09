@@ -11,6 +11,7 @@
 \usepackage{amssymb}
 \usepackage[foot]{amsaddr}
 \usepackage[misc]{ifsym}
+\usepackage{enumerate}
 
 \renewbibmacro{in:}{}
 \addbibresource{rnni_polynomial.bib}
@@ -50,7 +51,8 @@ We present a quadratic algorithm to compute shortest paths, and hence the distan
 Things to introduce:
 
 \begin{itemize}
-\item Trees with the notion of an interval in a tree.
+\item Trees with the notion of an interval in a tree (if we want intervals), clusters, subtrees induced by clusters.
+Think about notations such as $(T)_k$, $(C)_T$, or similar.
 \item $\findpath$, including its time complexity.
 \item Note that $\findpath$ is deterministic, that is, an interval and a move on the interval are uniquely determined (this is necessary to concentrate on the $v, w$ nodes in the proof of main theorem).
 \end{itemize}
@@ -84,22 +86,21 @@ Indeed, otherwise
 $\findpath$ would imply that these first moves must coincide contradicting our assumption that $p$ is the shortest path violating inequality~(\ref{eqn:iff_inequality}).
 
 Denote the first tree after $T$ on $p$ by $\hat T$
-\todo{do we need any of these indices apart from $k$ in what follows?}
+\todo{It's the first time $n$ appears, right?
+Thins if we want to be minimising over $n$.}
 and assume that the cluster representation of $R$ is $[C_1, \ldots, C_{n-1}]$.
 
-In this proof we will distinguish the two different $\rnni$ moves possible between $T$ and $T'$, namely $\nni$ move and rank move.
-For each of these we further distinguish all moves possible between $T$ and the tree following $T$ on $p$.
-Note that $p$ because is the path computed by $\findpath$, there is a cluster $C_k$ whose most recent common ancestor moves down by the $\rnni$ move from $T$ to $\hat T$.
+We will distinguish the two cases, depending on whether $T$ and $T'$ are connected by an $\nni$ or a rank move.
+For each of these we further distinguish all possible moves connecting $T$ and $\hat T$.
+Because $p$ is a path computed by $\findpath$, there must exist a cluster $C_k$, the most recent common ancestor of which is moved down by the $\rnni$ move connecting $T$ and $\hat T$.
 
-We start considering the case that there is an $\nni$ move between $T'$ and $T$ as illustrated in the top of Figure~\ref{fig:thm_fp_nni1}.
+\begin{enumerate}[{Case} (1).]
+\item $T$ and $T'$ are connected by an $\nni$ move as illustrated in Figure~\ref{fig:thm_fp_nni1}.
 It follows that $(v,w)$ is an edge in $T$.
 By $A$ and $B$ we denote the clusters induced by the children of $w$ and by $C$ the cluster that is induced by the child of $v$ that is not $w$, as it is depicted in Figure~\ref{fig:thm_fp_nni1}.
 We assume without loss of generality, that the $\nni$ move from $T$ to $T'$ exchanges the subtrees induced by clusters $A$ and $B$.
-\todo{define subtree induced by cluster}
 Let us now distinguish all possible moves between $T$ and $\hat T$, which are on intervals incident to $v$ or $w$.
 
-\begin{enumerate}
-\item $\nni$ move on edge $(v,w)$
 
 If this $\nni$ move results in $\hat T = T'$, it is $|\fp(T',R)| = |\fp(T,R)| - 1$, which contradicts the assumption on the choice of $T'$.
 If otherwise $\hat T \neq T'$, a new cluster $B \cup C$ is built in $\hat T$.
