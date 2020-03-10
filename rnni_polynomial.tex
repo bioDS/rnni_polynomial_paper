@@ -102,9 +102,16 @@ Hence, the first move on $p$ has to involve an interval incident to at least one
 We will distinguish two cases depending on whether $T$ and $T'$ are connected by an $\nni$ or a rank move.
 For each of these we will further distinguish all possible moves between $T$ and $T_1$.
 
-\textbf{Case 1.} $T$ and $T'$ be connected by an $\nni$ move, so $((T)_{t+1},(T)_t)$ is an edge in $T$.
-We illustrate this case in Figure~\ref{fig:thm_fp_nni1}.
-We denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, and assume that the $\nni$ move between $T$ and $T'$ exchanges the subtrees induced by clusters $A$ and $B$.
+\textbf{Case 1.} $T$ and $T'$ are connected by an $\nni$ move, so $((T)_t,(T)_{t+1})$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
+Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, and assume that the $\nni$ move between $T$ and $T'$ exchanges the subtrees induced by clusters $B$ and $C$.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.4\textwidth]{thm_fp_nni1}
+\vspace{12pt}
+\caption{$\nni$ move between $T$ and $T'$ on the dashed edge $((T)_t,(T)_{t+1})$ and the third $\rnni$ neighbour resulting from a move on that edge.}
+\label{fig:thm_fp_nni1}
+\end{figure}
 
 We proceed by distinguishing cases for each of the possible moves connecting $T$ and $T_1$.
 
@@ -118,14 +125,6 @@ As the same cluster $C_k$ is considered in $\findpath$ on $T'$
 \todo{LC: Do we need to explain this?}
  and the move on $T'$ decreasing the rank of $(C_k)_{T'}$ results in the same tree $T_1$, it is $T'_1 = T_1$.
 Hence $|\fp(T',R)| = |\fp(T,R)|$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
-
-\begin{figure}[!hbt]
-\centering
-\includegraphics[width=0.4\textwidth]{thm_fp_nni1}
-\vspace{12pt}
-\caption{$\nni$ move between $T$ and $T'$ on the dashed edge $((T)_{t+1},(T)_t)$ and the third $\rnni$ neighbour resulting from a move on that edge.}
-\label{fig:thm_fp_nni1}
-\end{figure}
 
 \item $\nni$ move on edge $((T)_{t+2},T_{t+1})$
 
