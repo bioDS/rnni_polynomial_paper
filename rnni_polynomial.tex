@@ -51,8 +51,8 @@ We present a quadratic algorithm to compute shortest paths, and hence the distan
 Things to introduce:
 
 \begin{itemize}
-\item Trees with the notion of an interval in a tree (if we want intervals), clusters, subtrees induced by clusters.
-Think about notations such as $(T)_k$, $(C)_T$, or similar.
+\item Trees with the notion of an interval in a tree (if we want intervals), clusters, clusters induced by nodes, subtrees induced by clusters, list representation of trees.
+\item $(T)_k$: node of rank k, $(C)_T$: mrca of cluster $C$ in $T$
 \item $\findpath$, including its time complexity.
 \item Note that $\findpath$ is deterministic, that is, an interval and a move on the interval are uniquely determined (this is necessary to concentrate on the $v, w$ nodes in the proof of main theorem).
 \end{itemize}
@@ -183,22 +183,22 @@ As $C_k \subseteq C \cup D$, these two moves on $p'$ are $\nni$ moves exchanging
 These moves are shown on the right of Figure~\ref{fig:thm_fp_nni2b}.
 We end up in the same contradiction as in the previous case as the trees $T_2, T'_2$ and $R$ violate inequality~(\ref{eqn:iff_inequality}) and $|\fp(T_2,R)| < |\fp(T,R)|$.
 
-\item Rank move on interval $[u,v]$ above $(v,w)$
+\item Rank move on interval $[(T)_{t+2},(T)_{t+1}]$
 
-Notice that this is only possible if $[u,v]$ is a rank interval.
-If after the rank move, which increases the rank of $v$, there is a rank move on $T_1$ that increases the rank of $w$, the same rank moves happen on $p'$ and the trees after these two moves on $p$ and $p'$ coincide in all but one interval.
-As previously, this contradicts the assumption that $T$ and $R$ are the closest trees where there is a $T' \in N_1(T)$ with $|\fp(T',R)| < |\fp(T,R)| - 1$.
-If on the other side there is no such rank move on $T_1$, then the cluster $C_{k-1} = A \cup B$ induced by $w$ is a cluster in $R$ as well.
-The tree following $T'$ on $p'$ is $T$ as it is the result of building this cluster in $T'$, which happens right before the cluster $C_k$ is being considered on $p'$.
-This is due to the order in which $\findpath$ considers most recent common ancestors of clusters.
+Notice that this is only possible if this is a rank interval.
+If this rank move is followed by a further rank move, decreasing the rank of $(C_k)_{T_1}$ further, there are two rank moves decreasing the rank of $(C_k)_{T'}$ on $p'$ as well.
+The trees $T_2$ and $T'_2$ after these two moves on $p$ and $p'$ coincide in all but one interval.
+As previously, this contradicts the assumption that $T$ and $R$ are the closest trees that violate inequality~(\ref{eqn:iff_inequality}).
+If on the other side there is no such rank move on $T_1$, it is $C_{k-1} = A \cup B$.
+It follows $T'_1 = T$ as this tree results from building $C_{k-1}$ in $T'$, which happens right before $C_k$ is considered by $\findpath$ on $p'$.
 This contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
-\todo{add a figure for this case}
+\todo{LC: Add a figure for this case?}
 
-\item $\rnni$ moves on interval below $[v,w]$
+\item $\rnni$ move on interval below $[(T)_{t},(T)_{t-1}]$
 
-If there is a move on the interval below $[v,w]$, it is $C_k \subseteq A \cup B$.
-In this case, the move following $T'$ on $p'$ exchanges $B$ and $C$ by an $\nni$ move first, because this moves the most recent common ancestor of $C_k \subseteq A \cup B$ down.
-However, this transforms $T'$ into $T$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
+In this case it is $C_k \subseteq A \cup B$.
+Hence the move decreasing the rank of $(C_k)_{T'}$ is an $\nni$ move exchanging $B$ and $C$.
+This results in $T'_1 = T$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
 \end{enumerate}
 
 Let us now assume that there is a rank move between $T$ and $T'$ where nodes $v$ and $w$ inducing clusters $A$ and $B$ swap ranks as depicted at the top of Figure~\ref{fig:thm_fp_rank1}.
