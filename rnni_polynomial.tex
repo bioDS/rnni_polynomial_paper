@@ -113,10 +113,13 @@ Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cl
 \label{fig:thm_fp_nni1}
 \end{figure}
 
-We proceed by distinguishing cases for each of the possible moves connecting $T$ and $T_1$.
+We now consider all possible moves $\findpath$ can perform on interval $[(T)_t, (T)_{t+1}]$ to go from $T$ to $T_1$.
 
 \begin{enumerate}[label = 1.{\arabic*}]
-\item $\nni$ move on $((T)_{t+1},(T)_t)$
+\todo{Wait.
+That one is an edge everywhere in Case 1.
+Got to go now...}
+\item $\nni$ move, so $((T)_t, (T)_{t+1})$ is an edge in $T$.
 
 If this $\nni$ move results in $T_1 = T'$, it is $|\fp(T',R)| = |\fp(T,R)| - 1$, which contradicts our choice of $T'$.
 If otherwise $T_1 \neq T'$, the cluster $B \cup C$ is built in $T_1$, as depicted in the bottom of Figure~\ref{fig:thm_fp_nni1}.
