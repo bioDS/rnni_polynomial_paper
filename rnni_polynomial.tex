@@ -220,14 +220,15 @@ We will again consider the different moves from $T$ to $T_1$ that are possible o
 This move on $T$ results in $T_1 = T'$.
 It follows $|\fp(T',R)| = |\fp(T,R)| - 1$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
-\item $\nni$ move on edge above $[v,w]$
+\item $\nni$ move on edge $((T)_{t+2},(T)_{t})$
 
-Notice that this is only possible if the interval above $[v,w]$ is an edge $(u,v)$ of length one.
-We are now going to distinguish the case that $u$ is the parent of $w$ from the case that it is not.
-At first we assume that $u$ is parent of $w$.
-It follows, that after the $\nni$ move on $(u,v)$, there is a new cluster containing $A$ and $B_1$, which is one of the subtrees that are children of $v$.
+Notice that this is only possible if this interval is an edge.
+We first assume that $(T)_{t+2}$ is parent of $(T)_t$ and consider the other case later.
+Then the $\nni$ move on $T$ builds the cluster $A \cup B_1$ in $T_1$, where $B_1$ is the subtree induced by one of the children of $(T)_t$.
 This move is depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
-If such a move happens the currently considered cluster $C_k$ must be subset of $A \cup B_1$, which means that $C_{k-1} = A$ is already at the same place in $T$ as in $R$.
+It follows $C_k \subseteq A \cup B_1$, which means that $C_{k-1} = A$
+\todo{LC: No}
+ is already at the same place in $T$ as in $R$.
 Therefore, the move on $p'$ on $T'$ must be a rank swap leading to $T$, as $(A)_{T'}$ is moved to its correct position before $C_k$ is considered, which follows from how $\findpath$ works.
 However, this means that $T$ is on the path $p'$ form $T'$ to $R$, which is a contradiction to $|\fp(T',R)| < |\fp(T,R)| - 1$
 
