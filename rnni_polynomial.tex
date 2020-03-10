@@ -11,7 +11,9 @@
 \usepackage{amssymb}
 \usepackage[foot]{amsaddr}
 \usepackage[misc]{ifsym}
-\usepackage{enumerate}
+\usepackage{enumitem}
+
+\setlist{leftmargin = 0pt, labelindent = 0pt}
 
 \renewbibmacro{in:}{}
 \addbibresource{rnni_polynomial.bib}
@@ -106,7 +108,7 @@ We denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the
 We assume without loss of generality that the $\nni$ move from $T$ to $T'$ exchanges the subtrees induced by clusters $A$ and $B$.
 In the following we distinguish all moves on $T$ that are possible on $p$, that are moves on intervals incident to $(T)_t$ or $(T)_{t+1}$, and show that either of them ends in a contradiction, which proves that inequality~(\ref{eqn:iff_inequality}) cannot be violated if $T$ and $T'$ are $\nni$ neighbours.
 
-\begin{enumerate}[{1.}1.]
+\begin{enumerate}[label = 1.{\arabic*}]
 \item $\nni$ move on $((T)_{t+1},(T)_t)$
 
 If this $\nni$ move results in $T_1 = T'$, it is $|\fp(T',R)| = |\fp(T,R)| - 1$, which contradicts our choice of $T'$.
@@ -156,7 +158,7 @@ If $T_1$ is the tree at the top left of Figure~\ref{fig:thm_fp_nni2a}, resulting
 In the following we distinguish three cases, depending on whether $C_k$ contains, besides taxa of $D$, just taxa of $A$ or $B$, or both.
 We denote the cluster $(R)_{k-1}$ by $C_{k-1}$.
 
-\begin{enumerate}
+\begin{enumerate}[label = \theenumi.\arabic*]
     \item If $C_k$ contains elements of all three clusters $A, B$ and $D$, then $C_{k-1} = A \cup B$ as the two clusters of $R$ that join to $C_k$ in $R$ must already be present in $T$.
 	\todo{LC: Is this clear?}
     As this $C_{k-1} = A \cup B$ is no cluster of $T'$, the move $\findpath$ makes on $T'$ decreases the rank of $(C_{k-1})_{T'}$ before $C_k$ is considered by the algorithm.
@@ -201,7 +203,7 @@ Hence the move decreasing the rank of $(C_k)_{T'}$ is an $\nni$ move exchanging 
 This results in $T'_1 = T$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
 \end{enumerate}
 
-Let us now assume that there is a rank move between $T$ and $T'$ where nodes $(T)_{t+1}$ and $(T)_t$ inducing clusters $A$ and $B$ swap ranks as depicted at the top of Figure~\ref{fig:thm_fp_rank1}.
+\textbf{Case 2.} Let us now assume that there is a rank move between $T$ and $T'$ where nodes $(T)_{t+1}$ and $(T)_t$ inducing clusters $A$ and $B$ swap ranks as depicted at the top of Figure~\ref{fig:thm_fp_rank1}.
 We will again consider the different moves from $T$ to $T_1$ that are possible on intervals incident to $(T)_{t+1}$ or $(T)_{t}$ and show that each of these cases ends in a contradiction, proving that $T,T'$ and $R$ cannot violate inequality~(\ref{eqn:iff_inequality}).
 
 \begin{figure}[!hbt]
@@ -212,7 +214,7 @@ We will again consider the different moves from $T$ to $T_1$ that are possible o
 \label{fig:thm_fp_rank1}
 \end{figure}
 
-\begin{enumerate}
+\begin{enumerate}[label = 2.\arabic*]
 \item Rank move on $[(T)_{t+1},(T)_t]$
 
 This move on $T$ results in $T_1 = T'$.
