@@ -204,6 +204,7 @@ This results in $T'_1 = T$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
 \end{enumerate}
 
 \textbf{Case 2.} Let us now assume that there is a rank move between $T$ and $T'$ where nodes $(T)_{t+1}$ and $(T)_t$ inducing clusters $A$ and $B$ swap ranks as depicted at the top of Figure~\ref{fig:thm_fp_rank1}.
+We denote the clusters joining to clusters $A$ and $B$ in $T$ by $A_1,A_2$ and $B_1,B_2$, respectively.
 We will again consider the different moves from $T$ to $T_1$ that are possible on intervals incident to $(T)_{t+1}$ or $(T)_{t}$ and show that each of these cases ends in a contradiction, proving that $T,T'$ and $R$ cannot violate inequality~(\ref{eqn:iff_inequality}).
 
 \begin{figure}[!hbt]
@@ -224,26 +225,32 @@ It follows $|\fp(T',R)| = |\fp(T,R)| - 1$, which contradicts $|\fp(T',R)| < |\fp
 
 Notice that this is only possible if this interval is an edge.
 We first assume that $(T)_{t+2}$ is parent of $(T)_t$ and consider the other case later.
-Then the $\nni$ move on $T$ builds the cluster $A \cup B_1$ in $T_1$, where $B_1$ is the subtree induced by one of the children of $(T)_t$.
-This move is depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
-It follows $C_k \subseteq A \cup B_1$, which means that $C_{k-1} = A$
-\todo{LC: No}
- is already at the same place in $T$ as in $R$.
-Therefore, the move on $p'$ on $T'$ must be a rank swap leading to $T$, as $(A)_{T'}$ is moved to its correct position before $C_k$ is considered, which follows from how $\findpath$ works.
-However, this means that $T$ is on the path $p'$ form $T'$ to $R$, which is a contradiction to $|\fp(T',R)| < |\fp(T,R)| - 1$
 
-Let us now assume that $u$ is not the parent of $w$.
-In this case the $\nni$ move builds a new cluster containing taxa of $B$ and of the cluster $C$ that is induced by the child of $u$ that is not $v$, as depicted in the top left of Figure~\ref{fig:thm_fp_rank2}.
-It follows that $C_k \subseteq C \cup B_1$ where $B_1$ is one of the clusters that is induced by a child of $w$.
-If there was no rank move on $T_1$ decreasing the rank of $(C_k)_{T_1}$ further, it must be $C_{k-1} = A$ meaning that $A$ is in the same position in $T$ as in $R$.
-In this case the tree following $T'$ on $p'$ is be $T$ as $C_{k-1} = A$ moves to it's final position on $\findpath$ before $C_k$ is moved down.
-However, this contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
-Let us now consider what happens if there is a rank move on $T_1$ that decreases the rank of $(C_k)_{T_1}$ on $p$.
-This case is depicted on the left of Figure~\ref{fig:thm_fp_rank2}.
-The moves happening on $p'$ are as follows.
-As it is $C_k \subseteq C \cup B$, the rank of $(C_k)_{T'}$ decreases by a rank swap of $(C \cup B)_{T'}$ and $(A)_{T'}$ on $T'$ first and then an $\nni$ move exchanges $B_2$ and $C$, as it is depicted on the right in the same figure.
-One can easily see that the two trees on $p$ and $p'$ that are two $\rnni$ moves apart from $T$ and $T'$, respectively, only differ by one interval.
-Again, this is a contradiction to the fact that $T$ and $R$ are the trees with minimum distance for which we can find a $T' \in N_1(T)$ with $|\fp(T',R)| < |\fp(T,R)| - 1$.
+\begin{enumerate}
+    \item $(T)_{t+2}$ is parent of $(T)_t$
+
+    Then the $\nni$ move on $T$ builds a cluster $A \cup B_i$ for $i \in \{1,2\}$ in $T_1$, which implies $C_k \subseteq A \cup B_i$.
+    We assume without loss of generality that this cluster is $A \cup B_1$, as it is depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
+    If there is no move decreasing the rank of $(C_k)_{T_1}$ further, it follows $C_{k-1} = A$ and in particular $(C_k)_T = (C_k)_R$.
+    Therefore, the first move on $T'$ decreases $(C_{k-1})_{T'}$, which results in $T'_1 = T$, contradicting $|\fp(T',R)| < |\fp(T,R)| - 1$.
+    Let us now assume the second option that $(C_k)_{T_1}$ is moved further down on $p$.
+    Due to symmetry we can assume that $C_k \subseteq A_1 \cup B_1$, which means that from $T_1$ to $T_2$ the subtrees induced by $A_2$ and $B_1$ exchange by an $\nni$ move, as depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
+    From $C_k \subseteq A_1 \cup B_1$ we can infer that the two moves on $p'$ following $T'$ are two $\nni$ moves that result in a tree $T'_2$ that is $\rnni$ neighbour of $T_2$, as depicted on the bottom of Figure~\ref{fig:thm_fp_rank1}.
+    This however is a contradiction to the minimality assumption on $|\fp(T,R)|$.
+
+    \item $(T)_{t+2}$ is not parent of $(T)_t$
+
+    In this case the $\nni$ move builds a new cluster $C \cup B_i$ for an $i \in \{1,2\}$ where $C$ is the cluster induced by the child of $(T)_{t+2}$ that does not induce $B$, as depicted in the top left of Figure~\ref{fig:thm_fp_rank2}.
+    We can assume without loss of generality that $C_k \subseteq C \cup B_1$.
+    If there was no rank move on $T_1$ decreasing the rank of $(C_k)_{T_1}$ further, it is $C_{k-1} = A$, which implies that $A$ is induced by internal node of rank $t$ in both $T$ and $R$.
+    Then the rank of $(A)_{T'}$ decreases by a rank move on $p'$ as $C_{k-1} = A$ moves to its final position on $\findpath$ before $C_k$ is considered, which results in $T'_1 = T$.
+    This however contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
+
+    The case that the rank of $(C_k)_{T_1}$ decreases further on $p$ is depicted on the left of Figure~\ref{fig:thm_fp_rank2}.
+    As it is $C_k \subseteq C \cup B_1$, the rank of $(C_k)_{T'}$ decreases by a rank swap of $(C \cup B)_{T'}$ and $(A)_{T'}$ on $T'$ before the subtrees inducing $B_2$ and $C$ exchange by an $\nni$ move, as it is depicted on the right in the same figure.
+    One can easily see that $T_2$ and $T'_2$ are $\rnni$ neighbours.
+    Again, this is a contradiction to the minimality assumption of $|\fp(T,R)|$.
+\end{enumerate}
 
 \begin{figure}[!hbt]
 	\centering
