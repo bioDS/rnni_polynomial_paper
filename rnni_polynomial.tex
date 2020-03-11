@@ -197,7 +197,7 @@ It follows $T'_1 = T$ as this tree results from building $C_{k-1}$ in $T'$, whic
 This contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
 \todo{LC: Add a figure for this case?}
 
-\item $\rnni$ move on interval below $[(T)_{t},(T)_{t-1}]$
+\item $\rnni$ move on interval $[(T)_{t},(T)_{t-1}]$
 
 In this case it is $C_k \subseteq A \cup B$.
 Hence the move decreasing the rank of $(C_k)_{T'}$ is an $\nni$ move exchanging $B$ and $C$.
@@ -261,24 +261,23 @@ We first assume that $(T)_{t+2}$ is parent of $(T)_t$ and consider the other cas
 	\label{fig:thm_fp_rank2}
 \end{figure}
 
-\item Rank move on interval above $[v,w]$
+\item Rank move on interval $[(T)_{t+2}, (T)_{t+1}]$
 
-Notice that this is only possible if the interval above $[v,w]$ is a rank interval.
-If there is a rank move increasing the rank of $v$, and no rank move increasing the rank of $w$ immediately afterwards, $C_k$ reaches it's final position in the tree $T_1$ on $p$ following $T$.
-It follows that the cluster $A$ induced by $w$ in $T$ is the cluster $C_{k-1}$ in $R$.
-This means that the move following $T'$ on $p'$ leads to $T$, as the node inducing $A$ moves down before $C_k$ is considered on $\findpath$.
-This contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
-If on the other side the rank swap on $T$ is directly followed by a rank swap increasing the rank of $w$, such rank swaps happen on $p'$ as well and the trees following $T$ and $T'$ after two $\rnni$ moves on $p$ and $p'$, respectively, coincide in all but one interval.
+If no rank move increasing the rank of $(T_1)_{t}$ follows this move, $C_k$ reaches it's final position in the tree $T_1$.
+Then it is $C_k = A$, induced by $(T)_t$ in $T$.
+It follows that the move on $T$ done by $\findpath$ results in $T$, as $(C_{k-1})_{T'}$ moves down before $C_k$ is considered on $p'$.
+This however contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
+If on the other side the rank swap on $T$ is directly followed by the rank swap of $(T_1)_t$ and $(T_1)_{t+1}$, such rank swaps happen on $p'$ as well and $T_2$ and $T'_2$ are $\rnni$ neighbours.
 This is again a contradiction to our choice of $T$ and $R$.
 
-\item $\rnni$ moves on interval below $[v,w]$
+\item $\rnni$ moves on interval $[(T)_{t-1},(T)_t]$
 
-If there is a move on the interval below $[v,w]$, it follows that $\findpath$ moves $C_k \subseteq A$ down where $A$ is the cluster induced by $w$.
-For decreasing the rank of the most recent common ancestor of $C_k \subseteq A$ in $T'$, the move on $T'$ must be a rank swap that results in $T$, contradicting  $|\fp(T',R)| < |\fp(T,R)| - 1$.
+It follows $C_k \subseteq A$.
+For decreasing the rank of $(C_k)_{T'}$, the move on $T'$ must be a rank swap resulting in $T$, which contradicts  $|\fp(T',R)| < |\fp(T,R)| - 1$.
 \end{enumerate}
 
-We can conclude that in any of the above cases we end up in a contradiction, proving that a tree $T'$ with $|\fp(T',R)| < |\fp(T,R)| - 1$ does not exist in $N_1(T)$.
-Therefore we can follow that $|\fp(T',R)| \geq |\fp(T,R)| -1$ for all $T' \in N_1(T)$.
+We can conclude that in any of the above cases we end up in a contradiction, proving that a tree $T'$ that is $\rnni$ neighbour of $T$ with $|\fp(T',R)| < |\fp(T,R)| - 1$ does not exist.
+Therefore we can follow that $|\fp(T',R)| \geq |\fp(T,R)| -1$ for all $\rnni$ neighbours $T'$ of $T$.
 \endproof
 
 \end{document}
