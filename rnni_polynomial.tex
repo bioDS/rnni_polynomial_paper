@@ -112,27 +112,23 @@ Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cl
 \label{fig:thm_fp_nni1}
 \end{figure}
 
-We now consider all possible moves $\findpath$ can perform on interval $[(T)_t, (T)_{t+1}]$ to go from $T$ to $T_1$.
+We now consider all possible moves $\findpath$ can perform to go from $T$ to $T_1$ that involve a node of rank $t$ or $t+1$, that is, three intervals in total.
 
 \begin{enumerate}[label = 1.{\arabic*}]
-\todo{Wait.
-That one is an edge everywhere in Case 1.
-Got to go now...}
-\item $\nni$ move, so $((T)_t, (T)_{t+1})$ is an edge in $T$.
+\item An $\rnni$ move on interval $[(T)_t, (T)_{t+1}]$.
+Note that this move has to be the $\nni$ move that is different from the $\nni$ move connecting $T$ and $T'$.
 
-If this $\nni$ move results in $T_1 = T'$, it is $|\fp(T',R)| = |\fp(T,R)| - 1$, which contradicts our choice of $T'$.
-If otherwise $T_1 \neq T'$, the cluster $B \cup C$ is built in $T_1$, as depicted in the bottom of Figure~\ref{fig:thm_fp_nni1}.
-It follows that the cluster $C_k$ that is currently considered by $\findpath$ contains taxa in $B$ and $C$.
-As the same cluster $C_k$ is considered in $\findpath$ on $T'$
-\todo{LC: Do we need to explain this?}
- and the move on $T'$ decreasing the rank of $(C_k)_{T'}$ results in the same tree $T_1$, it is $T'_1 = T_1$.
-Hence $|\fp(T',R)| = |\fp(T,R)|$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
+In this case, the cluster $B \cup C$ is built in $T_1$, as depicted in the bottom of Figure~\ref{fig:thm_fp_nni1}.
+It follows that the cluster $C_k$ that is currently considered by $\findpath$ must contain taxa from both $B$ and $C$.
+But then $\findpath$ applied to $T'$ and $R$ has to decrease the rank of $(C_k)_{T'}$ in its first step implying that $T'_1 = T_1$.
+Hence $|\fp(T',R)| = |\fp(T,R)|$, which contradicts our assumption that $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
-\item $\nni$ move on edge $((T)_{t+2},T_{t+1})$
+\item An $\nni$ move on interval $[(T)_{t+1}, (T)_{t+2}]$.
+This case implies that $((T)_{t+1},(T)_{t+2}))$ is an edge in $T$.
 
-Notice that this is only possible if the interval $[(T)_{t+2},T_{t+1}]$ is an edge, we will consider the case that this is a rank interval later in this proof.
-We stick to our notions of clusters $A,B,$ and $C$ as introduced above and additionally denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$.
-An illustration of this can be found in Figure~\ref{fig:thm_fp_nni2a}.
+We use the same notations for clusters $A$, $B$, and $C$ as above and additionally denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ --
+\todo{either capital "a" here or small "a" in the figure}
+see Figure~\ref{fig:thm_fp_nni2a}.
 
 \begin{figure}[H]
 	\begin{subfigure}[b]{.45\textwidth}
@@ -186,7 +182,7 @@ As $C_k \subseteq C \cup D$, these two moves on $p'$ are $\nni$ moves exchanging
 These moves are shown on the right of Figure~\ref{fig:thm_fp_nni2b}.
 We end up in the same contradiction as in the previous case as the trees $T_2, T'_2$ and $R$ violate inequality~(\ref{eqn:iff_inequality}) and $|\fp(T_2,R)| < |\fp(T,R)|$.
 
-\item Rank move on interval $[(T)_{t+2},(T)_{t+1}]$
+\item A rank move on interval $[(T)_{t+1},(T)_{t+2}]$
 
 Notice that this is only possible if this is a rank interval.
 If this rank move is followed by a further rank move, decreasing the rank of $(C_k)_{T_1}$ further, there are two rank moves decreasing the rank of $(C_k)_{T'}$ on $p'$ as well.
