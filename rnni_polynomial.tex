@@ -114,14 +114,14 @@ Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cl
 \label{fig:thm_fp_nni1}
 \end{figure}
 
-We now consider all possible moves $\findpath$ can perform to go from $T$ to $T_1$ that involve a node of rank $t$ or $t+1$, that is, three intervals in total.
+We now consider all possible moves $\findpath$ can perform to go from $T$ to $T_1$ that involve a node of rank $t$ or $t+1$, that is, we will consider three intervals in total.
 
 \begin{enumerate}[label = 1.{\arabic*}]
 \item An $\rnni$ move on interval $[(T)_t, (T)_{t+1}]$.
 Note that this move has to be the $\nni$ move that is different from the $\nni$ move connecting $T$ and $T'$.
 
 In this case, the cluster $B \cup C$ is built in $T_1$, as depicted in the bottom of Figure~\ref{fig:thm_fp_nni1}.
-It follows that the cluster $C_k$ that is currently considered by $\findpath$ must contain taxa from both $B$ and $C$.
+It follows that the cluster $C_k$ that is considered first by $\findpath$ must contain taxa from both $B$ and $C$.
 But then $\findpath$ applied to $T'$ and $R$ has to decrease the rank of $(C_k)_{T'}$ in its first step implying that $T'_1 = T_1$.
 Hence $|\fp(T',R)| = |\fp(T,R)|$, which contradicts our assumption that $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
@@ -129,8 +129,9 @@ Hence $|\fp(T',R)| = |\fp(T,R)|$, which contradicts our assumption that $|\fp(T'
 This case implies that $((T)_{t+1},(T)_{t+2}))$ is an edge in $T$.
 
 We use the same notations for clusters $A$, $B$, and $C$ as above and additionally denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ --
-\todo{either capital "a" here or small "a" in the figure}
+\todo{Why does the same tree appear in the second row, second column twice?}
 see Figure~\ref{fig:thm_fp_nni2a}.
+Note that the position of the tree root is irrelevant for our argument, so we have placed the root to simplify the figures.
 
 \begin{figure}[H]
 	\begin{subfigure}[b]{.45\textwidth}
@@ -148,13 +149,15 @@ see Figure~\ref{fig:thm_fp_nni2a}.
 		\label{fig:thm_fp_nni2b}
 	\end{subfigure}
 	\caption{Comparison of $p$ and $p'$ if there is an $\nni$ move on the edge $((T)_{t+2},T_{t+1})$ in $T$.
-	At the bottom all possibilities for $T_2$ and $T'_2$, respectively, are displayed, depending on the cluster $C_k$ that is currently considered on $\findpath$:
-	${C_k \subseteq A \cup D}$ on the left, ${C_k \subseteq B \cup D}$ in the middle, ${C_k \subseteq C \cup D}$ on the right.}
+	The bottom row displays all possibilities for $T_2$ and $T'_2$, depending on the position cluster $C_k$ that is considered by $\findpath$:
+	${C_k \subseteq A \cup D}$ is on the left, ${C_k \subseteq B \cup D}$ is in the middle, ${C_k \subseteq C \cup D}$ is on the right.}
 \end{figure}
 
+\todo{Not sure if we need this paragraph.}
 We will now consider each $\nni$ move that could possibly happen on $\findpath$ on $T$ resulting in $T_1$, separately.
 If $T_1$ is the tree at the top left of Figure~\ref{fig:thm_fp_nni2a}, resulting from $T$ by exchanging the subtrees induced by $C$ and $D$, the cluster $C_k$, the most recent common ancestor of which is moved down by $\findpath$, contains elements of $D$ and of $A \cup B$.
 In the following we distinguish three cases, depending on whether $C_k$ contains, besides taxa of $D$, just taxa of $A$ or $B$, or both.
+\todo{This presumes that $k > 1$.}
 We denote the cluster $(R)_{k-1}$ by $C_{k-1}$.
 
 \begin{enumerate}[label = \theenumi.\arabic*]
