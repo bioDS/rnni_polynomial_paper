@@ -1,4 +1,4 @@
-\documentclass{amsart}
+\documentclass[11pt]{amsart}
 
 \usepackage[notref,notcite]{showkeys}
 \usepackage[style=authoryear,ibidtracker=false,uniquename=false,giveninits=true,terseinits=true,maxbibnames=5,backend=biber]{biblatex}
@@ -12,8 +12,10 @@
 \usepackage[foot]{amsaddr}
 \usepackage[misc]{ifsym}
 \usepackage{enumitem}
+\usepackage{geometry}
 
 \setlist{leftmargin = 0pt, labelindent = 0pt}
+\geometry{margin=1in}
 
 \renewbibmacro{in:}{}
 \addbibresource{rnni_polynomial.bib}
