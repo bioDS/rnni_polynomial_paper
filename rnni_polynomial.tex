@@ -153,12 +153,8 @@ Note that the position of the tree root is irrelevant for our argument, so we ha
 	${C_k \subseteq A \cup D}$ is on the left, ${C_k \subseteq B \cup D}$ is in the middle, ${C_k \subseteq C \cup D}$ is on the right.}
 \end{figure}
 
-\todo{Not sure if we need this paragraph.}
-We will now consider each $\nni$ move that could possibly happen on $\findpath$ on $T$ resulting in $T_1$, separately.
-If $T_1$ is the tree at the top left of Figure~\ref{fig:thm_fp_nni2a}, resulting from $T$ by exchanging the subtrees induced by $C$ and $D$, the cluster $C_k$, the most recent common ancestor of which is moved down by $\findpath$, contains elements of $D$ and of $A \cup B$.
 In the following we distinguish three cases, depending on whether $C_k$ contains, besides taxa of $D$, just taxa of $A$ or $B$, or both.
-\todo{This presumes that $k > 1$.}
-We denote the cluster $(R)_{k-1}$ by $C_{k-1}$.
+Note that for the case $k = 1$ it must be $C_k \subseteq A \cup D$ or $C_k \subseteq B \cup D$ and if $k > 1$ we assume $C_k = (R)_{k-1}$.
 
 \begin{enumerate}[label = \theenumi.\arabic*]
     \item If $C_k$ contains elements of all three clusters $A, B$ and $D$, then $C_{k-1} = A \cup B$ as the two clusters of $R$ that join to $C_k$ in $R$ must already be present in $T$.
@@ -180,7 +176,7 @@ We denote the cluster $(R)_{k-1}$ by $C_{k-1}$.
 
 The second $\nni$ move possible on $((T)_{t+2},(T)_{t+1})$ builds the cluster $C \cup D$ in $T_1$ as illustrated on the right of Figure~\ref{fig:thm_fp_nni2a}.
 Hence it is $C_k \subseteq C \cup D$.
-If $(C_k)_T$ does not move further down on $p$, $C_{k-1} = A \cup B$ is a cluster in $R$.
+If $(C_k)_T$ does not move further down on $p$, $k > 1$ and $C_{k-1} = A \cup B$ is a cluster in $R$.
 As this cluster is not present in $T'$, the $\rnni$ move that $\findpath$ does on this tree builds the cluster $A \cup B$, resulting in $T'_1 = T$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
 If on the other side the rank of $(C_k)_{T_1}$ decreases further on $p$, the rank of $(C_k)_{T'}$ decreases by at least two on $p'$ as well.
 As $C_k \subseteq C \cup D$, these two moves on $p'$ are $\nni$ moves exchanging the subtree induced by $D$ with the ones induced by $B$ and $A$.
