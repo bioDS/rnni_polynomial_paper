@@ -211,10 +211,9 @@ If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\fi
 Hence, the first two moves on $\fp(T', R)$ decrease the rank of $(C_k)_{T'}$ twice resulting in $T'_2$ which is an $\rnni$ neighbour of $T_2$.
 As before, this contradicts our minimality assumption.
 
-\item $\rnni$ move on interval $[(T)_{t},(T)_{t-1}]$
-In this case it is $C_k \subseteq A \cup B$.
-Hence the move decreasing the rank of $(C_k)_{T'}$ is an $\nni$ move exchanging $B$ and $C$.
-This results in $T'_1 = T$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
+\item $\rnni$ move on (edge) interval $[(T)_{t-1},(T)_t]$.
+In this case $C_k \subseteq A \cup B$, so the first move on $\fp(T', R)$ decreases the rank of $(C_k)_{T'}$ by exchanging the subtrees induced by $B$ and $C$.
+This results in $T'_1 = T$.
 \end{enumerate}
 
 \textbf{Case 2.} Let us now assume that there is a rank move between $T$ and $T'$ where nodes $(T)_{t+1}$ and $(T)_t$ inducing clusters $A$ and $B$ swap ranks as depicted at the top of Figure~\ref{fig:thm_fp_rank1}.
