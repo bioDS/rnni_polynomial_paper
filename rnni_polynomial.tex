@@ -210,13 +210,14 @@ Similarly to case~\ref{deep_case_details}, we arrive at a contradiction that tre
 This case is analogous to case~\ref{case:one_or_two_moves_down}.
 If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$ is a cluster in $R$, and applying $\findpath$ to $T', R$ we get $T'_1 = T$.
 If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank $(C_k)_{T_1}$ in the second step.
+Recall that the interval between nodes of rank $t$ and $t+1$ is an edge in both $T$ and $T'$.
 Hence, the first two moves on $\fp(T', R)$ decrease the rank of $(C_k)_{T'}$ twice resulting in $T'_2$ which is an $\rnni$ neighbour of $T_2$.
 As before, this contradicts our minimality assumption.
 
 \item $\rnni$ move on interval $[(T)_{t-1},(T)_t]$.
-The argument is the same whether or not $((T)_{t-1},(T)_t)$ is an edge in $T$.
 In this case $C_k \subseteq A \cup B$, so the first move on $\fp(T', R)$ decreases the rank of $(C_k)_{T'}$ by exchanging the subtrees induced by $B$ and $C$.
 This results in $T'_1 = T$.
+This argument applies whether or not $((T)_{t-1},(T)_t)$ is an edge in $T$.
 \end{enumerate}
 
 \textbf{Case 2.} Let us now assume that there is a rank move between $T$ and $T'$ where nodes $(T)_{t+1}$ and $(T)_t$ inducing clusters $A$ and $B$ swap ranks as depicted at the top of Figure~\ref{fig:thm_fp_rank1}.
