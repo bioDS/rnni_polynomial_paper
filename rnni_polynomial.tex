@@ -206,16 +206,12 @@ Similarly to case~\ref{deep_case_details}, we arrive at a contradiction that tre
 
 \item Rank move on interval $[(T)_{t+1},(T)_{t+2}]$.
 This case is analogous to case~\ref{case:one_or_two_moves_down}.
-If this rank move is followed by a further rank move, decreasing the rank of $(C_k)_{T_1}$ further, there are two rank moves decreasing the rank of $(C_k)_{T'}$ on $p'$ as well.
-The trees $T_2$ and $T'_2$ after these two moves on $p$ and $p'$ coincide in all but one interval.
-As previously, this contradicts the assumption that $T$ and $R$ are the closest trees that violate inequality~(\ref{eqn:iff_inequality}).
-If on the other side there is no such rank move on $T_1$, it is $C_{k-1} = A \cup B$.
-It follows $T'_1 = T$ as this tree results from building $C_{k-1}$ in $T'$, which happens right before $C_k$ is considered by $\findpath$ on $p'$.
-This contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
-\todo{LC: Add a figure for this case?}
+If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$ is a cluster in $R$, and applying $\findpath$ to $T', R$ we get $T'_1 = T$.
+If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank $(C_k)_{T_1}$ in the second step.
+Hence, the first two moves on $\fp(T', R)$ decrease the rank of $(C_k)_{T'}$ twice resulting in $T'_2$ which is an $\rnni$ neighbour of $T_2$.
+As before, this contradicts our minimality assumption.
 
 \item $\rnni$ move on interval $[(T)_{t},(T)_{t-1}]$
-
 In this case it is $C_k \subseteq A \cup B$.
 Hence the move decreasing the rank of $(C_k)_{T'}$ is an $\nni$ move exchanging $B$ and $C$.
 This results in $T'_1 = T$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
