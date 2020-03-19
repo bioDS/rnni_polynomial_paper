@@ -191,6 +191,7 @@ The corresponding trees $T_2$ and $T_2'$ are again $\rnni$ neighbours.
 \end{enumerate}
 
 \item $\nni$ move on (edge) interval $[(T)_{t+1}, (T)_{t+2}]$ that builds a cluster $C \cup D$ in $T_1$.
+\label{case:one_or_two_moves_down}
 This move is shown in Figure~\ref{fig:thm_fp_nni2a} by an arrow from $T$ to the second leftmost tree in the middle row.
 In this case, $C_k \subseteq C \cup D$.
 
@@ -203,9 +204,8 @@ This results in the path from $T$ to the rightmost tree in Figure~\ref{fig:thm_f
 Hence, $\fp(T', R)$ has to also begin with two moves that decrease the rank of $(C_k)_{T'}$ twice, resulting in the rightmost path in Figure~\ref{fig:thm_fp_nni2b}.
 Similarly to case~\ref{deep_case_details}, we arrive at a contradiction that trees $T_2$, $T_2'$, and $R$ violate inequality~(\ref{eqn:iff_inequality}) and $|\fp(T_2,R)| < |\fp(T,R)|$.
 
-\item A rank move on interval $[(T)_{t+1},(T)_{t+2}]$
-
-Notice that this is only possible if this is a rank interval.
+\item Rank move on interval $[(T)_{t+1},(T)_{t+2}]$.
+This case is analogous to case~\ref{case:one_or_two_moves_down}.
 If this rank move is followed by a further rank move, decreasing the rank of $(C_k)_{T_1}$ further, there are two rank moves decreasing the rank of $(C_k)_{T'}$ on $p'$ as well.
 The trees $T_2$ and $T'_2$ after these two moves on $p$ and $p'$ coincide in all but one interval.
 As previously, this contradicts the assumption that $T$ and $R$ are the closest trees that violate inequality~(\ref{eqn:iff_inequality}).
@@ -274,7 +274,7 @@ We first assume that $(T)_{t+2}$ is parent of $(T)_t$ and consider the other cas
 	\centering
 	\includegraphics[width=0.4\textwidth]{thm_fp_rank2}
 	\vspace{12pt}
-	\caption{Comparison of $p$ (left) and $p'$ (right) if there is a rank move between $T$ and $T'$ and an $\nni$ move on the edge below the corresponding rank interval follows on $p$.}
+	\caption{Comparison of $p$ (left) and $p'$ (right) if there is a rank move between $T$ and $T'$ and an $\nni$ move on the edge below the corresponding (rank) interval follows on $p$.}
 	\label{fig:thm_fp_rank2}
 \end{figure}
 
