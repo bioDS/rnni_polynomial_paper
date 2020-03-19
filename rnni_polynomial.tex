@@ -14,8 +14,9 @@
 \usepackage{enumitem}
 \usepackage{geometry}
 
-\setlist{leftmargin = 0pt, labelindent = 0pt}
-\geometry{margin=1in}
+%FOCS margins
+%\setlist{leftmargin = 0pt, labelindent = 0pt}
+%\geometry{margin=1in}
 
 \renewbibmacro{in:}{}
 \addbibresource{rnni_polynomial.bib}
@@ -151,21 +152,26 @@ Note that the position of the tree root is irrelevant for our argument, so we ha
 	\caption{Comparison of paths $p$ and $p'$ if $T$ and $T'$ are connected by an $\nni$ move on edge $((T)_{t+1},T_{t+2})$ in $T$.
 	The bottom row displays all possibilities for $T_2$ and $T'_2$, depending on the position of cluster $C_k$ that is considered by $\findpath$:
 	${C_k \subseteq B \cup D}$ is on the left, ${C_k \subseteq A \cup D}$ is in the middle, ${C_k \subseteq C \cup D}$ is on the right.}
+	\label{fig:thm_fp_nni}
 \end{figure}
 
-Note that the cluster $C_k$ that is considered by $\findpath$ in the first step must intersect $D$.
+Note that the cluster $C_k$ that is considered by $\findpath$ in the first step of computing $\fp(T, R)$ must intersect $D$.
 Additionally, $C_k$ must intersect $A$, or $B$, or both of them.
 Hence, we will consider each of these three cases individually.
 We can assume that $k > 1$ and $C_{k-1} = (R)_{k-1}$.
-\todo{Lena: we need to clarify this.}
+\todo{We need to clarify this.}
 Indeed, $C_1 \subseteq A \cup D$ or $C_1 \subseteq B \cup D$.
 
+We will use Figure~\ref{fig:thm_fp_nni} to demonstrate all the three cases below.
+
 \begin{enumerate}[label = \theenumi.\arabic*]
-\item If $C_k$ contains elements of all three clusters $A, B$ and $D$, then $C_{k-1} = A \cup B$ as the two clusters of $R$ that join to $C_k$ in $R$ must already be present in $T$.
-\todo{LC: Is this clear?}
-As this $C_{k-1} = A \cup B$ is no cluster of $T'$, the move $\findpath$ makes on $T'$ decreases the rank of $(C_{k-1})_{T'}$ before $C_k$ is considered by the algorithm.
-This $\rnni$ move on $T'$ decreases the rank of $(C_{k-1})_{T'}$ by building the cluster $A \cup B$, such that $T'_1 = T$.
-This however contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
+\item $C_k$ intersects each of $A$, $B$, and $D$.
+Since $C_k$ is the first cluster considered by $\findpath$, the two clusters that make up $C_k$ in $R$ must present in $T$.
+So $C_{k-1} = A \cup B$.
+Since $A \cup B$ is not a cluster in $T'$, $\findpath$ will decreases the rank of $(C_{k-1})_{T'}$ on $\fp(T', R)$ before considering cluster $C_k$.
+\todo{How do we know the algorithm doesn't have to consider $C_i$s for $i < k-1$?}
+This $\rnni$ move decreases the rank of $(C_{k-1})_{T'}$ by building cluster $A \cup B$, in which case $T'_1 = T$.
+This however contradicts to $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
 \item If $C_k \subseteq A \cup D$, the move on $T_1$ decreases the rank of $(C_k)_{T_1}$ by exchanging $B$ and $D$, resulting in the tree  $T_2$ as depicted in the middle of the bottom row in Figure~\ref{fig:thm_fp_nni2a}.
 As $C_k \subseteq A \cup D$, we can follow that from $T'$ to $T'_1$ to $T'_2$ the rank of $(C_k)_{T'}$ decreases by two by exchanging the subtree induced by $D$ with the ones induced by $B$ and $C$.
