@@ -166,22 +166,26 @@ We will use Figure~\ref{fig:thm_fp_nni} to demonstrate all the three cases below
 
 \begin{enumerate}[label = \theenumi.\arabic*]
 \item $C_k$ intersects each of $A$, $B$, and $D$.
-Since $C_k$ is the first cluster considered by $\findpath$, the two clusters that make up $C_k$ in $R$ must present in $T$.
+Since $C_k$ is the first cluster considered by $\findpath$, the two clusters that make up $C_k$ in $R$ must be present in $T$.
 So $C_{k-1} = A \cup B$.
-Since $A \cup B$ is not a cluster in $T'$, $\findpath$ will decreases the rank of $(C_{k-1})_{T'}$ on $\fp(T', R)$ before considering cluster $C_k$.
+Since $A \cup B$ is not a cluster in $T'$, $\findpath$ will decrease the rank of $(C_{k-1})_{T'}$ on $\fp(T', R)$ before considering cluster $C_k$.
 \todo{How do we know the algorithm doesn't have to consider $C_i$s for $i < k-1$?}
 This $\rnni$ move decreases the rank of $(C_{k-1})_{T'}$ by building cluster $A \cup B$, in which case $T'_1 = T$.
 This however contradicts to $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
-\item If $C_k \subseteq A \cup D$, the move on $T_1$ decreases the rank of $(C_k)_{T_1}$ by exchanging $B$ and $D$, resulting in the tree  $T_2$ as depicted in the middle of the bottom row in Figure~\ref{fig:thm_fp_nni2a}.
-As $C_k \subseteq A \cup D$, we can follow that from $T'$ to $T'_1$ to $T'_2$ the rank of $(C_k)_{T'}$ decreases by two by exchanging the subtree induced by $D$ with the ones induced by $B$ and $C$.
-This is depicted on the path leading to the tree in the middle of the bottom row in Figure~\ref{fig:thm_fp_nni2b}.
-It follows that $T_2$ and $T'_2$ only differ by one interval (dotted edges in the corresponding trees in Figures~\ref{fig:thm_fp_nni2a} and~\ref{fig:thm_fp_nni2b}), and hence are $\rnni$ neighbours.
-This together with the fact that $|\fp(T_2,R)| = |\fp(T,R)|-2$ and  $|\fp(T'_2,R)| = |\fp(T',R)|-2$ contradicts the assumption that $\fp(T,R)$ has minimum length among all $\findpath$ paths between pairs of trees violating inequality~(\ref{eqn:iff_inequality}).
+\item $C_k \subseteq A \cup D$.
+Starting from $T$, $\findpath$ exchanges first subtrees induced by clusters $C$ and $D$ and then by $B$ and $D$.
+This results in trees $T_1$ and $T_2$ -- see the path leading to the tree in the middle of the bottom row in Figure~\ref{fig:thm_fp_nni2a}.
+Starting from $T'$, $\findpath$ exchanges first subtrees induced by $B$ and $D$ and then by $C$ and $D$.
+This results in trees $T_1'$ and $T_2'$ -- see the path leading to the tree in the middle of the bottom row in Figure~\ref{fig:thm_fp_nni2b}.
+It follows that $T_2$ and $T'_2$ only differ by one interval (indicated by dotted edges in the corresponding trees in Figure~\ref{fig:thm_fp_nni}), and hence they are $\rnni$ neighbours.
+This together with the facts that $|\fp(T_2,R)| = |\fp(T,R)|-2$ and $|\fp(T'_2,R)| = |\fp(T',R)|-2$ contradicts the assumption that $|\fp(T,R)|$ is a minimal length violating inequality~(\ref{eqn:iff_inequality}).
 
-\item The case $C_k \subseteq B \cup D$ is analogous to the previous one.
-The two $\rnni$ moves following $T$ and $T'$ on $p$ and $p'$, respectively, end up in trees $T_2$ and $T'_2$ as depicted in the trees at the bottom left of Figures~\ref{fig:thm_fp_nni2a} and \ref{fig:thm_fp_nni2b} that are $\rnni$ neighbours.
-As in the previous case, $T_2, T'_2$ and $R$ violate inequality~(\ref{eqn:iff_inequality}) and $|\fp(T_2,R)| < |\fp(T,R)|$, which contradicts our assumptions on $T$ and $R$.
+\item $C_k \subseteq B \cup D$.
+This case is analogous to the previous one.
+The two initial segments of $\fp(T, R)$ and $\fp(T', R)$ are the paths leading to the leftmost trees in the bottom row of Figures~\ref{fig:thm_fp_nni2a} and \ref{fig:thm_fp_nni2b}, respectively.
+Note that the rank swap leading from $T_1'$ to $T_2'$ is required because the rank of $(C_k)_R$ is at most $t$ as implied by the move leading from $T_1$ to $T_2$.
+The corresponding trees $T_2$ and $T_2'$ are again $\rnni$ neighbours. 
 \end{enumerate}
 
 The second $\nni$ move possible on $((T)_{t+2},(T)_{t+1})$ builds the cluster $C \cup D$ in $T_1$ as illustrated on the right of Figure~\ref{fig:thm_fp_nni2a}.
