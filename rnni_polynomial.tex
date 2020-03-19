@@ -123,7 +123,7 @@ Additionally, denote the cluster induced by the child of $(T)_{t+2}$ that is not
 We now consider all possible moves $\findpath$ can perform to go from $T$ to $T_1$ that involve a node of rank $t$ or $t+1$, that is, we will consider three intervals in total.
 
 \begin{enumerate}[label = 1.{\arabic*}]
-\item An $\rnni$ move on interval $[(T)_t, (T)_{t+1}]$.
+\item $\rnni$ move on interval $[(T)_t, (T)_{t+1}]$.
 Note that this move has to be the $\nni$ move that is different from the $\nni$ move connecting $T$ and $T'$.
 
 In this case, the cluster $B \cup C$ is built in $T_1$, as depicted in the bottom of Figure~\ref{fig:thm_fp_nni1}.
@@ -214,6 +214,7 @@ As before, this contradicts our minimality assumption.
 \item $\rnni$ move on (edge) interval $[(T)_{t-1},(T)_t]$.
 In this case $C_k \subseteq A \cup B$, so the first move on $\fp(T', R)$ decreases the rank of $(C_k)_{T'}$ by exchanging the subtrees induced by $B$ and $C$.
 This results in $T'_1 = T$.
+\todo{Where is the case of a rank move on this interval?}
 \end{enumerate}
 
 \textbf{Case 2.} Let us now assume that there is a rank move between $T$ and $T'$ where nodes $(T)_{t+1}$ and $(T)_t$ inducing clusters $A$ and $B$ swap ranks as depicted at the top of Figure~\ref{fig:thm_fp_rank1}.
