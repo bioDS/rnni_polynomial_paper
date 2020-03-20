@@ -266,13 +266,8 @@ The following two sub-cases are analogous to case~\ref{case:one_or_two_moves_dow
 	The corresponding first moves on $\fp(T', R)$ are shown on the right in Figure~\ref{fig:thm_fp_rank2}, and we again get that $T_2$ and $T_2'$ are $\rnni$ neighbours.
 \end{enumerate}
 
-\item Rank move on interval $[(T)_{t+2}, (T)_{t+1}]$.
-If no rank move increasing the rank of $(T_1)_{t}$ follows this move, $C_k$ reaches it's final position in the tree $T_1$.
-Then it is $C_k = A$, induced by $(T)_t$ in $T$.
-It follows that the move on $T$ done by $\findpath$ results in $T$, as $(C_{k-1})_{T'}$ moves down before $C_k$ is considered on $p'$.
-This however contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
-If on the other side the rank swap on $T$ is directly followed by the rank swap of $(T_1)_t$ and $(T_1)_{t+1}$, such rank swaps happen on $p'$ as well and $T_2$ and $T'_2$ are $\rnni$ neighbours.
-This is again a contradiction to our choice of $T$ and $R$.
+\item Rank move on interval $[(T)_{t+1}, (T)_{t+2}]$.
+Again, depending on whether or not the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide, we arrive at the conclusion that either $T_1' = T$ or $T_2$ and $T_2'$ are $\rnni$ neighboughrs.
 
 \item $\rnni$ moves on interval $[(T)_{t-1},(T)_t]$.
 It follows $C_k \subseteq A$.
