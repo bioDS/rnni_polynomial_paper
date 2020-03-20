@@ -252,22 +252,18 @@ The following two sub-cases are analogous to case~\ref{case:one_or_two_moves_dow
 	This is a contradiction to the minimality assumption on $|\fp(T,R)|$.
 
 	\item $(T)_{t+2}$ is not a parent of $(T)_t$.
-	In this case the $\nni$ move builds a new cluster $C \cup B_i$ for an $i \in \{1,2\}$ where $C$ is the cluster induced by the child of $(T)_{t+2}$ that does not induce $B$, as depicted in the top left of Figure~\ref{fig:thm_fp_rank2}.
+	In this case, there exists a cluster $C$ induced by the child of $(T)_{t+2}$ which is differnt from the one that induces $B$ -- see Figure~\ref{fig:thm_fp_rank2}.
 \begin{figure}[!hbt]
 	\centering
-	\includegraphics[width=0.35\textwidth]{thm_fp_rank2}
+	\includegraphics[width=0.3\textwidth]{thm_fp_rank2}
 	\caption{Comparison of $p$ (left) and $p'$ (right) if there is a rank move between $T$ and $T'$ and an $\nni$ move on the edge below the corresponding (rank) interval follows on $p$.}
 	\label{fig:thm_fp_rank2}
 \end{figure}
-	We can assume without loss of generality that $C_k \subseteq C \cup B_1$.
-	If there was no rank move on $T_1$ decreasing the rank of $(C_k)_{T_1}$ further, it is $C_{k-1} = A$, which implies that $A$ is induced by internal node of rank $t$ in both $T$ and $R$.
-	Then the rank of $(A)_{T'}$ decreases by a rank move on $p'$ as $C_{k-1} = A$ moves to its final position on $\findpath$ before $C_k$ is considered, which results in $T'_1 = T$.
-	This however contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
-
-	The case that the rank of $(C_k)_{T_1}$ decreases further on $p$ is depicted on the left of Figure~\ref{fig:thm_fp_rank2}.
-	As it is $C_k \subseteq C \cup B_1$, the rank of $(C_k)_{T'}$ decreases by a rank swap of $(C \cup B)_{T'}$ and $(A)_{T'}$ on $T'$ before the subtrees inducing $B_2$ and $C$ exchange by an $\nni$ move, as it is depicted on the right in the same figure.
-	One can easily see that $T_2$ and $T'_2$ are $\rnni$ neighbours.
-	Again, this is a contradiction to the minimality assumption of $|\fp(T,R)|$.
+	We can assume without loss of generality that $C_k \subseteq C \cup B_1$ and the first move on $\fp(T, R)$ builds a new cluster $C \cup B_1$.
+	If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A$ is a cluster in $R$, which implies that $A$ is induced by the node of rank $t$ in both $T$ and $R$.
+	So $T'_1 = T$.
+	If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step -- see Figure~\ref{fig:thm_fp_rank2}.
+	The corresponding first moves on $\fp(T', R)$ are shown on the right in Figure~\ref{fig:thm_fp_rank2}, and we again get that $T_2$ and $T_2'$ are $\rnni$ neighbours.
 \end{enumerate}
 
 \item Rank move on interval $[(T)_{t+2}, (T)_{t+1}]$.
