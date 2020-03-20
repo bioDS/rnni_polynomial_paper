@@ -200,7 +200,7 @@ If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$ i
 Since $A \cup B$ is not a cluster in $T'$, the first $\rnni$ move on $\fp(T', R)$ builds the cluster $A \cup B$ by swapping subtrees induced by cluster $B$ and $C$.
 This move results in $T_1' = T$ contradicting $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
-If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank $(C_k)_{T_1}$ in the second step.
+If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
 This results in the path from $T$ to the rightmost tree in Figure~\ref{fig:thm_fp_nni2a}.
 Hence, $\fp(T', R)$ has to also begin with two moves that decrease the rank of $(C_k)_{T'}$ twice, resulting in the rightmost path in Figure~\ref{fig:thm_fp_nni2b}.
 Similarly to case~\ref{deep_case_details}, we arrive at a contradiction that trees $T_2$, $T_2'$, and $R$ violate inequality~(\ref{eqn:iff_inequality}) and $|\fp(T_2,R)| < |\fp(T,R)|$.
@@ -208,7 +208,7 @@ Similarly to case~\ref{deep_case_details}, we arrive at a contradiction that tre
 \item Rank move on interval $[(T)_{t+1},(T)_{t+2}]$.
 This case is analogous to case~\ref{case:one_or_two_moves_down}.
 If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$ is a cluster in $R$, and applying $\findpath$ to $T', R$ we get $T'_1 = T$.
-If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank $(C_k)_{T_1}$ in the second step.
+If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
 Recall that the interval between nodes of rank $t$ and $t+1$ is an edge in both $T$ and $T'$.
 Hence, the first two moves on $\fp(T', R)$ decrease the rank of $(C_k)_{T'}$ twice resulting in $T'_2$ which is an $\rnni$ neighbour of $T_2$.
 As before, this contradicts our minimality assumption.
@@ -241,15 +241,15 @@ This move results in $T_1 = T'$.
 
 \begin{enumerate}[label = \theenumi.\arabic*]
 	\item $(T)_{t+2}$ is a parent of $(T)_t$.
-	Then the first move on $\fp(T, R)$ builds a cluster $A \cup B_1$ or $A \cup B_2$, and we assume without loss of generality that it is the former.
+	This case is analogous to case~\ref{case:one_or_two_moves_down}.
+	The first move on $\fp(T, R)$ builds a cluster $A \cup B_1$ or $A \cup B_2$, and we assume without loss of generality that it is the former, as in Figure~\ref{fig:thm_fp_rank1}.
 	This implies that $C_k \subseteq A \cup B_1$.
-	We assume without loss of generality that this cluster is $A \cup B_1$, as it is depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
-	If there is no move decreasing the rank of $(C_k)_{T_1}$ further, it follows $C_{k-1} = A$ and in particular $(C_k)_T = (C_k)_R$.
-	Therefore, the first move on $T'$ decreases $(C_{k-1})_{T'}$, which results in $T'_1 = T$, contradicting $|\fp(T',R)| < |\fp(T,R)| - 1$.
-	Let us now assume the second option that $(C_k)_{T_1}$ is moved further down on $p$.
-	Due to symmetry we can assume that $C_k \subseteq A_1 \cup B_1$, which means that from $T_1$ to $T_2$ the subtrees induced by $A_2$ and $B_1$ exchange by an $\nni$ move, as depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
-	From $C_k \subseteq A_1 \cup B_1$ we can infer that the two moves on $p'$ following $T'$ are two $\nni$ moves that result in a tree $T'_2$ that is $\rnni$ neighbour of $T_2$, as depicted on the bottom of Figure~\ref{fig:thm_fp_rank1}.
-	This however is a contradiction to the minimality assumption on $|\fp(T,R)|$.
+	If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A$ is a cluster in $R$.
+	Therefore, the first move on $\fp(T', R)$ decreases the rank of $(A)_{T'}$, which results in $T_1' = T$.
+	If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
+	Due to the symmetry we can assume that $C_k \subseteq A_1 \cup B_1$, which implies that the move between $T_1$ to $T_2$ exchanges the subtrees induced by $A_2$ and $B_1$, as depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
+	$C_k \subseteq A_1 \cup B_1$ implies that the first two moves on $\fp(T', R)$ result in a tree $T'_2$ that is an $\rnni$ neighbour of $T_2$ -- see Figure~\ref{fig:thm_fp_rank1}.
+	This is a contradiction to the minimality assumption on $|\fp(T,R)|$.
 
 	\item $(T)_{t+2}$ is not parent of $(T)_t$.
 	In this case the $\nni$ move builds a new cluster $C \cup B_i$ for an $i \in \{1,2\}$ where $C$ is the cluster induced by the child of $(T)_{t+2}$ that does not induce $B$, as depicted in the top left of Figure~\ref{fig:thm_fp_rank2}.
