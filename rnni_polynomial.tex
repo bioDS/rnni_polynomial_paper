@@ -59,10 +59,11 @@ We present a quadratic algorithm to compute shortest paths, and hence the distan
 Things to introduce:
 
 \begin{itemize}
-\item Trees with the notion of an interval in a tree (if we want intervals), clusters, clusters induced by nodes, subtrees induced by clusters, list representation of trees.
+\item Trees with the notion of an interval in a tree (if we want intervals), clusters, clusters induced by nodes, subtrees induced by clusters, list representation of trees, discrete time-trees (for generalising the proof).
 \item $(T)_k$: node of rank k, $(C)_T$: mrca of cluster $C$ in $T$
 \item $\findpath$, including its time complexity.
 \item Note that $\findpath$ is deterministic, that is, an interval and a move on the interval are uniquely determined (this is necessary to concentrate on the $v, w$ nodes in the proof of main theorem).
+\item weights/penalties on NNI/rank moves
 \end{itemize}
 
 \begin{theorem}
@@ -187,7 +188,7 @@ This together with the facts that $|\fp(T_2,R)| = |\fp(T,R)|-2$ and $|\fp(T'_2,R
 This case is analogous to the previous one.
 The two initial segments of $\fp(T, R)$ and $\fp(T', R)$ are the paths leading to the leftmost trees in the bottom row of Figures~\ref{fig:thm_fp_nni2a} and \ref{fig:thm_fp_nni2b}, respectively.
 Note that the rank swap leading from $T_1'$ to $T_2'$ is required because the rank of $(C_k)_R$ is at most $t$ as implied by the move leading from $T_1$ to $T_2$.
-The corresponding trees $T_2$ and $T_2'$ are again $\rnni$ neighbours. 
+The corresponding trees $T_2$ and $T_2'$ are again $\rnni$ neighbours.
 \end{enumerate}
 
 \item $\nni$ move on (edge) interval $[(T)_{t+1}, (T)_{t+2}]$ that builds a cluster $C \cup D$ in $T_1$.
