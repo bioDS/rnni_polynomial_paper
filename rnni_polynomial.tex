@@ -16,8 +16,8 @@
 \usepackage[hidelinks]{hyperref}
 
 %FOCS margins
-%\setlist{leftmargin = 0pt, labelindent = 0pt}
-%\geometry{margin=1in}
+\setlist{leftmargin = 0pt, labelindent = 0pt}
+\geometry{margin=1in}
 
 \renewbibmacro{in:}{}
 \addbibresource{rnni_polynomial.bib}
@@ -38,7 +38,7 @@
 \graphicspath{{figures/}}
 
 
-\title[Computing $\rnni$ distance]{Efficient algorithm for computing nearest neighbour interchange distance between ranked phylogenetic trees}
+\title[Computing $\rnni$ distance]{The complexity of computing nearest neighbour interchange distances between ranked phylogenetic trees}
 \date{\today}
 \author{Lena Collienne\textsuperscript{1}}
 \email{lena.collienne@postgrad.otago.ac.nz}
@@ -50,11 +50,13 @@
 \begin{document}
 
 \begin{abstract}
-We present a quadratic algorithm to compute shortest paths, and hence the distance, between ranked phylogenetic trees under the ranked nearest neighbour interchange operation.
+
 \end{abstract}
 
 
 \maketitle
+
+\newpage
 
 Things to introduce:
 
@@ -108,8 +110,8 @@ Hence, the first move on $p$ has to involve an interval incident to at least one
 We will distinguish two cases depending on whether $T$ and $T'$ are connected by an $\nni$ or a rank move.
 For each of these we will further distinguish all possible moves between $T$ and $T_1$.
 
-\textbf{Case 1.} $T$ and $T'$ are connected by an $\nni$ move, so $((T)_t,(T)_{t+1})$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
-
+\textbf{Case 1.}
+$T$ and $T'$ are connected by an $\nni$ move, so $((T)_t,(T)_{t+1})$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
 Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, and assume that the $\nni$ move between $T$ and $T'$ exchanges the subtrees induced by clusters $B$ and $C$.
 Additionally, denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni2a}.
 
@@ -209,35 +211,34 @@ Similarly to case~\ref{deep_case_details}, we arrive at a contradiction that tre
 This case is analogous to case~\ref{case:one_or_two_moves_down}.
 If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$ is a cluster in $R$, and applying $\findpath$ to $T', R$ we get $T'_1 = T$.
 If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank $(C_k)_{T_1}$ in the second step.
+Recall that the interval between nodes of rank $t$ and $t+1$ is an edge in both $T$ and $T'$.
 Hence, the first two moves on $\fp(T', R)$ decrease the rank of $(C_k)_{T'}$ twice resulting in $T'_2$ which is an $\rnni$ neighbour of $T_2$.
 As before, this contradicts our minimality assumption.
 
 \item $\rnni$ move on interval $[(T)_{t-1},(T)_t]$.
-The argument is the same whether or not $((T)_{t-1},(T)_t)$ is an edge in $T$.
 In this case $C_k \subseteq A \cup B$, so the first move on $\fp(T', R)$ decreases the rank of $(C_k)_{T'}$ by exchanging the subtrees induced by $B$ and $C$.
 This results in $T'_1 = T$.
+This argument applies whether or not $((T)_{t-1},(T)_t)$ is an edge in $T$.
 \end{enumerate}
 
-\textbf{Case 2.} Let us now assume that there is a rank move between $T$ and $T'$ where nodes $(T)_{t+1}$ and $(T)_t$ inducing clusters $A$ and $B$ swap ranks as depicted at the top of Figure~\ref{fig:thm_fp_rank1}.
-We denote the clusters joining to clusters $A$ and $B$ in $T$ by $A_1,A_2$ and $B_1,B_2$, respectively.
-We will again consider the different moves from $T$ to $T_1$ that are possible on intervals incident to $(T)_{t+1}$ or $(T)_{t}$ and show that each of these cases ends in a contradiction, proving that $T,T'$ and $R$ cannot violate inequality~(\ref{eqn:iff_inequality}).
+\textbf{Case 2.}
+$T$ and $T'$ are connected by a rank move on the interval between nodes or rank $t$ and $t+1$.
+Denote the cluster induced by $(T)_t$ by $A$, the clusters induces by the children of $(T)_t$ by $A_1$ and $A_2$, the cluster induced by $(T)_{t+1}$ by $B$, and the cluster induced by the children of $(T)_{t+1}$ by $B_1$ and $B_2$ -- see Figure~\ref{fig:thm_fp_rank1}.
 
 \begin{figure}[!hbt]
 \centering
-\includegraphics[width=0.4\textwidth]{thm_fp_rank1}
-\vspace{12pt}
-\caption{Rank move between $T$ and $T'$ on the interval given by the highlighted nodes, and an $\nni$ move on $T$ if the edge $((T)_{t+2},(T)_{t+1})$ has length one.}
+\includegraphics[width=0.3\textwidth]{thm_fp_rank1}
+\caption{Rank move between $T$ and $T'$ on the interval above the node of rank $t$, and an $\nni$ move on $T$ if the edge $((T)_{t+2},(T)_{t+1})$ has length one.}
 \label{fig:thm_fp_rank1}
 \end{figure}
 
+We again consider all possible moves $\findpath$ can perform to go from $T$ to $T_1$ that involve a node of rank $t$ or $t+1$.
+
 \begin{enumerate}[label = 2.\arabic*]
-\item Rank move on $[(T)_{t+1},(T)_t]$
+\item Rank move on $[(T)_t,(T)_{t+1}]$.
+This move results in $T_1 = T'$.
 
-This move on $T$ results in $T_1 = T'$.
-It follows $|\fp(T',R)| = |\fp(T,R)| - 1$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
-
-\item $\nni$ move on edge $((T)_{t+2},(T)_{t})$
-
+\item $\nni$ move on interval $[(T)_{t+1},(T)_{t+2}]$.
 Notice that this is only possible if this interval is an edge.
 We first assume that $(T)_{t+2}$ is parent of $(T)_t$ and consider the other case later.
 
