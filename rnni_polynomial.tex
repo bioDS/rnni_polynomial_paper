@@ -252,7 +252,7 @@ The following two sub-cases are analogous to case~\ref{case:one_or_two_moves_dow
 	This is a contradiction to the minimality assumption on $|\fp(T,R)|$.
 
 	\item $(T)_{t+2}$ is not a parent of $(T)_t$.
-	In this case, there exists a cluster $C$ induced by the child of $(T)_{t+2}$ which is differnt from the one that induces $B$ -- see Figure~\ref{fig:thm_fp_rank2}.
+	In this case, there exists a cluster $C$ induced by the child of $(T)_{t+2}$ which is different from the one that induces $B$ -- see Figure~\ref{fig:thm_fp_rank2}.
 \begin{figure}[!hbt]
 	\centering
 	\includegraphics[width=0.4\textwidth]{thm_fp_rank2}
@@ -267,15 +267,13 @@ The following two sub-cases are analogous to case~\ref{case:one_or_two_moves_dow
 \end{enumerate}
 
 \item Rank move on interval $[(T)_{t+1}, (T)_{t+2}]$.
-Again, depending on whether or not the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide, we arrive at the conclusion that either $T_1' = T$ or $T_2$ and $T_2'$ are $\rnni$ neighboughrs.
+Again, depending on whether or not the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide, we arrive at the conclusion that either $T_1' = T$ or $T_2$ and $T_2'$ are $\rnni$ neighbours.
 
-\item $\rnni$ moves on interval $[(T)_{t-1},(T)_t]$.
-It follows $C_k \subseteq A$.
-For decreasing the rank of $(C_k)_{T'}$, the move on $T'$ must be a rank swap resulting in $T$, which contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
+\item $\rnni$ move on interval $[(T)_{t-1},(T)_t]$.
+In this case $C_k \subseteq A$ and the first move on $\fp(T', R)$ must be a rank swap resulting in $T_1' = T$.
 \end{enumerate}
 
-We can conclude that in any of the above cases we arrive at a contradiction, proving that a tree $T'$ that is $\rnni$ neighbour of $T$ with $|\fp(T',R)| < |\fp(T,R)| - 1$ does not exist.
-Therefore we can follow that $|\fp(T',R)| \geq |\fp(T,R)| -1$ for all $\rnni$ neighbours $T'$ of $T$.
+Since all possible cases result in a contradiction, we conclude that inequality~(\ref{eqn:iff_inequality}) is true for all trees and the theorem is proven.
 \endproof
 
 \end{document}
