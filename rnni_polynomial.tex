@@ -173,7 +173,7 @@ We will use Figure~\ref{fig:thm_fp_nni} to demonstrate all the three cases below
 Since $C_k$ is the first cluster considered by $\findpath$, the two clusters that make up $C_k$ in $R$ must be present in $T$.
 So $C_{k-1} = A \cup B$.
 Since $A \cup B$ is not a cluster in $T'$, $\findpath$ will decrease the rank of $(C_{k-1})_{T'}$ on $\fp(T', R)$ before considering cluster $C_k$.
-\todo{How do we know the algorithm doesn't have to consider $C_i$s for $i < k-1$?}
+\todo{How do we know the algorithm doesn't have to consider $C_i$s for $i < k-1$? LC: the moves for building those cluster on $FP(T',R)$ are the same as on $FP(T,R)$, as they can't be done on intervals between $t-1$ and $t+2$. So these $C_i$ be clusters of $T$ and $T'$ already. $C_{k-1}$ can be different if the first move on $FP(T,R)$ is the first one considering $C_k$.}
 This $\rnni$ move decreases the rank of $(C_{k-1})_{T'}$ by building cluster $A \cup B$, in which case $T'_1 = T$.
 This however contradicts to $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
