@@ -162,13 +162,12 @@ This move is shown in Figure~\ref{fig:thm_fp_nni2a} by an arrow from $T$ to the 
 Note that the cluster $C_k$ that is considered by $\findpath$ in the first step of computing $\fp(T, R)$ must intersect $D$.
 Additionally, $C_k$ must intersect $A$, or $B$, or both of them.
 Hence, we will consider each of these three cases individually.
-Note that $C_1$ can only intersect with either $A$ or $B$, hence the first of the following cases does not apply to $k = 1$.
-For $k > 1$ we say $C_{k-1} = (R)_{k-1}$.
 
 We will use Figure~\ref{fig:thm_fp_nni} to demonstrate all the three cases below.
 
 \begin{enumerate}[label = \theenumi.\arabic*]
 \item $C_k$ intersects each of $A$, $B$, and $D$.
+We can assume $k > 1$ and $C_{k-1} = (R)_{k-1}$ as $C_1$ contains two taxa and can therefore only intersect with either $A$ or $B$.
 Since $C_k$ is the first cluster considered by $\findpath$, the two clusters that make up $C_k$ in $R$ must be present in $T$.
 So $C_{k-1} = A \cup B$.
 Since $A \cup B$ is not a cluster in $T'$, $\findpath$ will decrease the rank of $(C_{k-1})_{T'}$ on $\fp(T', R)$ before considering cluster $C_k$.
