@@ -174,7 +174,7 @@ So $C_{k-1} = A \cup B$.
 Since $A \cup B$ is not a cluster in $T'$, $\findpath$ will decrease the rank of $(C_{k-1})_{T'}$ on $\fp(T', R)$ before considering cluster $C_k$.
 Note that the clusters induced by nodes of rank $i < k - 1$ in $T$ and $T'$ coincide, so all moves, if any, on $\fp(T, R)$ and $\fp(T', R)$ that involve those cluster will be the same.
 The $\rnni$ move decreases the rank of $(C_{k-1})_{T'}$ by building cluster $A \cup B$, in which case $T'_1 = T$.
-This however contradicts to $|\fp(T',R)| < |\fp(T,R)| - 1$.
+This however contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
 \item $C_k \subseteq A \cup D$.
 \label{deep_case_details}
@@ -203,7 +203,7 @@ This move results in $T_1' = T$ contradicting $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
 If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
 This results in the path from $T$ to the rightmost tree in Figure~\ref{fig:thm_fp_nni2a}.
-Hence, $\fp(T', R)$ has to also begin with two moves that decrease the rank of $(C_k)_{T'}$ twice, resulting in the rightmost path in Figure~\ref{fig:thm_fp_nni2b}.
+Hence, $\fp(T', R)$ also has to begin with two moves that decrease the rank of $(C_k)_{T'}$ twice, resulting in the rightmost path in Figure~\ref{fig:thm_fp_nni2b}.
 Similarly to case~\ref{deep_case_details}, we arrive at a contradiction that trees $T_2$, $T_2'$, and $R$ violate inequality~(\ref{eqn:iff_inequality}) and $|\fp(T_2,R)| < |\fp(T,R)|$.
 
 \item Rank move on interval $[(T)_{t+1},(T)_{t+2}]$.
