@@ -63,7 +63,7 @@ In this paper we settle this problem by establishing that the complexity depends
 Things to introduce:
 
 \begin{itemize}
-\item Trees with the notion of an interval in a tree (if needed: edge vs rank intervals), clusters, clusters induced by nodes, subtrees induced by clusters, list representation of trees, discrete time-trees (for generalising the proof).
+\item Trees (looks like we can get away without ``taxa'' -- CS folk understand leaves/ elements better) with the notion of an interval in a tree (if needed: edge vs rank intervals), clusters, clusters induced by nodes, subtrees induced by clusters, list representation of trees, discrete time-trees (for generalising the proof).
 \item $(T)_k$: node of rank k, $(C)_T$: mrca of cluster $C$ in $T$
 \item $\findpath$, including its time complexity.
 \item Note that $\findpath$ is deterministic, that is, an interval and a move on the interval are uniquely determined (this is necessary to concentrate on the $v, w$ nodes in the proof of main theorem).
@@ -110,7 +110,7 @@ Hence, the first move on $\fp(T, R)$ has to involve an interval incident to at l
 
 We will distinguish two cases depending on whether $T$ and $T'$ are connected by an $\nni$ or a rank move.
 For each of these we will further distinguish all possible moves between $T$ and $T_1$.
-Note that in all figures we use for illustrating possible moves on $\fp(T,R)$ and $\fp(T',R)$ the positions of tree roots are irrelevant, so we have placed roots to simplify the figures.
+Note that in all figures illustrating possible moves on $\fp(T,R)$ and $\fp(T',R)$, the positions of tree roots are irrelevant, so we have positioned the roots to simplify our figures.
 
 \textbf{Case 1.}
 $T$ and $T'$ are connected by an $\nni$ move, so $((T)_t,(T)_{t+1})$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
@@ -131,7 +131,7 @@ We now consider all possible moves $\findpath$ can perform to go from $T$ to $T_
 Note that this move has to be the $\nni$ move that is different from the $\nni$ move connecting $T$ and $T'$.
 
 In this case, the cluster $B \cup C$ is built in $T_1$, as depicted in the bottom of Figure~\ref{fig:thm_fp_nni1}.
-It follows that the cluster $C_k$ that is considered first by $\findpath$ must contain taxa from both $B$ and $C$.
+It follows that the cluster $C_k$ that is considered first by $\findpath$ must contain elements from both $B$ and $C$.
 But then $\findpath$ applied to $T'$ and $R$ has to decrease the rank of $(C_k)_{T'}$ in its first step implying that $T'_1 = T_1$, so $|\fp(T',R)| = |\fp(T,R)|$.
 This contradicts our assumption that $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
@@ -167,7 +167,7 @@ We will use Figure~\ref{fig:thm_fp_nni} to demonstrate all the three cases below
 
 \begin{enumerate}[label = \theenumi.\arabic*]
 \item $C_k$ intersects each of $A$, $B$, and $D$.
-We can assume $k > 1$ and $C_{k-1} = (R)_{k-1}$ as $C_1$ contains two taxa and can therefore only intersect with either $A$ or $B$.
+We can assume $k > 1$ and $C_{k-1} = (R)_{k-1}$ as $C_1$ contains two elements and can therefore only intersect with either $A$ or $B$.
 Since $C_k$ is the first cluster considered by $\findpath$, the two clusters that make up $C_k$ in $R$ must be present in $T$.
 So $C_{k-1} = A \cup B$.
 Since $A \cup B$ is not a cluster in $T'$, $\findpath$ will decrease the rank of $(C_{k-1})_{T'}$ on $\fp(T', R)$ before considering cluster $C_k$.
