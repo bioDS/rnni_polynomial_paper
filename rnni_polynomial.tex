@@ -66,6 +66,7 @@ Things to introduce:
 
 \begin{itemize}
 \item Trees (looks like we can get away without ``taxa'' -- CS folk understand leaves/ elements better) with the notion of an interval in a tree (if needed: edge vs rank intervals), clusters, clusters induced by nodes, subtrees induced by clusters, list representation of trees, discrete time-trees (for generalising the proof).
+\item We can always talk about ranked phylogenetic trees (and call them trees throughout the paper) but then say that the rank move can be ignored (leading to an NP-hard problem) or counted as one move (quadratic)
 \item $(T)_k$: node of rank k, $(C)_T$: mrca of cluster $C$ in $T$
 \item $\findpath$, including its time complexity.
 \item Note that $\findpath$ is deterministic, that is, an interval and a move on the interval are uniquely determined (this is necessary to concentrate on the $v, w$ nodes in the proof of main theorem).
