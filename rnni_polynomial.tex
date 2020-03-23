@@ -291,10 +291,8 @@ As we have shown, the complexity of computing the nearest neighbour interchange 
 It hence is natural to ask whether a boundary exists at which the problem switches from polynomial to hard.
 In what follows we consider this question in more detail and leave its complete solution as an open problem.
 
-Let $G_\rho$ be the $\rnni$ graph
-\todo{We never mention $n$ anywhere. Shall we say it's fixed in the beginning? Otherwise we might want to add it in the decision problem}
-where edges representing $\nni$ moves have weight $1$ and those representing rank moves have weight $\rho \in [0,1]$.
-\todo{We might want to have this definition in the introduction?}
+Let $G_\rho$ be the $\rnni$ graph with weighted edges, where $\nni$ moves have weight $1$ and rank moves have weight $\rho \in [0, \infty]$.
+\todo{This and also the below will go in the introduction -- we state this problem and then show that $G_1$ is NP-hard.}
 We consider the following decision problem:
 
 \begin{decision_problem}[$\rnni(\rho)$]
