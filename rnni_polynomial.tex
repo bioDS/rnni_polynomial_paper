@@ -206,6 +206,7 @@ Hence, $\fp(T', R)$ also has to begin with two moves that decrease the rank of $
 Similarly to case~\ref{deep_case_details}, we arrive at a contradiction that trees $T_2$, $T_2'$, and $R$ violate inequality~(\ref{eqn:iff_inequality}) and $|\fp(T_2,R)| < |\fp(T,R)|$.
 
 \item Rank move on interval $[(T)_{t+1},(T)_{t+2}]$.
+\label{case:rank_move_interval_above}
 This case is analogous to case~\ref{case:one_or_two_moves_down}.
 If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$ is a cluster in $R$, and applying $\findpath$ to $T', R$ we get $T'_1 = T$.
 If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
@@ -221,7 +222,7 @@ This argument applies whether or not $((T)_{t-1},(T)_t)$ is an edge in $T$.
 
 \textbf{Case 2.}
 $T$ and $T'$ are connected by a rank move on the interval between nodes of rank $t$ and $t+1$.
-Denote the cluster induced by $(T)_t$ by $A$, the clusters induces by the children of $(T)_t$ by $A_1$ and $A_2$, the cluster induced by $(T)_{t+1}$ by $B$, and the cluster induced by the children of $(T)_{t+1}$ by $B_1$ and $B_2$ -- see Figure~\ref{fig:thm_fp_rank1}.
+Denote the cluster induced by $(T)_t$ by $A$, the clusters induced by the children of $(T)_t$ by $A_1$ and $A_2$, the cluster induced by $(T)_{t+1}$ by $B$, and the clusters induced by the children of $(T)_{t+1}$ by $B_1$ and $B_2$ -- see Figure~\ref{fig:thm_fp_rank1}.
 
 \begin{figure}[!hbt]
 \centering
@@ -267,7 +268,7 @@ The following two sub-cases are analogous to case~\ref{case:one_or_two_moves_dow
 \end{enumerate}
 
 \item Rank move on interval $[(T)_{t+1}, (T)_{t+2}]$.
-Again, depending on whether or not the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide, we arrive at the conclusion that either $T_1' = T$ or $T_2$ and $T_2'$ are $\rnni$ neighbours.
+Again, depending on whether or not the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide, we arrive at the conclusion that either $T_1' = T$ or $T_2$ and $T_2'$ are $\rnni$ neighbours, similar to case~\ref{case:rank_move_interval_above}.
 
 \item $\rnni$ move on interval $[(T)_{t-1},(T)_t]$.
 In this case $C_k \subseteq A$ and the first move on $\fp(T', R)$ must be a rank swap resulting in $T_1' = T$.
