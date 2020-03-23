@@ -65,10 +65,10 @@ In this paper we settle this problem by establishing that the complexity depends
 Things to introduce:
 
 \begin{itemize}
-\item Trees (looks like we can get away without ``taxa'' -- CS folk understand leaves/ elements better) with the notion of an interval in a tree (if needed: edge vs rank intervals), clusters, clusters induced by nodes, subtrees induced by clusters, list representation of trees, discrete time-trees (for generalising the proof).
+\item Trees (looks like we can get away without ``taxa'' -- CS folk understand leaves/ elements better) with the notion of an interval in a tree (if needed: edge vs rank intervals), clusters, clusters induced by nodes, subtrees induced by clusters, list representation of trees, discrete time-trees (for generalising the proof), (ranked and unranked) tree topologies (for generalisation).
 \item We can always talk about ranked phylogenetic trees (and call them trees throughout the paper) but then say that the rank move can be ignored (leading to an NP-hard problem) or counted as one move (quadratic)
 \item $(T)_k$: node of rank k, $(C)_T$: mrca of cluster $C$ in $T$
-\item $\findpath$, including its time complexity.
+\item $\findpath$, including its time complexity and the extension to discrete time-trees.
 \item Note that $\findpath$ is deterministic, that is, an interval and a move on the interval are uniquely determined (this is necessary to concentrate on the $v, w$ nodes in the proof of main theorem).
 \item weights/penalties on NNI/rank moves
 \end{itemize}
@@ -284,6 +284,29 @@ In this case $C_k \subseteq A$ and the first move on $\fp(T', R)$ must be a rank
 Since all possible cases result in a contradiction, we conclude that inequality~(\ref{eqn:iff_inequality}) is true for all trees, which completes the proof of the theorem.
 \endproof
 
+We now consider the extension of $\findpath$ to discrete time-trees.
+
+\begin{lemma}
+    The path between discrete time-trees $T$ and $R$ computed by $\findpath$ minimises the number of moves changing the ranked topology.
+    \label{lemma:FP_minimises_topology_changes}
+\end{lemma}
+
+\proof
+    Let $T'$ and $R'$ be the ranked trees derived from discrete time-trees $T$ and $R$ by shrinking all intervals to length $1$.
+    Then the ranked topology changes on $\fp(T,R)$ are exactly the moves on $\fp(T',R')$, which directly follows from the algorithm.
+    If we assume that there is a path from $T$ to $R$ with less ranked topology changes than on $\fp(T,R)$, the sequence of ranked topology changes of this path would give a path from $T'$ to $R'$ with length less than $|\fp(T',R')|$.
+    This however is contradicting Theorem~\ref{thm:rnni_polynomial}.
+\endproof
+
+\begin{theorem}
+    $\findpath$ computes shortest paths between discrete time-trees.
+\end{theorem}
+
+\proof
+    By Lemma~\ref{lemma:FP_minimises_topology_changes} we know that $\findpath$ minimises the number of ranked topology changes on a path between discrete time-trees $T$ and $R$.
+    It remains to show that it also minimises the number of length moves.
+    \todo{LC: We still need to prove this.}
+\endproof
 
 \section{Open Problems}
 
