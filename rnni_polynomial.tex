@@ -24,6 +24,8 @@
 
 \newtheorem{lemma}{Lemma}
 \newtheorem{theorem}{Theorem}
+\newtheorem{decision_problem}{Decision problem}
+\newtheorem{open_problem}{Open problem}
 
 \newcommand{\rnni}{\mathrm{RNNI}}
 \newcommand{\findpath}{\textsc{FindPath}}
@@ -70,8 +72,12 @@ Things to introduce:
 \item weights/penalties on NNI/rank moves
 \end{itemize}
 
+
+\section{Complexity of computing $\rnni$ distances}
+
 \begin{theorem}
 The time complexity of computing the $\rnni$ distance between trees on $n$ leaves is $\O(n^2)$.
+\label{thm:rnni_polynomial}
 \end{theorem}
 
 \proof
@@ -276,5 +282,30 @@ In this case $C_k \subseteq A$ and the first move on $\fp(T', R)$ must be a rank
 
 Since all possible cases result in a contradiction, we conclude that inequality~(\ref{eqn:iff_inequality}) is true for all trees, which completes the proof of the theorem.
 \endproof
+
+
+\section{Open Problems}
+
+Let $G_\rho$ be the $\rnni$ graph
+\todo{We never mention $n$ anywhere. Shall we say it's fixed in the beginning? Otherwise we might want to add it in the decision problem}
+where edges representing $\nni$ moves have weight $1$ and those representing rank moves have weight $\rho \in [0,1]$.
+\todo{We might want to have this definition in the introduction?}
+We consider the following decision problem:
+
+\begin{decision_problem}[$\rnni(\rho)$]
+Given $\rho \in [0,1]$, integers $k > 0$, and two ranked trees $T$ and $R$.
+
+Is the distance between $T$ and $R$ in $G_\rho$ less or equal to $k$?
+\label{problem:rnni_dist}
+\end{decision_problem}
+
+With Theorem~\ref{thm:rnni_polynomial} we know that $\rnni(1) \in \mathcal P$.
+As distances between trees $T$ and $R$ in $G_0$ are equivalent to distances between the corresponding unranked trees in the $\nni$ graph, the problem $\rnni(0)$ is equivalent to the problem of computing distances in $\nni$, which is known to be $\mathcal{NP}-complete$.
+\todo{Do we need to explain why $G_0 \cong \nni$?}
+This difference of complexity between $\rnni(0)$ and $\rnni(1)$ raises the following question.
+
+\begin{open_problem}
+    Is there a threshold $r \in [0,1]$ for which $\rnni(\rho) \in \mathcal{NP}$ for all $\rho \leq r$, and $\rnni(\rho) \in \mathcal P$ for all $\rho > r$?
+\end{open_problem}
 
 \end{document}
