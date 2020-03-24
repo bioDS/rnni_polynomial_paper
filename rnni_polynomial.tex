@@ -74,6 +74,12 @@ Indeed, we will be proving that the algorithm $\findpath$ as introduced in
 We will furthermore show that the generalisation of $\findpath$ to the ranked tree space where tree edges are of arbitrary integer-valued length computes distances in polynomial time as well.
 In the remainder of this section we will introduce the terminology used in this paper.
 
+Throughout this paper we will consider \emph{ranked phylogenetic trees}, or short \emph{ranked trees}, that are rooted binary trees where leaves are uniquely labelled by elements of the set $[n] = \{1, \ldots, n\}$ for a fixed integer $n$.
+Furthermore, all nodes in ranked trees are assigned \emph{ranks}, that are integers in $\{0, 1, \ldots, n-1\}$ such that children have strictly smaller rank than their parents and all leaves are assigned rank $0$.
+For a ranked tree $T$ we refer to its internal node of rank $k \in \{1, \ldots, n\}$ by $(T)_k$.
+An \emph{interval} $[(T)_t,(T)_{t+1}]$ is given by two nodes with rank difference one.
+\todo{What about $t=0$? $(T)_0$ is not unique.}
+
 Things to introduce:
 
 \begin{itemize}
