@@ -62,6 +62,18 @@ In this paper we settle this problem by establishing that the complexity depends
 
 \newpage
 
+\section{Introduction}
+
+The main goal of this paper is investigating the complexity of computing distances in graphs of ranked phylogenetic trees.
+We will introduce the $\rnni$ graph as basis and see how introducing a single parameter transforms this graph into the well-known $\nni$ graph.
+This raises the question of how the complexity of computing distances in these graphs is influenced this parameter.
+Indeed, we will be proving that the algorithm $\findpath$ as introduced in
+\todo{cite rnni convexity paper}
+ computes shortest paths in the $\rnni$ graph in polynomial time, while computing distances in $\nni$ is known to be $\mathcal{NP}$-hard.
+\todo{cite NNI NP-hard}
+We will furthermore show that the generalisation of $\findpath$ to the ranked tree space where tree edges are of arbitrary integer-valued length computes distances in polynomial time as well.
+In the remainder of this section we will introduce the terminology used in this paper.
+
 Things to introduce:
 
 \begin{itemize}
@@ -314,12 +326,12 @@ As we have shown, the complexity of computing the nearest neighbour interchange 
 It hence is natural to ask whether a boundary exists at which the problem switches from polynomial to hard.
 In what follows we consider this question in more detail and leave its complete solution as an open problem.
 
-Let $G_\rho$ be the $\rnni$ graph with weighted edges, where $\nni$ moves have weight $1$ and rank moves have weight $\rho \in [0, \infty]$.
+Let $G_\rho$ be the $\rnni$ graph with weighted edges, where $\nni$ moves have weight $1$ and rank moves have weight $\rho \in [0, \infty)$.
 \todo{This and also the below will go in the introduction -- we state this problem and then show that $G_1$ is NP-hard.}
 We consider the following decision problem:
 
 \begin{decision_problem}[$\rnni(\rho)$]
-Given $\rho \in [0,1]$, integers $k > 0$, and two ranked trees $T$ and $R$.
+Given $\rho \in [0,\infty)$, integers $k > 0$, and two ranked trees $T$ and $R$.
 
 Is the distance between $T$ and $R$ in $G_\rho$ less or equal to $k$?
 \label{problem:rnni_dist}
