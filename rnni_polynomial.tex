@@ -88,15 +88,26 @@ Ranked trees can uniquely be represented in the \emph{cluster representation}, t
 For a set $S \subseteq [n]$ and tree $T$, we denote the \emph{most recent common ancestor} of $S$ in $T$, that is the internal node of lowest rank in $T$ that contains all elements of $S$, by $(S)_T$.
 Note that for the cluster $C$ induced by the node of rank $k$ in $T$ it is $(C)_T = (T)_k$.
 
+We will now introduce graphs $\rnni(\rho)$ on ranked trees, where $\rho \in [0,\infty)$.
+Note we chose this name as these graphs are a generalisation of the \emph{ranked nearest neighbour interchange} ($\rnni$) graph as introduced in
+\todo{cite rnni convexity paper}
+, where $\rho = 1$.
+The vertices of $\rnni(\rho)$ are ranked trees as introduced above, for all $\rho \in [0,\infty)$.
+Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:
+A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with rank difference one for $0 < t < n-1$.
+Trees $T$ and $R$ are connected by an $\nni$ move if there are edges $e$ in $T$ and $f$ in $R$ of length one such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two isomorphic (non-binary) trees.
+\todo{define isomorphic?}
+In the graph $\rnni{\rho}$ these two types of edges have different weights.
+Edges that correspond to $\nni$ move are weighted by one, while edges corresponding to rank moves have weight $\rho$.
+
 
 Things to introduce:
 
 \begin{itemize}
-\item if needed: edge vs rank intervals, subtrees induced by clusters, discrete time-trees (for generalising the proof), (ranked and unranked) tree topologies (for generalisation).
+\item if needed: edge vs rank intervals, discrete time-trees (for generalising the proof), (ranked and unranked) tree topologies (for generalisation).
 \item We can always talk about ranked phylogenetic trees (and call them trees throughout the paper) but then say that the rank move can be ignored (leading to an NP-hard problem) or counted as one move (quadratic)
 \item $\findpath$, including its time complexity and the extension to discrete time-trees.
 \item Note that $\findpath$ is deterministic, that is, an interval and a move on the interval are uniquely determined (this is necessary to concentrate on the $v, w$ nodes in the proof of main theorem).
-\item weights/penalties on NNI/rank moves
 \end{itemize}
 
 
