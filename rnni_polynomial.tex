@@ -78,14 +78,22 @@ Throughout this paper we will consider \emph{ranked phylogenetic trees}, or shor
 Furthermore, all nodes in ranked trees are assigned \emph{ranks}, that are integers in $\{0, 1, \ldots, n-1\}$ such that children have strictly smaller rank than their parents and all leaves are assigned rank $0$.
 For a ranked tree $T$ we refer to its internal node of rank $k \in \{1, \ldots, n\}$ by $(T)_k$.
 An \emph{interval} $[(T)_t,(T)_{t+1}]$ is given by two nodes with rank difference one.
-\todo{What about $t=0$? $(T)_0$ is not unique.}
+\todo{LC: What about $t=0$? $(T)_0$ is not unique.}
+A \emph{cluster} of a ranked tree $T$ is a subsets of $[n]$ that contains labels of all leafs descending from an internal nodes of $T$.
+We then say that this internal node \emph{induces} the cluster $C$.
+If a cluster $C$ is induced by an internal node in a tree $T$, we say that the subtree of $T$ that is rooted in this internal node is the subtree \emph{induced} by $C$.
+Clusters induced by leaves or the root of a tree are called \emph{trivial} clusters, as they appear in every ranked tree.
+\todo{LC: Do we want to use cluster and mean non-trivial clusters? Then we should mention this here.}
+Ranked trees can uniquely be represented in the \emph{cluster representation}, that is a list of all non-trivial clusters induced by internal nodes of that tree, ordered increasingly according to the ranks of internal nodes.
+For a set $S \subseteq [n]$ and tree $T$, we denote the \emph{most recent common ancestor} of $S$ in $T$, that is the internal node of lowest rank in $T$ that contains all elements of $S$, by $(S)_T$.
+Note that for the cluster $C$ induced by the node of rank $k$ in $T$ it is $(C)_T = (T)_k$.
+
 
 Things to introduce:
 
 \begin{itemize}
-\item Trees (looks like we can get away without ``taxa'' -- CS folk understand leaves/ elements better) with the notion of an interval in a tree (if needed: edge vs rank intervals), clusters, clusters induced by nodes, subtrees induced by clusters, list representation of trees, discrete time-trees (for generalising the proof), (ranked and unranked) tree topologies (for generalisation).
+\item if needed: edge vs rank intervals, subtrees induced by clusters, discrete time-trees (for generalising the proof), (ranked and unranked) tree topologies (for generalisation).
 \item We can always talk about ranked phylogenetic trees (and call them trees throughout the paper) but then say that the rank move can be ignored (leading to an NP-hard problem) or counted as one move (quadratic)
-\item $(T)_k$: node of rank k, $(C)_T$: mrca of cluster $C$ in $T$
 \item $\findpath$, including its time complexity and the extension to discrete time-trees.
 \item Note that $\findpath$ is deterministic, that is, an interval and a move on the interval are uniquely determined (this is necessary to concentrate on the $v, w$ nodes in the proof of main theorem).
 \item weights/penalties on NNI/rank moves
