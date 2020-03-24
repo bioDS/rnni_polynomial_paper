@@ -64,6 +64,7 @@ In this paper we settle this problem by establishing that the complexity depends
 
 \section{Introduction}
 
+\textbf{
 The main goal of this paper is investigating the complexity of computing distances in graphs of ranked phylogenetic trees.
 We will introduce the $\rnni$ graph as basis and see how introducing a single parameter transforms this graph into the well-known $\nni$ graph.
 This raises the question of how the complexity of computing distances in these graphs is influenced this parameter.
@@ -73,6 +74,7 @@ Indeed, we will be proving that the algorithm $\findpath$ as introduced in
 \todo{cite NNI NP-hard}
 We will furthermore show that the generalisation of $\findpath$ to the ranked tree space where tree edges are of arbitrary integer-valued length computes distances in polynomial time as well.
 In the remainder of this section we will introduce the terminology used in this paper.
+}
 
 Throughout this paper we will consider \emph{ranked phylogenetic trees}, or short \emph{ranked trees}, that are rooted binary trees where leaves are uniquely labelled by elements of the set $[n] = \{1, \ldots, n\}$ for a fixed integer $n$.
 Furthermore, all nodes in ranked trees are assigned \emph{ranks}, that are integers in $\{0, 1, \ldots, n-1\}$ such that children have strictly smaller rank than their parents and all leaves are assigned rank $0$.
