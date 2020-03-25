@@ -25,7 +25,7 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{theorem}{Theorem}
 \newtheorem{decision_problem}{Decision Problem}
-\newtheorem{open_problem}{Open Problem}
+\newtheorem{question}{Question}
 
 \newcommand{\rnni}{\mathrm{RNNI}}
 \newcommand{\findpath}{\textsc{FindPath}}
@@ -98,15 +98,35 @@ The vertices of $\rnni(\rho)$ are ranked trees as introduced above, for all $\rh
 Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:
 A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with rank difference one for $0 < t < n-1$.
 Trees $T$ and $R$ are connected by an $\nni$ move if there are edges $e$ in $T$ and $f$ in $R$ of length one such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two isomorphic (non-binary) trees.
-\todo{define isomorphic?}
+\todo{LC: Do we need to define isomorphic?}
 In the graph $\rnni{\rho}$ these two types of edges have different weights.
 Edges that correspond to $\nni$ move are weighted by one, while edges corresponding to rank moves have weight $\rho$.
 
+In this paper we focus on the following decision problem:
+
+\begin{decision_problem}[$\rnni(\rho)$]
+\todo{Is it OK to use the same name for the graph and the decision problem?}
+Given $\rho \in [0,\infty)$, integers $k > 0$, and two ranked trees $T$ and $R$.
+
+Is the distance between $T$ and $R$ in $G_\rho$ less or equal to $k$?
+\label{problem:rnni_dist}
+\end{decision_problem}
+
+The graph $\rnni(0)$ ignores rank moves, as those are weighted by zero.
+Therefore, distances between trees in this graph are equivalent to distances between the underlying unranked trees in the plain $\nni$ graph.
+\todo{LS: Do we need a lemma proving this?}
+As computing distances in $\nni$ is $\mathcal{NP}$-complete, it is $\rnni(\rho) \in \mathcal{NP}$ as well.
+However, we will be able to show in Theorem~\ref{thm:rnni_polynomial} that $\rnni(1) \in \mathcal P$.
+This difference of complexity between $\rnni(0)$ and $\rnni(1)$ raises the following question:
+
+\begin{question}
+Is there a threshold $r \in [0,1]$ for which $\rnni(\rho) \in \mathcal{NP}$ for all $\rho \leq r$, and $\rnni(\rho) \in \mathcal P$ for all $\rho > r$?
+\end{question}
 
 Things to introduce:
 
 \begin{itemize}
-\item if needed: edge vs rank intervals, discrete time-trees (for generalising the proof), (ranked and unranked) tree topologies (for generalisation).
+\item if needed for generalisation: edge vs rank intervals, discrete time-trees, (ranked and unranked) tree topologies
 \item We can always talk about ranked phylogenetic trees (and call them trees throughout the paper) but then say that the rank move can be ignored (leading to an NP-hard problem) or counted as one move (quadratic)
 \item $\findpath$, including its time complexity and the extension to discrete time-trees.
 \item Note that $\findpath$ is deterministic, that is, an interval and a move on the interval are uniquely determined (this is necessary to concentrate on the $v, w$ nodes in the proof of main theorem).
@@ -352,25 +372,5 @@ We now consider the extension of $\findpath$ to discrete time-trees.
 As we have shown, the complexity of computing the nearest neighbour interchange distance between ranked phylogenetic trees depends on the weight of rank rearrangements and can change from quadratic, when rank moves are counted as one rearrangement, to NP-hard, when rank moves are ignored.
 It hence is natural to ask whether a boundary exists at which the problem switches from polynomial to hard.
 In what follows we consider this question in more detail and leave its complete solution as an open problem.
-
-Let $G_\rho$ be the $\rnni$ graph with weighted edges, where $\nni$ moves have weight $1$ and rank moves have weight $\rho \in [0, \infty)$.
-\todo{This and also the below will go in the introduction -- we state this problem and then show that $G_1$ is NP-hard.}
-We consider the following decision problem:
-
-\begin{decision_problem}[$\rnni(\rho)$]
-Given $\rho \in [0,\infty)$, integers $k > 0$, and two ranked trees $T$ and $R$.
-
-Is the distance between $T$ and $R$ in $G_\rho$ less or equal to $k$?
-\label{problem:rnni_dist}
-\end{decision_problem}
-
-With Theorem~\ref{thm:rnni_polynomial} we know that $\rnni(1) \in \mathcal P$.
-As distances between trees $T$ and $R$ in $G_0$ are equivalent to distances between the corresponding unranked trees in the $\nni$ graph, the problem $\rnni(0)$ is equivalent to the problem of computing distances in $\nni$, which is known to be $\mathcal{NP}-complete$.
-\todo{Do we need to explain why $G_0 \cong \nni$?}
-This difference of complexity between $\rnni(0)$ and $\rnni(1)$ raises the following question.
-
-\begin{open_problem}
-Is there a threshold $r \in [0,1]$ for which $\rnni(\rho) \in \mathcal{NP}$ for all $\rho \leq r$, and $\rnni(\rho) \in \mathcal P$ for all $\rho > r$?
-\end{open_problem}
 
 \end{document}
