@@ -37,6 +37,9 @@
 \newcommand{\fp}{\mathrm{FP}}
 \renewcommand{\O}{\mathcal O}
 
+\newcommand{\summary}[1]{\textbf{#1}}
+% \newcommand{\summary}[1]{} %Replace command above with this one to delete summaries
+
 \renewcommand{\thesubfigure}{\Alph{subfigure}}
 
 \graphicspath{{figures/}}
@@ -66,7 +69,7 @@ In this paper we settle this problem by establishing that the complexity depends
 
 \section{Introduction}
 
-\textbf{
+\summary{Structure of the paper}
 The main goal of this paper is investigating the complexity of computing distances in graphs of ranked phylogenetic trees.
 We will introduce the $\rnni$ graph as basis and see how introducing a single parameter transforms this graph into the well-known $\nni$ graph.
 This raises the question of how the complexity of computing distances in these graphs is influenced this parameter.
@@ -76,8 +79,8 @@ Indeed, we will be proving that the algorithm $\findpath$ as introduced in
 \todo{cite NNI NP-hard}
 We will furthermore show that the generalisation of $\findpath$ to the ranked tree space where tree edges are of arbitrary integer-valued length computes distances in polynomial time as well.
 In the remainder of this section we will introduce the terminology used in this paper.
-}
 
+\summary{Defining ranked trees and clusters.}
 Throughout this paper we will consider \emph{ranked phylogenetic trees}, or short \emph{ranked trees}, that are rooted binary trees where leaves are uniquely labelled by elements of the set $[n] = \{1, \ldots, n\}$ for a fixed integer $n$.
 Furthermore, all nodes in ranked trees are assigned \emph{ranks}, that are integers in $\{0, 1, \ldots, n-1\}$ such that children have strictly smaller rank than their parents and all leaves are assigned rank $0$.
 For a ranked tree $T$ we refer to its internal node of rank $k \in \{1, \ldots, n\}$ by $(T)_k$.
@@ -93,6 +96,7 @@ Note that there are $n-2$ non-trivial clusters in a tree on $n$ leaves.
 For a set $S \subseteq [n]$ and tree $T$, we denote the \emph{most recent common ancestor} of $S$ in $T$, that is the internal node of lowest rank in $T$ that contains all elements of $S$, by $(S)_T$.
 Note that for the cluster $C$ induced by the node of rank $k$ in $T$ it is $(C)_T = (T)_k$.
 
+\summary{Defining graph $\rnni(\rho)$.}
 We will now introduce graphs $\rnni(\rho)$ on ranked trees, where $\rho \in [0,\infty)$.
 Note we chose this name as these graphs are a generalisation of the \emph{ranked nearest neighbour interchange} ($\rnni$) graph as introduced in
 \todo{cite rnni convexity paper}
@@ -105,6 +109,7 @@ Trees $T$ and $R$ are connected by an $\nni$ move if there are edges $e$ in $T$ 
 In the graph $\rnni{\rho}$ these two types of edges have different weights.
 Edges that correspond to $\nni$ move are weighted by one, while edges corresponding to rank moves have weight $\rho$.
 
+\summary{Introduce decision problem $\rnni(\rho)$ and explain how its complexity depends on $\rho$.}
 In this paper we focus on the following decision problem:
 
 \begin{decision_problem}[$\rnni(\rho)$]
@@ -126,6 +131,7 @@ This difference of complexity between $\rnni(0)$ and $\rnni(1)$ raises the follo
 Is there a threshold $r \in [0,1]$ for which $\rnni(\rho) \in \mathcal{NP}$ for all $\rho \leq r$, and $\rnni(\rho) \in \mathcal P$ for all $\rho > r$?
 \end{question}
 
+\summary{Introducing $\findpath$.}
 For proving that $\rnni(1)$ can be solved in polynomial time we now present the algorithm $\findpath$, which has been introduced in
 \todo{cite rnni polynomial paper}.
 This algorithm computes paths between two ranked trees $T$ and $R = [C_1, \ldots, C_{n-2}]$, and we will see in Theorem~\ref{thm:rnni_polynomial} that these paths are actually shortest paths.
@@ -170,6 +176,7 @@ Things to introduce:
 
 \section{Complexity of computing $\rnni$ distances}
 
+\summary{We now show that $\rnni(1) \in \mathcal P$.}
 \begin{theorem}
 The time complexity of computing the $\rnni$ distance between trees on $n$ leaves is $\O(n^2)$.
 \label{thm:rnni_polynomial}
@@ -378,6 +385,7 @@ In this case $C_k \subseteq A$ and the first move on $\fp(T', R)$ must be a rank
 Since all possible cases result in a contradiction, we conclude that inequality~(\ref{eqn:iff_inequality}) is true for all trees, which completes the proof of the theorem.
 \endproof
 
+\summary{Generalising $\findpath$ for discrete time-trees}
 We now consider the extension of $\findpath$ to discrete time-trees.
 
 \begin{lemma}
@@ -401,6 +409,8 @@ We now consider the extension of $\findpath$ to discrete time-trees.
     It remains to show that it also minimises the number of length moves.
     \todo{LC: We still need to prove this.}
 \endproof
+
+\summary{Why the complexity of $\rnni(\rho)$ might be different from $\nni$ or $\rnni$ for $\rho$ big enough.}
 
 \section{Open Problems}
 
