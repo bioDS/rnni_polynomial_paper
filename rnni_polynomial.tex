@@ -143,11 +143,11 @@ Specifically, there is always a unique move that decreases the rank of $(C_{i})_
 \STATE $T' := T$, $p := [T']$, $[C_1, \ldots, C_{n-2}] := R$
 \FOR {$k = 1, \dots, n-2$}
 \label{alg:findpath:line:for_loop}
-    \WHILE {$\rank_{T'}(\mrca_{T'}(C_k))>k$}
-        \IF {node $u$ with $\rank_{T'}(u) = rank_{T'}(\mrca_{T'}(C_k))-1$ is adjacent to $\mrca_{T'}(C_k)$}
-            \STATE $T'$ is $T'$ with $\rank_{T'}(\mrca_{T'}(C_k))$ decreased by an $\nni$ move
+    \WHILE {$\rank((C_k)_{T'})>k$}
+        \IF {$(C_k)_{T'}$ and node $u$ with rank $\rank((C_k)_{T'})-1$ are connected by an edge}
+            \STATE $T''$ is $T'$ with $(C_k)_{T'}$ decreased by an $\nni$ move
         \ELSE
-            \STATE $T''$ is $T'$ with ranks of $u$ and $\mrca_{T'}(C_k)$ swapped
+            \STATE $T''$ is $T'$ with ranks of nodes $u$ and $(C_k)_{T'}$ swapped
         \ENDIF
         \label{alg:findpath:line:move_set_down}
         \STATE $T' = T''$
