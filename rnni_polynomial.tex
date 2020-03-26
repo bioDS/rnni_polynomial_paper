@@ -395,6 +395,41 @@ In this case $C_k \subseteq A$ and the first move on $\fp(T', R)$ must be a rank
 Since all possible cases result in a contradiction, we conclude that inequality~(\ref{eqn:iff_inequality}) is true for all trees, which completes the proof of the theorem.
 \endproof
 
+\summary{Proving the Cluster Property for $\rnni(1)$}
+
+\begin{theorem}
+    If two ranked trees $T$ and $R$ share a cluster $C$, then every tree on every shortest path in $\rnni(0)$ contains this cluster $C$.
+    \label{cluster_thm}
+\end{theorem}
+
+\proof
+    To prove the theorem we assume he contradictory, that is, there is a shortest path between $T$ and $R$ in $\rnni(0)$ that contains a tree that does not have $C$ as a cluster, even though both $T$ and $R$ contain $C$.
+    We assume that $T''$ is the first tree on such a shortest path that does not contain $C$, and $T'$ its predecessor on this path.
+    It follows that $T'$ contains $C$ as a cluster and that there is an $\nni$ move from $T'$ to $T''$ that moves one of the subtrees rooted in the children of $(C)_{T'}$ out of the subtree induced by $C$.
+    Such trees $T'$ and $T''$ are depicted in Figure~\ref{fig:cluster_thm_proof}.
+    Note that all but one cluster coincide in $T'$ and $T''$, the only exception being $C$ in $T'$ and the cluster induced by the node in $T''$ that has the same rank as $(C)_T'$.
+
+    \begin{figure}[!hbt]
+	\centering
+	\includegraphics[width=0.3\textwidth]{cluster_thm_proof}
+	\caption{Neighbouring trees $T'$ and $T''$ as described in the proof of Theorem~\ref{cluster_thm}.
+    $T$ contains the cluster $C = C_1 \dot \cup C_2$, $T''$ does not contain this cluster.
+    The parts of the trees that are illustrated by dashed lines coincide in $T'$ and $T''$.}
+	\label{fig:cluster_thm_proof}
+    \end{figure}
+
+    We will now show that $|FP(T'',R)| \geq |\fp(T',R)|$, which contradicts the assumption that $T''$ follows $T'$ on a shortest path.
+    Let us consider the moves on $\fp(T',R)$ that happen before cluster $C$ of $R$ is considered.
+    As almost all clusters of $T'$ and $T''$ coincide, all moves on $\fp(T',R)$ happen the same way as on $\fp(T'',R)$, as long as they do not affect the edge between the node inducing $C$ and its parent.
+    And if a move on a tree $\hat T$ on $\fp(T',R)$ changes the rank of the parent $(C)_{\hat T}$, it increases the rank of this node and is followed by a further move increasing the rank of the node inducing $C$.
+    Indeed, no most recent common ancestor of a cluster considered by $\findpath$ that appears before $C$ in the cluster representation of $R$ can have rank higher than the node inducing $C$ before the corresponding iteration of $\findpath$ ends.
+    Hence, similar two moves happen on $\fp(T'',R)$ and increase the ranks of the parents of the nodes inducing clusters $C_1$ and $C_2$.
+    Therefore, the trees on $\fp(T',R)$ and $\fp(T'',R)$ right before cluster $C$ is considered are $\rnni$ neighbours and have the same distance to $T'$ and $T''$, respectively.
+    It is not hard to see that the move that is performed on this tree on $\fp(T'',R)$ and builds the cluster $C$ results in the tree on $\fp(T'',R)$ right before $C$ is considered there.
+    Therefore, it is $|\fp(T'',R)| \geq |\fp(T',R)|$, which contradicts our assumption that $T''$ is on a shortest path from $T'$ to $R$.
+
+\endproof
+
 \summary{Generalising} $\findpath$ \summary{for discrete time-trees}
 We now consider the extension of $\findpath$ to discrete time-trees.
 
