@@ -67,7 +67,14 @@ In this paper we settle this problem by establishing that the complexity depends
 
 \newpage
 
+
 \section{Introduction}
+
+\summary{Motivation: computing distances between trees is a well-known long-standing problem in theoretical computers science, with wide range of applications and many popular algorithms rely on these.}
+
+\summary{Motivation: All known graph-based tree rearrangement distances are NP-hard, and it took many years and paper to prove that.}
+
+\summary{Paper summary in the light of motivation: We've discovered the first efficiently computable distance and want to understand the reason for the complexity jump -- cite ``Beyond worst-case complexity.''}
 
 \summary{Structure of the paper.}
 The main goal of this paper is investigating the complexity of computing distances in graphs of ranked phylogenetic trees.
@@ -79,6 +86,9 @@ Indeed, we will be proving that the algorithm $\findpath$ as introduced in
 \todo{cite NNI NP-hard}
 We will furthermore show that the generalisation of $\findpath$ to the ranked tree space where tree edges are of arbitrary integer-valued length computes distances in polynomial time as well.
 In the remainder of this section we will introduce the terminology used in this paper.
+
+
+\section{Technical introduction}
 
 \summary{Defining ranked trees and clusters.}
 Throughout this paper we will consider \emph{ranked phylogenetic trees}, or short \emph{ranked trees}, that are rooted binary trees where leaves are uniquely labelled by elements of the set $[n] = \{1, \ldots, n\}$ for a fixed integer $n$.
