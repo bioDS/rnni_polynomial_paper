@@ -144,7 +144,7 @@ Is there a threshold $r \in [0,1]$ for which $\rnni(\rho) \in \mathcal{NP}$ for 
 \end{question}
 
 \summary{Introducing} $\findpath$.
-For proving that $\rnni(1)$ can be solved in polynomial time we now present the algorithm $\findpath$, which has been introduced in
+For proving that $\rnni$ can be solved in polynomial time we now present the algorithm $\findpath$, which has been introduced in
 \todo{cite rnni polynomial paper}.
 This algorithm computes paths between two ranked trees $T$ and $R = [C_1, \ldots, C_{n-2}]$, and we will see in Theorem~\ref{thm:rnni_polynomial} that these paths are actually shortest paths.
 $\findpath$ considers the clusters $C_1, \ldots, C_{n-2}$ of $R$ in this order to compute a path $p$ from $T$ to $R$.
@@ -188,7 +188,7 @@ Things to introduce:
 
 \section{Complexity of computing $\rnni$ distances}
 
-\summary{We now show that} $\rnni(1) \in \mathcal P$.
+\summary{We now show that} $\rnni \in \mathcal P$.
 \begin{theorem}
 The time complexity of computing the $\rnni$ distance between trees on $n$ leaves is $\O(n^2)$.
 \label{thm:rnni_polynomial}
@@ -397,15 +397,15 @@ In this case $C_k \subseteq A$ and the first move on $\fp(T', R)$ must be a rank
 Since all possible cases result in a contradiction, we conclude that inequality~(\ref{eqn:iff_inequality}) is true for all trees, which completes the proof of the theorem.
 \endproof
 
-\summary{Proving the Cluster Property for $\rnni(1)$}
+\summary{Proving the Cluster Property for $\rnni$}
 
 \begin{theorem}
-	If two ranked trees $T$ and $R$ share a cluster $C$, then every tree on every shortest path in $\rnni(0)$ contains this cluster $C$.
+	If two ranked trees $T$ and $R$ share a cluster $C$, then every tree on every shortest path in $\rnni$ contains this cluster $C$.
 	\label{cluster_thm}
 \end{theorem}
 
 \proof
-	To prove the theorem we assume the contradictory, that is, there is a shortest path between $T$ and $R$ in $\rnni(0)$ that contains a tree that does not have $C$ as a cluster, even though both $T$ and $R$ contain $C$.
+	To prove the theorem we assume the contradictory, that is, there is a shortest path between $T$ and $R$ in $\rnni$ that contains a tree that does not have $C$ as a cluster, even though both $T$ and $R$ contain $C$.
 	We can assume that $T$ and $R$ build the pair with minimum distance that is connected by such a shortest path, meaning that the tree $T'$ following $T$ on this path does not have the cluster $C$.
 	Therefore $T$ and $T'$ are connected by an $\nni$ move that moves one of the subtrees rooted in the children of $(C)_T$ out of the subtree induced by $C$.
 	Such trees $T$ and $T'$ are depicted in Figure~\ref{fig:cluster_thm_proof}, where we assume that the clusters induced by the children of $(C)_T$ are $C_1$ and $C_2$.
