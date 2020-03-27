@@ -405,11 +405,10 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 \end{theorem}
 
 \proof
-	To prove the theorem we assume the contradictory, that is, there is a shortest path between $T$ and $R$ in $\rnni$ that contains a tree that does not have $C$ as a cluster, even though both $T$ and $R$ contain $C$.
-	We can assume that $T$ and $R$ build the pair with minimum distance that is connected by such a shortest path, meaning that the tree $T'$ following $T$ on this path does not have the cluster $C$.
-	Therefore $T$ and $T'$ are connected by an $\nni$ move that moves one of the subtrees rooted in the children of $(C)_T$ out of the subtree induced by $C$.
-	Such trees $T$ and $T'$ are depicted in Figure~\ref{fig:cluster_thm_proof}, where we assume that the clusters induced by the children of $(C)_T$ are $C_1$ and $C_2$.
-	Note that all but one cluster coincide in $T$ and $T'$, the only exception being $C$ in $T$ and the cluster induced by the node in $T$ that has the same rank as $(C)_T'$.
+	Assume to the contrary that $T$, $R$, and $C$ is a courter-example to the statement.
+	We can assume that the first tree $T'$ after $T$ on the shortest path from $T$ to $R$ does not contain the cluster $C$.
+	Therefore $T$ and $T'$ are connected by an $\nni$ move that moves a subtrees rooted in a children of $(C)_T$ out of the subtree induced by $C$ -- see Figure~\ref{fig:cluster_thm_proof}, where we assume that the clusters induced by the children of $(C)_T$ are $C_1$ and $C_2$.
+	Note that the only cluster that is different in $T$ and $T'$ is $C$ (in $T$) and the cluster induced in $T$ by the of rank $(C)_T'$.
 
 	\begin{figure}[!hbt]
 	\centering
