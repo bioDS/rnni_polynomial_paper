@@ -453,7 +453,6 @@ We now consider the extension of $\findpath$ to discrete time-trees.
 \end{theorem}
 
 \proof
-<<<<<<< HEAD
     Let $T$ and $R$ be discrete time-trees and let $m$ be the maximum of the times assigned to the roots of $T$ and $R$.
     We construct trees $T'$ and $R'$ in $\rnni$ on $m+1$ leaves by adding $m + 1 - n$ leaves in the following way.
     Add a new root with rank $m+1$ to tree $T$, such that $T$ is a subtree rooted in one of the children of this new node.
@@ -469,11 +468,6 @@ We now consider the extension of $\findpath$ to discrete time-trees.
 
     With this it is not hard to see that $\fp(T,R)$ computes a shortest path.
     Indeed, if there was another path $p$ from $T$ to $R$ shorter than $\fp(T,R)$, we can get a path $p'$ with $|p'| = |p| < |\fp(T,R)| = |\fp(T',R')s|$ between $T'$ and $R'$ from $p$ as explained above, which contradicts the fact that $\fp(T',R')$ is a shortest path, as proven by Theorem~\ref{thm:rnni_polynomial}.
-=======
-	By Lemma~\ref{lemma:FP_minimises_topology_changes} we know that $\findpath$ minimises the number of ranked topology changes on a path between discrete time-trees $T$ and $R$.
-	It remains to show that it also minimises the number of length moves.
-	\todo{LC: We still need to prove this.}
->>>>>>> fec03da878a3287a5c689b9813585a5c86fa3618
 \endproof
 
 \summary{Why the complexity of $\rnni(\rho)$ might be different from $\nni$ or $\rnni$ for $\rho$ big enough.}
