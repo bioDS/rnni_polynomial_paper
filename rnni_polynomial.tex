@@ -451,9 +451,21 @@ We now consider the extension of $\findpath$ to discrete time-trees.
 \end{theorem}
 
 \proof
-    By Lemma~\ref{lemma:FP_minimises_topology_changes} we know that $\findpath$ minimises the number of ranked topology changes on a path between discrete time-trees $T$ and $R$.
-    It remains to show that it also minimises the number of length moves.
-    \todo{LC: We still need to prove this.}
+    Let $T$ and $R$ be discrete time-trees and let $m$ be the maximum of the times assigned to the roots of $T$ and $R$.
+    We construct trees $T'$ and $R'$ in $\rnni$ on $m+1$ leaves by adding $m + 1 - n$ leaves in the following way.
+    Add a new root with rank $m+1$ to tree $T$, such that $T$ is a subtree rooted in one of the children of this new node.
+    The other child of this new root is a caterpillar tree with leaf labels in $\{n+1, \ldots, m+1\}$ such that the ranks of the parents of these leaves are ordered according to the leaf labels and the resulting tree does not contain intervals of length greater than one.
+    The same way we receive tree $R'$ out of $R$.
+
+    We can construct a path $p'$ from $T'$ to $R'$ out of any path $p$ from $T$ to $R$ where $|p| = |p'|$ by simply transforming length moves on $p$ to rank swaps on $p'$:
+    If the rank $k$ of a cluster in a tree on $p$ changes to rank $k+1$ or $k-1$ by a length move, there is a rank swap induced by the node of these ranks in the corresponding tree on $p'$.
+    All rank moves and $\nni$ move on $p$ can happen the same way on $p'$.
+    By the construction of $T'$ and $R'$ it follows that $p'$ actually ends in $R'$, as there are no rank moves or $\nni$ moves needed inside the additional caterpillar subtree.
+    And as every move on $p$ corresponds to exactly one move on $p'$, the lengths of these paths coincide.
+    Note that the path we receive by transforming the moves on $\fp(T,R)$ into moves from $T'$ to $R'$ results in $\fp(T',R')$.
+
+    With this it is not hard to see that $\fp(T,R)$ computes a shortest path.
+    Indeed, if there was another path $p$ from $T$ to $R$ shorter than $\fp(T,R)$, we can get a path $p'$ with $|p'| = |p| < |\fp(T,R)| = |\fp(T',R')s|$ between $T'$ and $R'$ from $p$ as explained above, which contradicts the fact that $\fp(T',R')$ is a shortest path, as proven by Theorem~\ref{thm:rnni_polynomial}.
 \endproof
 
 \summary{Why the complexity of $\rnni(\rho)$ might be different from $\nni$ or $\rnni$ for $\rho$ big enough.}
