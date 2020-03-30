@@ -400,22 +400,23 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 \summary{Proving the Cluster Property for $\rnni$}
 
 \begin{theorem}
-	If two ranked trees $T$ and $R$ share a cluster $C$, then every tree on every shortest path in $\rnni$ contains this cluster $C$.
+	Let $T$ and $R$ be two trees sharing a cluster $C$ and $p$ a shortest path from $T$ to $R$ in $\rnni$.
+	Then every tree on $p$ contains the cluster $C$.
 	\label{cluster_thm}
 \end{theorem}
 
 \proof
-	Assume to the contrary that $T$, $R$, and $C$ is a courter-example to the statement.
-	We can assume that $d(T, R)$ is the smallest possible so the first tree $T'$ after $T$ on the shortest path from $T$ to $R$ does not contain the cluster $C$.
-	Therefore $T$ and $T'$ are connected by an $\nni$ move that moves a subtrees rooted in a children of $(C)_T$ out of the subtree induced by $C$ -- see Figure~\ref{fig:cluster_thm_proof}, where we assume that the clusters induced by the children of $(C)_T$ are $C_1$ and $C_2$.
-	Note that the only cluster that is different in $T$ and $T'$ is $C$ (in $T$) and the cluster induced in $T$ by the of rank $(C)_T'$.
+	Assume to the contrary that $T$, $R$, $C$, and $p$ is a courter-example to the statement.
+	We can assume that no counter-example exists for paths shorter than $p$, so the first tree $T'$ after $T$ on $p$ does not contain the cluster $C$.
+	Therefore $T$ and $T'$ are connected by an $\nni$ move that moves a subtrees rooted at a child of $(C)_T$ out of the subtree induced by $C$ -- see Figure~\ref{fig:cluster_thm_proof}, where by $C_1$, $C_2$ we denote the clusters induced by the children of $(C)_T$.
+	\todo{Would be good to add nodes $(C)_T$ and $(C)_{T'}$ on the figure.}
+	Note that the only clusters in $T$ that distinguish $T$ from $T'$ are $C$ and the cluster induced by the node right above $(C)_{T}$, which is of the same rank as $(C)_{T'}$.
 
 	\begin{figure}[!hbt]
 	\centering
 	\includegraphics[width=0.3\textwidth]{cluster_thm_proof}
-	\caption{Neighbouring trees $T$ and $T'$ as described in the proof of Theorem~\ref{cluster_thm}.
-	$T$ contains the cluster $C = C_1 \cup C_2$, $T'$ does not contain this cluster.
-	The parts of the trees that are illustrated by dashed lines coincide in $T$ and $T'$.}
+	\caption{Neighbouring trees $T$ and $T'$, where $T$ contains the cluster $C = C_1 \cup C_2$ and $T'$ does not.
+	Dashed lines indicate identical trees.}
 	\label{fig:cluster_thm_proof}
 	\end{figure}
 
@@ -427,7 +428,6 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 
 	Therefore, the first move on $\fp(T',R)$ builds the cluster $C$ and results in the tree $T$.
 	It follows $|\fp(T,R)| \geq |\fp(T,R)|$, which contradicts our assumption that $T'$ is on a shortest path from $T$ to $R$.
-
 \endproof
 
 
