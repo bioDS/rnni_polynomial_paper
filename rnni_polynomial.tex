@@ -26,6 +26,7 @@
 
 \newtheorem{lemma}{Lemma}
 \newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
 \newtheorem{decision_problem}{Decision Problem}
 \newtheorem{question}{Question}
 
@@ -399,11 +400,11 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 
 \summary{Proving the Cluster Property for $\rnni$}
 
-\begin{theorem}
+\begin{corollary}
 	Let $T$ and $R$ be two trees sharing a cluster $C$ and $p$ a shortest path from $T$ to $R$ in $\rnni$.
 	Then every tree on $p$ contains the cluster $C$.
 	\label{cluster_thm}
-\end{theorem}
+\end{corollary}
 
 \proof
 	Assume to the contrary that $T$, $R$, $C$, and $p$ is a courter-example to the statement.
@@ -442,9 +443,9 @@ We now consider the extension of $\findpath$ to discrete time-trees.
 	This however is contradicting Theorem~\ref{thm:rnni_polynomial}.
 \endproof
 
-\begin{theorem}
+\begin{corollary}
 	$\findpath$ computes shortest paths between discrete time-trees.
-\end{theorem}
+\end{corollary}
 
 \proof
     Let $T$ and $R$ be discrete time-trees and let $m$ be the maximum of the times assigned to the roots of $T$ and $R$.
