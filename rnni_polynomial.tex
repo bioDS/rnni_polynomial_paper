@@ -407,7 +407,7 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 
 \proof
 	Assume to the contrary that $T$, $R$, $C$, and $p$ is a courter-example to the statement.
-	We can assume that no counter-example exists for paths shorter than $p$, so the first tree $T'$ after $T$ on $p$ does not contain the cluster $C$.
+	We can assume that no counterexample exists for paths shorter than $p$, so the first tree $T'$ after $T$ on $p$ does not contain the cluster $C$.
 	Therefore $T$ and $T'$ are connected by an $\nni$ move that moves a subtrees rooted at a child of $(C)_T$ out of the subtree induced by $C$ -- see Figure~\ref{fig:cluster_thm_proof}, where by $C_1$, $C_2$ we denote the clusters induced by the children of $(C)_T$.
 	\todo{Would be good to add nodes $(C)_T$ and $(C)_{T'}$ on the figure.}
 	Note that the only clusters in $T$ that distinguish $T$ from $T'$ are $C$ and the cluster induced by the node right above $(C)_{T}$, which is of the same rank as $(C)_{T'}$.
@@ -420,14 +420,8 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 	\label{fig:cluster_thm_proof}
 	\end{figure}
 
-	As $T$ and $R$ have minimum distance among all pairs of trees that share a cluster $C$, but are connected by a shortest path where not every tree contains this cluster, we can assume that the first move on $\fp(T',R)$ considers the cluster $C$.
-	Similar to the argumentation in the beginning of the proof of Theorem~\ref{thm:rnni_polynomial}, all moves for clusters below $C$ in $R$ can be performed similarly on $\fp(T,R)$ and $\fp(T',R)$.
-	Specifically, every move on $\fp(T,R)$ that changes the rank of the parent of the node inducing $C$ increases this rank and is followed by a move increasing the rank of node inducing $C$.
-	Indeed, no most recent common ancestor of a cluster considered by $\findpath$ that appears before $C$ in the cluster representation of $R$ can have rank higher than the node inducing $C$ before the corresponding iteration of $\findpath$ ends.
-	Hence, similar two moves happen on $\fp(T,R)$ and increase the ranks of the parents of the nodes inducing clusters $C_1$ and $C_2$.
-
-	Therefore, the first move on $\fp(T',R)$ builds the cluster $C$ and results in the tree $T$.
-	It follows $|\fp(T,R)| \geq |\fp(T,R)|$, which contradicts our assumption that $T'$ is on a shortest path from $T$ to $R$.
+	Since $T$ and $R$ have the minimum possible distance among all counterexamples to the theorem, we can assume, using the same argument as in the beginning of the proof of Theorem~\ref{thm:rnni_polynomial}, that $C$ is the first cluster considered by $\findpath$ when applied to $T$ and $R$.
+	But in this case, the first move on $\fp(T',R)$ builds the cluster $C$ and results in tree $T$, which is a contradiction.
 \endproof
 
 
