@@ -34,6 +34,8 @@
 \newcommand{\mrca}{\mathrm{mrca}}
 \newcommand{\rank}{\mathrm{rank}}
 \newcommand{\nni}{\mathrm{NNI}}
+\newcommand{\spr}{\mathrm{SPR}}
+\newcommand{\tbr}{\mathrm{TBR}}
 \newcommand{\fp}{\mathrm{FP}}
 \renewcommand{\O}{\mathcal O}
 
@@ -71,6 +73,18 @@ In this paper we settle this problem by establishing that the complexity depends
 \section{Introduction}
 
 \summary{Motivation: many popular tree search algorithms are based on NNI (e.g. this \url{https://academic.oup.com/mbe/article/28/10/2731/973375} tool has been cited 40K+ times, see also references there to PhyML, RaxML, etc. -- they all use NNI); other applications include tree comparison methods, tree inference methods (proposal distributions), summary statistics, etc.}
+Phylogenetic trees display evolutionary relations between different organisms or species.
+Some methods for reconstructing phylogenetic trees rely on so-called tree rearrangement operations, such as nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), or tree bisection and reconnection($\tbr$).
+These tree rearrangement operations transform one tree into another one that displays slightly different evolutionary relations and thereby define a tree space where trees are connected by an edge if there are one rearrangement operation apart.
+One main goal in phylogenetics is the reconstruction methods of these evolutionary relationships.
+Some reconstruction methods, such as Maximum Likelihood methods \autocite{Tamura2011-ky, Guindon2010-lo, Stamatakis2006-xb}, are utilising tree rearrangement methods for searching a tree space.
+In inference algorithms based on MCMC methods, tree rearrangement methods are used as well.
+Here they are needed to propose new trees in order to explore the space of trees by a random walk.
+\todo{cite}
+Famous software packages for this are MrBayes~\autocite{Ronquist2003-eq}, BEAST~\autocite{Suchard2018-tw} and BEAST2~\autocite{Bouckaert2018-yr}.
+The latter ones are using ranked trees for proposals, where evolutionary events within trees are assigned times.
+This is one of our motivations to consider rearrangement operations that take the ranking of trees into special account.
+We will see that the tree rearrangement operations on ranked trees that we will consider in this paper, $\rnni$ operations, give us a tree space that has different properties to the classical tree spaces basing on $\nni$, $\spr$, or $\tbr$ operations.
 
 \summary{Motivation: However, all known graph-based tree rearrangement distances, including NNI, are NP-hard, and it took many years and paper to prove that; so approach such as practical FPT algorithms is an active area of research to overcome the computational (cite Whidden).}
 
