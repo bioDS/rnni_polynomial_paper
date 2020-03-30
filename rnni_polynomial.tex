@@ -24,8 +24,9 @@
 \renewbibmacro{in:}{}
 \addbibresource{rnni_polynomial.bib}
 
-\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
 \newtheorem{decision_problem}{Decision Problem}
 \newtheorem{question}{Question}
 
@@ -412,81 +413,71 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 
 \summary{Proving the Cluster Property for $\rnni$}
 
-\begin{theorem}
-	If two ranked trees $T$ and $R$ share a cluster $C$, then every tree on every shortest path in $\rnni$ contains this cluster $C$.
+\begin{corollary}
+	Let $T$ and $R$ be two trees sharing a cluster $C$ and $p$ a shortest path from $T$ to $R$ in $\rnni$.
+	Then every tree on $p$ contains the cluster $C$.
 	\label{cluster_thm}
-\end{theorem}
+\end{corollary}
 
 \proof
-	Assume to the contrary that $T$, $R$, and $C$ is a courter-example to the statement.
-	We can assume that $d(T, R)$ is the smallest possible so the first tree $T'$ after $T$ on the shortest path from $T$ to $R$ does not contain the cluster $C$.
-	Therefore $T$ and $T'$ are connected by an $\nni$ move that moves a subtrees rooted in a children of $(C)_T$ out of the subtree induced by $C$ -- see Figure~\ref{fig:cluster_thm_proof}, where we assume that the clusters induced by the children of $(C)_T$ are $C_1$ and $C_2$.
-	Note that the only cluster that is different in $T$ and $T'$ is $C$ (in $T$) and the cluster induced in $T$ by the of rank $(C)_T'$.
+	Assume to the contrary that $T$, $R$, $C$, and $p$ is a courter-example to the statement.
+	We can assume that no counterexample exists for paths shorter than $p$, so the first tree $T'$ after $T$ on $p$ does not contain the cluster $C$.
+	Therefore $T$ and $T'$ are connected by an $\nni$ move that moves a subtrees rooted at a child of $(C)_T$ out of the subtree induced by $C$ -- see Figure~\ref{fig:cluster_thm_proof}, where by $C_1$, $C_2$ we denote the clusters induced by the children of $(C)_T$.
+	\todo{Would be good to add nodes $(C)_T$ and $(C)_{T'}$ on the figure.}
+	Note that the only clusters in $T$ that distinguish $T$ from $T'$ are $C$ and the cluster induced by the node right above $(C)_{T}$, which is of the same rank as $(C)_{T'}$.
 
 	\begin{figure}[!hbt]
 	\centering
 	\includegraphics[width=0.3\textwidth]{cluster_thm_proof}
-	\caption{Neighbouring trees $T$ and $T'$ as described in the proof of Theorem~\ref{cluster_thm}.
-	$T$ contains the cluster $C = C_1 \cup C_2$, $T'$ does not contain this cluster.
-	The parts of the trees that are illustrated by dashed lines coincide in $T$ and $T'$.}
+	\caption{Neighbouring trees $T$ and $T'$, where $T$ contains the cluster $C = C_1 \cup C_2$ and $T'$ does not.
+	Dashed lines indicate identical trees.}
 	\label{fig:cluster_thm_proof}
 	\end{figure}
 
-	As $T$ and $R$ have minimum distance among all pairs of trees that share a cluster $C$, but are connected by a shortest path where not every tree contains this cluster, we can assume that the first move on $\fp(T',R)$ considers the cluster $C$.
-	Similar to the argumentation in the beginning of the proof of Theorem~\ref{thm:rnni_polynomial}, all moves for clusters below $C$ in $R$ can be performed similarly on $\fp(T,R)$ and $\fp(T',R)$.
-	Specifically, every move on $\fp(T,R)$ that changes the rank of the parent of the node inducing $C$ increases this rank and is followed by a move increasing the rank of node inducing $C$.
-	Indeed, no most recent common ancestor of a cluster considered by $\findpath$ that appears before $C$ in the cluster representation of $R$ can have rank higher than the node inducing $C$ before the corresponding iteration of $\findpath$ ends.
-	Hence, similar two moves happen on $\fp(T,R)$ and increase the ranks of the parents of the nodes inducing clusters $C_1$ and $C_2$.
-
-	Therefore, the first move on $\fp(T',R)$ builds the cluster $C$ and results in the tree $T$.
-	It follows $|\fp(T,R)| \geq |\fp(T,R)|$, which contradicts our assumption that $T'$ is on a shortest path from $T$ to $R$.
-
+	Since $T$ and $R$ have the minimum possible distance among all counterexamples to the theorem, we can assume, using the same argument as in the beginning of the proof of Theorem~\ref{thm:rnni_polynomial}, that $C$ is the first cluster considered by $\findpath$ on $\fp(T, R)$.
+	But in this case, the first move on $\fp(T',R)$ builds the cluster $C$ and results in tree $T$, which is a contradiction.
 \endproof
 
 
-\section{Generalisation to discrete time trees}
+\section{Generalisation to discrete time-trees}
 
 \summary{Generalising} $\findpath$ \summary{for discrete time-trees}
-We now consider the extension of $\findpath$ to discrete time-trees.
+We now consider the obvious extension of $\findpath$ to discrete time-trees.
 
-\begin{lemma}
-	The path between discrete time-trees $T$ and $R$ computed by $\findpath$ minimises the number of moves changing the ranked topology.
-	\label{lemma:FP_minimises_topology_changes}
-\end{lemma}
-
-\proof
-	Let $T'$ and $R'$ be the ranked trees derived from discrete time-trees $T$ and $R$ by shrinking all intervals to length $1$.
-	Then the ranked topology changes on $\fp(T,R)$ are exactly the moves on $\fp(T',R')$, which directly follows from the algorithm.
-	If we assume that there is a path from $T$ to $R$ with less ranked topology changes than on $\fp(T,R)$, the sequence of ranked topology changes of this path would give a path from $T'$ to $R'$ with length less than $|\fp(T',R')|$.
-	This however is contradicting Theorem~\ref{thm:rnni_polynomial}.
-\endproof
-
-\begin{theorem}
+\begin{corollary}
 	$\findpath$ computes shortest paths between discrete time-trees.
-\end{theorem}
+\end{corollary}
 
 \proof
-    Let $T$ and $R$ be discrete time-trees and let $m$ be the maximum of the times assigned to the roots of $T$ and $R$.
-    We construct trees $T'$ and $R'$ in $\rnni$ on $m+1$ leaves by adding $m + 1 - n$ leaves in the following way.
-    Add a new root with rank $m+1$ to tree $T$, such that $T$ is a subtree rooted in one of the children of this new node.
-    The other child of this new root is a caterpillar tree with leaf labels in $\{n+1, \ldots, m+1\}$ such that the ranks of the parents of these leaves are ordered according to the leaf labels and the resulting tree does not contain intervals of length greater than one.
-    The same way we receive tree $R'$ out of $R$.
+	Let $T$ and $R$ be discrete time-trees and let $m$ be the maximum of the times assigned to the roots of $T$ and $R$.
+	We construct trees $T'$ and $R'$ in $\rnni$ on $m + 1$ leaves by adding $m + 1 - n$ new leaves in the following way.
+	Add a new root with rank $m+1$ to tree $T$, such that $T$ is a subtree rooted in one of the children of this new node.
+	The other child of this new root is a caterpillar tree with leaf labels in $\{n+1, \ldots, m+1\}$ such that the ranks of the parents of these leaves are ordered according to the leaf labels and the resulting tree does not contain intervals of length greater than one.
+	The same way we obtain tree $R'$ from $R$.
 
-    We can construct a path $p'$ from $T'$ to $R'$ out of any path $p$ from $T$ to $R$ where $|p| = |p'|$ by simply transforming length moves on $p$ to rank swaps on $p'$:
-    If the rank $k$ of a cluster in a tree on $p$ changes to rank $k+1$ or $k-1$ by a length move, there is a rank swap induced by the node of these ranks in the corresponding tree on $p'$.
-    All rank moves and $\nni$ move on $p$ can happen the same way on $p'$.
-    By the construction of $T'$ and $R'$ it follows that $p'$ actually ends in $R'$, as there are no rank moves or $\nni$ moves needed inside the additional caterpillar subtree.
-    And as every move on $p$ corresponds to exactly one move on $p'$, the lengths of these paths coincide.
-    Note that the path we receive by transforming the moves on $\fp(T,R)$ into moves from $T'$ to $R'$ results in $\fp(T',R')$.
-
-    With this it is not hard to see that $\fp(T,R)$ computes a shortest path.
-    Indeed, if there was another path $p$ from $T$ to $R$ shorter than $\fp(T,R)$, we can get a path $p'$ with $|p'| = |p| < |\fp(T,R)| = |\fp(T',R')s|$ between $T'$ and $R'$ from $p$ as explained above, which contradicts the fact that $\fp(T',R')$ is a shortest path, as proven by Theorem~\ref{thm:rnni_polynomial}.
+	We can convert a path $p$ from $T$ to $R$ to a path $p'$ from $T'$ to $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
+	All rank moves and $\nni$ moves on $p'$ remain the same as on $p'$.
+	By the construction of $T'$ and $R'$ it follows that $p'$ ends in $R'$, as the additional caterpillar subtree does not change.
+	As every move on $p$ corresponds to exactly one move on $p'$, the lengths of these paths coincide.
+	
+	$\fp(T,R)$ is defined by transforming the moves along $\fp(T',R')$ in the similar way.
+	To show that $\fp(T, R)$ computes a shortest path, we observe that if there was another path $p$ from $T$ to $R$ strictly shorter than $\fp(T, R)$, we can construct a path $p'$ with $|p'| = |p| < |\fp(T,R)| = |\fp(T',R')s|$ between $T'$ and $R'$ as explained above, which is a contradiction to Theorem~\ref{thm:rnni_polynomial}.
 \endproof
 
 \summary{Why the complexity of $\rnni(\rho)$ might be different from $\nni$ or $\rnni$ for $\rho$ big enough.}
 
 
 \section{Conclusion}
+
+\summary{Useful observation for rounding up the discussion about $\rnni(\rho)$ -- should be put where we do that.}
+When considering the problem of characterising the complexity of computing the distance in $\rnni(\rho)$, an important question is how to balance the trade off between $\nni$ and rank moves.
+Indeed, examples exist when different shortest paths between trees have different number of $\nni$ moves, that is, some $\nni$ moves can be traded for rank moves.
+The following observation, which directly follows from Theorem~\ref{thm:rnni_polynomial}, provides a first step towards understanding of this trade off using the $\findpath$ algorithm.
+
+\begin{corollary}
+	For every pair of discrete time-trees $T$ and $R$, $\fp(T, R)$ has the minimal possible number of moves changing the ranked topology, among all shortest paths between $T$ and $R$.
+	\label{prpn:FP_minimises_topology_changes}
+\end{corollary}
 
 As we have shown, the complexity of computing the nearest neighbour interchange distance between ranked phylogenetic trees depends on the weight of rank rearrangements and can change from quadratic, when rank moves are counted as one rearrangement, to NP-hard, when rank moves are ignored.
 It hence is natural to ask whether a boundary exists at which the problem switches from polynomial to hard.
