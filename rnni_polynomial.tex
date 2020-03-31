@@ -38,6 +38,7 @@
 \newcommand{\spr}{\mathrm{SPR}}
 \newcommand{\tbr}{\mathrm{TBR}}
 \newcommand{\fp}{\mathrm{FP}}
+\newcommand{\np}{\mathcal{NP}}
 \renewcommand{\O}{\mathcal O}
 
 \newcommand{\summary}[1]{\textbf{#1}}
@@ -87,6 +88,13 @@ This is one of our motivations to consider rearrangement operations that take th
 We will see that the tree rearrangement operations on ranked trees that we will consider in this paper, $\rnni$ operations, give us a tree space that has different properties to the classical tree spaces basing on $\nni$, $\spr$, or $\tbr$ operations.
 
 \summary{Motivation: However, all known graph-based tree rearrangement distances, including NNI, are NP-hard, and it took many years and paper to prove that; so approach such as practical FPT algorithms is an active area of research to overcome the computational (cite Whidden).}
+These three classical tree spaces all have one property in common, that is computing distances is $\np$-hard \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky}.
+$\nni$, $\spr$, and $\tbr$ differ by how the tree rearrangement operation are defined.
+In general one can say that $\nni$ only allows local changes, while $\tbr$ operations provide the most global changes in this list of rearrangement operations.
+For $\nni$, the question of whether it is $\np$-hard to compute distances has been open for decades and was finally settled by \textcite{Dasgupta2000-xa}.
+Similar was the discovery that computing $\spr$ distances is $\np$-hard.
+Before \textcite{Bordewich2005-nx} could prove this for rooted trees and \textcite{Hickey2008-wv} utilised this proof for showing the result for unrooted trees, an incorrect proof for the $\np$-hardness of unrooted $\spr$ has been published in \autocite{Hein1996-em} and been proven to be incorrect five years later in \autocite{Allen2001-ky}.
+Interestingly fixed parameter tractable algorithms for computing $\spr$ distances exist \autocite{Whidden2010-bw, Bordewich2005-nx, Whidden2018-fw}, and finding such algorithms still is a very active area of research.
 
 \summary{Historically, the complexity question was following hand in hand with the split property -- more history plus biological relevance of the property.}
 
