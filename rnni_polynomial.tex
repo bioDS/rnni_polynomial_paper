@@ -144,14 +144,15 @@ Note that for the cluster $C$ induced by the node of rank $k$ in $T$ it is $(C)_
 
 \summary{Defining graph} $\rnni(\rho)$.
 We will now introduce graphs $\rnni(\rho)$ on ranked trees, where $\rho \in [0,\infty)$.
-Note we chose this name as these graphs are a generalisation of the \emph{ranked nearest neighbour interchange} ($\rnni$) graph as introduced in \autocite{Collienne2019-ca}, where $\rho = 1$.
-The vertices of $\rnni(\rho)$ are ranked trees as introduced above, for all $\rho \in [0,\infty)$.
-Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:
+Note we chose this name as these graphs are a generalisation of the \emph{ranked nearest neighbour interchange} ($\rnni$) graph introduced in \autocite{Collienne2019-ca}.
+The vertices of the $\rnni$ graph are ranked trees as introduced above.
+Two ranked trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:
 A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with rank difference one for $0 < t < n-1$.
 \todo{LC: Do we need to define isomorphic?}
-Trees $T$ and $R$ are connected by an $\nni$ move if there are edges $e$ in $T$ and $f$ in $R$ of length one such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two isomorphic (non-binary) trees.
-In the graph $\rnni{\rho}$ these two types of edges have different weights.
-Edges that correspond to $\nni$ move are weighted by one, while edges corresponding to rank moves have weight $\rho$.
+Ranked trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ of length one such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two isomorphic (non-binary) trees.
+To parameterise the $\rnni$ graph with parameter $\rho$, edges are weighted by either one or $\rho \in [0, \infty)$, depending on whether they represent $\nni$ or rank moves, respectively.
+\todo{LC: How shall we introduce that $\rnni(0)$ and $\nni$ are the same? Maybe we should explain this further?}
+It follows that $\rnni(1)$ if the $\rnni$ graph while $\rnni(0)$ represents the $\nni$ graph.
 
 \summary{Introduce decision problem} $\rnni(\rho)$ \summary{and explain how its complexity depends on} $\rho$.
 In this paper we focus on the following decision problem:
