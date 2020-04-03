@@ -144,9 +144,7 @@ Note that for the cluster $C$ induced by the node of rank $k$ in $T$ it is $(C)_
 
 \summary{Defining graph} $\rnni(\rho)$.
 We will now introduce graphs $\rnni(\rho)$ on ranked trees, where $\rho \in [0,\infty)$.
-Note we chose this name as these graphs are a generalisation of the \emph{ranked nearest neighbour interchange} ($\rnni$) graph as introduced in
-\todo{cite rnni convexity paper}
-, where $\rho = 1$.
+Note we chose this name as these graphs are a generalisation of the \emph{ranked nearest neighbour interchange} ($\rnni$) graph as introduced in \autocite{Collienne2019-ca}, where $\rho = 1$.
 The vertices of $\rnni(\rho)$ are ranked trees as introduced above, for all $\rho \in [0,\infty)$.
 Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:
 A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with rank difference one for $0 < t < n-1$.
@@ -224,7 +222,7 @@ Things to introduce:
 \summary{A few words about the main theorem and its proof.}
 The following theorem, that $\rnni \in \mathcal P$, is the main result of our paper.
 The proof of the theorem reduces the problem to establishing a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm -- $\findpath$ always chooses the best tree possible to go to.
-Importantly, this result can be used for an arbitrary vertex proposal algorithm in an arbitrary graph to establish that the algorithms computes a shortest path between vertices in the graph, hence our proof technique is of general interest. 
+Importantly, this result can be used for an arbitrary vertex proposal algorithm in an arbitrary graph to establish that the algorithms computes a shortest path between vertices in the graph, hence our proof technique is of general interest.
 
 \begin{theorem}
 The time complexity of computing the $\rnni$ distance between trees on $n$ leaves is $\O(n^2)$.
