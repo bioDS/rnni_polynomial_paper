@@ -221,7 +221,11 @@ Things to introduce:
 
 \section{Complexity of computing $\rnni$ distances}
 
-\summary{We now show that} $\rnni \in \mathcal P$.
+\summary{A few words about the main theorem and its proof.}
+The following theorem, that $\rnni \in \mathcal P$, is the main result of our paper.
+The proof of the theorem reduces the problem to establishing a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm -- $\findpath$ always chooses the best tree possible to go to.
+Importantly, this result can be used for an arbitrary vertex proposal algorithm in an arbitrary graph to establish that the algorithms computes a shortest path between vertices in the graph, hence our proof technique is of general interest. 
+
 \begin{theorem}
 The time complexity of computing the $\rnni$ distance between trees on $n$ leaves is $\O(n^2)$.
 \label{thm:rnni_polynomial}
@@ -237,10 +241,13 @@ Then $d(T',R) = d(T, R) - 1$ and the distance between $T'$ and $R$ is strictly s
 Hence $d(T', R) = |\fp(T',R)| < |\fp(T,R)| - 1$.
 We finish the proof by showing that no trees satisfy this inequality.
 
-Specifically, we will show that for all trees $T$, $R$, and $T'$ such that $T'$ is one $\rnni$ move away from $T$,
+Specifically, we will show that
 \begin{equation}
-	|\fp(T',R)| \geq |\fp(T,R)| - 1
- 	\label{eqn:iff_inequality}
+\begin{split}
+\mbox{for all trees $T$, $R$, and $T'$}	& \mbox{ such that $T'$ is one $\rnni$ move away from $T$,}\\
+					&|\fp(T',R)| \geq |\fp(T,R)| - 1
+\end{split}
+ \label{eqn:iff_inequality}
 \end{equation}
 
 We will use Figure~\ref{fig:proof_idea} to demonstrate our argument.
@@ -500,6 +507,9 @@ The following observation, which directly follows from Theorem~\ref{thm:rnni_pol
 As we have shown, the complexity of computing the nearest neighbour interchange distance between ranked phylogenetic trees depends on the weight of rank rearrangements and can change from quadratic, when rank moves are counted as one rearrangement, to NP-hard, when rank moves are ignored.
 It hence is natural to ask whether a boundary exists at which the problem switches from polynomial to hard.
 In what follows we consider this question in more detail and leave its complete solution as an open problem.
+
+\newpage
+
 
 \printbibliography
 \end{document}
