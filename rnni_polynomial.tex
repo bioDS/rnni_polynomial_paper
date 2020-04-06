@@ -182,9 +182,7 @@ This algorithm computes paths between two ranked trees $T$ and $R = [C_1, \ldots
 $\findpath$ considers the clusters $C_1, \ldots, C_{n-2}$ of $R$ in this order to compute a path $p$ from $T$ to $R$.
 During each iteration $i = 1, \ldots, n-2$ trees can be added to $p$, possibly none or just one, we will always refer to the last tree of $p$ as $T'$.
 In iteration $i$ the rank of $(C_{i})_{T'}$ is decreased by $\rnni$ moves until $C_i$ is induced by the node of rank $i$ in $T'$ on $p$.
-As discussed in
-\todo{cite rnni polynomial paper}
-, $\findpath$ is a deterministic algorithm.
+As discussed in \autocite{Collienne2019-ca}, $\findpath$ is a deterministic algorithm.
 Specifically, there is always a unique move that decreases the rank of $(C_{i})_{T'}$ as described above.
 
 \begin{algorithm}[H]
@@ -214,7 +212,6 @@ Things to introduce:
 \item if needed for generalisation: edge vs rank intervals, (ultrametric) discrete time-trees, (ranked and unranked) tree topologies
 \item We can always talk about ranked phylogenetic trees (and call them trees throughout the paper) but then say that the rank move can be ignored (leading to an NP-hard problem) or counted as one move (quadratic)
 \item $\findpath$, including its time complexity and the extension to discrete time-trees
-\item Note that $\findpath$ is deterministic, that is, an interval and a move on the interval are uniquely determined (this is necessary to concentrate on the $v, w$ nodes in the proof of main theorem)
 \end{itemize}
 
 
