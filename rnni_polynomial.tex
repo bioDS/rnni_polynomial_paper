@@ -93,17 +93,17 @@ Remarkably, it took over 25 years and a number of published erroneous attempts \
 Similarly for $\spr$, before \textcite{Bordewich2005-nx} proved the $\np$-hardness result for rooted trees and \textcite{Hickey2008-wv} utilised this proof to establish the result for unrooted trees, incorrect proofs have been discussed in the literature \autocite{Hein1996-em, Allen2001-ky}.
 To facilitate practical applications, several fixed parameter tractable algorithms for computing the $\spr$ distance have been developed over the years \autocite{Whidden2010-bw, Bordewich2005-nx, Whidden2018-fw}.
 Although these algorithm advanced the applicability of the methods significantly, they remain impractical for large distances and are applied to trees with a moderate number of leaves or those with small distances.
-This remains an active area of research in modern computational phylogenetics.
+It is still open whether the fixed parameter tractability result holds in $\nni$, so the algorithms for computing shortest paths in $\nni$ remain largely impractical.
+This is an active area of research in modern computational phylogenetics \autocite{Gavryushkin2018-ol}.
 
 \summary{Historically, the complexity question was following hand in hand with the cluster property -- more history plus biological relevance of the property.}
-The proof of $\np$-hardness of $\nni$ in \autocite{Dasgupta2000-xa} basis on the fact that shortest paths in $\nni$ do not preserve clusters \autocite{Li1996-zw}.
-We will say, that $\nni$ does not have the cluster property, which we will formally introduce later.
-From the biological point of view, trees clustering the same sequences into a subtree should be closer to another than to a tree not sharing a cluster, as a shared cluster means that both trees support the hypothesis that this cluster has evolved as a subtree, which underlines the biologically relevance of the cluster property.
-The fact that $\nni$ does not have this property is essential in the proof of the complexity of $\nni$.
-Therefore it is believed that there is a connection between cluster property and computational complexity of tree spaces.
-$\spr$ has the cluster property even though it is $\np$-hard, but in contrast to $\nni$ it is also known to be fixed parameter tractable.
-We will see that the tree space introduced in this paper, the $\rnni$ space, does have the cluster property and is not $\np$-hard.
-This still suggest that there might be a connection between complexity and cluster property, even though $\spr$ indicates that this is not obvious.
+The idea utilised by \textcite{Dasgupta2000-xa} to prove that the $\nni$ distance is $\np$-hard stems from a result that shortest paths in $\nni$ do not preserve clusters \autocite{Li1996-zw}, that is, two trees sharing a cluster does not imply that all trees along a shortest path have that cluster.
+We will say that $\nni$ does not have the cluster property (see below for a formal description).
+Not only this counter-intuitive property eventually led to the computational hardness result, the property made little sense biologically as trees clustering the same set of sequences into a subtree should be closer to each other than to a tree that does not have that subtree.
+Indeed, a shared cluster means that both trees support the hypothesis that this cluster has evolved along a subtree.
+It was believed that the cluster property and the computational complexity of computing distances were related \autocite{Li1996-zw}, so the two questions have historically been studied simultaneously \autocite{Dasgupta2000-xa}.
+However, there is little evidence to justify this connection.
+For example, the cluster property holds in $\spr$ even though shortest paths are $\np$-hard to compute.
 
 \summary{Paper summary in light of motivation: We've discovered the first efficiently computable distance, given by a parameter range in known tree spaces, and want to understand the reason for the complexity jump -- cite ``Beyond worst-case complexity.''}
 \todo{LC: Add section numbers?}
