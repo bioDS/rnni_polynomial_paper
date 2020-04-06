@@ -129,18 +129,16 @@ In the remainder of this section we will introduce the terminology used in this 
 \summary{Defining ranked trees and clusters.}
 Throughout this paper we will consider \emph{ranked phylogenetic trees}, or short \emph{ranked trees}, that are rooted binary trees where leaves are uniquely labelled by elements of the set $[n] = \{1, \ldots, n\}$ for a fixed integer $n$.
 Furthermore, all nodes in ranked trees are assigned \emph{ranks} by a function $\rank$ that bijectively maps internal nodes onto elements of the set $\{1, \ldots, n-1\}$ such that children have strictly smaller rank than their parents and all leaves onto $0$.
-For a ranked tree $T$ we refer to its internal node of rank $k \in \{1, \ldots, n\}$ by $(T)_k$.
+For a ranked tree $T$ we refer to its internal node of rank $k \in [n-1]$ by $(T)_k$.
 \todo{LC: What about $t=0$? $(T)_0$ is not unique.}
 An \emph{interval} $[(T)_t,(T)_{t+1}]$ is given by two nodes with rank difference one.
 A \emph{cluster} of a ranked tree $T$ is a subsets of $[n]$ that contains labels of all leafs descending from an internal nodes of $T$.
-We then say that this internal node \emph{induces} the cluster $C$.
-If a cluster $C$ is induced by an internal node in a tree $T$, we say that the subtree of $T$ that is rooted in this internal node is the subtree \emph{induced} by $C$.
-\todo{LC: Do we want to use cluster and mean non-trivial clusters? Then we should mention this here.}
+We then say that this internal node \emph{induces} the cluster $C$ and say that the subtree rooted in this node is \emph{induced} by $C$.
 Clusters induced by leaves or the root of a tree are called \emph{trivial} clusters, as they appear in every ranked tree.
 Ranked trees can uniquely be represented in the \emph{cluster representation}, that is a list of all non-trivial clusters induced by internal nodes of that tree, ordered increasingly according to the ranks of internal nodes.
-Note that there are $n-2$ non-trivial clusters in a tree on $n$ leaves.
+Note that there are $n-2$ non-trivial clusters in a tree on $n$ leaves, and for simplicity we will from now on refer to these whenever we say clusters.
 For a set $S \subseteq [n]$ and tree $T$, we denote the \emph{most recent common ancestor} of $S$ in $T$, that is the internal node of lowest rank in $T$ that contains all elements of $S$, by $(S)_T$.
-Note that for the cluster $C$ induced by the node of rank $k$ in $T$ it is $(C)_T = (T)_k$.
+Note that for the cluster $C$ induced by the node of rank $k \in [n-1]$ in $T$ it is $(C)_T = (T)_k$.
 
 \summary{Defining graph} $\rnni(\rho)$.
 We will now introduce graphs $\rnni(\rho)$ on ranked trees, where $\rho \in [0,\infty)$.
