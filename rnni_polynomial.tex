@@ -121,17 +121,18 @@ We will provide some insight into this problem at the end of this paper.
 \section{Technical introduction}
 
 \summary{Defining ranked trees and clusters.}
-Throughout this paper we will consider \emph{ranked phylogenetic trees}, or short \emph{ranked trees}, that are rooted binary trees where leaves are uniquely labelled by elements of the set $[n] = \{1, \ldots, n\}$ for a fixed integer $n$.
-Furthermore, all nodes in ranked trees are assigned \emph{ranks} by a function $\rank$ that bijectively maps internal nodes onto elements of the set $\{1, \ldots, n-1\}$ such that children have strictly smaller rank than their parents and all leaves onto $0$.
-For a ranked tree $T$ we refer to its internal node of rank $k \in [n-1]$ by $(T)_k$.
-\todo{LC: What about $t=0$? $(T)_0$ is not unique.}
-An \emph{interval} $[(T)_t,(T)_{t+1}]$ is given by two nodes with rank difference one.
-A \emph{cluster} of a ranked tree $T$ is a subsets of $[n]$ that contains labels of all leafs descending from an internal nodes of $T$.
-We then say that this internal node \emph{induces} the cluster $C$ and say that the subtree rooted in this node is \emph{induced} by $C$.
-Clusters induced by leaves or the root of a tree are called \emph{trivial} clusters, as they appear in every ranked tree.
-Ranked trees can uniquely be represented in the \emph{cluster representation}, that is a list of all non-trivial clusters induced by internal nodes of that tree, ordered increasingly according to the ranks of internal nodes.
-Note that there are $n-2$ non-trivial clusters in a tree on $n$ leaves, and for simplicity we will from now on refer to these whenever we say clusters.
-For a set $S \subseteq [n]$ and tree $T$, we denote the \emph{most recent common ancestor} of $S$ in $T$, that is the internal node of lowest rank in $T$ that contains all elements of $S$, by $(S)_T$.
+Unless stated otherwise, in this paper we work with \emph{ranked phylogenetic trees}, which we will simply call \emph{trees}, that are binary trees where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by the elements of the set $\{1, \ldots, n-1\}$ so that children have strictly smaller rank than their parents.
+All leaves are assumed to have rank $0$.
+Two trees are considered to be identical if the exists an isomorphism between them which preserves edges, leaf labels, and node rankings.
+For example, trees in Figure~\ref{todo} are all different.
+
+Because internal nodes of a tree $T$ are ranked uniquely, we can address to \textbf{the} node of rank $k \in \{1, \ldots, n - 1\}$, and we write $(T)_k$ to denote this node.
+An \emph{interval} $[(T)_t,(T)_{t+1}]$ is given by two nodes of consecutive ranks.
+A \emph{cluster} $C$ in a tree $T$ is a subsets of leaves $\{a_1, \ldots, a_n\}$ that contains all leaves descending from an internal node of $T$.
+We then say that this internal node \emph{induces} the cluster $C$, and that the subtree rooted at this node is \emph{induced} by $C$.
+Trees can uniquely be specified using the \emph{cluster representation}, that is a list of all clusters induced by internal nodes of that tree ordered according to the ranks of internal nodes.
+\todo{For example, trees in Fig 1 have the following cluster representations.}
+For a set $S \subseteq \{a_1, \ldots, a_n\}$ and tree $T$, we denote the \emph{most recent common ancestor} of $S$ in $T$, that is the internal node of the lowest rank in $T$ that contains all elements of $S$, by $(S)_T$.
 Note that for the cluster $C$ induced by the node of rank $k \in [n-1]$ in $T$ it is $(C)_T = (T)_k$.
 
 \summary{Defining graph} $\rnni(\rho)$.
