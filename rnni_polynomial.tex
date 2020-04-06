@@ -479,6 +479,7 @@ We now consider the obvious extension of $\findpath$ to discrete time-trees.
 
 \section{Conclusion}
 
+\todo{LC: Shall the following discussion stay as conclusion? We definitely need to mention here how cool it is to have a polynomial tree space}
 \summary{Everything we know so far about the complexity of} $\rnni(\rho)$ \summary{-- $\rnni(1) \in \p$ and $\rnni(0) \in \np$}
 From Theorem~\ref{thm:rnni_polynomial} we know that distances in $\rnni(1)$ can be computed in polynomial time, as this is the $\rnni$ graph.
 The computation of distances in $\rnni(0)$ however is $\np$-hard, as we can follow from the following observation.
@@ -496,24 +497,23 @@ And as transforming $p$ into $p'$ as described above deletes all rank moves and 
 
 This result implies in particular that shortest paths in $\rnni(0)$ give shortest paths in $\nni$.
 Since \textcite{Dasgupta2000-xa} proved that computing distances in $\nni$ is $\np$-hard we can conclude the same for $\rnni(0)$.
-The difference of complexity between $\rnni(0) \in \np$ and $\rnni(1) \in \np$ raises the following question.
+We can conclude that the complexity of computing the nearest neighbour interchange distance between ranked phylogenetic trees depends on the weight of rank rearrangements and can change from quadratic, when rank moves are counted as one rearrangement, to NP-hard, when rank moves are ignored.
+It hence is natural to ask whether a boundary exists at which the problem switches from polynomial to hard.
 
 \begin{question}
 Is there a threshold $r \in [0,1]$ for which $\rnni(\rho) \in \np$ for all $\rho \leq r$, and $\rnni(\rho) \in \p$ for all $\rho > r$?
 \end{question}
 
-\summary{Useful observation for rounding up the discussion about $\rnni(\rho)$ -- should be put where we do that.}
-When considering the problem of characterising the complexity of computing the distance in $\rnni(\rho)$, an important question is how to balance the trade off between $\nni$ and rank moves.
+\summary{Rank moves and $\nni$ moves can appear in different proportions on shortest paths and this is related to $\fp$ not computing shortest paths if $\rho \neq 1$}
+When considering the problem of characterising the complexity of computing the distance in $\rnni(\rho)$ for $\rho \neq 0,1$, an important question is how to balance the trade off between $\nni$ and rank moves.
 Indeed, examples exist when different shortest paths between trees have different number of $\nni$ moves, that is, some $\nni$ moves can be traded for rank moves.
-The following observation, which directly follows from Theorem~\ref{thm:rnni_polynomial}, provides a first step towards understanding of this trade off using the $\findpath$ algorithm.
+The following observation, which follows from the existence of such different shortest paths, provides a first step towards understanding of this trade off using the $\findpath$ algorithm.
 
-\begin{corollary}
-	For every pair of discrete time-trees $T$ and $R$, $\fp(T, R)$ has the minimal possible number of moves changing the ranked topology, among all shortest paths between $T$ and $R$.
-	\label{prpn:FP_minimises_topology_changes}
-\end{corollary}
+\begin{lemma}
+	$\findpath$ computes shortest paths only for $\rnni(1)$, and not for other $\rnni(\rho)$ with $\rho \neq 1$.
+\end{lemma}
 
-As we have shown, the complexity of computing the nearest neighbour interchange distance between ranked phylogenetic trees depends on the weight of rank rearrangements and can change from quadratic, when rank moves are counted as one rearrangement, to NP-hard, when rank moves are ignored.
-It hence is natural to ask whether a boundary exists at which the problem switches from polynomial to hard.
+
 In what follows we consider this question in more detail and leave its complete solution as an open problem.
 
 \newpage
