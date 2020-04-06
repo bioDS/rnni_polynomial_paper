@@ -26,6 +26,7 @@
 
 \newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
 \newtheorem{corollary}{Corollary}
 \newtheorem{decision_problem}{Decision Problem}
 \newtheorem{question}{Question}
@@ -479,12 +480,23 @@ We now consider the obvious extension of $\findpath$ to discrete time-trees.
 \section{Conclusion}
 
 \summary{Everything we know so far about the complexity of} $\rnni(\rho)$ \summary{-- $\rnni(1) \in \p$ and $\rnni(0) \in \np$}
-The graph $\rnni(0)$ ignores rank moves, as those are weighted by zero.
-\todo{LC: Do we need a lemma proving this?}
-Therefore, distances between trees in this graph are equivalent to distances between the underlying unranked trees in the plain $\nni$ graph.
-As computing distances in $\nni$ is $\np$-complete, it is $\rnni(\rho) \in \np$ as well.
-However, we will be able to show in Theorem~\ref{thm:rnni_polynomial} that $\rnni(1) \in \p$.
-This difference of complexity between $\rnni(0)$ and $\rnni(1)$ raises the following question:
+From Theorem~\ref{thm:rnni_polynomial} we know that distances in $\rnni(1)$ can be computed in polynomial time, as this is the $\rnni$ graph.
+The computation of distances in $\rnni(0)$ however is $\np$-hard, as we can follow from the following observation.
+
+\begin{lemma}
+Let $p = [T_1, \ldots, T_m]$ be a path in $\rnni(0)$.
+Then the path $p'$ which results from $p$ by ignoring all rankings in the trees on $p$ and deleting duplicated trees is a path in $\nni$ such that the lengths of $p$ and $p'$ are equal, where the length of $p$ is defined as the sum of edge weights of edges $(T_i,T_{i+1})$ in $\rnni(0)$ for all $i = 1, \ldots, m-1$.
+\end{lemma}
+
+\proof
+The only moves on $p$ with weight greater than zero are $\nni$ moves.
+Therefore the length of $p$ equals the number of $\nni$ moves on this path.
+And as transforming $p$ into $p'$ as described above deletes all rank moves and none of the $\nni$ moves, the lengths of $p$ and $p'$ coincide.
+\endproof
+
+This result implies in particular that shortest paths in $\rnni(0)$ give shortest paths in $\nni$.
+Since \textcite{Dasgupta2000-xa} proved that computing distances in $\nni$ is $\np$-hard we can conclude the same for $\rnni(0)$.
+The difference of complexity between $\rnni(0) \in \np$ and $\rnni(1) \in \np$ raises the following question.
 
 \begin{question}
 Is there a threshold $r \in [0,1]$ for which $\rnni(\rho) \in \np$ for all $\rho \leq r$, and $\rnni(\rho) \in \p$ for all $\rho > r$?
