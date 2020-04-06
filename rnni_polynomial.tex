@@ -81,29 +81,19 @@ In this paper we settle this problem by establishing that the complexity depends
 
 \summary{Motivation: many popular tree search algorithms are based on NNI (e.g. this \url{https://academic.oup.com/mbe/article/28/10/2731/973375} tool has been cited 40K+ times, see also references there to PhyML, RaxML, etc. -- they all use NNI); other applications include tree comparison methods, tree inference methods (proposal distributions), summary statistics, etc.}
 The problem of reconstructing evolutionary histories given sequence data is central for many tree inference methods used in computational evolutionary biology.
-Some of the most popular methods inter trees from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2018-yr}, distance- and parsimony-based searchers \autocite{Tamura2011-ky}.
-
-Phylogenetic trees display evolutionary relations between different organisms or species.
-Some methods for reconstructing phylogenetic trees rely on so-called tree rearrangement operations, such as nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), or tree bisection and reconnection($\tbr$).
-These tree rearrangement operations transform one tree into another one that displays slightly different evolutionary relations and thereby define a tree space where trees are connected by an edge if there are one rearrangement operation apart.
-One main goal in phylogenetics is the reconstruction methods of these evolutionary relationships.
-Some reconstruction methods, such as Maximum Likelihood methods \autocite{Tamura2011-ky, Guindon2010-lo, Stamatakis2006-xb}, are utilising tree rearrangement methods for searching a tree space.
-In inference algorithms based on MCMC methods, tree rearrangement methods are used as well.
-Here they are needed to propose new trees in order to explore the space of trees by a random walk.
-Famous software packages for this are MrBayes~\autocite{Ronquist2003-eq}, BEAST~\autocite{Suchard2018-tw} and BEAST2~\autocite{Bouckaert2018-yr}.
-The latter ones are using ranked trees for proposals, where evolutionary events within trees are assigned times.
-This is one of our motivations to consider rearrangement operations that take the ranking of trees into special account.
-We will see that the tree rearrangement operations on ranked trees that we will consider in this paper, $\rnni$ operations, give us a tree space that has different properties to the classical tree spaces basing on $\nni$, $\spr$, or $\tbr$ operations.
+Some of the most popular methods infer trees from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2018-yr}, distance- and parsimony-based approaches \autocite{Tamura2011-ky}.
+All these methods rely of various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection($\tbr$).
+The tree inference problem hence can be formulated as a graph search, where vertices are trees and edges are given by the tree rearrangement operation of interest.
 
 \summary{Motivation: However, all known graph-based tree rearrangement distances, including NNI, are NP-hard, and it took many years and paper to prove that; so approach such as practical FPT algorithms is an active area of research to overcome the computational (cite Whidden).}
-These three classical tree spaces all have one property in common, that is computing distances is $\np$-hard \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky}.
-$\nni$, $\spr$, and $\tbr$ differ by how the tree rearrangement operation are defined.
-In general one can say that $\nni$ only allows local changes, while $\tbr$ is the most global tree rearrangement operations.
-For $\nni$, the question of whether it is $\np$-hard to compute distances has been open for 25 years and was finally settled by \textcite{Dasgupta2000-xa}.
-Similar was the discovery that computing $\spr$ distances is $\np$-hard.
-Before \textcite{Bordewich2005-nx} could prove this for rooted trees and \textcite{Hickey2008-wv} utilised this proof for showing the result for unrooted trees, an incorrect proof for the $\np$-hardness of unrooted $\spr$ has been published in \autocite{Hein1996-em} and been proven to be incorrect five years later in \autocite{Allen2001-ky}.
-Interestingly fixed parameter tractable algorithms for computing $\spr$ distances exist \autocite{Whidden2010-bw, Bordewich2005-nx, Whidden2018-fw}, which are useful especially for trees with a low number of leaves.
-Finding these algorithms still is a very active area of research.
+Classical results in mathematical phylogenetics imply that computing rearrangement distances between trees, that is, the minimum number of tree rearrangements necessary to convert one tree into another, is $\np$-hard \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky, todo} for all the three rearrangement operations, $\nni$, $\spr$, and $\tbr$.
+We will formally introduce all necessary definitions later in the paper.
+Intuitively, the difference between the three operations is how much change can be done to a tree by a single operation, with $\nni$ being the most local type of rearrangement and $\tbr$ the most global one.
+Remarkably, it took over 25 years and a number of published erroneous attempts \autocite{todo} to prove the result that it is $\np$-hard to compute distances between trees under the $\nni$ operation \autocite{Dasgupta2000-xa}.
+Similarly for $\spr$, before \textcite{Bordewich2005-nx} proved the $\np$-hardness result for rooted trees and \textcite{Hickey2008-wv} utilised this proof to establish the result for unrooted trees, incorrect proofs have been discussed in the literature \autocite{Hein1996-em, Allen2001-ky}.
+To facilitate practical applications, several fixed parameter tractable algorithms for computing the $\spr$ distance have been developed over the years \autocite{Whidden2010-bw, Bordewich2005-nx, Whidden2018-fw}.
+Although these algorithm advanced the applicability of the methods significantly, they remain impractical for large distances and are applied to trees with a moderate number of leaves or those with small distances.
+This remains an active area of research in modern computational phylogenetics.
 
 \summary{Historically, the complexity question was following hand in hand with the cluster property -- more history plus biological relevance of the property.}
 The proof of $\np$-hardness of $\nni$ in \autocite{Dasgupta2000-xa} basis on the fact that shortest paths in $\nni$ do not preserve clusters \autocite{Li1996-zw}.
