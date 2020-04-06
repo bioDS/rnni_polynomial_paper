@@ -128,7 +128,7 @@ In the remainder of this section we will introduce the terminology used in this 
 
 \summary{Defining ranked trees and clusters.}
 Throughout this paper we will consider \emph{ranked phylogenetic trees}, or short \emph{ranked trees}, that are rooted binary trees where leaves are uniquely labelled by elements of the set $[n] = \{1, \ldots, n\}$ for a fixed integer $n$.
-Furthermore, all nodes in ranked trees are assigned \emph{ranks}, that are integers in $\{0, 1, \ldots, n-1\}$ such that children have strictly smaller rank than their parents and all leaves are assigned rank $0$.
+Furthermore, all nodes in ranked trees are assigned \emph{ranks} by a function $\rank$ that bijectively maps internal nodes onto elements of the set $\{1, \ldots, n-1\}$ such that children have strictly smaller rank than their parents and all leaves onto $0$.
 For a ranked tree $T$ we refer to its internal node of rank $k \in \{1, \ldots, n\}$ by $(T)_k$.
 \todo{LC: What about $t=0$? $(T)_0$ is not unique.}
 An \emph{interval} $[(T)_t,(T)_{t+1}]$ is given by two nodes with rank difference one.
