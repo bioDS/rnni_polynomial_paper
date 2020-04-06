@@ -1,7 +1,8 @@
 \documentclass[11pt]{amsart}
 
 %\usepackage[notref,notcite]{showkeys}
-\usepackage[style=authoryear,ibidtracker=false,uniquename=false,giveninits=true,terseinits=true,maxbibnames=5,backend=biber]{biblatex}
+%\usepackage[style=nature,ibidtracker=false,uniquename=false,giveninits=true,terseinits=true,maxbibnames=5,backend=biber]{biblatex}
+\usepackage[style=nature]{biblatex}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{todonotes}
@@ -43,8 +44,8 @@
 \newcommand{\p}{\mathcal{P}}
 \renewcommand{\O}{\mathcal O}
 
-\newcommand{\summary}[1]{\textbf{#1}}
-% \newcommand{\summary}[1]{} %Replace command above with this one to delete summaries
+%\newcommand{\summary}[1]{\textbf{#1}}
+\newcommand{\summary}[1]{} %Replace command above with this one to delete summaries
 
 \renewcommand{\thesubfigure}{\Alph{subfigure}}
 
@@ -79,6 +80,9 @@ In this paper we settle this problem by establishing that the complexity depends
 \section{Introduction}
 
 \summary{Motivation: many popular tree search algorithms are based on NNI (e.g. this \url{https://academic.oup.com/mbe/article/28/10/2731/973375} tool has been cited 40K+ times, see also references there to PhyML, RaxML, etc. -- they all use NNI); other applications include tree comparison methods, tree inference methods (proposal distributions), summary statistics, etc.}
+The problem of reconstructing evolutionary histories given sequence data is central for many tree inference methods used in computational evolutionary biology.
+Some of the most popular methods inter trees from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2018-yr}, distance- and parsimony-based searchers \autocite{Tamura2011-ky}.
+
 Phylogenetic trees display evolutionary relations between different organisms or species.
 Some methods for reconstructing phylogenetic trees rely on so-called tree rearrangement operations, such as nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), or tree bisection and reconnection($\tbr$).
 These tree rearrangement operations transform one tree into another one that displays slightly different evolutionary relations and thereby define a tree space where trees are connected by an edge if there are one rearrangement operation apart.
