@@ -105,17 +105,18 @@ However, there is little evidence to justify this connection.
 For example, the cluster property holds in $\spr$ even though shortest paths are $\np$-hard to compute.
 
 \summary{Paper summary in light of motivation: We've discovered the first efficiently computable distance, given by a parameter range in known tree spaces, and want to understand the reason for the complexity jump -- cite ``Beyond worst-case complexity.''}
-The main goal of this paper is investigating the complexity of computing distances in the $\rnni$ graph of ranked phylogenetic trees, which is closely related to the classical $\nni$ graph.
-The major result of this paper is Theorem~\ref{thm:rnni_polynomial}, where we prove that computing distances in $\rnni$ can be done in polynomial time.
-This is a significant result since, as we pointed out above, all known tree spaces basing on tree rearrangement operations that have a reasonable biological motivation are known to be $\np$-hard.
-Therefore we found the first such tree space where computing distances can be done efficiently, even for big trees.
-We will be proving Theorem~\ref{thm:rnni_polynomial} by showing that the algorithm $\findpath$ as introduced in \autocite{Collienne2019-ca} computes shortest paths in the $\rnni$ graph in polynomial time.
-The generalisation of $\findpath$ to the ranked tree space where tree edges are of arbitrary integer-valued length computes distances in polynomial time as well, as we will see later in the paper.
-We will furthermore prove that the $\rnni$ graph has the cluster property, which is a further property distinguishing this graph from the $\nni$ graph.
-In order to connect $\rnni$ and $\nni$ graphs we can introduce a single parameter $\rho$ that weights some edges in the $\rnni$ graph such that setting this parameter to zero results in the $\nni$ graph while keeping it at one gives the $\rnni$ graph.
-As the change of $\rho$ from zero to one changes the complexity from $\np$-hard to polynomial, there must be a value for the $\rho$ in $[0,1]$ where the complexity of computing distances in the parametrised graph changes from $\np$-hard to polynomial.
-Even though the question on where exactly on the interval $[0,1]$ the jump in complexity happens remains open, we give some further insights into this problem.
-In the remainder of this section we will introduce the terminology used in this paper.
+In this paper, we establish a result (Theorem~\ref{thm:rnni_polynomial}) that for a certain tree rearrangement operation (a generalisation of $\nni$) the complexity of computing shortest paths is $\O(n^2)$.
+This is the first, to the best of our knowledge, tree rearrangement operation with polynomial-time computable shortest paths and distances between trees.
+Our algorithm is practical as it allows to compute distances between trees with hundreds of thousands leaves, while in the closely related $\nni$ graph this number well smaller than 20 \autocite{todo}.
+To prove the main result of this paper, Theorem~\ref{thm:rnni_polynomial}, we will show that the algorithm $\findpath$ of \textcite{Collienne2019-ca} computes shortest paths in the ranked nearest neighbour graphs ($\rnni$) in polynomial time.
+We will also prove that the $\rnni$ graph has the cluster property, which, as discussed, is an important property distinguishing this graph from the $\nni$ graph.
+We then generalise the $\findpath$ algorithm to trees with arbitrary integer-valued branch lengths and show that computing distances between such trees is also polynomial time.
+We will finish this paper by asking and studying the question of characterising the (numeric) parameter that is responsible for the complexity shift from $\np$-hard to polynomial.
+Specifically, we introduce a parameter $\rho$ that weighs edges in the $\rnni$ graph and consider the parametrised graph $\nni(\rho)$.
+We show that $\rnni(0)$ has the same complexity of computing distances as the $\nni$ graph, while in $\rnni(1)$ the problem $\O(n^2)$.
+Hence changing $\rho$ from zero to one shifts the complexity from $\np$-hard to polynomial.
+We leave it as an open problem to characterise the values of $\rho \in [0,1]$ where the complexity of computing distances in the parametrised graph is polynomial.
+We will provide some insight into this problem at the end of this paper.
 
 
 \section{Technical introduction}
