@@ -146,13 +146,12 @@ Note that $(C)_T = (T)_t$ if the cluster $C$ is induced by the node of rank $t$ 
 We are now ready to introduce the main object of study in this paper, a graph $\rnni(\rho)$ on trees, for $\rho \geq 0$.
 The vertices of the $\rnni(\rho)$ graph are trees as introduced above.
 Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:
-A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with rank difference one for $0 < t < n-1$.
-Ranked trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ of length one such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two isomorphic (non-binary) trees.
+(i) A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with consecutive ranks, provided the two nodes are not connected by an edge in the tree $T$.
+(ii) Trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ both connecting nodes of consecutive ranks in the corresponding trees, such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two isomorphic (non-binary) trees.
 To parameterise the $\rnni$ graph with parameter $\rho$, edges are weighted by either one or $\rho \in [0, \infty)$, depending on whether they represent $\nni$ or rank moves, respectively.
 \todo{LC: We could mention the connection of $\rnni(0)$ and $\nni$ here and explain it in further detail later (maybe even at the very end of the paper?)}
 It follows that $\rnni(1)$ if the $\rnni$ graph while $\rnni(0)$ represents the $\nni$ graph.
 
-\summary{Introduce decision problem} $\rnni(\rho)$ \summary{and explain how its complexity depends on} $\rho$.
 In this paper we focus on the following decision problem:
 
 \todo{Is it OK to use the same name for the graph and the decision problem?}
