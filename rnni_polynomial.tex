@@ -506,6 +506,14 @@ Therefore the length of $p$ equals the number of $\nni$ moves on this path.
 And as transforming $p$ into $p'$ as described above deletes all rank moves and none of the $\nni$ moves, the lengths of $p$ and $p'$ coincide.
 \endproof
 
+\begin{lemma}
+If $\varepsilon$ is small enough then the shortest path problem is $\np$-hard in $\rnni(\varepsilon)$.
+\end{lemma}
+
+\begin{theorem}
+There exists $\delta > 0$ such that the shortest path problem is $\np$-hard in $\rnni(\varepsilon)$ for all $\varepsilon < \delta$.
+\end{theorem}
+
 This result implies in particular that shortest paths in $\rnni(0)$ give shortest paths in $\nni$.
 Since \textcite{Dasgupta2000-xa} proved that computing distances in $\nni$ is $\np$-hard we can conclude the same for $\rnni(0)$.
 We can conclude that the complexity of computing the ranked nearest neighbour interchange distance between trees depends on the weight of rank rearrangements and can change from quadratic, when rank moves are counted as one rearrangement, to NP-hard, when rank moves are ignored.
