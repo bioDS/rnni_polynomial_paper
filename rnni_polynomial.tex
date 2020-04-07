@@ -457,8 +457,12 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 \section{Generalisation to discrete time-trees}
 
 \summary{Generalising} $\findpath$ \summary{for discrete time-trees}
-We now consider the obvious extension of $\findpath$ to discrete time-trees.
-
+We are now going to consider an extension of $\findpath$ onto the space of \emph{discrete time-trees}, which are trees where the rank function can assign any integer to internal nodes as long as children have strictly smaller ranks than their parent and no two internal nodes have equal rank.
+To generalise $\rnni$ moves to this tree space we need to add a third type of move additionally to $\nni$ and rank moves, that is a \emph{length move} on a tree $T$ that changes the rank of an internal node $(T)_t$ by one without changing the rank of any other node in $T$.
+As a result the length of one of the intervals $[(T)_{t+1},(T)_t]$ and $[(T)_t,(T)_{t-1}]$ increases by one while the other one decreases by one.
+In the natural extension of $\findpath$ to discrete time-trees ranks of most recent common ancestors can not only decrease by $\nni$ and rank moves, but also by length moves.
+With Theorem~\ref{thm:rnni_polynomial} it is not hard to see that this extension of $\findpath$ computes shortest paths in the space of discrete time-trees in polynomial time as well.
+However, the time complexity here is $\O(nm)$, which depends not only on the number of leaves $n$ but also on the maximum $m$ of the ranks of the roots of the two given trees.
 \begin{corollary}
 	$\findpath$ computes shortest paths between discrete time-trees.
 \end{corollary}
