@@ -157,7 +157,7 @@ In this paper we focus on the following decision problem:
 
 \todo{Is it OK to use the same name for the graph and the decision problem?}
 \begin{decision_problem}[$\rnni(\rho)$]
-Given $\rho \in [0,\infty)$, integers $k > 0$, and two ranked trees $T$ and $R$.
+Given $\rho \in [0,\infty)$, integers $k > 0$, and two trees $T$ and $R$.
 
 Is the distance between $T$ and $R$ in $G_\rho$ less or equal to $k$?
 \label{problem:rnni_dist}
@@ -165,7 +165,7 @@ Is the distance between $T$ and $R$ in $G_\rho$ less or equal to $k$?
 
 \summary{Introducing} $\findpath$.
 For proving that $\rnni$ can be solved in polynomial time we now present the algorithm $\findpath$, which has been introduced in \autocite{Collienne2019-ca}.
-This algorithm computes paths between two ranked trees $T$ and $R = [C_1, \ldots, C_{n-2}]$, and we will see in Theorem~\ref{thm:rnni_polynomial} that these paths are actually shortest paths.
+This algorithm computes paths between two trees $T$ and $R = [C_1, \ldots, C_{n-2}]$, and we will see in Theorem~\ref{thm:rnni_polynomial} that these paths are actually shortest paths.
 $\findpath$ considers the clusters $C_1, \ldots, C_{n-2}$ of $R$ in this order to compute a path $p$ from $T$ to $R$.
 During each iteration $i = 1, \ldots, n-2$ trees can be added to $p$, possibly none or just one, we will always refer to the last tree of $p$ as $T'$.
 In iteration $i$ the rank of $(C_{i})_{T'}$ is decreased by $\rnni$ moves until $C_i$ is induced by the node of rank $i$ in $T'$ on $p$.
@@ -495,7 +495,7 @@ And as transforming $p$ into $p'$ as described above deletes all rank moves and 
 
 This result implies in particular that shortest paths in $\rnni(0)$ give shortest paths in $\nni$.
 Since \textcite{Dasgupta2000-xa} proved that computing distances in $\nni$ is $\np$-hard we can conclude the same for $\rnni(0)$.
-We can conclude that the complexity of computing the nearest neighbour interchange distance between ranked phylogenetic trees depends on the weight of rank rearrangements and can change from quadratic, when rank moves are counted as one rearrangement, to NP-hard, when rank moves are ignored.
+We can conclude that the complexity of computing the ranked nearest neighbour interchange distance between trees depends on the weight of rank rearrangements and can change from quadratic, when rank moves are counted as one rearrangement, to NP-hard, when rank moves are ignored.
 It hence is natural to ask whether a boundary exists at which the problem switches from polynomial to hard.
 
 \begin{question}
