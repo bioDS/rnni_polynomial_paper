@@ -84,7 +84,7 @@ All these methods rely of various tree rearrangement operations \autocite{Semple
 The tree inference problem hence can be formulated as a graph search, where vertices are trees and edges are given by the tree rearrangement operation of interest.
 
 \summary{Motivation: However, all known graph-based tree rearrangement distances, including NNI, are NP-hard, and it took many years and paper to prove that; so approach such as practical FPT algorithms is an active area of research to overcome the computational (cite Whidden).}
-Classical results in mathematical phylogenetics imply that computing rearrangement distances between trees, that is, the minimum number of tree rearrangements necessary to convert one tree into another, is $\np$-hard \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky, todo} for all the three rearrangement operations, $\nni$, $\spr$, and $\tbr$.
+Classical results in mathematical phylogenetics imply that computing rearrangement distances between trees, that is, the minimum number of tree rearrangements necessary to convert one tree into another, is $\np$-hard \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky} for all the three rearrangement operations, $\nni$, $\spr$, and $\tbr$.
 We will formally introduce all necessary definitions later in the paper.
 Intuitively, the difference between the three operations is how much change can be done to a tree by a single operation, with $\nni$ being the most local type of rearrangement and $\tbr$ the most global one.
 Remarkably, it took over 25 years and a number of published erroneous attempts \autocite{todo} to prove the result that it is $\np$-hard to compute distances between trees under the $\nni$ operation \autocite{Dasgupta2000-xa}.
