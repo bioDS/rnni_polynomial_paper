@@ -28,7 +28,7 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{corollary}{Corollary}
-\newtheorem{decision_problem}{Decision Problem}
+\newtheorem*{decision_problem}{Decision Problem}
 \newtheorem{question}{Question}
 
 \newcommand{\rnni}{\mathrm{RNNI}}
@@ -153,24 +153,24 @@ Note that $(C)_T = (T)_t$ if the cluster $C$ is induced by the node of rank $t$ 
 We are now ready to introduce the main object of study in this paper, a graph $\rnni(\rho)$ on trees, for $\rho \geq 0$.
 The vertices of the $\rnni(\rho)$ graph are trees as introduced above.
 Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:
-A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with rank difference one for $0 < t < n-1$.
-Ranked trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ of length one such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two isomorphic (non-binary) trees.
-To parameterise the $\rnni$ graph with parameter $\rho$, edges are weighted by either one or $\rho \in [0, \infty)$, depending on whether they represent $\nni$ or rank moves, respectively.
-\todo{LC: We could mention the connection of $\rnni(0)$ and $\nni$ here and explain it in further detail later (maybe even at the very end of the paper?)}
-It follows that $\rnni(1)$ if the $\rnni$ graph while $\rnni(0)$ represents the $\nni$ graph.
+(i) A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with consecutive ranks, provided the two nodes are not connected by an edge in the tree $T$.
+(ii) Trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ both connecting nodes of consecutive ranks in the corresponding trees, such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two isomorphic (non-binary) trees.
+Figure~\ref{fig:ranked_trees_ex} gives examples of these tree rearrangements.
+The parameter $\rho \geq 0$ is the weight of the rank move operation, the $\nni$ moves weigh one.
+The \emph{distance} between two trees in $\rnni(\rho)$ is defined as the weight of a path with a minimum weight among all paths connecting the two trees.
+In the main part of the paper we will concentrate on $\rho = 1$, so all edges in the graph will have equal weights and the graph can be assumed to be unweighted.
 
-\summary{Introduce decision problem} $\rnni(\rho)$ \summary{and explain how its complexity depends on} $\rho$.
-In this paper we focus on the following decision problem:
+The main problem considered in this paper is the following shortest path problem.
 
-\todo{Is it OK to use the same name for the graph and the decision problem?}
-\begin{decision_problem}[$\rnni(\rho)$]
-Given $\rho \in [0,\infty)$, integers $k > 0$, and two trees $T$ and $R$.
-
-Is the distance between $T$ and $R$ in $G_\rho$ less or equal to $k$?
+\begin{decision_problem}[$\rnni(\rho)\mathrm{-DIST}$] Given $\rho \geq 0$, integer $k > 0$, and two trees $T$ and $R$, decide whether the distance between $T$ and $R$ in $\rnni(\rho)$ is less than or equal to $k$?
 \label{problem:rnni_dist}
 \end{decision_problem}
 
-\summary{Introducing} $\findpath$.
+Our first and main goal in this paper is to prove that $\rnni(1)\mathrm{-DIST}$ is polynomial.
+We will see later in the paper that it follows from a classical result that $\rnni(0)\mathrm{-DIST}$ is $\np$-hard.
+To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol, Collienne2019-ca}, we will denote graph $\rnni(1)$ by $\rnni$.
+
+\summary{Introducing $\findpath$.}
 For proving that $\rnni$ can be solved in polynomial time we now present the algorithm $\findpath$, which has been introduced in \autocite{Collienne2019-ca}.
 This algorithm computes paths between two trees $T$ and $R = [C_1, \ldots, C_{n-2}]$, and we will see in Theorem~\ref{thm:rnni_polynomial} that these paths are actually shortest paths.
 $\findpath$ considers the clusters $C_1, \ldots, C_{n-2}$ of $R$ in this order to compute a path $p$ from $T$ to $R$.
