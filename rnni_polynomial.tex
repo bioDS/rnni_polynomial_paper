@@ -124,7 +124,15 @@ We will provide some insights into this problem at the end of this paper.
 Unless stated otherwise, in this paper we work with \emph{ranked phylogenetic trees}, which we will simply call \emph{trees}, that are binary trees where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by the elements of the set $\{1, \ldots, n-1\}$ so that children have strictly smaller rank than their parents.
 All leaves are assumed to have rank $0$.
 Two trees are considered to be identical if the exists an isomorphism between them which preserves edges, leaf labels, and node rankings.
-For example, trees in Figure~\ref{todo} are all different.
+For example, trees in Figure~\ref{fig:ranked_trees_ex} are all different.
+
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=0.8\textwidth]{ranked_trees_ex}
+\caption{Ranked trees in the $\rnni$ graphs with three $\nni$ moves on the left and a rank move on the right.
+The two leftmost trees are caterpillar trees that only differ by the leaf labels $a_4$ and $a_5$.}
+\label{fig:ranked_trees_ex}
+\end{figure}
 
 Because internal nodes of a tree $T$ are ranked uniquely, we can address to \textbf{the} node of rank $k \in \{1, \ldots, n - 1\}$, and we write $(T)_k$ to denote this node.
 An \emph{interval} $[(T)_t,(T)_{t+1}]$ is given by two nodes of consecutive ranks.
