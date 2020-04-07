@@ -43,7 +43,7 @@
 \newcommand{\p}{\mathcal{P}}
 \renewcommand{\O}{\mathcal O}
 
-%\newcommand{\summary}[1]{\textbf{#1}} % Print summaries to .pdf
+% \newcommand{\summary}[1]{\textbf{#1}} % Print summaries to .pdf
 \newcommand{\summary}[1]{} % Hide summaries in .pdf
 
 \renewcommand{\thesubfigure}{\Alph{subfigure}}
@@ -63,9 +63,16 @@
 \begin{document}
 
 \begin{abstract}
-A classical result in mathematical phylogenetics states that the problem of finding shortest paths between phylogenetic trees is NP-hard for all standard tree-rearrangement operations.
-However, this problem is open for ranked phylogenetic trees, the main object of interest in evolutionary biology.
-In this paper we settle this problem by establishing that the complexity depends on the weight difference between different tree rearrangement operations and varies from quadratic to NP-hard.
+Many methods in evolutionary biology for reconstructing phylogenetic trees are based on tree-rearrangement methods, which generate graph-based distances between such trees.
+The problem of finding shortest paths in these tree graphs is NP-hard for all standard rearrangement operations and has been subject of extensive studies in the past.
+For some of the known rearrangement methods there are fixed-parameter tractable algorithms, and finding those is still a very active area of research.
+For ranked phylogenetic trees however, the main object of interest in evolutionary biology, the complexity of computing distances is not known.
+
+In this paper we settle this problem by establishing that the complexity depends on the weight difference between different tree rearrangement operations and varies from quadratic to $\np$-hard.
+Specifically, we show that there is a tree rearrangement operation called $\rnni$ on ranked trees which has polynomial time complexity, while a different weighing results in the $\nni$ graph which is known to be $\np$-hard.
+After decades of research on phylogenetic tree graphs that base on rearrangement operations $\rnni$ is, as far as we know, the first tree graph where distances can be computed efficiently.
+We furthermore discuss the connection of the $\rnni$ graph of ranked trees and the classical $\nni$ graph by establishing a property of shortest paths that differs between these tree graphs.
+The problem of where the complexity jumps from polynomial to $\np$ between $\rnni$ and $\nni$ still remains open, we will however provide some insights into this problem.
 \end{abstract}
 
 
