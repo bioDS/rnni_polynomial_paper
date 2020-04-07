@@ -133,7 +133,7 @@ Two trees are considered to be identical if there exists an isomorphism between 
 For example, trees in Figure~\ref{fig:ranked_trees_ex} are all different.
 In total there are $\frac{(n - 1)! n!}{2^{n-1}}$ such trees on $n$ leaves \autocite{Gavryushkin2018-ol}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\textwidth]{ranked_trees_ex}
 \caption{Trees in the $\rnni$ graph with three $\nni$ moves on the left and a rank move on the right.}
@@ -242,7 +242,7 @@ Specifically, we will show that
 
 We will use Figure~\ref{fig:proof_idea} to demonstrate our argument.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.6\textwidth]{proof_idea_ag}
 \caption{Trees $T$, $T'$, and $R$ as in inequality~(\ref{eqn:iff_inequality}).
@@ -267,7 +267,7 @@ $T$ and $T'$ are connected by an $\nni$ move, so $((T)_t,(T)_{t+1})$ is an edge 
 Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, and assume that the $\nni$ move between $T$ and $T'$ exchanges the subtrees induced by clusters $B$ and $C$.
 Additionally, denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni2a}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.35\textwidth]{thm_fp_nni1}
 \caption{$\nni$ move between $T$ and $T'$ on the bold edge $((T)_t,(T)_{t+1})$ and the third $\rnni$ neighbour resulting from a move on that edge.}
@@ -288,7 +288,7 @@ This contradicts our assumption that $|\fp(T',R)| < |\fp(T,R)| - 1$.
 \item $\nni$ move on (edge) interval $[(T)_{t+1}, (T)_{t+2}]$ that swaps the subtrees induced by clusters $C$ and $D$.
 This move is shown in Figure~\ref{fig:thm_fp_nni2a} by an arrow from $T$ to the leftmost tree in the middle row.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\begin{subfigure}[b]{.45\textwidth}
 		\centering
 		\includegraphics[width=0.9\linewidth]{thm_fp_nni2a.eps}
@@ -374,7 +374,7 @@ This argument applies whether or not $((T)_{t-1},(T)_t)$ is an edge in $T$.
 $T$ and $T'$ are connected by a rank move on the interval between nodes of rank $t$ and $t+1$.
 Denote the cluster induced by $(T)_t$ by $A$, the clusters induced by the children of $(T)_t$ by $A_1$ and $A_2$, the cluster induced by $(T)_{t+1}$ by $B$, and the clusters induced by the children of $(T)_{t+1}$ by $B_1$ and $B_2$ -- see Figure~\ref{fig:thm_fp_rank1}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.4\textwidth]{thm_fp_rank1}
 \caption{Rank move between $T$ and $T'$ on the interval above the node of rank $t$, and possible initial segments of $\fp(T, R)$ and $\fp(T', R)$.
@@ -404,7 +404,7 @@ The following two sub-cases are analogous to case~\ref{case:one_or_two_moves_dow
 
 	\item $(T)_{t+2}$ is not a parent of $(T)_t$.
 	In this case, there exists a cluster $C$ induced by the child of $(T)_{t+2}$ which is different from the one that induces $B$ -- see Figure~\ref{fig:thm_fp_rank2}.
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.4\textwidth]{thm_fp_rank2}
 	\caption{Comparison of paths $\fp(T, R)$ and $\fp(T', R)$ if there is a rank move between $T$ and $T'$ and an $\nni$ move on the edge below the corresponding (rank) interval follows on $\fp(T, R)$.}
@@ -441,7 +441,7 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 	Therefore $T$ and $T'$ are connected by an $\nni$ move that moves a subtrees rooted at a child of $(C)_T$ out of the subtree induced by $C$ -- see Figure~\ref{fig:cluster_thm_proof}, where by $C_1$, $C_2$ we denote the clusters induced by the children of $(C)_T$.
 	Note that the only clusters in $T$ that distinguish $T$ from $T'$ are $C$ and the cluster induced by the node right above $(C)_{T}$, which is of the same rank as $(C)_{T'}$.
 
-	\begin{figure}[h]
+	\begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.3\textwidth]{cluster_thm_proof}
 	\caption{Neighbouring trees $T$ and $T'$, where $T$ contains the cluster $C = C_1 \cup C_2$ and $T'$ does not.
