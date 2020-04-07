@@ -65,10 +65,10 @@
 \begin{abstract}
 Many popular algorithms for searching the space of leaf-labelled (phylogenetic) trees are based on tree rearrangement operations.
 Under every such operation, the problem is reduced to searching a graph where vertices are trees and edges are given by pairs of trees connected by the rearrangement operation.
-The most popular such operations are the nearest neighbour interchange, subtree prune and regrafting, and tree bisection and reconnection.
+The most popular such operations are the nearest neighbour interchange, subtree prune and regraft, and tree bisection and reconnection.
 The problem of computing shortest paths and distances in each of these graphs, however, is $\np$-hard.
 Designing practical algorithm for these problems is hence challenging.
-For example, fixed-parameter tractable algorithms are known to compute distances under the subtree prune and regrafting operation.
+For example, fixed-parameter tractable algorithms are known to compute distances under the subtree prune and regraft operation.
 
 Although ranked phylogenetic trees are one of the central objects of interest in applications, the complexity of computing tree rearrangement distances between these trees is still an open problem.
 In this paper, we settle this problem for the ranked nearest interchange operation by establishing that the complexity depends on the weight difference between two types of tree rearrangement operations (rank moves and edge moves) and varies from quadratic to $\np$-hard.
@@ -88,19 +88,19 @@ Although the problem remains open, we will provide some insights for possible ap
 
 \summary{Motivation: many popular tree search algorithms are based on NNI (e.g. this \url{https://academic.oup.com/mbe/article/28/10/2731/973375} tool has been cited 40K+ times, see also references there to PhyML, RaxML, etc. -- they all use NNI); other applications include tree comparison methods, tree inference methods (proposal distributions), summary statistics, etc.}
 The problem of reconstructing evolutionary histories given sequence data is central for many tree inference methods used in computational evolutionary biology.
-Some of the most popular methods infer trees from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance- and parsimony-based approaches \autocite{Tamura2011-ky}.
-All these methods rely of various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection($\tbr$).
+Some of the most popular methods infer trees from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
+All these methods rely of various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection ($\tbr$).
 The tree inference problem hence can be formulated as a graph search, where vertices are trees and edges are given by the tree rearrangement operation of interest.
 
 \summary{Motivation: However, all known graph-based tree rearrangement distances, including NNI, are NP-hard, and it took many years and paper to prove that; so approach such as practical FPT algorithms is an active area of research to overcome the computational (cite Whidden).}
-Classical results in mathematical phylogenetics imply that computing rearrangement distances between trees, that is, the minimum number of tree rearrangements necessary to convert one tree into another, is $\np$-hard \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky} for all the three rearrangement operations, $\nni$, $\spr$, and $\tbr$.
+Classical results in mathematical phylogenetics imply that computing rearrangement distances between trees, that is, the minimum number of tree rearrangements necessary to convert one tree into another, is $\np$-hard \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky} for all three rearrangement operations $\nni$, $\spr$, and $\tbr$.
 We will formally introduce all necessary definitions later in the paper.
 Intuitively, the difference between the three operations is how much change can be done to a tree by a single operation, with $\nni$ being the most local type of rearrangement and $\tbr$ the most global one.
-Remarkably, it took over 25 years and a number of published erroneous attempts, as discussed in detail by \textcite{Dasgupta2000-xa}, to prove the result that it is $\np$-hard to compute distances between trees under the $\nni$ operation \autocite{Dasgupta2000-xa}.
+Remarkably, it took over 25 years and a number of published erroneous attempts, as discussed in detail by \textcite{Dasgupta2000-xa}, to prove that it is $\np$-hard to compute distances between trees under the $\nni$ operation \autocite{Dasgupta2000-xa}.
 Similarly for $\spr$, before \textcite{Bordewich2005-nx} proved the $\np$-hardness result for rooted trees and \textcite{Hickey2008-wv} utilised this proof to establish the result for unrooted trees, incorrect proofs have been discussed in the literature \autocite{Hein1996-em, Allen2001-ky}.
 To facilitate practical applications, several fixed parameter tractable algorithms for computing the $\spr$ distance have been developed over the years \autocite{Whidden2010-bw, Bordewich2005-nx, Whidden2018-fw}.
-Although these algorithm advanced the applicability of the methods significantly, they remain impractical for large distances and are applied to trees with a moderate number of leaves or those with small distances.
-It is still open whether the fixed parameter tractability result holds in $\nni$, so the algorithms for computing shortest paths in $\nni$ remain largely impractical.
+Although these algorithm advanced the applicability of the methods significantly, they remain impractical for large distances and are only applied to trees with a moderate number of leaves or those with small distances.
+It is still unknown whether the fixed parameter tractability result holds in $\nni$, so the algorithms for computing shortest paths in $\nni$ remain largely impractical.
 This is an active area of research in modern computational phylogenetics \autocite{Gavryushkin2018-ol}.
 
 \summary{Historically, the complexity question was following hand in hand with the cluster property -- more history plus biological relevance of the property.}
@@ -120,7 +120,7 @@ To prove the main result of this paper, Theorem~\ref{thm:rnni_polynomial}, we wi
 We will also prove that the $\rnni$ graph has the cluster property, which, as discussed, is an important property distinguishing this graph from the $\nni$ graph.
 We then generalise the $\findpath$ algorithm to trees with arbitrary integer-valued branch lengths and show that computing distances between such trees is also polynomial time.
 We will finish this paper by asking and studying the question of characterising the (numeric) parameter that is responsible for the complexity shift from $\np$-hard to polynomial.
-Specifically, we introduce a parameter $\rho$ that weighs edges in the $\rnni$ graph and consider the parametrised graph $\nni(\rho)$.
+Specifically, we introduce a parameter $\rho$ that weighs edges in the $\rnni$ graph and consider the parametrised graph $\rnni(\rho)$.
 We show that $\rnni(0)$ has the same complexity of computing distances as the $\nni$ graph, while in $\rnni(1)$ the problem is solvable in $\O(n^2)$.
 Hence changing $\rho$ from zero to one shifts the complexity from $\np$-hard to polynomial.
 We leave it as an open problem to characterise the values of $\rho \in [0,1]$ for which the complexity of computing distances in the parametrised graph is polynomial.
@@ -143,9 +143,9 @@ In total there are $\frac{(n - 1)! n!}{2^{n-1}}$ such trees on $n$ leaves \autoc
 \label{fig:ranked_trees_ex}
 \end{figure}
 
-Because internal nodes of a tree $T$ are ranked uniquely, we can address to \textbf{the} node of rank $t \in \{1, \ldots, n - 1\}$, and we write $(T)_t$ to denote this node.
+Because internal nodes of a tree $T$ are ranked uniquely, we can address \textbf{the} node of rank $t \in \{1, \ldots, n - 1\}$, and we write $(T)_t$ to denote this node.
 An \emph{interval} $[(T)_t,(T)_{t+1}]$ is defined by two nodes of consecutive ranks.
-A \emph{cluster} $C$ in a tree $T$ is a subsets of leaves $\{a_1, \ldots, a_n\}$ that contains all leaves descending from an internal node of $T$.
+A \emph{cluster} $C \subseteq \{a_1, \ldots, a_n\}$ in a tree $T$ is a subsets of leaves that contains all leaves descending from an internal node of $T$.
 We then say that this internal node \emph{induces} the cluster $C$, and that the subtree rooted at this node is \emph{induced} by $C$.
 Trees can uniquely be specified using the \emph{cluster representation}, that is a list of all clusters induced by internal nodes of that tree ordered according to the ranks of internal nodes.
 For example, the cluster representation of tree $T$ in Figure~\ref{fig:ranked_trees_ex} is $[\{a_1, a_2\}, \{a_1, a_2, a_3\}, \{a_4, a_5\}]$.
@@ -153,7 +153,7 @@ For a set $S \subseteq \{a_1, \ldots, a_n\}$ and tree $T$, we denote the \emph{m
 Note that $(C)_T = (T)_t$ if the cluster $C$ is induced by the node of rank $t$ in $T$.
 
 \summary{Defining graph $\rnni(\rho)$.}
-We are now ready to introduce the main object of study in this paper, a graph $\rnni(\rho)$ on trees, for $\rho \geq 0$.
+We are now ready to introduce the main object of study in this paper, the graph $\rnni(\rho)$ on trees, for $\rho \geq 0$.
 The vertices of the $\rnni(\rho)$ graph are trees as introduced above.
 Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:
 (i) A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with consecutive ranks, provided the two nodes are not connected by an edge in the tree $T$.
@@ -179,11 +179,11 @@ To be consistent with notations used in the literature \autocite{Gavryushkin2018
 \summary{Introducing $\findpath$.}
 In this section we will prove that shortest paths in $\rnni$ can be computed in polynomial time.
 Our proof will be constructive -- we will show that the following quadratic algorithm of \textcite{Collienne2019-ca} called $\findpath$ computes a shortest path between two given trees in $\rnni$.
-To introduce the algorithm, we need the following notations.
 $\findpath$ algorithm receives two trees $T$ and $R$ in their cluster representation, and we denote the representation of $R$ by $[C_1, \ldots, C_{n-2}]$.
 The algorithm considers the clusters $C_1, \ldots, C_{n-2}$ iteratively in their order and produces a sequence $p$ of trees which become a shortest path from $T$ to $R$ after the algorithm terminates.
 During each iteration $k = 1, \ldots, n-2$ new trees are added to $p$ if necessary, and we will refer to the last added tree as $T'$.
 In iteration $k$, the rank of $(C_{k})_{T'}$ is decreased by $\rnni$ moves until $C_k$ is induced by the node of rank $k$ in $T'$.
+\todo{LC: Do we really want to use "we" here?}
 As we have shown \autocite{Collienne2019-ca}, $\findpath$ is a deterministic algorithm with running time quadratic in the number of leaves $n$.
 In particular, there always exists a unique move that decreases the rank of $(C_{k})_{T'}$ as described above.
 
@@ -458,6 +458,7 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 We are now going to consider an extension of $\findpath$ onto the space of \emph{discrete time-trees}, which are trees where the rank function can assign any integer to internal nodes as long as children have strictly smaller ranks than their parent and no two internal nodes have equal rank.
 To generalise $\rnni$ moves to this tree space we need to add a third type of move additionally to $\nni$ and rank moves, that is a \emph{length move} on a tree $T$ that changes the rank of an internal node $(T)_t$ by one without changing the rank of any other node in $T$.
 As a result the length of one of the intervals $[(T)_{t+1},(T)_t]$ and $[(T)_t,(T)_{t-1}]$ increases by one while the other one decreases by one.
+Note that $\nni$ moves are still only allowed on edges with end nodes that have rank difference one.
 In the natural extension of $\findpath$ to discrete time-trees ranks of most recent common ancestors can not only decrease by $\nni$ and rank moves, but also by length moves.
 With Theorem~\ref{thm:rnni_polynomial} it is not hard to see that this extension of $\findpath$ computes shortest paths in the space of discrete time-trees in polynomial time as well.
 However, the time complexity here is $\O(nm)$, which depends not only on the number of leaves $n$ but also on the maximum $m$ of the ranks of the roots of the two given trees.
