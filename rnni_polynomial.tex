@@ -170,14 +170,19 @@ Our first and main goal in this paper is to prove that $\rnni(1)\mathrm{-DIST}$ 
 We will see later in the paper that it follows from a classical result that $\rnni(0)\mathrm{-DIST}$ is $\np$-hard.
 To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol, Collienne2019-ca}, we will denote graph $\rnni(1)$ by $\rnni$.
 
+
+\section{Complexity of computing $\rnni$ distances}
+
 \summary{Introducing $\findpath$.}
-For proving that $\rnni$ can be solved in polynomial time we now present the algorithm $\findpath$, which has been introduced in \autocite{Collienne2019-ca}.
-This algorithm computes paths between two trees $T$ and $R = [C_1, \ldots, C_{n-2}]$, and we will see in Theorem~\ref{thm:rnni_polynomial} that these paths are actually shortest paths.
-$\findpath$ considers the clusters $C_1, \ldots, C_{n-2}$ of $R$ in this order to compute a path $p$ from $T$ to $R$.
-During each iteration $i = 1, \ldots, n-2$ trees can be added to $p$, possibly none or just one, we will always refer to the last tree of $p$ as $T'$.
-In iteration $i$ the rank of $(C_{i})_{T'}$ is decreased by $\rnni$ moves until $C_i$ is induced by the node of rank $i$ in $T'$ on $p$.
-As discussed in \autocite{Collienne2019-ca}, $\findpath$ is a deterministic algorithm with running tome quadratic in the number of leaves $n$.
-Specifically, there is always a unique move that decreases the rank of $(C_{i})_{T'}$ as described above.
+In this section we will prove that shortest paths in $\rnni$ can be computed in polynomial time.
+Our proof will be constructive -- we will show that the following quadratic algorithm of \textcite{Collienne2019-ca} called $\findpath$ computes a shortest path between two given trees in $\rnni$.
+To introduce the algorithm, we need the following notations.
+$\findpath$ algorithm receives two trees $T$ and $R$ in their cluster representation, and we denote the representation of $R$ by $[C_1, \ldots, C_{n-2}]$.
+The algorithm considers the clusters $C_1, \ldots, C_{n-2}$ iteratively in their order and produces a sequence $p$ of trees which become a shortest path from $T$ to $R$ after the algorithm terminates.
+During each iteration $k = 1, \ldots, n-2$ new trees are added to $p$ if necessary, and we will refer to the last added tree as $T'$.
+In iteration $k$, the rank of $(C_{k})_{T'}$ is decreased by $\rnni$ moves until $C_k$ is induced by the node of rank $k$ in $T'$.
+As we have shown \autocite{Collienne2019-ca}, $\findpath$ is a deterministic algorithm with running time quadratic in the number of leaves $n$.
+In particular, there always exists a unique move that decreases the rank of $(C_{k})_{T'}$ as described above.
 
 \begin{algorithm}[H]
 \caption{$\findpath$($T,R$)}
@@ -200,24 +205,14 @@ Specifically, there is always a unique move that decreases the rank of $(C_{i})_
 \end{algorithmic}
 \end{algorithm}
 
-Things to introduce:
-
-\begin{itemize}
-\item if needed for generalisation: edge vs rank intervals, (ultrametric) discrete time-trees, (ranked and unranked) tree topologies
-\item We can always talk about ranked phylogenetic trees (and call them trees throughout the paper) but then say that the rank move can be ignored (leading to an NP-hard problem) or counted as one move (quadratic)
-\item $\findpath$, including its extension to discrete time-trees
-\end{itemize}
-
-
-\section{Complexity of computing $\rnni$ distances}
-
 \summary{A few words about the main theorem and its proof.}
-The following theorem, that $\rnni \in \p$, is the main result of our paper.
-The proof of the theorem reduces the problem to establishing a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm -- $\findpath$ always chooses the best tree possible to go to.
+The following theorem is the main result of our paper.
+The proof of the theorem reduces the problem to establishing a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm.
+The property can intuitively be understood as $\findpath$ always choosing the best tree possible to go to.
 Importantly, this result can be used for an arbitrary vertex proposal algorithm in an arbitrary graph to establish that the algorithms computes a shortest path between vertices in the graph, hence our proof technique is of general interest.
 
 \begin{theorem}
-The time complexity of computing the $\rnni$ distance between trees on $n$ leaves is $\O(n^2)$.
+The time complexity of computing the distance between trees on $n$ leaves in the $\rnni$ graph is $\O(n^2)$.
 \label{thm:rnni_polynomial}
 \end{theorem}
 
