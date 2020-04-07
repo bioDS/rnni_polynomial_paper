@@ -121,10 +121,11 @@ We will provide some insights into this problem at the end of this paper.
 \section{Technical introduction}
 
 \summary{Defining ranked trees and clusters.}
-Unless stated otherwise, in this paper we work with \emph{ranked phylogenetic trees}, which we will simply call \emph{trees}, that are binary trees where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by the elements of the set $\{1, \ldots, n-1\}$ so that children have strictly smaller rank than their parents.
+Unless stated otherwise, in this paper we work with \emph{ranked phylogenetic trees}, which we simply call \emph{trees}, that are binary trees where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by the elements of the set $\{1, \ldots, n-1\}$ so that children have strictly smaller ranks than their parents.
 All leaves are assumed to have rank $0$.
-Two trees are considered to be identical if the exists an isomorphism between them which preserves edges, leaf labels, and node rankings.
+Two trees are considered to be identical if there exists an isomorphism between them which preserves edges, leaf labels, and node rankings.
 For example, trees in Figure~\ref{fig:ranked_trees_ex} are all different.
+In total there are $\frac{(n - 1)! n!}{2^{n-1}}$ such trees on $n$ leaves \autocite{Gavryushkin2018-ol}.
 
 \begin{figure}[!hbt]
 \centering
@@ -135,21 +136,19 @@ The two leftmost trees are caterpillar trees that only differ by the leaf labels
 \end{figure}
 
 Because internal nodes of a tree $T$ are ranked uniquely, we can address to \textbf{the} node of rank $k \in \{1, \ldots, n - 1\}$, and we write $(T)_k$ to denote this node.
-An \emph{interval} $[(T)_t,(T)_{t+1}]$ is given by two nodes of consecutive ranks.
+An \emph{interval} $[(T)_k,(T)_{k+1}]$ is defined by two nodes of consecutive ranks.
 A \emph{cluster} $C$ in a tree $T$ is a subsets of leaves $\{a_1, \ldots, a_n\}$ that contains all leaves descending from an internal node of $T$.
 We then say that this internal node \emph{induces} the cluster $C$, and that the subtree rooted at this node is \emph{induced} by $C$.
 Trees can uniquely be specified using the \emph{cluster representation}, that is a list of all clusters induced by internal nodes of that tree ordered according to the ranks of internal nodes.
-\todo{For example, trees in Fig 1 have the following cluster representations.}
-For a set $S \subseteq \{a_1, \ldots, a_n\}$ and tree $T$, we denote the \emph{most recent common ancestor} of $S$ in $T$, that is the internal node of the lowest rank in $T$ that contains all elements of $S$, by $(S)_T$.
-Note that for the cluster $C$ induced by the node of rank $k \in [n-1]$ in $T$ it is $(C)_T = (T)_k$.
+For example, the left-most tree in Figure~\ref{todo} have the following cluster representations.
+For a set $S \subseteq \{a_1, \ldots, a_n\}$ and tree $T$, we denote the \emph{most recent common ancestor} of $S$ in $T$, that is the node of the lowest rank in $T$ that induces a cluster containing all elements of $S$, by $(S)_T$.
+Note that $(C)_T = (T)_k$ if the cluster $C$ is induced by the node of rank $k$ in $T$.
 
-\summary{Defining graph} $\rnni(\rho)$.
-We will now introduce graphs $\rnni(\rho)$ on ranked trees, where $\rho \in [0,\infty)$.
-Note we chose this name as these graphs are a generalisation of the \emph{ranked nearest neighbour interchange} ($\rnni$) graph introduced in \autocite{Collienne2019-ca}.
-The vertices of the $\rnni$ graph are ranked trees as introduced above.
-Two ranked trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:
+\summary{Defining graph $\rnni(\rho)$.}
+We are now ready to introduce the main object of study in this paper, a graph $\rnni(\rho)$ on trees, for $\rho \geq 0$.
+The vertices of the $\rnni(\rho)$ graph are trees as introduced above.
+Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:
 A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with rank difference one for $0 < t < n-1$.
-\todo{LC: Do we need to define isomorphic?}
 Ranked trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ of length one such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two isomorphic (non-binary) trees.
 To parameterise the $\rnni$ graph with parameter $\rho$, edges are weighted by either one or $\rho \in [0, \infty)$, depending on whether they represent $\nni$ or rank moves, respectively.
 \todo{LC: We could mention the connection of $\rnni(0)$ and $\nni$ here and explain it in further detail later (maybe even at the very end of the paper?)}
