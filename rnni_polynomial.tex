@@ -430,6 +430,10 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 \section{Cluster Property}
 
 \summary{Some words on the cluster property}
+In this section we discuss a property of graphs of trees basing on tree rearrangement operations.
+We say that such a has the \emph{cluster property}, if for two trees that share a cluster all trees on every shortest path also contain this cluster.
+Surprisingly, this property does not hold for the $\nni$ graph \autocite{Li1996-zw} and has been crucial for proving that the shortest path problem if $\np$-hard in $\nni$ \autocite{Dasgupta2000-xa}.
+However, we can prove that the $\rnni$ graph has the cluster property by utilising the fact that $\findpath$ computes shortest paths that preserve clusters.
 
 \summary{Proving the Cluster Property for $\rnni$}
 
