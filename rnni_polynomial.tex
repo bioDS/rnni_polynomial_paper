@@ -96,7 +96,7 @@ The tree inference problem hence can be formulated as a graph search, where vert
 Classical results in mathematical phylogenetics imply that computing rearrangement distances between trees, that is, the minimum number of tree rearrangements necessary to convert one tree into another, is $\np$-hard \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky} for all three rearrangement operations $\nni$, $\spr$, and $\tbr$.
 We will formally introduce all necessary definitions later in the paper.
 Intuitively, the difference between the three operations is how much change can be done to a tree by a single operation, with $\nni$ being the most local type of rearrangement and $\tbr$ the most global one.
-Remarkably, it took over 25 years and a number of published erroneous attempts, as discussed in detail by \textcite{Dasgupta2000-xa}, to prove that it is $\np$-hard to compute distances between trees under the $\nni$ operation \autocite{Dasgupta2000-xa}.
+Remarkably, it took over 25 years and a number of published erroneous attempts, as discussed in detail by \textcite{Dasgupta2000-xa}, to prove that the shortest path problem is $\np$-hard in $\nni$ \autocite{Dasgupta2000-xa}.
 Similarly for $\spr$, before \textcite{Bordewich2005-nx} proved the $\np$-hardness result for rooted trees and \textcite{Hickey2008-wv} utilised this proof to establish the result for unrooted trees, incorrect proofs have been discussed in the literature \autocite{Hein1996-em, Allen2001-ky}.
 To facilitate practical applications, several fixed parameter tractable algorithms for computing the $\spr$ distance have been developed over the years \autocite{Whidden2010-bw, Bordewich2005-nx, Whidden2018-fw}.
 Although these algorithm advanced the applicability of the methods significantly, they remain impractical for large distances and are only applied to trees with a moderate number of leaves or those with small distances.
@@ -104,24 +104,24 @@ It is still unknown whether the fixed parameter tractability result holds in $\n
 This is an active area of research in modern computational phylogenetics \autocite{Gavryushkin2018-ol}.
 
 \summary{Historically, the complexity question was following hand in hand with the cluster property -- more history plus biological relevance of the property.}
-The idea utilised by \textcite{Dasgupta2000-xa} to prove that the $\nni$ distance is $\np$-hard stems from a result that shortest paths in $\nni$ do not preserve clusters \autocite{Li1996-zw}, that is, two trees sharing a cluster does not imply that all trees along a shortest path have that cluster.
+The idea utilised by \textcite{Dasgupta2000-xa} to prove that the shortest path problem in $\nni$ is $\np$-hard stems from a result that shortest paths in $\nni$ do not preserve clusters \autocite{Li1996-zw}, that is, two trees sharing a cluster does not imply that all trees along a shortest path have that cluster.
 We will say that $\nni$ does not have the cluster property (see below for a formal description).
 Not only this counter-intuitive property eventually led to the computational hardness result, the property made little sense biologically as trees clustering the same set of sequences into a subtree should be closer to each other than to a tree that does not have that subtree.
 Indeed, a shared cluster means that both trees support the hypothesis that this cluster has evolved along a subtree.
-It was believed that the cluster property and the computational complexity of computing distances were related \autocite{Li1996-zw}, so the two questions have historically been studied simultaneously \autocite{Dasgupta2000-xa}.
+It was believed that the cluster property and the computational complexity of the shortest path problem were related \autocite{Li1996-zw}, so the two questions have historically been studied simultaneously \autocite{Dasgupta2000-xa}.
 However, there is little evidence to justify this connection.
-For example, the cluster property holds in $\spr$ even though shortest paths are $\np$-hard to compute.
+For example, the cluster property holds in $\spr$ even though the shortest path problem is $\np$-hard there.
 
 \summary{Paper summary in light of motivation: We've discovered the first efficiently computable distance, given by a parameter range in known tree spaces, and want to understand the reason for the complexity jump -- cite ``Beyond worst-case complexity.''}
-In this paper, we establish that for a certain tree rearrangement operation (a generalisation of $\nni$) the complexity of computing shortest paths is $\O(n^2)$ (Theorem~\ref{thm:rnni_polynomial}).
+In this paper, we establish that for a certain tree rearrangement operation (a generalisation of $\nni$) the complexity of the shortest path problem is $\O(n^2)$ (Theorem~\ref{thm:rnni_polynomial}).
 This is, to the best of our knowledge, the first tree rearrangement operation with polynomial-time computable shortest paths and distances between trees.
 Our algorithm is practical as it allows to compute distances between trees with hundreds of thousands of leaves, while in the closely related $\nni$ graph this number is well smaller \autocite{Whidden2016-kl} than 20.
 To prove the main result of this paper, Theorem~\ref{thm:rnni_polynomial}, we will show that the algorithm $\findpath$ of \textcite{Collienne2019-ca} computes shortest paths in the ranked nearest neighbour interchange graph ($\rnni$) in polynomial time.
 We will also prove that the $\rnni$ graph has the cluster property, which, as discussed, is an important property distinguishing this graph from the $\nni$ graph.
-We then generalise the $\findpath$ algorithm to trees with arbitrary integer-valued branch lengths and show that computing distances between such trees is also polynomial time.
+We then generalise the $\findpath$ algorithm to trees with arbitrary integer-valued branch lengths and show that the shortest path problem for such trees is also polynomial time.
 We will finish this paper by asking and studying the question of characterising the (numeric) parameter that is responsible for the complexity shift from $\np$-hard to polynomial.
 Specifically, we introduce a parameter $\rho$ that weighs edges in the $\rnni$ graph and consider the parametrised graph $\rnni(\rho)$.
-We show that $\rnni(0)$ has the same complexity of computing distances as the $\nni$ graph, while in $\rnni(1)$ the problem is solvable in $\O(n^2)$.
+We show that the shortest path problem in $\rnni(0)$ has the same complexity as in the $\nni$ graph, while in $\rnni(1)$ the problem is solvable in $\O(n^2)$.
 Hence changing $\rho$ from zero to one shifts the complexity from $\np$-hard to polynomial.
 
 We propose it as an open problem to characterise the values of $\rho \in [0,1]$ for which the complexity of computing distances in the parametrised graph is polynomial.
@@ -427,6 +427,15 @@ In this case $C_k \subseteq A$ and the first move on $\fp(T', R)$ must be a rank
 Since all possible cases result in a contradiction, we conclude that inequality~(\ref{eqn:iff_inequality}) is true for all trees, which completes the proof of the theorem.
 \endproof
 
+
+\section{Cluster Property}
+
+\summary{Some words on the cluster property}
+In this section we discuss a property of graphs of trees basing on tree rearrangement operations.
+We say that such a has the \emph{cluster property}, if for two trees that share a cluster all trees on every shortest path also contain this cluster.
+Surprisingly, this property does not hold for the $\nni$ graph \autocite{Li1996-zw} and has been crucial for proving that the shortest path problem if $\np$-hard in $\nni$ \autocite{Dasgupta2000-xa}.
+However, we can prove that the $\rnni$ graph has the cluster property by utilising the fact that $\findpath$ computes shortest paths that preserve clusters.
+
 \summary{Proving the Cluster Property for $\rnni$}
 
 \begin{corollary}
@@ -456,7 +465,7 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 
 \section{Generalisation to discrete time-trees}
 
-\summary{Generalising} $\findpath$ \summary{for discrete time-trees}
+\summary{Generalising $\findpath$ for discrete time-trees}
 We are now going to consider an extension of $\findpath$ onto the space of \emph{discrete time-trees}, which are trees where the rank function can assign any integer to internal nodes as long as children have strictly smaller ranks than their parent and no two internal nodes have equal rank.
 To generalise $\rnni$ moves to this tree space we need to add a third type of move additionally to $\nni$ and rank moves, that is a \emph{length move} on a tree $T$ that changes the rank of an internal node $(T)_t$ by one without changing the rank of any other node in $T$.
 As a result the length of one of the intervals $[(T)_{t+1},(T)_t]$ and $[(T)_t,(T)_{t-1}]$ increases by one while the other one decreases by one.
@@ -492,7 +501,7 @@ Interestingly and in line with this result, the shortest path (geodesic) problem
 \section{Conclusion}
 
 \todo{LC: Shall the following discussion stay as conclusion? We definitely need to mention here how cool it is to have a polynomial tree space}
-\summary{Everything we know so far about the complexity of} $\rnni(\rho)$ \summary{-- $\rnni(1) \in \p$ and $\rnni(0) \in \np$}
+\summary{Everything we know so far about the complexity of $\rnni(\rho)$ -- $\rnni(1) \in \p$ and $\rnni(0) \in \np$}
 From Theorem~\ref{thm:rnni_polynomial} we know that distances in $\rnni(1)$ can be computed in polynomial time, as this is the $\rnni$ graph.
 The computation of distances in $\rnni(0)$ however is $\np$-hard, as we can follow from the following observation.
 
@@ -514,6 +523,17 @@ If $\varepsilon$ is small enough then the shortest path problem is $\np$-hard in
 \begin{theorem}
 There exists $\delta > 0$ such that the shortest path problem is $\np$-hard in $\rnni(\varepsilon)$ for all $\varepsilon < \delta$.
 \end{theorem}
+
+\proof
+Let $r$ be the number of edges in the $\rnni$ graph that represent rank moves and $\delta = \frac{1}{r}$.
+We will prove the theorem by reducing the shortest path problem in $\rnni(\epsilon)$ for $\epsilon < \delta$ to the shortest path problem in $\nni$.
+In order to prove this we show that for each pair of trees $T$ and $R$ a shortest path in $\rnni(\delta)$ gives a shortest path in $\nni$ by ignoring all rank moves.
+The distance $d_{\rnni(\epsilon)}(T,R)$ is the length of a shortest path in $\rnni(\epsilon)$ and can therefore be seen as $d_{\rnni(\epsilon)}(T,R) = m_n + \epsilon \cdot m_r$ where $m_n$ is the number of $\nni$ moves and $m_r$ the number of rank moves on a shortest path.
+For contradiction we assume that $d_{\nni}(T,R) < m_n$, which means that there is a shortest path in $\rnni(\epsilon)$ where ignoring all rank moves does not result in a shortest path in $\nni$.
+Let $p'$ be a shortest path in $\nni$ between the trees $T'$ to $R'$ which result from $T$ and $R$ by ignoring the rankings, respectively.
+This path $p'$ can be extended to a path $p$ from $T$ to $R$ in $\rnni(\epsilon)$ by adding some rank moves.
+However, this results in $|p| \leq r \cdot \epsilon + |p'| < r \cdot \delta + m_n < m_n$ which contradicts $d_{\rnni(\epsilon)}(T,R) = m_n + \epsilon \cdot m_r$.
+\endproof
 
 This result implies in particular that shortest paths in $\rnni(0)$ give shortest paths in $\nni$.
 Since \textcite{Dasgupta2000-xa} proved that computing distances in $\nni$ is $\np$-hard we can conclude the same for $\rnni(0)$.
