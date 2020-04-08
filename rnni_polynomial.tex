@@ -519,6 +519,17 @@ If $\varepsilon$ is small enough then the shortest path problem is $\np$-hard in
 There exists $\delta > 0$ such that the shortest path problem is $\np$-hard in $\rnni(\varepsilon)$ for all $\varepsilon < \delta$.
 \end{theorem}
 
+\proof
+Let $r$ be the number of edges in the $\rnni$ graph that represent rank moves and $\delta = \frac{1}{r}$.
+We will prove the theorem by reducing the shortest path problem in $\rnni(\epsilon)$ for $\epsilon < \delta$ to the shortest path problem in $\nni$.
+In order to prove this we show that for each pair of trees $T$ and $R$ a shortest path in $\rnni(\delta)$ gives a shortest path in $\nni$ by ignoring all rank moves.
+The distance $d_{\rnni(\epsilon)}(T,R)$ is the length of a shortest path in $\rnni(\epsilon)$ and can therefore be seen as $d_{\rnni(\epsilon)}(T,R) = m_n + \epsilon \cdot m_r$ where $m_n$ is the number of $\nni$ moves and $m_r$ the number of rank moves on a shortest path.
+For contradiction we assume that $d_{\nni}(T,R) < m_n$, which means that there is a shortest path in $\rnni(\epsilon)$ where ignoring all rank moves does not result in a shortest path in $\nni$.
+Let $p'$ be a shortest path in $\nni$ between the trees $T'$ to $R'$ which result from $T$ and $R$ by ignoring the rankings, respectively.
+This path $p'$ can be extended to a path $p$ from $T$ to $R$ in $\rnni(\epsilon)$ by adding some rank moves.
+However, this results in $|p| \leq r \cdot \epsilon + |p'| < r \cdot \delta + m_n < m_n$ which contradicts $d_{\rnni(\epsilon)}(T,R) = m_n + \epsilon \cdot m_r$.
+\endproof
+
 This result implies in particular that shortest paths in $\rnni(0)$ give shortest paths in $\nni$.
 Since \textcite{Dasgupta2000-xa} proved that computing distances in $\nni$ is $\np$-hard we can conclude the same for $\rnni(0)$.
 We can conclude that the complexity of computing the ranked nearest neighbour interchange distance between trees depends on the weight of rank rearrangements and can change from quadratic, when rank moves are counted as one rearrangement, to NP-hard, when rank moves are ignored.
