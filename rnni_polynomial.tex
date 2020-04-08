@@ -464,7 +464,7 @@ However, we can prove that the $\rnni$ graph has the cluster property by utilisi
 
 \section{Generalisation to discrete time-trees}
 
-\summary{Generalising} $\findpath$ \summary{for discrete time-trees}
+\summary{Generalising} $\findpath$ for discrete time-trees}
 We are now going to consider an extension of $\findpath$ onto the space of \emph{discrete time-trees}, which are trees where the rank function can assign any integer to internal nodes as long as children have strictly smaller ranks than their parent and no two internal nodes have equal rank.
 To generalise $\rnni$ moves to this tree space we need to add a third type of move additionally to $\nni$ and rank moves, that is a \emph{length move} on a tree $T$ that changes the rank of an internal node $(T)_t$ by one without changing the rank of any other node in $T$.
 As a result the length of one of the intervals $[(T)_{t+1},(T)_t]$ and $[(T)_t,(T)_{t-1}]$ increases by one while the other one decreases by one.
@@ -500,7 +500,7 @@ Interestingly and in line with this result, the shortest path (geodesic) problem
 \section{Conclusion}
 
 \todo{LC: Shall the following discussion stay as conclusion? We definitely need to mention here how cool it is to have a polynomial tree space}
-\summary{Everything we know so far about the complexity of} $\rnni(\rho)$ \summary{-- $\rnni(1) \in \p$ and $\rnni(0) \in \np$}
+\summary{Everything we know so far about the complexity of $\rnni(\rho)$ -- $\rnni(1) \in \p$ and $\rnni(0) \in \np$}
 From Theorem~\ref{thm:rnni_polynomial} we know that distances in $\rnni(1)$ can be computed in polynomial time, as this is the $\rnni$ graph.
 The computation of distances in $\rnni(0)$ however is $\np$-hard, as we can follow from the following observation.
 
