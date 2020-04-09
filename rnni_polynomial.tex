@@ -66,15 +66,15 @@
 Many popular algorithms for searching the space of leaf-labelled (phylogenetic) trees are based on tree rearrangement operations.
 Under any such operation, the problem is reduced to searching a graph where vertices are trees and (undirected) edges are given by pairs of trees connected by one rearrangement operation (sometimes called a move).
 Most popular are the classical nearest neighbour interchange, subtree prune and regraft, and tree bisection and reconnection moves.
-The shortest path problem in each of these graphs is, however, $\np$-hard, making tree inference and comparison algorithms challenging to design in practice.
+The shortest path problem, however, is $\np$-hard in each of these graphs, making tree inference and comparison algorithms challenging to design in practice.
 
-Although ranked phylogenetic trees are one of the central objects of interest in applications, the computational complexity of the shortest path problem for these trees remained an unsolved question for decades.
-In this paper, we settle this question for the ranked nearest neighbour interchange operation by establishing that the complexity depends on the weight difference between two types of tree rearrangement operations (rank moves and edge moves) in this graph, and varies from quadratic to $\np$-hard.
+Although ranked phylogenetic trees are one of the central objects of interest in applications, the computational complexity of the shortest path problem for these trees remained unsolved for decades.
+In this paper, we settle this problem for the ranked nearest neighbour interchange operation by establishing that the complexity depends on the weight difference between two types of tree rearrangement operations (rank moves and edge moves) in this graph, and varies from quadratic to $\np$-hard.
 In particular, our result provides the first example of a phylogenetic tree rearrangement operation for which shortest paths, and hence the distance, can be computed efficiently.
 Specifically, our algorithm scales to trees with hundreds of thousands of leaves.
 
-We also propose a study of the parameter (weight difference between two types of moves) that changes the complexity of the shortest path problem in our graph from quadratic to $\np$-hard.
-In this paper, we will provide an insight into this approach, motivated by ideas developed in the beyond worst-case analysis framework.
+We also propose a study of the parameter for weight difference between move types, that changes the complexity of the shortest path problem in our graph from quadratic to $\np$-hard.
+In this paper we will provide an insight into this approach, motivated by ideas developed in the beyond worst-case analysis framework.
 \end{abstract}
 
 
@@ -515,12 +515,20 @@ Therefore the length of $p$ equals the number of $\nni$ moves on this path.
 And as transforming $p$ into $p'$ as described above deletes all rank moves and none of the $\nni$ moves, the lengths of $p$ and $p'$ coincide.
 \endproof
 
-\begin{lemma}
-If $\varepsilon$ is small enough then the shortest path problem is $\np$-hard in $\rnni(\varepsilon)$.
-\end{lemma}
+This result implies in particular that shortest paths in $\rnni(0)$ give shortest paths in $\nni$.
+Since \textcite{Dasgupta2000-xa} proved that computing distances in $\nni$ is $\np$-hard we can conclude the same for $\rnni(0)$.
+We can conclude that the complexity of computing the ranked nearest neighbour interchange distance between trees depends on the weight of rank rearrangements and can change from quadratic, when rank moves are counted as one rearrangement, to NP-hard, when rank moves are ignored.
+It hence is natural to ask whether a boundary exists at which the problem switches from polynomial to hard.
+
+\begin{question}
+Is there a threshold $r \in [0,1]$ for which $\rnni(\rho) \in \np$ for all $\rho \leq r$, and $\rnni(\rho) \in \p$ for all $\rho > r$?
+\end{question}
+
+In order to get one step closer to answering this question, we can consider $\rnni(\rho)$ for $\rho$ close to zero or one and see that in such small neighbourhoods the complexity is the same as in $\rnni(0)$ and $\rnni(1)$, respectively.
 
 \begin{theorem}
 There exists $\delta > 0$ such that the shortest path problem is $\np$-hard in $\rnni(\varepsilon)$ for all $\varepsilon < \delta$.
+\label{thm:complexity_around_nni}
 \end{theorem}
 
 \proof
@@ -534,14 +542,17 @@ This path $p'$ can be extended to a path $p$ from $T$ to $R$ in $\rnni(\epsilon)
 However, this results in $|p| \leq r \cdot \epsilon + |p'| < r \cdot \delta + m_n < m_n$ which contradicts $d_{\rnni(\epsilon)}(T,R) = m_n + \epsilon \cdot m_r$.
 \endproof
 
-This result implies in particular that shortest paths in $\rnni(0)$ give shortest paths in $\nni$.
-Since \textcite{Dasgupta2000-xa} proved that computing distances in $\nni$ is $\np$-hard we can conclude the same for $\rnni(0)$.
-We can conclude that the complexity of computing the ranked nearest neighbour interchange distance between trees depends on the weight of rank rearrangements and can change from quadratic, when rank moves are counted as one rearrangement, to NP-hard, when rank moves are ignored.
-It hence is natural to ask whether a boundary exists at which the problem switches from polynomial to hard.
+\begin{theorem}
+There exists $\delta > 0$ such that the shortest path problem can be solved in polynomial time with the $\findpath$ algorithm in $\rnni(1-\varepsilon)$ for $\varepsilon < \delta$.
+\end{theorem}
 
-\begin{question}
-Is there a threshold $r \in [0,1]$ for which $\rnni(\rho) \in \np$ for all $\rho \leq r$, and $\rnni(\rho) \in \p$ for all $\rho > r$?
-\end{question}
+\proof
+Analogous to the proof of Theorem~\ref{thm:complexity_around_nni} we define $r$ as the number of edges in $\rnni$ representing rank moves and $\delta = \frac{1}{r}$.
+We prove the theorem by contradiction and assume that there is an $\varepsilon < \delta$ and a pair of trees $T,R$ in $\rnni(1-\varepsilon)$ for which there is a path $p'$ in $\rnni(1-\varepsilon)$ that is shorter than $\fp(T,R)$.
+If $m_n$ is the number of $\nni$ moves on $p'$ and $m_r$ the number of rank moves, it is $|p'| = m_n + m_r \cdot (1 - \varepsilon)$.
+The path $p$ in $\rnni(1)$ containing the same trees as $p'$ is then has length $|p| = |p'| + m_r \cdot \epsilon < |p'| + m_r \cdot \frac{1}{r} \leq |p'| < |\fp(T,R)|$.
+This however contradicts the fact that $\findpath$ computes shortest paths in $\rnni(1)$, which proves the theorem.
+\endproof
 
 \summary{Rank moves and $\nni$ moves can appear in different proportions on shortest paths and this is related to $\fp$ not computing shortest paths if $\rho \neq 1$}
 When considering the problem of characterising the complexity of computing the distance in $\rnni(\rho)$ for $\rho \neq 0,1$, an important question is how to balance the trade off between $\nni$ and rank moves.
