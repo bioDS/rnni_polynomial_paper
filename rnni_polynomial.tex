@@ -426,9 +426,11 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 \endproof
 
 
-\todo{This is a really small section.
-Merge with DtT?}
-\section{Cluster Property}
+\section{Applications}
+
+In this section we apply Theorem~\ref{thm:rnni_polynomial} to settle further open problems about the $\rnni$ graph.
+
+\subsection{Cluster Property}
 
 \summary{Some words on the cluster property}
 Historically in mathematical phylogenetics, the shortest path decision problem was studied hand in hand with the following cluster property \autocite{Dasgupta2000-xa}.
@@ -436,6 +438,8 @@ We say that a graph on trees has the \emph{cluster property} if two trees $T$ an
 Surprisingly, this property does not hold for the $\nni$ graph \autocite{Li1996-zw}.
 Interestingly, the property has been crucial for proving \autocite{Dasgupta2000-xa} that the shortest path problem in $\nni$ is $\np$-hard.
 In this section, we will prove that the $\rnni$ graph has the cluster property by building on the fact that $\findpath$ computes shortest paths that preserve clusters.
+Note that since paths computed by $\findpath$ preserve clusters, it follows directly that there always exists a shortest path that maintains every shared cluster.
+However, the cluster property is universal and hence requires a proof that \textbf{all} shortest paths have this property.
 
 \summary{Proving the Cluster Property for $\rnni$}
 
@@ -457,14 +461,13 @@ Note that the only clusters in $T$ that distinguish $T$ from $T'$ are $C$ and th
 \caption{Neighbouring trees $T$ and $T'$, where $T$ contains the cluster $C = C_1 \cup C_2$ and $T'$ does not.
 Dashed lines indicate identical parts of trees.}
 \label{fig:cluster_thm_proof}
-	\end{figure}
+\end{figure}
 
 Since $T$ and $R$ have the minimum distance among all counterexamples to the statement of the corollary, we can assume, using the same argument as in the beginning of proof of Theorem~\ref{thm:rnni_polynomial}, that $C$ is the first cluster considered by $\findpath$ on $\fp(T, R)$.
 But in this case, the first move on $\fp(T',R)$ builds the cluster $C$ and results in tree $T$, which is a contradiction.
 \endproof
 
-
-\section{Generalisation to discrete time-trees}
+\subsection{Generalisation to discrete time-trees}
 
 \summary{Generalising $\findpath$ for discrete time-trees}
 We are now going to consider an extension of $\findpath$ onto the space of \emph{discrete time-trees} \autocite{Gavryushkin2018-ol}, which are trees where the rank function can assign any integer to internal nodes as long as children have strictly smaller ranks than their parent and no two internal nodes have equal rank.
@@ -497,6 +500,7 @@ However, the time complexity here is $\O(nm)$, which depends not only on the num
 
 Interestingly and in line with this result, the shortest path (geodesic) problem is polynomial time computable in the continuous space of time trees \autocite{Gavryushkin2016-uu}, where intervals can be of arbitrary real-valued lengths.
 Note that Corollaries~\ref{cor:fp_dtt} and \ref{cluster_thm} imply that the space of discrete time-trees has the cluster property as well.
+
 
 \section{Conclusion}
 
