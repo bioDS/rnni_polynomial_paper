@@ -71,7 +71,7 @@ The shortest path problem, however, is $\np$-hard in each of these graphs, makin
 Although ranked phylogenetic trees are one of the central objects of interest in applications, the computational complexity of the shortest path problem for these trees remained unsolved for decades.
 In this paper, we settle this problem for the ranked nearest neighbour interchange operation by establishing that the complexity depends on the weight difference between two types of tree rearrangement operations (rank moves and edge moves) in this graph, and varies from quadratic to $\np$-hard.
 In particular, our result provides the first example of a phylogenetic tree rearrangement operation for which shortest paths, and hence the distance, can be computed efficiently.
-Specifically, our algorithm scales to trees with hundreds of thousands of leaves.
+Specifically, our algorithm scales to trees with thousands of leaves.
 
 We also propose a study of the parameter for weight difference between move types, that changes the complexity of the shortest path problem in our graph from quadratic to $\np$-hard.
 In this paper we will provide an insight into this approach, motivated by ideas developed in the beyond worst-case analysis framework.
@@ -114,7 +114,7 @@ For example, the cluster property holds in $\spr$ even though the shortest path 
 \summary{Paper summary in light of motivation: We've discovered the first efficiently computable distance, given by a parameter range in known tree spaces, and want to understand the reason for the complexity jump -- cite ``Beyond worst-case complexity.''}
 In this paper, we establish that for a certain tree rearrangement operation (a generalisation of $\nni$) the complexity of the shortest path problem is $\O(n^2)$ (Theorem~\ref{thm:rnni_polynomial}).
 This is, to the best of our knowledge, the first tree rearrangement operation with polynomial-time computable shortest paths and distances between trees.
-Our algorithm is practical as it allows to compute distances between trees with hundreds of thousands of leaves, while in the closely related $\nni$ graph this number is well smaller \autocite{Whidden2016-kl} than 20.
+Our algorithm is practical as it allows to compute distances between trees with thousands of leaves, while in the closely related $\nni$ graph this number is well smaller \autocite{Whidden2016-kl} than 20.
 To prove the main result of this paper, Theorem~\ref{thm:rnni_polynomial}, we will show that the algorithm $\findpath$ of \textcite{Collienne2019-ca} computes shortest paths in the ranked nearest neighbour interchange graph ($\rnni$) in polynomial time.
 We will also prove that the $\rnni$ graph has the cluster property, which, as discussed, is an important property distinguishing this graph from the $\nni$ graph.
 We then generalise the $\findpath$ algorithm to trees with arbitrary integer-valued branch lengths and show that the shortest path problem for such trees is also polynomial time.
