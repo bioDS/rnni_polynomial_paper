@@ -65,16 +65,16 @@
 \begin{abstract}
 Many popular algorithms for searching the space of leaf-labelled (phylogenetic) trees are based on tree rearrangement operations.
 Under any such operation, the problem is reduced to searching a graph where vertices are trees and (undirected) edges are given by pairs of trees connected by one rearrangement operation (sometimes called a move).
-Nearest neighbour interchange, subtree prune and regraft, and tree bisection and reconnection are classical and the most popular such moves.
-The shortest path problem in each of these graphs is, however, $\np$-hard, making tree inference and comparison algorithms challenging to design in practice.
+Most popular are the classical nearest neighbour interchange, subtree prune and regraft, and tree bisection and reconnection moves.
+The shortest path problem, however, is $\np$-hard in each of these graphs, making tree inference and comparison algorithms challenging to design in practice.
 
-Although ranked phylogenetic trees are one of the central objects of interest in applications, the computational complexity of the shortest path problem for these trees remained an unsolved question for decades.
-In this paper, we settle this question for the ranked nearest neighbour interchange operation by establishing that the complexity depends on the weight difference between two types of tree rearrangement operations (rank moves and edge moves) in this graph, and varies from quadratic to $\np$-hard.
+Although ranked phylogenetic trees are one of the central objects of interest in applications, the computational complexity of the shortest path problem for these trees remained an unsolved problem for decades.
+In this paper, we settle this problem for the ranked nearest neighbour interchange operation by establishing that the complexity depends on the weight difference between two types of tree rearrangement operations (rank moves and edge moves) in this graph, and varies from quadratic to $\np$-hard.
 In particular, our result provides the first example of a phylogenetic tree rearrangement operation for which shortest paths, and hence the distance, can be computed efficiently.
 Specifically, our algorithm scales to trees with hundreds of thousands of leaves.
 
-We also propose a study of the parameter (weight difference between two types of moves) that changes the complexity of the shortest path problem in our graph from quadratic to $\np$-hard.
-In this paper, we will provide an insight into this approach, motivated by ideas developed in the beyond worst-case analysis framework.
+We also propose a study of the parameter for the weight difference between move types that changes the complexity of the shortest path problem in our graph from quadratic to $\np$-hard.
+In this paper we will provide an insight into this approach, motivated by ideas developed in the beyond worst-case analysis framework.
 \end{abstract}
 
 
