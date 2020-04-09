@@ -184,7 +184,6 @@ $\findpath$ algorithm receives two trees $T$ and $R$ in their cluster representa
 The algorithm considers the clusters $C_1, \ldots, C_{n-2}$ iteratively in their order and produces a sequence $p$ of trees which become a shortest path from $T$ to $R$ after the algorithm terminates.
 During each iteration $k = 1, \ldots, n-2$ new trees are added to $p$ if necessary, and we will refer to the last added tree as $T'$.
 In iteration $k$, the rank of $(C_{k})_{T'}$ is decreased by $\rnni$ moves until $C_k$ is induced by the node of rank $k$ in $T'$.
-\todo{LC: Do we really want to use "we" here?}
 As we have shown \autocite{Collienne2019-ca}, $\findpath$ is a deterministic algorithm with running time quadratic in the number of leaves $n$.
 In particular, there always exists a unique move that decreases the rank of $(C_{k})_{T'}$ as described above.
 
