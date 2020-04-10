@@ -28,7 +28,6 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{corollary}{Corollary}
-\newtheorem*{decision_problem}{Decision Problem}
 \newtheorem{question}{Question}
 
 \newcommand{\rnni}{\mathrm{RNNI}}
@@ -41,6 +40,7 @@
 \newcommand{\fp}{\mathrm{FP}}
 \newcommand{\np}{\mathcal{NP}}
 \newcommand{\p}{\mathcal{P}}
+\newcommand{\decprob}[1]{\rnni(#1)\text{-}\mathrm{SP}}
 \renewcommand{\O}{\mathcal O}
 
 % \newcommand{\summary}[1]{\textbf{#1}} % Print summaries to .pdf
@@ -161,17 +161,24 @@ Two trees are connected by an edge if one results from the other by performing o
 (ii) Trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ both connecting nodes of consecutive ranks in the corresponding trees, such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two isomorphic (non-binary) trees.
 Figure~\ref{fig:ranked_trees_ex} gives examples of these tree rearrangements.
 The parameter $\rho \geq 0$ is the weight of the rank move operation, the $\nni$ moves weigh one.
-The \emph{distance} between two trees in $\rnni(\rho)$ is defined as the weight of a path with a minimum weight among all paths connecting the two trees.
+The \emph{weight of a path} is the sum of the weights of all moves along the path.
+The \emph{distance} between two trees in $\rnni(\rho)$ is the weight of a path with the minimal weight.
 In the main part of the paper we will concentrate on $\rho = 1$, so all edges in the graph will have equal weights and the graph can be assumed to be unweighted.
 
-The main problem considered in this paper is the following shortest path problem.
+The main computational problem considered in this paper is the following shortest path problem
 
-\begin{decision_problem}[$\rnni(\rho)\mathrm{-DIST}$] Given $\rho \geq 0$, integer $k > 0$, and two trees $T$ and $R$, decide whether the distance between $T$ and $R$ in $\rnni(\rho)$ is less than or equal to $k$?
-\label{problem:rnni_dist}
-\end{decision_problem}
+\medskip
 
-Our first and main goal in this paper is to prove that $\rnni(1)\mathrm{-DIST}$ is polynomial.
-We will see later in the paper that it follows from a classical result that $\rnni(0)\mathrm{-DIST}$ is $\np$-hard.
+\noindent $\decprob{\rho}$
+\medskip\\
+INSTANCE: A real number $\rho \geq 0$, an integer $k > 0$, and a pair of trees $T$ and $R$.\\
+FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$.
+
+\medskip
+
+Our first and main goal in this paper is to prove that $\decprob{1}$ is polynomial.
+We will see later in the paper that it follows from a classical result that $\decprob{0}$ is $\np$-hard.
+We will also study $\decprob{\rho}$ for other values of $\rho$ in this paper.
 To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol, Collienne2019-ca}, we will denote graph $\rnni(1)$ by $\rnni$.
 
 
@@ -209,13 +216,13 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 \end{algorithm}
 
 \summary{A few words about the main theorem and its proof.}
-The following theorem is the main result of our paper.
+The following theorem, that $\decprob{1}$ is polynomial, is the main result of our paper.
 The proof of the theorem reduces the problem to establishing a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm.
 The property can intuitively be understood as $\findpath$ always choosing the best tree possible to go to.
 Importantly, this result can be used for an arbitrary vertex proposal algorithm in an arbitrary graph to establish that the algorithms computes a shortest path between vertices in the graph, hence our proof technique is of general interest.
 
 \begin{theorem}
-The time complexity of computing the distance between trees on $n$ leaves in the $\rnni$ graph is $\O(n^2)$.
+The time complexity the shortest path problem in the $\rnni$ graph on trees with $n$ leaves is $\O(n^2)$.
 \label{thm:rnni_polynomial}
 \end{theorem}
 
@@ -502,7 +509,7 @@ Interestingly and in line with this result, the shortest path (geodesic) problem
 Note that Corollaries~\ref{cor:fp_dtt} and \ref{cluster_thm} imply that the space of discrete time-trees has the cluster property as well.
 
 
-\section{Conclusion}
+\section{For what $\rho$ is $\decprob(\rho)$ polynomial?}
 
 \summary{What we achieved in this paper}
 In this paper we could prove that the shortest path problem in the $\rnni$ graph can be solved in polynomial time.
@@ -574,6 +581,23 @@ The following observation, which follows from the existence of such different sh
 \begin{lemma}
 	$\findpath$ does not compute shortest paths for $\rnni(\rho)$ with $\rho > 1$.
 \end{lemma}
+
+
+\section{Conclusion}
+
+\summary{Open problems and Acknowledgements.
+This section goes after the 10 pages.}
+
+\subsection{Open problems}
+
+\begin{enumerate}
+\item Characterise, in terms of $\rho$, the computational complexity of the shortest path problem in $\rnni(\rho)$.
+This problem has been discussed in the main part of the paper.
+
+\item What is the complexity of the shortest path problem in ranked SPR? Ranked TBR?
+
+\item Can the algorithm for computing paths in $RNNI$ be used to estableish the complexity of computing geodesics in t-space \autocite{Gavryushkin2016-uu}?
+\end{enumerate}
 
 \newpage
 
