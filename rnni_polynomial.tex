@@ -131,7 +131,7 @@ We will provide some insights into this problem at the end of this paper.
 \section{Definitions and background results}
 
 \summary{Defining ranked trees and clusters.}
-Unless stated otherwise, in this paper we work with \emph{ranked phylogenetic trees}, which we simply call \emph{trees}, that are binary trees where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by the elements of the set $\{1, \ldots, n-1\}$ so that children have strictly smaller ranks than their parents.
+Unless stated otherwise, in this paper we work with \emph{ranked phylogenetic trees}, which we simply call \emph{trees}, that are binary trees where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by elements of the set $\{1, \ldots, n-1\}$ so that children have strictly smaller ranks than their parents.
 All leaves are assumed to have rank $0$.
 Two trees are considered to be identical if there exists an isomorphism between them which preserves edges, leaf labels, and node rankings.
 For example, trees in Figure~\ref{fig:ranked_trees_ex} are all different.
@@ -220,6 +220,8 @@ The following theorem, that $\decprob{1}$ is polynomial, is the main result of o
 The proof of the theorem reduces the problem to establishing a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm.
 The property can intuitively be understood as $\findpath$ always choosing the best tree possible to go to.
 Importantly, this result can be used for an arbitrary vertex proposal algorithm in an arbitrary graph to establish that the algorithms computes a shortest path between vertices in the graph, hence our proof technique is of general interest.
+
+We also note that due to the connection between ranked trees and lattices \autocite{Collienne2019-ca}, Theorem~\ref{thm:rnni_polynomial} can be translated to the language of lattice theory.
 
 \begin{theorem}
 The time complexity the shortest path problem in the $\rnni$ graph on trees with $n$ leaves is $\O(n^2)$.
@@ -477,35 +479,34 @@ But in this case, the first move on $\fp(T',R)$ builds the cluster $C$ and resul
 \subsection{Generalisation to discrete time-trees}
 
 \summary{Generalising $\findpath$ for discrete time-trees}
-We are now going to consider an extension of $\findpath$ onto the space of \emph{discrete time-trees} \autocite{Gavryushkin2018-ol}, which are trees where the rank function can assign any integer to internal nodes as long as children have strictly smaller ranks than their parent and no two internal nodes have equal rank.
-To generalise $\rnni$ moves to this tree space we need to introduce a third type of move, additional to $\nni$ and rank moves, that is a \emph{length move} on a tree $T$ that changes the rank of an internal node $(T)_t$ by one without changing the rank of any other node in $T$.
-As a result the length of one of the intervals $[(T)_{t+1},(T)_t]$ and $[(T)_t,(T)_{t-1}]$ increases by one while the other one decreases by one.
-Note that $\nni$ moves are still only allowed on edges with end nodes that have rank difference one.
-In the natural extension of $\findpath$ to discrete time-trees ranks of most recent common ancestors can not only decrease by $\nni$ and rank moves, but also by length moves.
-With Theorem~\ref{thm:rnni_polynomial} it is not hard to see that this extension of $\findpath$ computes shortest paths in the space of discrete time-trees in polynomial time as well.
-However, the time complexity here is $\O(nm)$, which depends not only on the number of leaves $n$ but also on the maximum $m$ of the ranks of the roots of the two given trees.
+In this section we will show how to modify the $\findpath$ algorithm to efficiently solve the shortest path problem for \emph{discrete time-trees} \autocite{Gavryushkin2018-ol}.
+These are trees where all internal nodes are uniquely ranked by elements of the set $\{1, \ldots, m\}$, where $m \geq n - 1$, so that children have strictly smaller ranks than their parents.
+The NNI and rank moves are supplemented by a third type of move called a \emph{length move}, which changes (increases or decreases) the rank of an internal node by one without changing the rank of any other node in the tree.
+So a length move implies that the length of one of the intervals $[(T)_{t+1},(T)_t]$ or $[(T)_t,(T)_{t-1}]$ increases by one and the other one decreases by one.
+Note that $\nni$ moves are still only allowed on (edge) intervals bounded by consecutive nodes.
+
+A natural extension of $\findpath$ to discrete time-trees is to simply add all the necessary length moves when a most recent common ancestor needs to be moved down to a particular level.
 \begin{corollary}
-	$\findpath$ computes shortest paths between discrete time-trees.
-    \label{cor:fp_dtt}
+The time complexity of the shortest path problem between discrete time-trees with $n$ leaves and node ranks bounded by $m$ is $\O(nm)$.
+\label{cor:fp_dtt}
 \end{corollary}
 
 \proof
-	Let $T$ and $R$ be discrete time-trees and let $m$ be the maximum of the times assigned to the roots of $T$ and $R$.
-	We construct trees $T'$ and $R'$ in $\rnni$ on $m + 1$ leaves by adding $m + 1 - n$ new leaves in the following way.
-	Add a new root with rank $m+1$ to tree $T$, such that $T$ is a subtree rooted in one of the children of this new node.
-	The other child of this new root is a caterpillar tree with leaf labels in $\{n+1, \ldots, m+1\}$ such that the ranks of the parents of these leaves are ordered according to the leaf labels and the resulting tree does not contain intervals of length greater than one.
-	The same way we obtain tree $R'$ from $R$.
+Let $T$ and $R$ be a pair of discrete time-trees.
+We will convert $T$ and $R$ into $\rnni$ trees on $m + 1$ leaves and show that the modified version of $\findpath$ for discrete time-trees is equivalent to the original $\findpath$ on converted trees.
+Specifically, we consider trees $T'$ and $R'$ obtained from $T$ and $R$ by adding $m + 1 - n$ new leaves in the following way.
+Add a new root of rank $m + 1$ to tree $T$ so that $T$ is a subtree rooted in one of the children of this new root.
+The other child of this new root is a caterpillar tree with leaf labels in $\{n + 1, \ldots, m + 1\}$ such that the ranks of the parents of these leaves are ordered according to the leaf labels and the resulting tree does not contain intervals of length greater than one.
+The same way we obtain tree $R'$ from $R$.
 
-	We can convert a path $p$ from $T$ to $R$ to a path $p'$ from $T'$ to $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
-	All rank moves and $\nni$ moves on $p'$ remain the same as on $p'$.
-	By the construction of $T'$ and $R'$ it follows that $p'$ ends in $R'$, as the additional caterpillar subtree does not change.
-	As every move on $p$ corresponds to exactly one move on $p'$, the lengths of these paths coincide.
+Now, a path $p$ between $T$ and $R$ can be matched to a path $p'$ between $T'$ and $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
+All rank moves and $\nni$ moves on $p'$ remain the same as on $p$.
 
-	$\fp(T,R)$ is defined by transforming the moves along $\fp(T',R')$ in the similar way.
-	To show that $\fp(T, R)$ computes a shortest path, we observe that if there was another path $p$ from $T$ to $R$ strictly shorter than $\fp(T, R)$, we can construct a path $p'$ with $|p'| = |p| < |\fp(T,R)| = |\fp(T',R')s|$ between $T'$ and $R'$ as explained above, which is a contradiction to Theorem~\ref{thm:rnni_polynomial}.
+$\fp(T,R)$ is defined by transforming the moves along $\fp(T',R')$ in the similar way.
+To show that $\fp(T, R)$ computes a shortest path, we observe that if there was another path $p$ from $T$ to $R$ strictly shorter than $\fp(T, R)$, we can construct a path $p'$ with $|p'| = |p| < |\fp(T,R)| = |\fp(T',R')s|$ between $T'$ and $R'$ as explained above, which is a contradiction to Theorem~\ref{thm:rnni_polynomial}.
 \endproof
 
-Interestingly and in line with this result, the shortest path (geodesic) problem is polynomial time computable in the continuous space of time trees \autocite{Gavryushkin2016-uu}, where intervals can be of arbitrary real-valued lengths.
+Interestingly and in line with this result, the shortest path (geodesic) problem is polynomial time computable in the continuous space of time-trees \autocite{Gavryushkin2016-uu}, where intervals can be of arbitrary real-valued lengths.
 Note that Corollaries~\ref{cor:fp_dtt} and \ref{cluster_thm} imply that the space of discrete time-trees has the cluster property as well.
 
 
@@ -592,12 +593,20 @@ This section goes after the 10 pages.}
 
 \begin{enumerate}
 \item Characterise, in terms of $\rho$, the computational complexity of the shortest path problem in $\rnni(\rho)$.
-This problem has been discussed in the main part of the paper.
+This problem has been discussed in the main part of the paper
 
 \item What is the complexity of the shortest path problem in ranked $\spr$? Ranked $\tbr$?
 
 \item Can the algorithm for computing paths in $\rnni$ be used to establish the complexity of computing geodesics in t-space \autocite{Gavryushkin2016-uu}?
+
+\item (not sure about this one) What is the complexity of the shortest path problem in RNNI on unlabelled trees?
 \end{enumerate}
+
+\subsection{Acknowledgements}
+
+We thank Alexei Drummond for useful discussions about the weight difference between $\rnni$ moves, and Kieran Elmes for his useful comments that improved this paper.
+We also acknowledge support from the Royal Society of New Zealand through the Rutherford Discovery Fellowship (RDF-UOO1702) awarded to AG.
+This work was partially supported by the Ministry of Business, Innovation, and Employment of New Zealand through the Endeavour Smart Ideas (CONT-61378-ENDSI-UOO) and Data Science Programmes grants.
 
 \newpage
 
