@@ -498,12 +498,13 @@ The time complexity of the shortest path problem between discrete time-trees wit
 
 \proof
 Let $T$ and $R$ be a pair of discrete time-trees.
-We will convert $T$ and $R$ into $\rnni$ trees on $m + 1$ leaves and show that the modified version of $\findpath$ for discrete time-trees is equivalent to the original $\findpath$ on converted trees.
-To receive $T'$ from $T$, an internal node with rank $m + 1$ is added as new root that has the tree $T$ as one child and a tree with leaves labelled by $a_{n + 1}, \ldots, a_{m + 1}$ as second child.
-In this second subtree internal nodes have as ranks positive integers below $m$ for which there is no internal node of this rank in $T$.
-The internal node of lowest rank in this subtree has leaves $a_{n + 1}$ and $a_{n + 2}$ as children and every other node has the next internal node of lower rank in this subtree and a leaf as child, such that the ranks of parents of leaves are increasing with the indices $n + 1, \ldots, m + 1$ of the leaves.
-The resulting tree $T'$ does not contain intervals of length greater than one.
-The same way we obtain tree $R'$ from $R$.
+We will convert $T$ and $R$ into $\rnni$ trees $T'$ and $R'$ on $m + 1$ leaves and show that the modified version of $\findpath$ for discrete time-trees is equivalent to the original $\findpath$ on converted trees.
+
+To obtain $T'$, we add a new internal node of rank $m + 1$ as a new root.
+We then add edges to attach this new root to the original root of $T$ and to the root of a new caterpillar tree with leaves labelled by $a_{n + 1}, \ldots, a_{m + 1}$.
+The internal nodes of the caterpillar subtree in $T'$ are ranked by numbers for which there is no internal node of corresponding rank in the original tree $T$.
+Note that all intervals of the resulting tree $T'$ are of length one.
+We obtain $R'$ from $R$ in the same way.
 
 Now, a path $p$ between $T$ and $R$ can be transformed to a path $p'$ between $T'$ and $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
 All rank moves and $\nni$ moves on $p'$ remain the same as on $p$.
@@ -521,9 +522,9 @@ As we have seen in Section~\ref{sec:rnni_complexity}, the shortest path problem 
 In this section, we will show that a classical result in mathematical phylogenetics implies that $\decprob{0}$ is $\np$-hard.
 We will also discuss $\decprob{\rho}$ for other values of $\rho$.
 
-\begin{proposition}
+\begin{theorem}[\textcite{Dasgupta2000-xa}]
 $\decprob{0}$ is $\np$-hard.
-\end{proposition}
+\end{theorem}
 
 \proof
 We prove this by reducing the problem of computing $\nni$ distances, which is known to be $\np$-hard \autocite{Dasgupta2000-xa}, to $\decprob{0}$.
