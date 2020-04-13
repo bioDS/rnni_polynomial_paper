@@ -499,11 +499,9 @@ Add a new root of rank $m + 1$ to tree $T$ so that $T$ is a subtree rooted in on
 The other child of this new root is a caterpillar tree with leaf labels in $\{n + 1, \ldots, m + 1\}$ such that the ranks of the parents of these leaves are ordered according to the leaf labels and the resulting tree does not contain intervals of length greater than one.
 The same way we obtain tree $R'$ from $R$.
 
-Now, a path $p$ between $T$ and $R$ can be matched to a path $p'$ between $T'$ and $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
+Now, a path $p$ between $T$ and $R$ can be transformed to a path $p'$ between $T'$ and $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
 All rank moves and $\nni$ moves on $p'$ remain the same as on $p$.
-
-$\fp(T,R)$ is defined by transforming the moves along $\fp(T',R')$ in the similar way.
-To show that $\fp(T, R)$ computes a shortest path, we observe that if there was another path $p$ from $T$ to $R$ strictly shorter than $\fp(T, R)$, we can construct a path $p'$ with $|p'| = |p| < |\fp(T,R)| = |\fp(T',R')s|$ between $T'$ and $R'$ as explained above, which is a contradiction to Theorem~\ref{thm:rnni_polynomial}.
+In particular, this transformation matches the moves along $\fp(T,R)$ and $\fp(T',R')$ and Theorem~\ref{thm:rnni_polynomial} implies that $\fp(T, R)$ is a shortest path.
 \endproof
 
 Interestingly and in line with this result, the shortest path (geodesic) problem is polynomial time computable in the continuous space of time-trees \autocite{Gavryushkin2016-uu}, where intervals can be of arbitrary real-valued lengths.
