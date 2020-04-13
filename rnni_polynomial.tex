@@ -187,6 +187,7 @@ To be consistent with notations used in the literature \autocite{Gavryushkin2018
 
 
 \section{Complexity of computing $\rnni$ distances}
+\label{sec:rnni_complexity}
 
 \summary{Introducing $\findpath$.}
 In this section we will prove that the shortest path problem in $\rnni$ is decidable in polynomial time.
@@ -503,11 +504,9 @@ Add a new root of rank $m + 1$ to tree $T$ so that $T$ is a subtree rooted in on
 The other child of this new root is a caterpillar tree with leaf labels in $\{n + 1, \ldots, m + 1\}$ such that the ranks of the parents of these leaves are ordered according to the leaf labels and the resulting tree does not contain intervals of length greater than one.
 The same way we obtain tree $R'$ from $R$.
 
-Now, a path $p$ between $T$ and $R$ can be matched to a path $p'$ between $T'$ and $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
+Now, a path $p$ between $T$ and $R$ can be transformed to a path $p'$ between $T'$ and $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
 All rank moves and $\nni$ moves on $p'$ remain the same as on $p$.
-
-$\fp(T,R)$ is defined by transforming the moves along $\fp(T',R')$ in the similar way.
-To show that $\fp(T, R)$ computes a shortest path, we observe that if there was another path $p$ from $T$ to $R$ strictly shorter than $\fp(T, R)$, we can construct a path $p'$ with $|p'| = |p| < |\fp(T,R)| = |\fp(T',R')s|$ between $T'$ and $R'$ as explained above, which is a contradiction to Theorem~\ref{thm:rnni_polynomial}.
+In particular, this transformation matches the moves along $\fp(T,R)$ and $\fp(T',R')$ and Theorem~\ref{thm:rnni_polynomial} implies that $\fp(T, R)$ is a shortest path.
 \endproof
 
 Interestingly and in line with this result, the shortest path (geodesic) problem is polynomial time computable in the continuous space of time-trees \autocite{Gavryushkin2016-uu}, where intervals can be of arbitrary real-valued lengths.
@@ -516,20 +515,15 @@ Note that Corollaries~\ref{cor:fp_dtt} and \ref{cluster_thm} imply that the spac
 
 \section{For what $\rho$ is $\decprob{\rho}$ polynomial?}
 
-\summary{What we achieved in this paper}
-In this paper we could prove that the shortest path problem in the $\rnni$ graph can be solved in polynomial time.
-Another interesting result is that $\rnni$ has the cluster property, which is a further significant difference between this tree space and the classical $\nni$ space.
-We furthermore extended these results to the space of discrete time-trees.
-
 \summary{Summarising results on complexity of $\decprob{\rho}$ -- $\decprob{1} \in \p$ and $\decprob{0} \in \np$}
-We now want to discuss the shortest path problem on graphs $\rnni(\rho)$ with $\rho \geq 0$.
-As $\rnni(1)$ is the $\rnni$ graph, distances can be computed in polynomial time there.
-The computation of distances in $\rnni(0)$ however is $\np$-hard, which follows from the following observation.
+As we have seen in Section~\ref{sec:rnni_complexity}, the shortest path problem $\decprob{1}$ is solvable in polynomial time.
+In this section, we will show that a classical result in mathematical phylogenetics implies that $\decprob{0}$ is $\np$-hard.
+We will also discuss $\decprob{\rho}$ for other values of $\rho$.
 
-\begin{lemma}
+\begin{proposition}
 Let $p = [T_1, \ldots, T_m]$ be a path in $\rnni(0)$ and $p'$ a path in $\nni$ that results from ignoring rankings of internal nodes in all trees on $p$ and deleting duplicated trees.
 Then $p'$ a path in $\nni$ between the trees resulting from the first and last tree of $p$ b ignoring their rankings, and it is $|p| = |p'|$, where $|p|$ is the weight of $p$.
-\end{lemma}
+\end{proposition}
 
 \proof
 The only moves on $p$ with weight greater than zero are $\nni$ moves.
@@ -550,10 +544,10 @@ Is there a threshold $r \in [0,1]$ for which $\decprob{\rho} \in \np$ for all $\
 \summary{Getting one step closer to answer this question by considering small neighbourhoods for $\rho$ around zero and one}
 In order to get one step closer to answering this question, we can consider $\decprob{\rho}$ for $\rho$ close to zero or one and see that in such small neighbourhoods the complexity is the same as in $\decprob{0}$ and $\decprob{1}$, respectively.
 
-\begin{theorem}
+\begin{proposition}
 There exists $\delta > 0$ such that the shortest path problem is $\np$-hard in $\rnni(\varepsilon)$ for all $\varepsilon < \delta$.
 \label{thm:complexity_around_nni}
-\end{theorem}
+\end{proposition}
 
 \proof
 Let $r$ be the number of edges in the $\rnni$ graph that represent rank moves and $\delta = \frac{1}{r}$.
@@ -566,9 +560,9 @@ This path $p'$ can be extended to a path $p$ from $T$ to $R$ in $\rnni(\epsilon)
 However, this results in $|p| \leq r \cdot \epsilon + |p'| < r \cdot \delta + m_n < m_n$ which contradicts $d_{\rnni(\epsilon)}(T,R) = m_n + \epsilon \cdot m_r$.
 \endproof
 
-\begin{theorem}
+\begin{proposition}
 There exists $\delta > 0$ such that the shortest path problem can be solved in polynomial time with the $\findpath$ algorithm in $\rnni(1-\varepsilon)$ for $\varepsilon < \delta$.
-\end{theorem}
+\end{proposition}
 
 \proof
 Analogous to the proof of Theorem~\ref{thm:complexity_around_nni} we define $r$ as the number of edges in $\rnni$ representing rank moves and $\delta = \frac{1}{r}$.
