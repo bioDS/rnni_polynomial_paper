@@ -46,6 +46,7 @@
 \newcommand{\p}{\mathcal{P}}
 \newcommand{\decprob}[1]{\rnni(#1)\text{-}\mathrm{SP}}
 \renewcommand{\O}{\mathcal O}
+\renewcommand{\epsilon}{\varepsilon}
 
 % \newcommand{\summary}[1]{\textbf{#1}} % Print summaries to .pdf
 \newcommand{\summary}[1]{} % Hide summaries in .pdf
@@ -540,10 +541,11 @@ Characterise the complexity of $\decprob{\rho}$ in terms of $\rho$.
 \end{problem}
 
 \summary{Getting one step closer to answer this question by considering small neighbourhoods for $\rho$ around zero and one}
-In order to get one step closer to answering this question, we can consider $\decprob{\rho}$ for $\rho$ close to zero or one and see that in such small neighbourhoods the complexity is the same as in $\decprob{0}$ and $\decprob{1}$, respectively.
+In the rest of the paper, we show that our complexity results (Theorem~\ref{thm:rnni_polynomial}~and~\ref{thm:nni_hard}) remain true if $\rho$ is close enough to $0$ or $1$.
+This suggests a possibility of a threshold $r \in [0, 1]$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
 
 \begin{proposition}
-There exists $\delta > 0$ such that the shortest path problem is $\np$-hard in $\rnni(\varepsilon)$ for all $\varepsilon < \delta$.
+There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon}$ is $\np$-hard for all $\epsilon < \delta$.
 \label{thm:complexity_around_nni}
 \end{proposition}
 
@@ -559,25 +561,20 @@ However, this results in $|p| \leq r \cdot \epsilon + |p'| < r \cdot \delta + m_
 \endproof
 
 \begin{proposition}
-There exists $\delta > 0$ such that the shortest path problem can be solved in polynomial time with the $\findpath$ algorithm in $\rnni(1-\varepsilon)$ for $\varepsilon < \delta$.
+There exists $\delta > 0$ such that the shortest path problem can be solved in polynomial time with the $\findpath$ algorithm in $\rnni(1-\epsilon)$ for $\epsilon < \delta$.
 \end{proposition}
 
 \proof
 Analogous to the proof of Theorem~\ref{thm:complexity_around_nni} we define $r$ as the number of edges in $\rnni$ representing rank moves and $\delta = \frac{1}{r}$.
-We prove the theorem by contradiction and assume that there is an $\varepsilon < \delta$ and a pair of trees $T,R$ in $\rnni(1-\varepsilon)$ for which there is a path $p'$ in $\rnni(1-\varepsilon)$ that is shorter than $\fp(T,R)$.
-If $m_n$ is the number of $\nni$ moves on $p'$ and $m_r$ the number of rank moves, it is $|p'| = m_n + m_r \cdot (1 - \varepsilon)$.
+We prove the theorem by contradiction and assume that there is an $\epsilon < \delta$ and a pair of trees $T,R$ in $\rnni(1-\epsilon)$ for which there is a path $p'$ in $\rnni(1-\epsilon)$ that is shorter than $\fp(T,R)$.
+If $m_n$ is the number of $\nni$ moves on $p'$ and $m_r$ the number of rank moves, it is $|p'| = m_n + m_r \cdot (1 - \epsilon)$.
 The path $p$ in $\rnni(1)$ containing the same trees as $p'$ is then has length $|p| = |p'| + m_r \cdot \epsilon < |p'| + m_r \cdot \frac{1}{r} \leq |p'| < |\fp(T,R)|$.
 This however contradicts the fact that $\findpath$ computes shortest paths in $\rnni(1)$, which proves the theorem.
 \endproof
 
-\summary{Rank moves and $\nni$ moves can appear in different proportions on shortest paths and this is related to $\fp$ not computing shortest paths if $\rho \neq 1$}
-When considering the problem of characterising the complexity of computing the distance in $\rnni(\rho)$ for $\rho \neq 0,1$, an important question is how to balance the trade off between $\nni$ and rank moves.
-Indeed, examples exist when different shortest paths between trees have different number of $\nni$ moves, that is, some $\nni$ moves can be traded for rank moves.
-The following observation, which follows from the existence of such different shortest paths, provides a first step towards understanding of this trade off using the $\findpath$ algorithm.
-
-\begin{lemma}
-	$\findpath$ does not compute shortest paths for $\rnni(\rho)$ with $\rho > 1$.
-\end{lemma}
+\begin{proposition}
+$\findpath$ does not compute shortest paths for $\rnni(\rho)$ with $\rho > 1$.
+\end{proposition}
 
 
 \section{Conclusion}
