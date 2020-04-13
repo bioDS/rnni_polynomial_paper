@@ -131,7 +131,7 @@ We will provide some insights into this problem at the end of this paper.
 \section{Definitions and background results}
 
 \summary{Defining ranked trees and clusters.}
-Unless stated otherwise, in this paper we work with \emph{ranked phylogenetic trees}, which we simply call \emph{trees}, that are binary trees where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by the elements of the set $\{1, \ldots, n-1\}$ so that children have strictly smaller ranks than their parents.
+Unless stated otherwise, in this paper we work with \emph{ranked phylogenetic trees}, which we simply call \emph{trees}, that are binary trees where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by elements of the set $\{1, \ldots, n-1\}$ so that children have strictly smaller ranks than their parents.
 All leaves are assumed to have rank $0$.
 Two trees are considered to be identical if there exists an isomorphism between them which preserves edges, leaf labels, and node rankings.
 For example, trees in Figure~\ref{fig:ranked_trees_ex} are all different.
@@ -479,7 +479,8 @@ But in this case, the first move on $\fp(T',R)$ builds the cluster $C$ and resul
 \subsection{Generalisation to discrete time-trees}
 
 \summary{Generalising $\findpath$ for discrete time-trees}
-We are now going to consider an extension of $\findpath$ onto the space of \emph{discrete time-trees} \autocite{Gavryushkin2018-ol}, which are trees where the rank function can assign any integer to internal nodes as long as children have strictly smaller ranks than their parent and no two internal nodes have equal rank.
+In this section we will show how to modify the $\findpath$ algorithm to efficiently solve the shortest path problem for \emph{discrete time-trees} \autocite{Gavryushkin2018-ol}.
+These are trees where all internal nodes are uniquely ranked by elements of the set $\{1, \ldots, s\}$, where $s \geq n - 1$ so that children have strictly smaller ranks than their parent.
 To generalise $\rnni$ moves to this tree space we need to introduce a third type of move, additional to $\nni$ and rank moves, that is a \emph{length move} on a tree $T$ that changes the rank of an internal node $(T)_t$ by one without changing the rank of any other node in $T$.
 As a result the length of one of the intervals $[(T)_{t+1},(T)_t]$ and $[(T)_t,(T)_{t-1}]$ increases by one while the other one decreases by one.
 Note that $\nni$ moves are still only allowed on edges with end nodes that have rank difference one.
