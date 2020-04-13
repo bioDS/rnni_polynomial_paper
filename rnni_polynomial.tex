@@ -509,14 +509,14 @@ Interestingly and in line with this result, the shortest path (geodesic) problem
 Note that Corollaries~\ref{cor:fp_dtt} and \ref{cluster_thm} imply that the space of discrete time-trees has the cluster property as well.
 
 
-\section{For what $\rho$ is $\decprob(\rho)$ polynomial?}
+\section{For what $\rho$ is $\decprob{\rho}$ polynomial?}
 
 \summary{What we achieved in this paper}
 In this paper we could prove that the shortest path problem in the $\rnni$ graph can be solved in polynomial time.
 Another interesting result is that $\rnni$ has the cluster property, which is a further significant difference between this tree space and the classical $\nni$ space.
 We furthermore extended these results to the space of discrete time-trees.
 
-\summary{Summarising results on complexity of $\rnni(\rho)$ -- $\rnni(1) \in \p$ and $\rnni(0) \in \np$}
+\summary{Summarising results on complexity of $\decprob{\rho}$ -- $\decprob{1} \in \p$ and $\decprob{0} \in \np$}
 We now want to discuss the shortest path problem on graphs $\rnni(\rho)$ with $\rho \geq 0$.
 As $\rnni(1)$ is the $\rnni$ graph, distances can be computed in polynomial time there.
 The computation of distances in $\rnni(0)$ however is $\np$-hard, which follows from the following observation.
@@ -532,18 +532,18 @@ Therefore the length of $p$ equals the number of $\nni$ moves on this path.
 And as transforming $p$ into $p'$ as described above deletes all rank moves and none of the $\nni$ moves, the lengths of $p$ and $p'$ coincide.
 \endproof
 
-\summary{Complexity of $\rnni(\rho)$ changes somewhere between zero and one -- where remains an open question}
+\summary{Complexity of $\decprob{\rho}$ changes somewhere between zero and one -- where remains an open question}
 In particular, this result implies that shortest paths in $\rnni(0)$ give shortest paths in $\nni$.
 Since \textcite{Dasgupta2000-xa} proved that computing distances in $\nni$ is $\np$-hard, we can conclude the same for $\rnni(0)$.
 So the complexity of computing the ranked nearest neighbour interchange distance between trees depends on the weight of rank rearrangements and can change from quadratic, when rank moves are counted as one rearrangement, to $\np$-hard, when rank moves are ignored.
 It hence is natural to ask whether a boundary exists at which the problem switches from polynomial to hard.
 
 \begin{question}
-Is there a threshold $r \in [0,1]$ for which $\rnni(\rho) \in \np$ for all $\rho \leq r$, and $\rnni(\rho) \in \p$ for all $\rho > r$?
+Is there a threshold $r \in [0,1]$ for which $\decprob{\rho} \in \np$ for all $\rho \leq r$, and $\decprob{\rho} \in \p$ for all $\rho > r$?
 \end{question}
 
 \summary{Getting one step closer to answer this question by considering small neighbourhoods for $\rho$ around zero and one}
-In order to get one step closer to answering this question, we can consider $\rnni(\rho)$ for $\rho$ close to zero or one and see that in such small neighbourhoods the complexity is the same as in $\rnni(0)$ and $\rnni(1)$, respectively.
+In order to get one step closer to answering this question, we can consider $\decprob{\rho}$ for $\rho$ close to zero or one and see that in such small neighbourhoods the complexity is the same as in $\decprob{0}$ and $\decprob{1}$, respectively.
 
 \begin{theorem}
 There exists $\delta > 0$ such that the shortest path problem is $\np$-hard in $\rnni(\varepsilon)$ for all $\varepsilon < \delta$.
@@ -594,9 +594,9 @@ This section goes after the 10 pages.}
 \item Characterise, in terms of $\rho$, the computational complexity of the shortest path problem in $\rnni(\rho)$.
 This problem has been discussed in the main part of the paper.
 
-\item What is the complexity of the shortest path problem in ranked SPR? Ranked TBR?
+\item What is the complexity of the shortest path problem in ranked $\spr$? Ranked $\tbr$?
 
-\item Can the algorithm for computing paths in $RNNI$ be used to estableish the complexity of computing geodesics in t-space \autocite{Gavryushkin2016-uu}?
+\item Can the algorithm for computing paths in $\rnni$ be used to establish the complexity of computing geodesics in t-space \autocite{Gavryushkin2016-uu}?
 \end{enumerate}
 
 \newpage
