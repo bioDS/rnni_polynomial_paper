@@ -1,7 +1,7 @@
 \documentclass[11pt]{amsart}
 
 %\usepackage[notref,notcite]{showkeys}
-\usepackage[style=nature]{biblatex}
+\usepackage[style=nature, date=year]{biblatex}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{todonotes}
@@ -23,6 +23,10 @@
 
 \renewbibmacro{in:}{}
 \addbibresource{rnni_polynomial.bib}
+% Remove languages from bibliography
+\AtEveryBibitem{
+  \clearlist{language}
+}
 
 \newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
