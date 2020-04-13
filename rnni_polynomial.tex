@@ -499,10 +499,8 @@ Add a new root of rank $m + 1$ to tree $T$ so that $T$ is a subtree rooted in on
 The other child of this new root is a caterpillar tree with leaf labels in $\{n + 1, \ldots, m + 1\}$ such that the ranks of the parents of these leaves are ordered according to the leaf labels and the resulting tree does not contain intervals of length greater than one.
 The same way we obtain tree $R'$ from $R$.
 
-We can convert a path $p$ from $T$ to $R$ to a path $p'$ from $T'$ to $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
-All rank moves and $\nni$ moves on $p'$ remain the same as on $p'$.
-By the construction of $T'$ and $R'$ it follows that $p'$ ends in $R'$, as the additional caterpillar subtree does not change.
-As every move on $p$ corresponds to exactly one move on $p'$, the lengths of these paths coincide.
+Now, a path $p$ between $T$ and $R$ can be matched to a path $p'$ between $T'$ and $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
+All rank moves and $\nni$ moves on $p'$ remain the same as on $p$.
 
 $\fp(T,R)$ is defined by transforming the moves along $\fp(T',R')$ in the similar way.
 To show that $\fp(T, R)$ computes a shortest path, we observe that if there was another path $p$ from $T$ to $R$ strictly shorter than $\fp(T, R)$, we can construct a path $p'$ with $|p'| = |p| < |\fp(T,R)| = |\fp(T',R')s|$ between $T'$ and $R'$ as explained above, which is a contradiction to Theorem~\ref{thm:rnni_polynomial}.
