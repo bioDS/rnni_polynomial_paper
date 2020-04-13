@@ -71,7 +71,7 @@
 Many popular algorithms for searching the space of leaf-labelled (phylogenetic) trees are based on tree rearrangement operations.
 Under any such operation, the problem is reduced to searching a graph where vertices are trees and (undirected) edges are given by pairs of trees connected by one rearrangement operation (sometimes called a move).
 Most popular are the classical nearest neighbour interchange, subtree prune and regraft, and tree bisection and reconnection moves.
-The (all-pairs) shortest path problem, however, is $\np$-hard in each of these graphs, making tree inference and comparison algorithms challenging to design in practice.
+The shortest path problem, however, is $\np$-hard in each of these graphs, making tree inference and comparison algorithms challenging to design in practice.
 
 Although ranked phylogenetic trees are one of the central objects of interest in applications, the computational complexity of the shortest path problem for these trees remained unsolved for decades.
 In this paper, we settle this problem for the ranked nearest neighbour interchange operation by establishing that the complexity depends on the weight difference between two types of tree rearrangement operations (rank moves and edge moves) in this graph, and varies from quadratic to $\np$-hard.
@@ -101,7 +101,6 @@ Classical results in mathematical phylogenetics imply that computing rearrangeme
 We will formally introduce all necessary definitions later in the paper.
 Intuitively, the difference between the three operations is how much change can be done to a tree by a single operation, with $\nni$ being the most local type of rearrangement and $\tbr$ the most global one.
 Remarkably, it took over 25 years and a number of published erroneous attempts, as discussed in detail by \textcite{Dasgupta2000-xa}, to prove that the shortest path problem is $\np$-hard in $\nni$ \autocite{Dasgupta2000-xa}.
-(By the shortest path problem throughout this paper we mean the all-pairs shortest path problem.)
 Similarly for $\spr$, before \textcite{Bordewich2005-nx} proved the $\np$-hardness result for rooted trees and \textcite{Hickey2008-wv} utilised this proof to establish the result for unrooted trees, incorrect proofs have been discussed in the literature \autocite{Hein1996-em, Allen2001-ky}.
 To facilitate practical applications, several fixed parameter tractable algorithms for computing the $\spr$ distance have been developed over the years \autocite{Whidden2010-bw, Bordewich2005-nx, Whidden2018-fw}.
 Although these algorithm advanced the applicability of the methods significantly, they remain impractical for large distances and are only applied to trees with a moderate number of leaves or those with small distances.
