@@ -221,6 +221,8 @@ The proof of the theorem reduces the problem to establishing a local property (s
 The property can intuitively be understood as $\findpath$ always choosing the best tree possible to go to.
 Importantly, this result can be used for an arbitrary vertex proposal algorithm in an arbitrary graph to establish that the algorithms computes a shortest path between vertices in the graph, hence our proof technique is of general interest.
 
+We also note that due to the connection between ranked trees and lattices \autocite{Collienne2019-ca}, Theorem~\ref{thm:rnni_polynomial} can be translated to the language of lattice theory.
+
 \begin{theorem}
 The time complexity the shortest path problem in the $\rnni$ graph on trees with $n$ leaves is $\O(n^2)$.
 \label{thm:rnni_polynomial}
