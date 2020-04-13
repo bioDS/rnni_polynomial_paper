@@ -569,6 +569,7 @@ Analogous to the proof of Theorem~\ref{thm:complexity_around_nni} we define $r$ 
 We prove the theorem by contradiction and assume that there is an $\epsilon < \delta$ and a pair of trees $T,R$ in $\rnni(1-\epsilon)$ for which there is a path $p'$ in $\rnni(1-\epsilon)$ that is shorter than $\fp(T,R)$.
 If $m_n$ is the number of $\nni$ moves on $p'$ and $m_r$ the number of rank moves, it is $|p'| = m_n + m_r \cdot (1 - \epsilon)$.
 The path $p$ in $\rnni(1)$ containing the same trees as $p'$ is then has length $|p| = |p'| + m_r \cdot \epsilon < |p'| + m_r \cdot \frac{1}{r} \leq |p'| < |\fp(T,R)|$.
+\todo{I don't think this is a contradiction because $p$ is a path in $\rnni(1)$ and $FP(T, R)$ is a path in $\rnni(1-\epsilon)$.}
 This however contradicts the fact that $\findpath$ computes shortest paths in $\rnni(1)$, which proves the theorem.
 \endproof
 
