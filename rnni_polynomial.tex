@@ -527,13 +527,8 @@ $\decprob{0}$ is $\np$-hard.
 \end{theorem}
 
 \proof
-We prove this by reducing the problem of computing $\nni$ distances, which is known to be $\np$-hard \autocite{Dasgupta2000-xa}, to $\decprob{0}$.
-Let $T$ and $R$ be two trees as an instance of the shortest path problem in $\nni$.
-By arbitrarily ranking internal nodes in $T$ and $R$ we receive trees $T'$ and $R'$ that give an instance of $\decprob{0}$.
-For any $\nni$ path $p$ between $T$ and $R$ there is a path $p'$ between $T$ and $R$ that results from adding rank moves of weight zero to $p$ such that all $\nni$ moves are performed on edges of length one only.
-On the other side, every path between $T'$ and $R'$ in $\rnni(0)$ gives a path of same weight between $T$ and $R$ by ignoring all rankings of trees and rank moves.
-The lengths of these paths between $T$ and $R$, and $T'$ and $R'$ coincide as the only moves that change between these paths have weight zero.
-Therefore, the length of a shortest $\nni$ path between $T$ and $R$ is $d$ if and only if the length of a shortest path between $T'$ and $R'$ is $d$ in $\rnni(0)$.
+Note that the length of the path required in an instance of $\decprob{0}$ is equal to the minimum number of $\nni$ moves necessary to convert a tree $T$ to a tree $R$ where the rankings of internal nodes are ignored and every $\nni$ move is allowed on every edge.
+This minimum is called the $\nni$ distance and the corresponding decision problem is known to be $\np$-hard \autocite{Dasgupta2000-xa}.
 \endproof
 
 \summary{Complexity of $\decprob{\rho}$ changes somewhere between zero and one -- where remains an open question}
