@@ -522,14 +522,17 @@ In this section, we will show that a classical result in mathematical phylogenet
 We will also discuss $\decprob{\rho}$ for other values of $\rho$.
 
 \begin{proposition}
-Let $p = [T_1, \ldots, T_m]$ be a path in $\rnni(0)$ and $p'$ a path in $\nni$ that results from ignoring rankings of internal nodes in all trees on $p$ and deleting duplicated trees.
-Then $p'$ a path in $\nni$ between the trees resulting from the first and last tree of $p$ b ignoring their rankings, and it is $|p| = |p'|$, where $|p|$ is the weight of $p$.
+$\decprob{0}$ is $\np$-hard.
 \end{proposition}
 
 \proof
-The only moves on $p$ with weight greater than zero are $\nni$ moves.
-Therefore the length of $p$ equals the number of $\nni$ moves on this path.
-And as transforming $p$ into $p'$ as described above deletes all rank moves and none of the $\nni$ moves, the lengths of $p$ and $p'$ coincide.
+We prove this by reducing the problem of computing $\nni$ distances, which is known to be $\np$-hard \autocite{Dasgupta2000-xa}, to $\decprob{0}$.
+Let $T$ and $R$ be two trees as an instance of the shortest path problem in $\nni$.
+By arbitrarily ranking internal nodes in $T$ and $R$ we receive trees $T'$ and $R'$ that give an instance of $\decprob{0}$.
+For any $\nni$ path $p$ between $T$ and $R$ there is a path $p'$ between $T$ and $R$ that results from adding rank moves of weight zero to $p$ such that all $\nni$ moves are performed on edges of length one only.
+On the other side, every path between $T'$ and $R'$ in $\rnni(0)$ gives a path of same weight between $T$ and $R$ by ignoring all rankings of trees and rank moves.
+The lengths of these paths between $T$ and $R$, and $T'$ and $R'$ coincide as the only moves that change between these paths have weight zero. 
+Therefore, the length of a shortest $\nni$ path between $T$ and $R$ is $d$ if and only if the length of a shortest path between $T'$ and $R'$ is $d$ in $\rnni(0)$.
 \endproof
 
 \summary{Complexity of $\decprob{\rho}$ changes somewhere between zero and one -- where remains an open question}
