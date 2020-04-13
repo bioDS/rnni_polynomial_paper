@@ -129,8 +129,10 @@ We show that the shortest path problem in $\rnni(0)$ has the same complexity as 
 Hence changing $\rho$ from zero to one shifts the complexity from $\np$-hard to polynomial.
 
 We propose it as an open problem to characterise the values of $\rho \in [0,1]$ for which the complexity of computing distances in the parametrised graph is polynomial.
-The problem is similar in spirit to the ``beyond worst-case analysis'' \autocite{Roughgarden2019-to} because we have identified a parameter responsible for the shift of complexity from practically impossible to highly efficient, we hence hope that the approaches reviewed by \textcite{Roughgarden2019-to} will be helpful for this study.
-We will provide some insights into this problem at the end of this paper.
+We will provide some insights into this characterisation problem at the end of this paper.
+The problem is similar in spirit to the ``beyond worst-case analysis'' \autocite{Roughgarden2019-to} because we have identified a parameter responsible for the shift of complexity from practically impossible, when the parameter is close to $0$, to highly efficient, when the parameter is $1$.
+Indeed, a $\gamma$-perturbation stable instance of the maximum cut problem is known \autocite{Roughgarden2019-to} to be $\np$-hard for small values of $\gamma$ and polynomial for larger values of $\gamma$, and the problem of identifying the value of $\gamma$ where the complexity switches has largely been resolved \autocite{Makarychev2014-ev}.
+We hence hope that the approaches reviewed by \textcite{Roughgarden2019-to} will be helpful for this study.
 
 
 \section{Definitions and background results}
