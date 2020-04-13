@@ -492,19 +492,20 @@ The time complexity of the shortest path problem between discrete time-trees wit
 \end{corollary}
 
 \proof
-	Let $T$ and $R$ be discrete time-trees and let $m$ be the maximum of the times assigned to the roots of $T$ and $R$.
-	We construct trees $T'$ and $R'$ in $\rnni$ on $m + 1$ leaves by adding $m + 1 - n$ new leaves in the following way.
-	Add a new root with rank $m+1$ to tree $T$, such that $T$ is a subtree rooted in one of the children of this new node.
-	The other child of this new root is a caterpillar tree with leaf labels in $\{n+1, \ldots, m+1\}$ such that the ranks of the parents of these leaves are ordered according to the leaf labels and the resulting tree does not contain intervals of length greater than one.
-	The same way we obtain tree $R'$ from $R$.
+Let $T$ and $R$ be a pair of discrete time-trees.
+We will convert $T$ and $R$ into $\rnni$ trees on $m + 1$ leaves and show that the modified version of $\findpath$ for discrete time-trees is equivalent to the original $\findpath$ on converted trees.
+Specifically, we consider trees $T'$ and $R'$ obtained from $T$ and $R$ by adding $m + 1 - n$ new leaves in the following way.
+Add a new root of rank $m + 1$ to tree $T$ so that $T$ is a subtree rooted in one of the children of this new root.
+The other child of this new root is a caterpillar tree with leaf labels in $\{n + 1, \ldots, m + 1\}$ such that the ranks of the parents of these leaves are ordered according to the leaf labels and the resulting tree does not contain intervals of length greater than one.
+The same way we obtain tree $R'$ from $R$.
 
-	We can convert a path $p$ from $T$ to $R$ to a path $p'$ from $T'$ to $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
-	All rank moves and $\nni$ moves on $p'$ remain the same as on $p'$.
-	By the construction of $T'$ and $R'$ it follows that $p'$ ends in $R'$, as the additional caterpillar subtree does not change.
-	As every move on $p$ corresponds to exactly one move on $p'$, the lengths of these paths coincide.
+We can convert a path $p$ from $T$ to $R$ to a path $p'$ from $T'$ to $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
+All rank moves and $\nni$ moves on $p'$ remain the same as on $p'$.
+By the construction of $T'$ and $R'$ it follows that $p'$ ends in $R'$, as the additional caterpillar subtree does not change.
+As every move on $p$ corresponds to exactly one move on $p'$, the lengths of these paths coincide.
 
-	$\fp(T,R)$ is defined by transforming the moves along $\fp(T',R')$ in the similar way.
-	To show that $\fp(T, R)$ computes a shortest path, we observe that if there was another path $p$ from $T$ to $R$ strictly shorter than $\fp(T, R)$, we can construct a path $p'$ with $|p'| = |p| < |\fp(T,R)| = |\fp(T',R')s|$ between $T'$ and $R'$ as explained above, which is a contradiction to Theorem~\ref{thm:rnni_polynomial}.
+$\fp(T,R)$ is defined by transforming the moves along $\fp(T',R')$ in the similar way.
+To show that $\fp(T, R)$ computes a shortest path, we observe that if there was another path $p$ from $T$ to $R$ strictly shorter than $\fp(T, R)$, we can construct a path $p'$ with $|p'| = |p| < |\fp(T,R)| = |\fp(T',R')s|$ between $T'$ and $R'$ as explained above, which is a contradiction to Theorem~\ref{thm:rnni_polynomial}.
 \endproof
 
 Interestingly and in line with this result, the shortest path (geodesic) problem is polynomial time computable in the continuous space of time-trees \autocite{Gavryushkin2016-uu}, where intervals can be of arbitrary real-valued lengths.
