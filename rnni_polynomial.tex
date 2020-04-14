@@ -189,7 +189,7 @@ To be consistent with notations used in the literature \autocite{Gavryushkin2018
 \label{sec:rnni_complexity}
 
 \summary{Introducing $\findpath$.}
-In this section we will prove that the shortest path problem in $\rnni$ is decidable in polynomial time.
+In this section we will prove that the shortest path problem in $\rnni$ is polynomial-time solvable.
 Our proof will be constructive -- we will show that the following quadratic algorithm of \textcite{Collienne2019-ca} called $\findpath$ computes a shortest path between two given trees in $\rnni$.
 $\findpath$ algorithm receives two trees $T$ and $R$ in their cluster representation, and we denote the representation of $R$ by $[C_1, \ldots, C_{n-2}]$.
 The algorithm considers the clusters $C_1, \ldots, C_{n-2}$ iteratively in their order and produces a sequence $p$ of trees which become a shortest path from $T$ to $R$ after the algorithm terminates.
@@ -447,7 +447,7 @@ In this section we apply Theorem~\ref{thm:rnni_polynomial} to settle further ope
 
 \summary{Some words on the cluster property}
 Historically in mathematical phylogenetics, the shortest path decision problem was studied hand in hand with the following cluster property \autocite{Dasgupta2000-xa}.
-We say that a graph on trees has the \emph{cluster property} if two trees $T$ and $R$ sharing a cluster implies that all trees on every shortest path between $T$ and $R$ also have this cluster.
+We say that a graph on trees has the \emph{cluster property} if from two trees $T$ and $R$ sharing a cluster it follows that every tree on every shortest path between $T$ and $R$ also has this cluster.
 Surprisingly, this property does not hold for the $\nni$ graph \autocite{Li1996-zw}.
 Interestingly, the property has been crucial for proving \autocite{Dasgupta2000-xa} that the shortest path problem in $\nni$ is $\np$-hard.
 In this section, we will prove that the $\rnni$ graph has the cluster property by building on the fact that $\findpath$ computes shortest paths that preserve clusters.
@@ -508,10 +508,11 @@ We obtain $R'$ from $R$ in the same way.
 Now, a path $p$ between $T$ and $R$ can be transformed to a path $p'$ between $T'$ and $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
 All rank moves and $\nni$ moves on $p'$ remain the same as on $p$.
 In particular, this transformation matches the moves along $\fp(T,R)$ and $\fp(T',R')$ and Theorem~\ref{thm:rnni_polynomial} implies that $\fp(T, R)$ is a shortest path.
+The running time bound follows from the running time of $\findpath$.
 \endproof
 
-Interestingly and in line with this result, the shortest path (geodesic) problem is polynomial time computable in the continuous space of time-trees \autocite{Gavryushkin2016-uu}, where intervals can be of arbitrary real-valued lengths.
-Note that Corollaries~\ref{cor:fp_dtt} and \ref{cluster_thm} imply that the space of discrete time-trees has the cluster property as well.
+Interestingly and in line with this result, the shortest path (geodesic) problem is polynomial-time computable in the continuous space of time-trees \autocite{Gavryushkin2016-uu}, where intervals can be of arbitrary real-valued lengths.
+Note also that Corollaries~\ref{cluster_thm} and \ref{cor:fp_dtt} imply that the space of discrete time-trees has the cluster property.
 
 
 \section{For what $\rho$ is $\decprob{\rho}$ polynomial?}
@@ -527,7 +528,7 @@ $\decprob{0}$ is $\np$-hard.
 \end{theorem}
 
 \proof
-Note that the length of the path required in an instance of $\decprob{0}$ is equal to the minimum number of $\nni$ moves necessary to convert a tree $T$ to a tree $R$ where the rankings of internal nodes are ignored and every $\nni$ move is allowed on every edge.
+Note that the length of the path required in an instance of $\decprob{0}$ is equal to the minimum number of $\nni$ moves necessary to convert one tree into another tree where the rankings of internal nodes are ignored and every $\nni$ move is allowed on every edge.
 This minimum is called the $\nni$ distance and the corresponding decision problem is known to be $\np$-hard \autocite{Dasgupta2000-xa}.
 \endproof
 
@@ -540,8 +541,9 @@ Characterise the complexity of $\decprob{\rho}$ in terms of $\rho$.
 \end{problem}
 
 \summary{Getting one step closer to answer this question by considering small neighbourhoods for $\rho$ around zero and one}
-In the rest of the paper, we show that our complexity results (Theorem~\ref{thm:rnni_polynomial}~and~\ref{thm:nni_hard}) remain true if $\rho$ is close enough to $0$ or $1$.
-This suggests a possibility of a threshold $r \in [0, 1]$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
+We now show that Theorem~\ref{thm:nni_hard} can be extended to the values of $\rho$ close enough to $0$.
+This suggests a possibility of a threshold $\hat\rho \in [0, 1]$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
+Assuming the threshold exists, the following proposition implies that $\hat\rho > 0$ and establishes an explicit lower bound on the threshold.
 
 \begin{proposition}
 There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon}$ is $\np$-hard for all $\epsilon < \delta$.
@@ -556,10 +558,10 @@ Indeed, consider a path $p$ between $T$ and $R$ that has at least one more $\nni
 However, even one extra $\nni$ move cannot be compensated by rank moves dues to the choice of $\delta$.
 \endproof
 
-The following proposition implies that our algorithm $\findpath$ is not enough to isolate the values of $\rho$ for which $\decprob{\rho}$ is polynomial, and other algorithms have to be considered.
+The following proposition implies that our algorithm $\findpath$ is not enough to isolate the values of $\rho$ for which $\decprob{\rho}$ is polynomial, and other algorithms have to be developed.
 
 \begin{proposition}
-$\findpath$ does not compute shortest paths for $\rnni(\rho)$ with $\rho > 1$.
+$\findpath$ does not compute shortest paths in $\rnni(\rho)$ for $\rho > 1$.
 \end{proposition}
 
 \proof
@@ -576,9 +578,12 @@ In this framework, we propose to study the following questions.
 \item Characterise, in terms of $\rho$, the computational complexity of the shortest path problem in $\rnni(\rho)$.
 This is Problem~\ref{prblm:rho_range}, which has been discussed in detail.
 
-\item The same questions as we have considered for ranked $\nni$ can be studied in other rearrangement-based graphs on leaf-labelled trees, such as the ranked $\spr$ graph and the ranked $\tbr$ graph \autocite{Semple2003-nj}.
+\item The questions we have considered for ranked $\nni$ can be studied in other rearrangement-based graphs on leaf-labelled trees, such as the ranked $\spr$ graph and the ranked $\tbr$ graph \autocite{Semple2003-nj}.
+What is the complexity of the shortest path problem there?
+Does the complexity depend on edge weights?
 
-\item Can our results, e.g.\ the algorithm for computing shortest paths in $\rnni$, be used to establish the complexity of computing geodesics between trees with real-valued time intervals, which is called $\mathrm t$-space \autocite{Gavryushkin2016-uu}?
+\item Can our results, e.g.\ the algorithm for computing shortest paths in $\rnni$, be used to establish the complexity of computing geodesics between trees with real-valued time intervals?
+This geodesic metric space is called a $\mathrm t$-space and an algorithm for computing geodesics in $\mathrm t$-space would be of importance for applications \autocite{Gavryushkin2016-uu}.
 \end{enumerate}
 
 \subsection{Acknowledgements}
