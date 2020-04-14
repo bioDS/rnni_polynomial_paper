@@ -117,7 +117,7 @@ For example, the cluster property holds in $\spr$ even though the shortest path 
 \summary{Paper summary in light of motivation: We've discovered the first efficiently computable distance, given by a parameter range in known tree spaces, and want to understand the reason for the complexity jump -- cite ``Beyond worst-case complexity.''}
 In this paper, we establish that for a certain tree rearrangement operation (a generalisation of $\nni$) the complexity of the shortest path problem is $\O(n^2)$ (Theorem~\ref{thm:rnni_polynomial}).
 This is, to the best of our knowledge, the first tree rearrangement operation with polynomial-time computable shortest paths and distances between trees.
-Our algorithm is practical as it allows to compute distances between trees with thousands of leaves, while in the closely related $\nni$ graph this number is well smaller \autocite{Whidden2016-kl} than 20.
+Our algorithm is practical as it allows to compute distances between trees with thousands of leaves, while in the closely related $\nni$ graph this number is well smaller \autocite{Li1996-zw, Whidden2016-kl} than 20.
 To prove the main result of this paper, Theorem~\ref{thm:rnni_polynomial}, we will show that the algorithm $\findpath$ of \textcite{Collienne2019-ca} computes shortest paths in the ranked nearest neighbour interchange graph ($\rnni$) in polynomial time.
 We will also prove that the $\rnni$ graph has the cluster property, which is an important distinction between this graph and $\nni$.
 We then generalise the $\findpath$ algorithm to trees with arbitrary integer-valued branch lengths and show that the shortest path problem for such trees is also polynomial-time.
@@ -588,10 +588,9 @@ This geodesic metric space is called a $\mathrm t$-space and an algorithm for co
 
 \subsection{Acknowledgements}
 
-We thank Alexei Drummond and Kieran Elmes for useful discussions about the weight difference between $\rnni$ moves and discrete time-trees.
+We thank Alexei Drummond and Kieran Elmes for useful discussions about the weight difference between $\rnni$ moves, applied aspects of our results, and the generalisation to discrete time-trees.
 Their comments improved our paper.
-We also acknowledge support from the Royal Society of New Zealand through the Rutherford Discovery Fellowship (RDF-UOO1702) awarded to AG.
-This work was partially supported by the Ministry of Business, Innovation, and Employment of New Zealand through the Endeavour Smart Ideas (CONT-61378-ENDSI-UOO) and Data Science Programmes grants.
+We acknowledge support from the Royal Society of New Zealand through the Rutherford Discovery Fellowship (RDF-UOO1702) awarded to AG; Ministry of Business, Innovation, and Employment of New Zealand through the Endeavour Smart Ideas (CONT-61378-ENDSI-UOO) and Data Science Programmes grants.
 
 
 \printbibliography
