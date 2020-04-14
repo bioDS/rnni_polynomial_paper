@@ -552,26 +552,15 @@ There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon
 \end{proposition}
 
 \proof
-\todo{add what the diameter is}
-Let $\delta = \frac1r$, where $r$ is the diameter of the graph $\rnni$.
+Let $\delta = \frac1r$, where $r$ is the diameter of the graph $\rnni$, which is known \autocite{Collienne2019-ca} to be equal to $\frac{(n - 1)(n - 2)}{2}$.
 Consider two trees $T$ and $R$ in $\rnni(\epsilon)$ for $\epsilon < \delta$.
 We now show that every shortest path between $T$ and $R$ must minimise the number of $\nni$ moves.
 Indeed, consider a path $p$ between $T$ and $R$ that has at least one more $\nni$ move than the minimum.
 However, even one extra $\nni$ move cannot be compensated by rank moves dues to the choice of $\delta$.
 \endproof
 
-\begin{proposition}
-There exists $\delta > 0$ such that the shortest path problem can be solved in polynomial time with the $\findpath$ algorithm in $\rnni(1-\epsilon)$ for $\epsilon < \delta$.
-\end{proposition}
-
-\proof
-Analogous to the proof of Theorem~\ref{thm:complexity_around_nni} we define $r$ as the number of edges in $\rnni$ representing rank moves and $\delta = \frac{1}{r}$.
-We prove the theorem by contradiction and assume that there is an $\epsilon < \delta$ and a pair of trees $T,R$ in $\rnni(1-\epsilon)$ for which there is a path $p'$ in $\rnni(1-\epsilon)$ that is shorter than $\fp(T,R)$.
-If $m_n$ is the number of $\nni$ moves on $p'$ and $m_r$ the number of rank moves, it is $|p'| = m_n + m_r \cdot (1 - \epsilon)$.
-The path $p$ in $\rnni(1)$ containing the same trees as $p'$ is then has length $|p| = |p'| + m_r \cdot \epsilon < |p'| + m_r \cdot \frac{1}{r} \leq |p'| < |\fp(T,R)|$.
-\todo{I don't think this is a contradiction because $p$ is a path in $\rnni(1)$ and $FP(T, R)$ is a path in $\rnni(1-\epsilon)$.}
-This however contradicts the fact that $\findpath$ computes shortest paths in $\rnni(1)$, which proves the theorem.
-\endproof
+\todo{Lena, could you add the counterexample trees in the cluster format here?}
+The following proposition, that can be proved by explicitly constructing a counterexample, implies that the algorithm $\findpath$ is not enough to isolate the values of $\rho$ for which $\decprob{\rho}$ is polynomial.
 
 \begin{proposition}
 $\findpath$ does not compute shortest paths for $\rnni(\rho)$ with $\rho > 1$.
@@ -579,6 +568,8 @@ $\findpath$ does not compute shortest paths for $\rnni(\rho)$ with $\rho > 1$.
 
 
 \section{Conclusion}
+
+In this paper
 
 \summary{Open problems and Acknowledgements.
 This section goes after the 10 pages.}
