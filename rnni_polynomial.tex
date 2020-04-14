@@ -119,18 +119,16 @@ In this paper, we establish that for a certain tree rearrangement operation (a g
 This is, to the best of our knowledge, the first tree rearrangement operation with polynomial-time computable shortest paths and distances between trees.
 Our algorithm is practical as it allows to compute distances between trees with thousands of leaves, while in the closely related $\nni$ graph this number is well smaller \autocite{Whidden2016-kl} than 20.
 To prove the main result of this paper, Theorem~\ref{thm:rnni_polynomial}, we will show that the algorithm $\findpath$ of \textcite{Collienne2019-ca} computes shortest paths in the ranked nearest neighbour interchange graph ($\rnni$) in polynomial time.
-We will also prove that the $\rnni$ graph has the cluster property, which, as discussed, is an important property distinguishing this graph from the $\nni$ graph.
-We then generalise the $\findpath$ algorithm to trees with arbitrary integer-valued branch lengths and show that the shortest path problem for such trees is also polynomial time.
-We will finish this paper by asking and studying the question of characterising the (numeric) parameter that is responsible for the complexity shift from $\np$-hard to polynomial.
-Specifically, we introduce a parameter $\rho$ that weighs edges in the $\rnni$ graph and consider the parametrised graph $\rnni(\rho)$.
-We show that the shortest path problem in $\rnni(0)$ has the same complexity as in the $\nni$ graph, while in $\rnni(1)$ the problem is solvable in $\O(n^2)$.
-Hence changing $\rho$ from zero to one shifts the complexity from $\np$-hard to polynomial.
+We will also prove that the $\rnni$ graph has the cluster property, which is an important distinction between this graph and $\nni$.
+We then generalise the $\findpath$ algorithm to trees with arbitrary integer-valued branch lengths and show that the shortest path problem for such trees is also polynomial-time.
+We will finish the paper by investigating the question of whether there exists a threshold at which the complexity shifts from $\np$-hard to polynomial.
+Specifically, we introduce an edge weight parameter $\rho$ in the $\rnni$ graph and consider a parametrised graph $\rnni(\rho)$.
+We show that the shortest path problem is $\np$-hard in $\rnni(0)$ and quadratic in $\rnni(1)$, so the complexity changes with $\rho$.
 
-We propose it as an open problem to characterise the values of $\rho \in [0,1]$ for which the complexity of computing distances in the parametrised graph is polynomial.
+We propose to characterise the values of $\rho \geq 0$ for which the complexity of computing distances in the parametrised graph is polynomial.
 We will provide some insights into this characterisation problem at the end of this paper.
-The problem is similar in spirit to the ``beyond worst-case analysis'' \autocite{Roughgarden2019-to} because we have identified a parameter responsible for the shift of complexity from practically impossible, when the parameter is close to $0$, to highly efficient, when the parameter is $1$.
-Indeed, a $\gamma$-perturbation stable instance of the maximum cut problem is known \autocite{Roughgarden2019-to} to be $\np$-hard for small values of $\gamma$ and polynomial for larger values of $\gamma$, and the problem of identifying the value of $\gamma$ where the complexity switches has largely been resolved \autocite{Makarychev2014-ev}.
-We hence hope that the approaches reviewed by \textcite{Roughgarden2019-to} will be helpful for this study.
+The problem is similar in spirit to the ``beyond worst-case analysis'' \autocite{Roughgarden2019-to}, because, just like in our result, a $\gamma$-perturbation stable instance of the maximum cut problem is known \autocite{Roughgarden2019-to} to be $\np$-hard for small values of $\gamma$ and polynomial for larger values of $\gamma$.
+Since the problem of identifying the value of $\gamma$ where the complexity switches has largely been resolved \autocite{Makarychev2014-ev}, we hope that the approaches reviewed by \textcite{Roughgarden2019-to} will be helpful for this study.
 
 
 \section{Definitions and background results}
