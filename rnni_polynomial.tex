@@ -168,20 +168,20 @@ The \emph{weight of a path} is the sum of the weights of all moves along the pat
 The \emph{distance} between two trees in $\rnni(\rho)$ is the weight of a path with the minimal weight.
 In the main part of the paper we will concentrate on $\rho = 1$, so all edges in the graph will have equal weights and the graph can be assumed to be unweighted.
 
-The main computational problem considered in this paper is the following shortest path problem
+In this paper we study the following class of shortest path problems parametrised by a non-negative real number $\rho$.
 
 \medskip
 
 \noindent $\decprob{\rho}$
 \medskip\\
-INSTANCE: A real number $\rho \geq 0$, an integer $k > 0$, and a pair of trees $T$ and $R$.\\
-FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$.
+INSTANCE: A pair of trees $T$ and $R$\\
+FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 
 \medskip
 
-Our first and main goal in this paper is to prove that $\decprob{1}$ is polynomial.
+Our first goal is to prove that $\decprob{1}$ is polynomial-time solvable.
 We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that $\decprob{0}$ is $\np$-hard.
-We will also study $\decprob{\rho}$ for other values of $\rho$ in this paper.
+We will also study $\decprob{\rho}$ for other values of $\rho$.
 To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol, Collienne2019-ca}, we will denote the graph $\rnni(1)$ by $\rnni$.
 
 
