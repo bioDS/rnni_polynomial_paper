@@ -134,8 +134,8 @@ Since the problem of identifying the value of $\gamma$ where the complexity swit
 \section{Definitions and background results}
 
 \summary{Defining ranked trees and clusters.}
-Unless stated otherwise, in this paper we work with \emph{ranked phylogenetic trees}, which we simply call \emph{trees}, that are binary trees where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by elements of the set $\{1, \ldots, n-1\}$ so that children have strictly smaller ranks than their parents.
-All leaves are assumed to have rank $0$.
+Unless stated otherwise, by \emph{trees} in this paper we mean \emph{ranked phylogenetic trees}, which are binary trees where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by elements of the set $\{1, \ldots, n-1\}$ so that each child has a strictly smaller rank than its parent.
+All leaves are assumed to have rank $0$ but we only refer to the ranks of internal nodes throughout.
 Two trees are considered to be identical if there exists an isomorphism between them which preserves edges, leaf labels, and node rankings.
 For example, trees in Figure~\ref{fig:ranked_trees_ex} are all different.
 In total there are $\frac{(n - 1)! n!}{2^{n-1}}$ such trees on $n$ leaves \autocite{Gavryushkin2018-ol}.
