@@ -91,8 +91,8 @@ In this paper we will provide an insight into this approach, motivated by ideas 
 \setcounter{page}{1}
 
 \summary{Motivation: many popular tree search algorithms are based on NNI (e.g. this \url{https://academic.oup.com/mbe/article/28/10/2731/973375} tool has been cited 40K+ times, see also references there to PhyML, RaxML, etc. -- they all use NNI); other applications include tree comparison methods, tree inference methods (proposal distributions), summary statistics, etc.}
-The problem of reconstructing evolutionary histories given sequence data is central for many tree inference methods used in computational evolutionary biology.
-Some of the most popular methods infer trees from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
+The problem of reconstructing evolutionary histories from sequence data is central for many tree inference methods used in computational biology.
+Some of the most popular approaches infer trees from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
 All these methods rely of various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection ($\tbr$).
 The tree inference problem hence can be formulated as a graph search, where vertices are trees and edges are given by the tree rearrangement operation of interest.
 
@@ -102,14 +102,12 @@ We will formally introduce all necessary definitions later in the paper.
 Intuitively, the difference between the three operations is how much change can be done to a tree by a single operation, with $\nni$ being the most local type of rearrangement and $\tbr$ the most global one.
 Remarkably, it took over 25 years and a number of published erroneous attempts, as discussed in detail by \textcite{Dasgupta2000-xa}, to prove that the shortest path problem is $\np$-hard in $\nni$ \autocite{Dasgupta2000-xa}.
 Similarly for $\spr$, before \textcite{Bordewich2005-nx} proved the $\np$-hardness result for rooted trees and \textcite{Hickey2008-wv} utilised this proof to establish the result for unrooted trees, incorrect proofs have been discussed in the literature \autocite{Hein1996-em, Allen2001-ky}.
-To facilitate practical applications, several fixed parameter tractable algorithms for computing the $\spr$ distance have been developed over the years \autocite{Whidden2010-bw, Bordewich2005-nx, Whidden2018-fw}.
-Although these algorithm advanced the applicability of the methods significantly, they remain impractical for large distances and are only applied to trees with a moderate number of leaves or those with small distances.
-It is still unknown whether the fixed parameter tractability result holds in $\nni$, so the algorithms for computing shortest paths in $\nni$ remain largely impractical.
-This is an active area of research in modern computational phylogenetics \autocite{Gavryushkin2018-ol}.
+To facilitate practical applications, fixed parameter tractable algorithms for computing the $\spr$ distance have been developed over the years \autocite{Whidden2010-bw, Bordewich2005-nx, Whidden2018-fw}.
+Although important, these algorithms remain impractical for large distances and are only applied to trees with a moderate number of leaves or those with small distances.
+It is still unknown whether the fixed parameter tractability result holds in $\nni$ making the shortest paths problem in this graph even more challenging \autocite{Gavryushkin2018-ol}.
 
 \summary{Historically, the complexity question was following hand in hand with the cluster property -- more history plus biological relevance of the property.}
 The idea utilised by \textcite{Dasgupta2000-xa} to prove that the shortest path problem in $\nni$ is $\np$-hard stems from a result that shortest paths in $\nni$ do not preserve clusters \autocite{Li1996-zw}, that is, two trees sharing a cluster does not imply that all trees along a shortest path have that cluster.
-We will say that $\nni$ does not have the cluster property (see below for a formal description).
 Not only this counter-intuitive property eventually led to the computational hardness result, the property made little sense biologically as trees clustering the same set of sequences into a subtree should be closer to each other than to a tree that does not have that subtree.
 Indeed, a shared cluster means that both trees support the hypothesis that this cluster has evolved along a subtree.
 It was believed that the cluster property and the computational complexity of the shortest path problem were related \autocite{Li1996-zw}, so the two questions have historically been studied simultaneously \autocite{Dasgupta2000-xa}.
@@ -575,9 +573,7 @@ The trees $[\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $[\{a_3,a_4\},
 
 In this paper we have identified a class of shortest path problems $\decprob{\rho}$, $\rho \geq 0$, and showed that $\decprob{\rho}$ is $\np$-hard for $\rho$ close to $0$ and $\decprob{1}$ polynomial-time solvable.
 As discussed in the introduction, the problem of characterising the range of $\rho$ where $\decprob{\rho}$ in polynomial is methodologically close to other similar problems, e.g.\ $\gamma$-perturbation stable instances of the maximum cut problem.
-
-\subsection{Open problems}
-In this framework, we propose the following questions.
+In this framework, we propose to study the following questions.
 \begin{enumerate}
 \item Characterise, in terms of $\rho$, the computational complexity of the shortest path problem in $\rnni(\rho)$.
 This is Problem~\ref{prblm:rho_range}, which has been discussed in detail.
