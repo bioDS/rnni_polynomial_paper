@@ -4,7 +4,7 @@
 \usepackage[style=nature, date=year]{biblatex}
 \usepackage{float}
 \usepackage{graphicx}
-\usepackage{todonotes}
+%\usepackage{todonotes}
 \usepackage{subcaption}
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -540,6 +540,7 @@ In the light of Theorem~\ref{thm:rnni_polynomial} and Theorem~\ref{thm:nni_hard}
 
 \begin{problem}
 Characterise the complexity of $\decprob{\rho}$ in terms of $\rho$.
+\label{prblm:rho_range}
 \end{problem}
 
 \summary{Getting one step closer to answer this question by considering small neighbourhoods for $\rho$ around zero and one}
@@ -559,7 +560,7 @@ Indeed, consider a path $p$ between $T$ and $R$ that has at least one more $\nni
 However, even one extra $\nni$ move cannot be compensated by rank moves dues to the choice of $\delta$.
 \endproof
 
-The following proposition implies that the algorithm $\findpath$ is not enough to isolate the values of $\rho$ for which $\decprob{\rho}$ is polynomial.
+The following proposition implies that our algorithm $\findpath$ is not enough to isolate the values of $\rho$ for which $\decprob{\rho}$ is polynomial, and other algorithms have to be considered.
 
 \begin{proposition}
 $\findpath$ does not compute shortest paths for $\rnni(\rho)$ with $\rho > 1$.
@@ -572,22 +573,18 @@ The trees $[\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $[\{a_3,a_4\},
 
 \section{Conclusion}
 
-In this paper
-
-\summary{Open problems and Acknowledgements.
-This section goes after the 10 pages.}
+In this paper we have identified a class of shortest path problems $\decprob{\rho}$, $\rho \geq 0$, and showed that $\decprob{\rho}$ is $\np$-hard for $\rho$ close to $0$ and $\decprob{1}$ polynomial-time solvable.
+As discussed in the introduction, the problem of characterising the range of $\rho$ where $\decprob{\rho}$ in polynomial is methodologically close to other similar problems, e.g.\ $\gamma$-perturbation stable instances of the maximum cut problem.
 
 \subsection{Open problems}
-
+In this framework, we propose the following questions.
 \begin{enumerate}
 \item Characterise, in terms of $\rho$, the computational complexity of the shortest path problem in $\rnni(\rho)$.
-This problem has been discussed in the main part of the paper
+This is Problem~\ref{prblm:rho_range}, which has been discussed in detail.
 
-\item What is the complexity of the shortest path problem in ranked $\spr$? Ranked $\tbr$?
+\item The same questions as we have considered for ranked $NNI$ can be studied in other rearrangement-based graphs on leaf-labelled trees, such as the ranked $\spr$ graph and the ranked $\tbr$ graph \autocite{Semple2003-nj}.
 
-\item Can the algorithm for computing paths in $\rnni$ be used to establish the complexity of computing geodesics in t-space \autocite{Gavryushkin2016-uu}?
-
-\item (not sure about this one) What is the complexity of the shortest path problem in RNNI on unlabelled trees?
+\item Can our results, e.g.\ the algorithm for computing shortest paths in $\rnni$, be used to establish the complexity of computing geodesics between trees with real-valued time intervals, which is called $\mathrm t$-space \autocite{Gavryushkin2016-uu}?
 \end{enumerate}
 
 \subsection{Acknowledgements}
