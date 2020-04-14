@@ -561,11 +561,14 @@ However, even one extra $\nni$ move cannot be compensated by rank moves dues to 
 
 \todo{Lena, could you add the counterexample trees in the cluster format here?}
 The following proposition implies that the algorithm $\findpath$ is not enough to isolate the values of $\rho$ for which $\decprob{\rho}$ is polynomial.
-It can be proven by a counterexample given by trees $[\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $[\{a_3,a_4\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
 
 \begin{proposition}
 $\findpath$ does not compute shortest paths for $\rnni(\rho)$ with $\rho > 1$.
 \end{proposition}
+
+\proof
+The trees $[\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $[\{a_3,a_4\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ is the required counterexample.
+\endproof
 
 
 \section{Conclusion}
