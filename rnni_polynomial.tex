@@ -127,14 +127,14 @@ We show that the shortest path problem is $\np$-hard in $\rnni(0)$ and quadratic
 
 We propose to characterise the values of $\rho \geq 0$ for which the complexity of computing distances in the parametrised graph is polynomial.
 We will provide some insights into this characterisation problem at the end of this paper.
-The problem is similar in spirit to the ``beyond worst-case analysis'' \autocite{Roughgarden2019-to}, because, just like in our result, a $\gamma$-perturbation stable instance of the maximum cut problem is known \autocite{Roughgarden2019-to} to be $\np$-hard for small values of $\gamma$ and polynomial for larger values of $\gamma$.
+The problem is similar in spirit to the beyond worst-case analysis framework \autocite{Roughgarden2019-to}, because, just like in our result, a $\gamma$-perturbation stable instance of the maximum cut problem is known \autocite{Roughgarden2019-to} to be $\np$-hard for small values of $\gamma$ and polynomial for larger values of $\gamma$.
 Since the problem of identifying the value of $\gamma$ where the complexity switches has largely been resolved \autocite{Makarychev2014-ev}, we hope that the approaches reviewed by \textcite{Roughgarden2019-to} will be helpful for this study.
 
 
 \section{Definitions and background results}
 
 \summary{Defining ranked trees and clusters.}
-Unless stated otherwise, by \emph{trees} in this paper we mean \emph{ranked phylogenetic trees}, which are binary trees where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by elements of the set $\{1, \ldots, n-1\}$ so that each child has a strictly smaller rank than its parent.
+Unless stated otherwise, by a \emph{tree} in this paper we mean a \emph{ranked phylogenetic tree}, which is a binary tree where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by elements of the set $\{1, \ldots, n-1\}$ so that each child has a strictly smaller rank than its parent.
 All leaves are assumed to have rank $0$ but we only refer to the ranks of internal nodes throughout.
 Two trees are considered to be identical if there exists an isomorphism between them which preserves edges, leaf labels, and node rankings.
 For example, trees in Figure~\ref{fig:ranked_trees_ex} are all different.
@@ -157,18 +157,18 @@ For a set $S \subseteq \{a_1, \ldots, a_n\}$ and tree $T$, we denote the \emph{m
 Note that $(C)_T = (T)_t$ if the cluster $C$ is induced by the node of rank $t$ in $T$.
 
 \summary{Defining graph $\rnni(\rho)$.}
-We are now ready to introduce the main object of study in this paper, the graph $\rnni(\rho)$ on trees, for $\rho \geq 0$.
-The vertices of the $\rnni(\rho)$ graph are trees as introduced above.
-Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:
-(i) A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with consecutive ranks, provided the two nodes are not connected by an edge in the tree $T$.
-(ii) Trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ both connecting nodes of consecutive ranks in the corresponding trees, such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two isomorphic (non-binary) trees.
+We are now ready to introduce our main object of study, a class of graphs $\rnni(\rho)$ for $\rho \geq 0$.
+The vertices of the $\rnni(\rho)$ graph are trees as defined above.
+Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:\\
+(i) A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with consecutive ranks, provided the two nodes are not connected by an edge in the tree $T$.\\
+(ii) Trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ both connecting nodes of consecutive ranks in the corresponding trees, such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two isomorphic (non-binary) trees.\\
 Figure~\ref{fig:ranked_trees_ex} gives examples of these tree rearrangements.
-The parameter $\rho \geq 0$ is the weight of the rank move operation, the $\nni$ moves weigh one.
+The parameter $\rho \geq 0$ is the weight of the rank move operation, the $\nni$ moves weigh $1$.
 The \emph{weight of a path} is the sum of the weights of all moves along the path.
 The \emph{distance} between two trees in $\rnni(\rho)$ is the weight of a path with the minimal weight.
-In the main part of the paper we will concentrate on $\rho = 1$, so all edges in the graph will have equal weights and the graph can be assumed to be unweighted.
+We first consider $\rho = 1$, so all edges in the graph have weight $1$ and we assume in this case that the graph is unweighted.
 
-In this paper we study the following class of shortest path problems parametrised by a non-negative real number $\rho$.
+Our main object of study is the following class of shortest path problems parametrised by a non-negative real number $\rho$.
 
 \medskip
 
