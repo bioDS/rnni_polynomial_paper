@@ -241,7 +241,7 @@ We denote this path by $\fp(T, R)$ and its length by $|\fp(T, R)|$.
 
 Assume to the contrary that $T$ and $R$ are two trees with a minimum distance $d(T, R)$ such that $d(T,R) \neq |\fp(T,R)|$, that is, $d(T,R) < |\fp(T,R)|$.
 Let $T'$ be the first tree on a shortest $\rnni$ path from $T$ to $R$.
-Then $d(T',R) = d(T, R) - 1$ and the distance between $T'$ and $R$ is strictly smaller than that between $T$ and $R$.
+Then $d(T',R) = d(T, R) - 1$, implying that the distance between $T'$ and $R$ is strictly smaller than that between $T$ and $R$.
 Hence $d(T', R) = |\fp(T',R)| < |\fp(T,R)| - 1$.
 We finish the proof by showing that no trees satisfy this inequality.
 
@@ -274,12 +274,12 @@ Hence, the first move on $\fp(T, R)$ has to involve an interval incident to at l
 
 We will distinguish two cases depending on whether $T$ and $T'$ are connected by an $\nni$ or a rank move.
 For each of these we will further distinguish all possible moves between $T$ and $T_1$.
-Note that in all figures illustrating possible moves on $\fp(T,R)$ and $\fp(T',R)$, the positions of tree roots are irrelevant, so we have positioned the roots to simplify our figures.
+Note that in all figures illustrating possible moves on $\fp(T,R)$ and $\fp(T',R)$, the positions of tree roots are irrelevant, so we have positioned roots to simplify our figures.
 
 \textbf{Case 1.}
 $T$ and $T'$ are connected by an $\nni$ move, so $((T)_t,(T)_{t+1})$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
 Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, and assume that the $\nni$ move between $T$ and $T'$ exchanges the subtrees induced by clusters $B$ and $C$.
-Additionally, denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni2a}.
+Additionally, denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni1}.
 
 \begin{figure}[ht]
 \centering
@@ -327,7 +327,7 @@ Note that the cluster $C_k$ that is considered by $\findpath$ in the first step 
 Additionally, $C_k$ must intersect $A$, or $B$, or both of them.
 Hence, we will consider each of these three cases individually.
 
-We will use Figure~\ref{fig:thm_fp_nni} to demonstrate all the three cases below.
+We will use Figure~\ref{fig:thm_fp_nni} to demonstrate all three cases below.
 
 \begin{enumerate}[label = \theenumi.\arabic*]
 \item $C_k$ intersects each of $A$, $B$, and $D$.
@@ -336,7 +336,7 @@ Since $C_k$ is the first cluster considered by $\findpath$, the two clusters tha
 So $C_{k-1} = A \cup B$.
 Since $A \cup B$ is not a cluster in $T'$, $\findpath$ will decrease the rank of $(C_{k-1})_{T'}$ on $\fp(T', R)$ before considering cluster $C_k$.
 Note that the clusters induced by nodes of rank $i < k - 1$ in $T$ and $T'$ coincide, so all moves, if any, on $\fp(T, R)$ and $\fp(T', R)$ that involve those cluster will be the same.
-The $\rnni$ move decreases the rank of $(C_{k-1})_{T'}$ by building cluster $A \cup B$, in which case $T'_1 = T$.
+The $\rnni$ move decreases the rank of $(C_{k-1})_{T'}$ by building the cluster $A \cup B$, in which case $T'_1 = T$.
 This however contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
 \item $C_k \subseteq A \cup D$.
@@ -345,7 +345,7 @@ Starting from $T$, $\findpath$ exchanges first subtrees induced by clusters $C$ 
 This results in trees $T_1$ and $T_2$ -- see the path leading to the tree in the middle of the bottom row in Figure~\ref{fig:thm_fp_nni2a}.
 Starting from $T'$, $\findpath$ exchanges first subtrees induced by $B$ and $D$ and then by $C$ and $D$.
 This results in trees $T_1'$ and $T_2'$ -- see the path leading to the tree in the middle of the bottom row in Figure~\ref{fig:thm_fp_nni2b}.
-It follows that $T_2$ and $T'_2$ only differ by one interval (indicated by dotted edges in the corresponding trees in Figure~\ref{fig:thm_fp_nni}), and hence they are $\rnni$ neighbours.
+It follows that $T_2$ and $T'_2$ only differ by one interval (indicated by dotted edges in the corresponding trees in Figure~\ref{fig:thm_fp_nni}), and hence are $\rnni$ neighbours.
 This together with the facts that $|\fp(T_2,R)| = |\fp(T,R)|-2$ and $|\fp(T'_2,R)| = |\fp(T',R)|-2$ contradicts the assumption that $|\fp(T,R)|$ is a minimal length violating inequality~(\ref{eqn:iff_inequality}).
 
 \item $C_k \subseteq B \cup D$.
@@ -392,7 +392,7 @@ Denote the cluster induced by $(T)_t$ by $A$, the clusters induced by the childr
 \centering
 \includegraphics[width=0.4\textwidth]{thm_fp_rank1}
 \caption{Rank move between $T$ and $T'$ on the interval above the node of rank $t$, and possible initial segments of $\fp(T, R)$ and $\fp(T', R)$.
-We use notations $A = A_1 \cup A_2$ and $B = B_1 \cup B_2$.}
+We use notations ${A = A_1 \cup A_2}$ and $B = B_1 \cup B_2$.}
 \label{fig:thm_fp_rank1}
 \end{figure}
 
@@ -412,7 +412,7 @@ The following two sub-cases are analogous to case~\ref{case:one_or_two_moves_dow
 	If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A$ is a cluster in $R$.
 	Therefore, the first move on $\fp(T', R)$ decreases the rank of $(A)_{T'}$, which results in $T_1' = T$.
 	If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
-	Due to the symmetry we can assume that $C_k \subseteq A_1 \cup B_1$, which implies that the move between $T_1$ to $T_2$ exchanges the subtrees induced by $A_2$ and $B_1$, as depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
+	Due to the symmetry we can assume that $C_k \subseteq A_1 \cup B_1$, which implies that the move between $T_1$ and $T_2$ exchanges the subtrees induced by $A_2$ and $B_1$, as depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
 	$C_k \subseteq A_1 \cup B_1$ implies that the first two moves on $\fp(T', R)$ result in a tree $T'_2$ that is an $\rnni$ neighbour of $T_2$ -- see Figure~\ref{fig:thm_fp_rank1}.
 	This is a contradiction to the minimality assumption on $|\fp(T,R)|$.
 
