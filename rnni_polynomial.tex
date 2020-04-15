@@ -65,6 +65,9 @@
 \email{\textsuperscript{\Letter}alex@biods.org}
 \thanks{We acknowledge support from the Royal Society of New Zealand through a Rutherford Discovery Fellowship (RDF-UOO1702) awarded to AG.
 This work was partially supported by Ministry of Business, Innovation, and Employment of New Zealand through an Endeavour Smart Ideas (CONT-61378-ENDSI-UOO) grand and a Data Science Programmes grant.}
+\thanks{We thank Alexei Drummond and Kieran Elmes for useful discussions about the weight difference between $\rnni$ moves, scalability and applied aspects of our results, and the generalisation to discrete time-trees.
+Their comments improved our paper.}
+
 
 
 \begin{document}
@@ -110,8 +113,8 @@ It is still unknown whether the fixed parameter tractability result holds in $\n
 
 \summary{Historically, the complexity question was following hand in hand with the cluster property -- more history plus biological relevance of the property.}
 The idea utilised by \textcite{Dasgupta2000-xa} to prove that the shortest path problem in $\nni$ is $\np$-hard stems from a result that shortest paths in $\nni$ do not preserve clusters \autocite{Li1996-zw}, that is, two trees sharing a cluster does not imply that all trees along a shortest path have that cluster.
-%Not only this counter-intuitive property eventually led to the computational hardness result, the property made little sense biologically as trees clustering the same set of sequences into a subtree should be closer to each other than to a tree that does not have that subtree.
-%Indeed, a shared cluster means that both trees support the hypothesis that this cluster has evolved along a subtree.
+Not only this counter-intuitive property eventually led to the computational hardness result, the property made little sense biologically as trees clustering the same set of sequences into a subtree should be closer to each other than to a tree that does not have that subtree.
+Indeed, a shared cluster means that both trees support the hypothesis that this cluster has evolved along a subtree.
 It was believed that this so-called cluster property and the computational complexity of the shortest path problem were related \autocite{Li1996-zw}, so the two questions have historically been studied simultaneously \autocite{Dasgupta2000-xa}.
 However, there is little evidence to justify this connection.
 For example, the cluster property holds in $\spr$ even though the shortest path problem is $\np$-hard there.
@@ -571,14 +574,15 @@ The trees $[\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $[\{a_3,a_4\},
 \endproof
 
 
-\section{Conclusion}
-
-\subsection{Open problems}
+\section{Open problems}
 
 In this framework, we propose to study the following questions.
 \begin{enumerate}
-\item Characterise the computational complexity of the shortest path problem in $\rnni(\rho)$ in terms of $\rho$.
-This is Problem~\ref{prblm:rho_range}, which has been discussed in detail.
+\item Problem~\ref{prblm:rho_range} above.
+Additionally, as discussed in the introduction, since the cluster property is of importance in biological applications, the $\np$-hardness result can be interpreted as $\decprob{\rho}$ being hard only when the graph $\rnni(\rho)$ is biologically irrelevant.
+We hence propose the following question.
+For which values of $\rho$ does $\rnni(\rho)$ have the cluster property?
+
 
 \item The questions we have considered for ranked $\nni$ can be studied in other rearrangement-based graphs on leaf-labelled trees, such as the ranked $\spr$ graph and the ranked $\tbr$ graph \autocite{Semple2003-nj}.
 What is the complexity of the shortest path problem there?
@@ -587,11 +591,6 @@ Does the complexity depend on edge weights?
 \item Can our results, e.g.\ the algorithm for computing shortest paths in $\rnni$, be used to establish the complexity of computing geodesics between trees with real-valued time intervals?
 This geodesic metric space is called $\mathrm t$-space and an algorithm for computing geodesics in $\mathrm t$-space would be of importance for applications \autocite{Gavryushkin2016-uu}.
 \end{enumerate}
-
-\subsection{Acknowledgements}
-
-We thank Alexei Drummond and Kieran Elmes for useful discussions about the weight difference between $\rnni$ moves, scalability and applied aspects of our results, and the generalisation to discrete time-trees.
-Their comments improved our paper.
 
 
 \printbibliography
