@@ -606,9 +606,12 @@ With this it follows that we can compute shortest paths in $\rnni(0)$ in polynom
 For contradiction we assume that there is a path $p_0'$ in $\rnni(0)$ that is shorter than $p_0$.
 It follows $|p_0'| \leq |p_0| - 1$.
 For the path $p_\epsilon'$ in $\rnni(\epsilon)$ consisting of the same trees as $p_0'$ it is $|p_\epsilon'| = |p_0'| + m_r \epsilon \leq |p_0'| + 1 \leq |p_0| < |p_\epsilon|$, where $m_r$ is the number of rank moves on $p_0'$.
-Note that there cannot be more than $r$ rank moves $m_r$ on $p_0'$ as we can assume that $p_0'$ is a shortest path in $\rnni(0)$.
+Note that there cannot be more than $r$ rank moves $m_r$ on $p_0'$ as we assumed that $p_0'$ is a shortest path in $\rnni(0)$.
 However, $|p_\epsilon'| < |p_\epsilon|$ contradicts the fact that $p_\epsilon$ is a shortest path in $\rnni(\epsilon)$.
+
+We are aware of a shorter proof of this statement but with the presented proof we gain additional insight into how shortest paths in $\rnni(\epsilon)$ are related to each other for different values of epsilon.
 \end{proof}
+
 
 \begin{proof}[Detailed proof of Proposition~\ref{prop:complexity_above_rnni}]
 We prove this proposition by a counterexample given by the trees \break $T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $R = [\{a_3,a_4\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
@@ -625,5 +628,6 @@ This path has weight $3$ and is therefore shorter than $\fp(T,R)$ for $\rho > 1$
 	\label{fig:thm_fp_nni3}
 \end{figure}
 
+\newpage
 \printbibliography
 \end{document}
