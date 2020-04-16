@@ -611,7 +611,11 @@ However, $|p_\epsilon'| < |p_\epsilon|$ contradicts the fact that $p_\epsilon$ i
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:complexity_above_rnni}]
-
+We prove this proposition by a counterexample given by the trees \break $T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $R = [\{a_3,a_4\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
+For these trees $\findpath$ computes a path with the two trees trees $[\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ and \break $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$ between $T$ and $R$.
+This path consists of two $\nni$ moves with one rank move in between and therefore has weight $2 + \rho$.
+However, there is a path from $T$ to $R$ with trees $[\{a_2,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $[\{a_2,a_3\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ between $T$ and $R$, which only consists of $\nni$ moves.
+This path has weight $3$ and is therefore shorter than $\fp(T,R)$ for $\rho > 1$.
 \end{proof}
 
 \printbibliography
