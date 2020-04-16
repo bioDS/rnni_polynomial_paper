@@ -594,11 +594,11 @@ This geodesic metric space is called $\mathrm t$-space and an algorithm for comp
 \end{enumerate}
 
 
-\section{Appendix}
+\section*{Appendix}
 
-\begin{proof}[Proof of Proposition~\ref{prop:complexity_around_nni}]
+\begin{proof}[Detailed proof of Proposition~\ref{prop:complexity_around_nni}]
 Let $\delta = \frac1r$, where $r$ is the diameter of the graph $\rnni$, which is known \autocite{Collienne2019-ca} to be equal to $\binom{n - 1}{2}$, and $\epsilon < \delta$.
-To prove the Proposition we assume to the contrary, that is, there is a polynomial-time algorithm for computing shortest paths in $\rnni(\epsilon)$.
+To prove the Proposition we assume the contrary, that is, there is a polynomial-time algorithm for computing shortest paths in $\rnni(\epsilon)$.
 Let $p_\epsilon$ be a shortest path between trees $T$ and $R$ in $\rnni(\epsilon)$.
 We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_\epsilon$ is a shortest path in $\rnni(0)$.
 With this it follows that we can compute shortest paths in $\rnni(0)$ in polynomial time which contradicts Theorem~\ref{thm:nni_hard}.
@@ -610,7 +610,7 @@ Note that there cannot be more than $r$ rank moves $m_r$ on $p_0'$ as we can ass
 However, $|p_\epsilon'| < |p_\epsilon|$ contradicts the fact that $p_\epsilon$ is a shortest path in $\rnni(\epsilon)$.
 \end{proof}
 
-\begin{proof}[Proof of Proposition~\ref{prop:complexity_above_rnni}]
+\begin{proof}[Detailed proof of Proposition~\ref{prop:complexity_above_rnni}]
 We prove this proposition by a counterexample given by the trees \break $T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $R = [\{a_3,a_4\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
 For these trees $\findpath$ computes a path with the two trees trees $[\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ and \break $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$ between $T$ and $R$.
 This path consists of two $\nni$ moves with one rank move in between and therefore has weight $2 + \rho$.
