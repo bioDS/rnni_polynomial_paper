@@ -567,6 +567,7 @@ Although the complexity of $\decprob{\rho}$ is not known for $\rho > 1$, the fol
 
 \begin{proposition}
 $\findpath$ does not compute shortest paths in $\rnni(\rho)$ for $\rho > 1$.
+\label{prop:complexity_above_rnni}
 \end{proposition}
 
 \proof
@@ -597,16 +598,20 @@ This geodesic metric space is called $\mathrm t$-space and an algorithm for comp
 
 \begin{proof}[Proof of Proposition~\ref{prop:complexity_around_nni}]
 Let $\delta = \frac1r$, where $r$ is the diameter of the graph $\rnni$, which is known \autocite{Collienne2019-ca} to be equal to $\binom{n - 1}{2}$, and $\epsilon < \delta$.
-We prove this proposition by reducing the shortest path problem in $\rnni(0)$ to the shortest path problem in $\rnni(\epsilon)$.
-Therefore, we assume that $T,R$ are two trees with a $\rnni(0)$ path $p$ between them.
-Let path $p'$ be the path in $\rnni(\epsilon)$ containing the same trees as $p$.
-We now show that $p$ is a shortest path if and only if $p'$ is a shortest path.
+To prove the Proposition we assume to the contrary, that is, there is a polynomial-time algorithm for computing shortest paths in $\rnni(\epsilon)$.
+Let $p_\epsilon$ be a shortest path between trees $T$ and $R$ in $\rnni(\epsilon)$.
+We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_\epsilon$ is a shortest path in $\rnni(0)$.
+With this it follows that we can compute shortest paths in $\rnni(0)$ in polynomial time which contradicts Theorem~\ref{thm:nni_hard}.
 
-Let $p$ be a shortest path in $\rnni(0)$.
-For contradiction we assume that there is a path $p''$ in $\rnni(\epsilon)$ that is shorter than $p'$.
-%TODO What if $p''$ and $p'$ have the same number of $\nni$ moves but $p''$ has less rank moves?
-If $p''$ consists of $m_n$ $\nni$ moves and $m_r$ rank moves, it is $|p''| = m_n + m_r \epsilon < |p'|$.
-IDEA: We consider $p''$ in $\rnni(0)$ and want to show that this path is shorter than $p$ which leads to a contradiction.
+For contradiction we assume that there is a path $p_0'$ in $\rnni(0)$ that is shorter than $p_0$.
+It follows $|p_0'| \leq |p_0| - 1$.
+For the path $p_\epsilon'$ in $\rnni(\epsilon)$ consisting of the same trees as $p_0'$ it is $|p_\epsilon'| = |p_0'| + m_r \epsilon \leq |p_0'| + 1 \leq |p_0| < |p_\epsilon|$, where $m_r$ is the number of rank moves on $p_0'$.
+Note that there cannot be more than $r$ rank moves $m_r$ on $p_0'$ as we can assume that $p_0'$ is a shortest path in $\rnni(0)$.
+However, $|p_\epsilon'| < |p_\epsilon|$ contradicts the fact that $p_\epsilon$ is a shortest path in $\rnni(\epsilon)$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:complexity_above_rnni}]
+
 \end{proof}
 
 \printbibliography
