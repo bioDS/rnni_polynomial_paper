@@ -378,7 +378,7 @@ This case is analogous to case~\ref{case:one_or_two_moves_down}.
 If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$ is a cluster in $R$, and applying $\findpath$ to $T', R$ we get $T'_1 = T$.
 If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
 Recall that the interval between nodes of rank $t$ and $t+1$ is an edge in both $T$ and $T'$.
-Hence, the first two moves on $\fp(T', R)$ decrease the rank of $(C_k)_{T'}$ twice resulting in $T'_2$ which is an $\rnni$ neighbour of $T_2$ as depicted in Figure~\ref{fig:thm_fp_nni3}.
+Hence, the first two moves on $\fp(T', R)$ decrease the rank of $(C_k)_{T'}$ twice resulting in $T'_2$ which is an $\rnni$ neighbour of $T_2$ as depicted in Supplementary Figure~\ref{fig:thm_fp_nni3}.
 As before, this contradicts our minimality assumption.
 
 \item $\rnni$ move on interval $[(T)_{t-1},(T)_t]$.
@@ -589,8 +589,8 @@ For which values of $\rho$ does $\rnni(\rho)$ have the cluster property?
 What is the complexity of the shortest path problem there?
 Does the complexity depend on edge weights?
 
-\item Can our results, e.g.\ the algorithm for computing shortest paths in $\rnni$, be used to establish the complexity of computing geodesics between trees with real-valued time intervals?
-This geodesic metric space is called $\mathrm t$-space and an algorithm for computing geodesics in $\mathrm t$-space would be of importance for applications \autocite{Gavryushkin2016-uu}.
+\item Can our results, e.g.\ the algorithm for computing shortest paths in $\rnni$, be used to establish whether the problem of computing geodesics between trees with real-valued time intervals is polynomial-time solvable?
+This geodesic metric space is called $\mathrm t$-space and an efficient algorithm for computing geodesics in $\mathrm t$-space would be of importance for applications \autocite{Gavryushkin2016-uu}.
 \end{enumerate}
 
 
@@ -608,10 +608,9 @@ It follows $|p_0'| \leq |p_0| - 1$.
 For the path $p_\epsilon'$ in $\rnni(\epsilon)$ consisting of the same trees as $p_0'$ it is $|p_\epsilon'| = |p_0'| + m_r \epsilon \leq |p_0'| + 1 \leq |p_0| < |p_\epsilon|$, where $m_r$ is the number of rank moves on $p_0'$.
 Note that there cannot be more than $r$ rank moves $m_r$ on $p_0'$ as we assumed that $p_0'$ is a shortest path in $\rnni(0)$.
 However, $|p_\epsilon'| < |p_\epsilon|$ contradicts the fact that $p_\epsilon$ is a shortest path in $\rnni(\epsilon)$.
-
-We are aware of a shorter proof of this statement but with the presented proof we gain additional insight into how shortest paths in $\rnni(\epsilon)$ are related to each other for different values of epsilon.
 \end{proof}
 
+We are aware of a shorter proof of Proposition~\ref{prop:complexity_around_nni} but with the presented proof we gain additional insights into how shortest paths in $\rnni(\epsilon)$ are related to each other for different values of $\epsilon$.
 
 \begin{proof}[Detailed proof of Proposition~\ref{prop:complexity_above_rnni}]
 We prove this proposition by a counterexample given by the trees \break $T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $R = [\{a_3,a_4\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
@@ -620,6 +619,8 @@ This path consists of two $\nni$ moves with one rank move in between and therefo
 However, there is a path from $T$ to $R$ with trees $[\{a_2,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $[\{a_2,a_3\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ between $T$ and $R$, which only consists of $\nni$ moves.
 This path has weight $3$ and is therefore shorter than $\fp(T,R)$ for $\rho > 1$.
 \end{proof}
+
+The following figure illustrates Case~\ref{case:rank_move_interval_above} from the proof of Theorem~\ref{thm:rnni_polynomial}.
 
 \begin{figure}[ht]
 	\centering
