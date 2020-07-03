@@ -4,7 +4,7 @@
 \usepackage[style=nature, date=year]{biblatex}
 \usepackage{float}
 \usepackage{graphicx}
-%\usepackage{todonotes}
+\usepackage{todonotes}
 \usepackage{subcaption}
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -47,6 +47,8 @@
 \newcommand{\decprob}[1]{\rnni(#1)\text{-}\mathrm{SP}}
 \renewcommand{\O}{\mathcal O}
 \renewcommand{\epsilon}{\varepsilon}
+
+\newcommand{\sidma}[1]{\todo[color=green]{#1}}
 
 % \newcommand{\summary}[1]{\textbf{#1}} % Print summaries to .pdf
 \newcommand{\summary}[1]{} % Hide summaries in .pdf
@@ -224,6 +226,81 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 \RETURN $p$
 \end{algorithmic}
 \end{algorithm}
+
+%%%%%%%%%% START from rnni_convexity paper
+\sidma{Since this is the crux of the paper, expand, add images, and work through an example of the algorithm}
+Let $T$ and $R$ be arbitrary trees and $[C_1, \ldots, C_{n-2}]$ be the cluster representation of $R$ (the ``destination'' tree).
+Then $C_i$ is induced by the node of rank $i$ for $i = 1, \ldots, n-2$.
+$\findpath$ computes a path by iteratively extending a sequence $p$ of trees starting from $T$.
+The algorithm terminates when $p$ is an $\rnni$ path from $T$ to $R$.
+At step $k = 1, \ldots, n-2$ of $\findpath$ we consider the cluster $C_k$ and extend path $p$ as follows.
+We search for a node in the last tree $T'$ of $p$ from the previous step that induces the smallest cluster containing all elements of $C_k$.
+This node is denoted by $\mrca_{T'}(C_k)$ (short for \emph{most recent common ancestor}).
+We then extend $p$ by adding the tree obtained from $T'$ by performing an $\rnni$ move that decreases the rank of $\mrca_{T'}(C_k)$.
+We continue extending $p$ in this way by repeatedly performing $\rnni$ moves until the rank of $\mrca_{T'}(C_k) = k$, thus completing step $k$.
+\sidma{Reword [line 5 of algorithm] and/or expand discussion in text to demonstrate what this is doing}
+
+\begin{algorithm}[H]
+\caption{$\findpath$($T,R$)}
+\begin{algorithmic}[1]
+\STATE $T' := T$, $p := [T']$, $[C_1, \ldots, C_{n-2}] := R$
+\FOR {$k = 1, \dots, n-2$}
+\label{alg:findpath:line:for_loop}
+    \WHILE {$\rank_{T'}(\mrca_{T'}(C_k))>k$}
+        \IF {node $u$ with $\rank_{T'}(u) = rank_{T'}(\mrca_{T'}(C_k))-1$ is adjacent to $\mrca_{T'}(C_k)$}
+            \STATE $T''$ is $T'$ with $\rank_{T'}(\mrca_{T'}(C_k))$ decreased by an $\nni$ move
+        \ELSE
+            \STATE $T''$ is $T'$ with ranks of $u$ and $\mrca_{T'}(C_k)$ swapped
+        \ENDIF
+        \label{alg:findpath:line:move_set_down}
+        \STATE $T' = T''$
+        \STATE $p = p+T'$
+      \ENDWHILE
+\ENDFOR
+\RETURN $p$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{proposition}
+$\findpath$ is a correct deterministic algorithm.
+\end{proposition}
+
+\proof
+\sidma{Remove the sentence "It is not hard to see that the algorithm..." or move to before the proof in the informal discussion of what the algorithm is doing. In the formal discussion (i.e. the proof), state why the algorithm terminates (i.e. expand on the rest of that first paragraph).}
+It is not hard to see that the algorithm terminates with a path ending in $R$.
+Indeed, every iteration of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) is completed once $\rank_{T'}(\mrca_{T'}(C_k)) = k$, that is, the first $k$ clusters of $T'$ and $R$ coincide.
+Hence after $n-2$ such iteration the path has to arrive at $R$.
+
+\sidma{Include an argument about why line 5 makes sense in the algorithm, in the explanation of it before the proof, and here, in the proof.}
+To complete the proof, it suffices to show that the update operation (line~\ref{alg:findpath:line:move_set_down}) is well-defined, that is the $\rnni$ move that decreases the rank of $\mrca_{T'}(C_k)$ is unique.
+
+\sidma{Remove "it is not hard to see" and replace with images or written explanation. }
+Case $k = 1$.
+In this case $C_k$ consists of two taxa $\{x, y\}$.
+The node $v = \mrca_{T'}(x, y)$ has $\rank_{T'}(v) = r > 1$.
+Consider the node $w$ preceding $v$ in $T'$, that is, $\rank_{T'}(w) = r - 1$.
+If a rank move that swaps $v$ and $w$ is possible then this is the only move on $T'$ that can decrease the rank of $\mrca(x, y)$.
+If the rank move is impossible then there is an edge in $T'$ connecting $v$ and $w$.
+The only way to decrease the rank of $\mrca(x, y)$ then is to perform an $\nni$ move on that edge.
+It is not hard to see that out of two possible $\nni$ moves only one decreases the rank of this $\mrca$.
+
+\sidma{Fill in the missing words before starting the subcases.}
+\sidma{Define the term "supress" in terms of ranked trees.}
+Case $k > 1$.
+\begin{enumerate}
+\item $C_k = C_i \cup C_j$ for $i, j < k$.
+Suppress $C_i$ and $C_j$ in both $T'$ and $R$ to new taxa $c_i$ and $c_j$ respectively and proceed as in Case $k = 1$.
+\item $C_k = C_i \cup \{x\}$, where $x$ is a taxon not present in $C_1, \ldots, C_k$.
+Suppress $C_i$ in both $T'$ and $R$ to a new taxon $c_i$ and proceed as in Case $k = 1$.
+\item $C_k = \{x, y\}$ where both $x$ and $y$ are not in $C_1, \ldots, C_k$.
+Proceed as in Case $k = 1$.
+\sidma{The end of the proof is missing. Complete the proof. }
+\end{enumerate}
+\endproof
+
+\sidma{While is highly likely that the worst-case complexity is quadratic, you need to demonstrate why that is the case. The simplest, and most convincing way would be to write this as a proposition and then go line-by-line detailing the running time.}
+Clearly, the worst-case complexity of $\findpath$ is quadratic in the number of taxa.
+%%%%%%%%%% END from rnni_convexity paper
 
 \summary{A few words about the main theorem and its proof.}
 The following theorem, that $\decprob{1}$ is polynomial, is the main result of our paper.
