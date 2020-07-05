@@ -205,6 +205,7 @@ During each iteration $k = 1, \ldots, n-2$ new trees are added to $p$ if necessa
 In iteration $k$, the rank of $(C_{k})_{T'}$ is decreased by $\rnni$ moves until $C_k$ is induced by the node of rank $k$ in $T'$.
 Before proving that $\findpath$ computes shortest paths in $\rnni$, we show that $\findpath$ is a deterministic algorithm with running time quadratic in the number of leaves $n$.
 In particular, there always exists a unique move that decreases the rank of $(C_{k})_{T'}$ as described above.
+\todo{define rank function or don't use it (in pseudo-code)}
 
 \begin{algorithm}[H]
 \caption{$\findpath$($T,R$)}
@@ -213,12 +214,12 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 \FOR {$k = 1, \dots, n-2$}
 \label{alg:findpath:line:for_loop}
 	\WHILE {$\rank((C_k)_{T'})>k$}
+	\label{alg:findpath:line:while_loop}
 		\IF {$(C_k)_{T'}$ and node $u$ with rank one less than $(C_k)_{T'}$ are connected by an edge}
 			\STATE $T''$ is $T'$ with the rank of $(C_k)_{T'}$ decreased by an $\nni$ move
 		\ELSE
 			\STATE $T''$ is $T'$ with ranks of nodes $u$ and $(C_k)_{T'}$ swapped
 		\ENDIF
-		\label{alg:findpath:line:move_set_down}
 		\STATE $T' = T''$
 		\STATE $p = p+T'$
 	\ENDWHILE
@@ -233,25 +234,21 @@ $\findpath$ is a correct deterministic algorithm.
 \end{proposition}
 
 \proof
-\sidma{Remove the sentence "It is not hard to see that the algorithm..." or move to before the proof in the informal discussion of what the algorithm is doing. In the formal discussion (i.e. the proof), state why the algorithm terminates (i.e. expand on the rest of that first paragraph).}
-It is not hard to see that the algorithm terminates with a path ending in $R$.
-Indeed, every iteration of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) is completed once $\rank_{T'}(\mrca_{T'}(C_k)) = k$, that is, the first $k$ clusters of $T'$ and $R$ coincide.
-Hence after $n-2$ such iteration the path has to arrive at $R$.
+To show that the algorithm terminates with a path ending in $R$, we need to show that in the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) there is always exactly one $\rnni$ move possible to decrease $\rank((C_k)_{T'})$, until it is $k$.
+Then it follows that the first $k$ clusters of $T'$ and $R$ coincide after iteration $k$ and hence after $n-2$ iterations the path has to arrive at $R$.
 
-\sidma{Include an argument about why line 5 makes sense in the algorithm, in the explanation of it before the proof, and here, in the proof.}
-To complete the proof, it suffices to show that the update operation (line~\ref{alg:findpath:line:move_set_down}) is well-defined, that is the $\rnni$ move that decreases the rank of $\mrca_{T'}(C_k)$ is unique.
+To complete the proof, it suffices to show that there is a unique $\rnni$ move that decreases the rank of $(C_k)_{T'}$, which proves that there is a unique, well-defined update operation in each execution of the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}).
+For proving this, we consider the case $k = 1$ and $k>1$ separately.
 
-\sidma{Remove "it is not hard to see" and replace with images or written explanation. }
 Case $k = 1$.
 In this case $C_k$ consists of two taxa $\{x, y\}$.
-The node $v = \mrca_{T'}(x, y)$ has $\rank_{T'}(v) = r > 1$.
-Consider the node $w$ preceding $v$ in $T'$, that is, $\rank_{T'}(w) = r - 1$.
-If a rank move that swaps $v$ and $w$ is possible then this is the only move on $T'$ that can decrease the rank of $\mrca(x, y)$.
+The node $v = (\{x, y\})_{T'}$ has $\rank(v) = r > 1$.
+Consider the node $w$ preceding $v$ in $T'$, that is, $\rank_(w) = r - 1$.
+If a rank move that swaps $v$ and $w$ is possible then this is the only move on $T'$ that can decrease the rank of $(\{x, y\})_{T'}$.
 If the rank move is impossible then there is an edge in $T'$ connecting $v$ and $w$.
-The only way to decrease the rank of $\mrca(x, y)$ then is to perform an $\nni$ move on that edge.
-It is not hard to see that out of two possible $\nni$ moves only one decreases the rank of this $\mrca$.
+The only way to decrease the rank of $(\{x, y\})_{T'}$ then is to perform an $\nni$ move on that edge.
+It is not hard to see that out of two possible $\nni$ moves only one decreases the rank of this most recent common ancestor.
 
-\sidma{Fill in the missing words before starting the subcases.}
 \sidma{Define the term "supress" in terms of ranked trees.}
 Case $k > 1$.
 \begin{enumerate}
