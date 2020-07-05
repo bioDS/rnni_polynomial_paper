@@ -598,6 +598,7 @@ There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon
 
 %%%%%%%%%%%%%% START stuff from rnni_rho.tex
 \summary{Finding one $\rho$ between $0$ and $1$ for which $\decprob{\rho} \notin \p$}
+In the following we aim to find values for $\rho$ close to zero for which $\decprob{\rho}$ is not polynomial.
 
 \begin{lemma}
     If $\decprob{\rho} \in \p$ for all $\rho > 0$, then it is $\rnni(0) \in \p$.
@@ -605,18 +606,14 @@ There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon
 \end{lemma}
 
 \proof
-    We assume that $\decprob{\rho} \in \p$ for all $\rho > 0$.
-    Let $T$ and $R$ be trees in $\rnni(0)$, and let $n$ be the number of leaves of these trees.
-    For proving the lemma we need to show that we can computes the distance between $T$ and $R$ in polynomial time.
-    Therefore, we consider a shortest paths between $T$ and $R$ in $\rnni(\epsilon)$ with $\epsilon := \frac{1}{r+1}$, where $r = \Delta(\rnni)$ is the diameter of $\rnni$.
-     We now show that a shortest path in $\rnni(\epsilon)$, which can be computes in polynomial time, gives us a shortest path in $\rnni(0)$.
-
-    Let $p_\epsilon$ be a shortest path between trees $T$ and $R$ in $\rnni(\epsilon)$.
+	Let $T$ and $R$ be trees in $\rnni(0)$, and let $n$ be the number of their leaves.
+    By the assumption of the lemma, shortest paths between these trees can be computed in any space $\rnni(\rho)$ for $\rho > 0$ in polynmoial time.
+    Let $p_\epsilon$ be such a shortest path in $\rnni(\epsilon)$ with $\epsilon := \frac{1}{r+1}$, where $r = \Delta(\rnni)$ is the diameter of $\rnni$.
     We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_\epsilon$ is a shortest path in $\rnni(0)$.
 
-    For contradiction we assume that there is a path $q_0$ in $\rnni(0)$ that is shorter than $p_0$.
+    For contradiction we assume that there is a path $q_0$ shorter than $p_0$ in $\rnni(0)$.
     It follows $|q_0| \leq |p_0| - 1$.
-    For the path $q_\epsilon$ in $\rnni(\epsilon)$ consisting of the same trees as $q_0$ it is $|q_\epsilon| = |q_0| + m_r \epsilon < |q_0| + 1 \leq |p_0| \leq |p_\epsilon|$, where $m_r$ is the number of rank moves on $q_0$.
+    For the path $q_\epsilon$ in $\rnni(\epsilon)$ it is $|q_\epsilon| = |q_0| + m_r \epsilon < |q_0| + 1 \leq |p_0| \leq |p_\epsilon|$, where $m_r$ is the number of rank moves on $q_0$.
     Note that there cannot be more than $r$ rank moves $m_r$ on $q_0$ as we assumed that $q_0$ is a shortest path in $\rnni(0)$.
     However, $|q_\epsilon| < |p_\epsilon|$ contradicts the fact that $p_\epsilon$ is a shortest path in $\rnni(\epsilon)$.
 \endproof
