@@ -596,6 +596,65 @@ There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon
 \label{prop:complexity_around_nni}
 \end{conjecture}
 
+%%%%%%%%%%%%%% START stuff from rnni_rho.tex
+\summary{Finding one $\rho$ between $0$ and $1$ for which $\decprob{\rho} \notin \p$}
+
+\begin{lemma}
+    If $\decprob{\rho} \in \p$ for all $\rho > 0$, then it is $\rnni(0) \in \p$.
+    \label{lemma:if_decprob_poly}
+\end{lemma}
+
+\proof
+    We assume that $\decprob{\rho} \in \p$ for all $\rho > 0$.
+    Let $T$ and $R$ be trees in $\rnni(0)$, and let $n$ be the number of leaves of these trees.
+    For proving the lemma we need to show that we can computes the distance between $T$ and $R$ in polynomial time.
+    Therefore, we consider a shortest paths between $T$ and $R$ in $\rnni(\epsilon)$ with $\epsilon := \frac{1}{r+1}$, where $r = \Delta(\rnni)$ is the diameter of $\rnni$.
+     We now show that a shortest path in $\rnni(\epsilon)$, which can be computes in polynomial time, gives us a shortest path in $\rnni(0)$.
+
+    Let $p_\epsilon$ be a shortest path between trees $T$ and $R$ in $\rnni(\epsilon)$.
+    We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_\epsilon$ is a shortest path in $\rnni(0)$.
+
+    For contradiction we assume that there is a path $q_0$ in $\rnni(0)$ that is shorter than $p_0$.
+    It follows $|q_0| \leq |p_0| - 1$.
+    For the path $q_\epsilon$ in $\rnni(\epsilon)$ consisting of the same trees as $q_0$ it is $|q_\epsilon| = |q_0| + m_r \epsilon < |q_0| + 1 \leq |p_0| \leq |p_\epsilon|$, where $m_r$ is the number of rank moves on $q_0$.
+    Note that there cannot be more than $r$ rank moves $m_r$ on $q_0$ as we assumed that $q_0$ is a shortest path in $\rnni(0)$.
+    However, $|q_\epsilon| < |p_\epsilon|$ contradicts the fact that $p_\epsilon$ is a shortest path in $\rnni(\epsilon)$.
+\endproof
+
+The following is a direct result of Lemma~\ref{lemma:if_decprob_poly} and the fact that we cannot compute $\nni$ distances in polynomial time.
+
+\begin{corollary}
+    There is a $\rho_0 > 0$ for which $\decprob{\rho} \notin \p$.
+    \label{cor:exists_rho_not_poly}
+\end{corollary}
+
+\summary{Finding a sequence of $\rho$s for which the problem is not in $\p$ and that converges to $0$.}
+
+With the above we will be able to find a sequence of parameters $\rho$ for which $\decprob{\rho}$ is not solvable in polynomial time.
+Therefore, we need the following theorem.
+
+\begin{theorem}
+    Let $0 < \rho_0 < 1$.
+    If $\decprob{\rho} \in \p$ for all $0<\rho<\rho_0$, then it is ${\decprob{0} \in \p}$.
+\end{theorem}
+
+\todo{prove this thm -- the same as the thm above}
+With this theorem and the knowledge that $\decprob{0} \notin \p$ we get the following result.
+
+\begin{lemma}
+    If $\decprob{\rho_0} \notin \p$, then exists a $\rho_1$ with $0 < \rho_1 < \rho_0$ such that ${\decprob{\rho_1} \notin \p}$.
+    \label{lemma:more_rho_not_poly}
+\end{lemma}
+
+\begin{theorem}
+    There is a sequence $\rho_0, \rho_1, \rho_2, \ldots$ with $1 > \rho_0 > \rho_1 > \rho_2 > \ldots > 0$ such that $\decprob{\rho_m} \notin \p$ for all $m \in \mathbb N$ and $\rho_m \underset{m \rightarrow \infty}{\longrightarrow} 0$.
+\end{theorem}
+
+\proof
+    This follows from Theorem~\ref{cor:exists_rho_not_poly} and iteratively applying Lemma~\ref{lemma:more_rho_not_poly}.
+\endproof
+%%%%%%%%%%%%%% END stuff from rnni_rho.tex
+
 Although the complexity of $\decprob{\rho}$ is not known for $\rho > 1$, the following proposition shows that the $\findpath$ algorithm is not applicable in this case.
 
 \begin{proposition}
