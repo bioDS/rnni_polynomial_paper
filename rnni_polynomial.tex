@@ -238,28 +238,6 @@ We search for a node in the last tree $T'$ of $p$ from the previous step that in
 This node is denoted by $\mrca_{T'}(C_k)$ (short for \emph{most recent common ancestor}).
 We then extend $p$ by adding the tree obtained from $T'$ by performing an $\rnni$ move that decreases the rank of $\mrca_{T'}(C_k)$.
 We continue extending $p$ in this way by repeatedly performing $\rnni$ moves until the rank of $\mrca_{T'}(C_k) = k$, thus completing step $k$.
-\sidma{Reword [line 5 of algorithm] and/or expand discussion in text to demonstrate what this is doing}
-
-\begin{algorithm}[H]
-\caption{$\findpath$($T,R$)}
-\begin{algorithmic}[1]
-\STATE $T' := T$, $p := [T']$, $[C_1, \ldots, C_{n-2}] := R$
-\FOR {$k = 1, \dots, n-2$}
-\label{alg:findpath:line:for_loop}
-    \WHILE {$\rank_{T'}(\mrca_{T'}(C_k))>k$}
-        \IF {node $u$ with $\rank_{T'}(u) = rank_{T'}(\mrca_{T'}(C_k))-1$ is adjacent to $\mrca_{T'}(C_k)$}
-            \STATE $T''$ is $T'$ with $\rank_{T'}(\mrca_{T'}(C_k))$ decreased by an $\nni$ move
-        \ELSE
-            \STATE $T''$ is $T'$ with ranks of $u$ and $\mrca_{T'}(C_k)$ swapped
-        \ENDIF
-        \label{alg:findpath:line:move_set_down}
-        \STATE $T' = T''$
-        \STATE $p = p+T'$
-      \ENDWHILE
-\ENDFOR
-\RETURN $p$
-\end{algorithmic}
-\end{algorithm}
 
 \begin{proposition}
 $\findpath$ is a correct deterministic algorithm.
