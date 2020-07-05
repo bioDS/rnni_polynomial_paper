@@ -33,6 +33,7 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{corollary}{Corollary}
 \newtheorem{problem}{Problem}
+\newtheorem{conjecture}{Conjecture}
 
 \newcommand{\rnni}{\mathrm{RNNI}}
 \newcommand{\findpath}{\textsc{FindPath}}
@@ -590,18 +591,10 @@ We now show that Theorem~\ref{thm:nni_hard} can be extended to the values of $\r
 This suggests a possibility of a threshold $\hat\rho \in [0, 1]$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
 Assuming the threshold exists, the following proposition implies that $\hat\rho > 0$ and establishes an explicit lower bound on the threshold.
 
-\begin{proposition}
+\begin{conjecture}
 There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon}$ is $\np$-hard for all $\epsilon < \delta$.
 \label{prop:complexity_around_nni}
-\end{proposition}
-
-\proof
-Let $\delta = \frac1r$, where $r$ is the diameter of the graph $\rnni$, which is known \autocite{Collienne2019-ca} to be equal to $\binom{n - 1}{2}$.
-Consider two trees $T$ and $R$ in $\rnni(\epsilon)$ for $\epsilon < \delta$.
-We now show that every shortest path between $T$ and $R$ must minimise the number of $\nni$ moves.
-Indeed, consider a path $p$ between $T$ and $R$ that has at least one more $\nni$ move than the minimum.
-Even just one extra $\nni$ move cannot be compensated by rank moves due to the choice of $\delta$.
-\endproof
+\end{conjecture}
 
 Although the complexity of $\decprob{\rho}$ is not known for $\rho > 1$, the following proposition shows that the $\findpath$ algorithm is not applicable in this case.
 
