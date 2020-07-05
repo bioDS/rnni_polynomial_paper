@@ -197,13 +197,13 @@ To be consistent with notations used in the literature \autocite{Gavryushkin2018
 
 \summary{Introducing $\findpath$.}
 In this section we will prove that the shortest path problem in $\rnni$ is polynomial-time solvable.
-Our proof will be constructive -- we will show that the following quadratic algorithm of \textcite{Collienne2019-ca}, called $\findpath$, computes a shortest path between two given trees in $\rnni$.
+Our proof will be constructive -- we will show that the following quadratic algorithm, called $\findpath$, computes a shortest path between two given trees in $\rnni$.
 $\findpath$ algorithm receives two trees $T$ and $R$ in their cluster representation.
 We denote the representation of $R$ by $[C_1, \ldots, C_{n-2}]$.
-The algorithm considers the clusters $C_1, \ldots, C_{n-2}$ iteratively in their order and produces a sequence $p$ of trees which become a shortest path from $T$ to $R$ after the algorithm terminates.
+The algorithm considers the clusters $C_1, \ldots, C_{n-2}$ iteratively in their order and produces a sequence $p$ of trees which becomes a shortest path from $T$ to $R$ after the algorithm terminates.
 During each iteration $k = 1, \ldots, n-2$ new trees are added to $p$ if necessary, and we will refer to the last added tree as $T'$.
 In iteration $k$, the rank of $(C_{k})_{T'}$ is decreased by $\rnni$ moves until $C_k$ is induced by the node of rank $k$ in $T'$.
-As we have shown \autocite{Collienne2019-ca}, $\findpath$ is a deterministic algorithm with running time quadratic in the number of leaves $n$.
+Before proving that $\findpath$ computes shortest paths in $\rnni$, we show that $\findpath$ is a deterministic algorithm with running time quadratic in the number of leaves $n$.
 In particular, there always exists a unique move that decreases the rank of $(C_{k})_{T'}$ as described above.
 
 \begin{algorithm}[H]
@@ -228,17 +228,6 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 \end{algorithm}
 
 %%%%%%%%%% START from rnni_convexity paper
-\sidma{Since this is the crux of the paper, expand, add images, and work through an example of the algorithm}
-Let $T$ and $R$ be arbitrary trees and $[C_1, \ldots, C_{n-2}]$ be the cluster representation of $R$ (the ``destination'' tree).
-Then $C_i$ is induced by the node of rank $i$ for $i = 1, \ldots, n-2$.
-$\findpath$ computes a path by iteratively extending a sequence $p$ of trees starting from $T$.
-The algorithm terminates when $p$ is an $\rnni$ path from $T$ to $R$.
-At step $k = 1, \ldots, n-2$ of $\findpath$ we consider the cluster $C_k$ and extend path $p$ as follows.
-We search for a node in the last tree $T'$ of $p$ from the previous step that induces the smallest cluster containing all elements of $C_k$.
-This node is denoted by $\mrca_{T'}(C_k)$ (short for \emph{most recent common ancestor}).
-We then extend $p$ by adding the tree obtained from $T'$ by performing an $\rnni$ move that decreases the rank of $\mrca_{T'}(C_k)$.
-We continue extending $p$ in this way by repeatedly performing $\rnni$ moves until the rank of $\mrca_{T'}(C_k) = k$, thus completing step $k$.
-
 \begin{proposition}
 $\findpath$ is a correct deterministic algorithm.
 \end{proposition}
