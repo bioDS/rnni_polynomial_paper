@@ -241,7 +241,7 @@ To complete the proof, it suffices to show that there is a unique $\rnni$ move t
 For proving this, we consider the case $k = 1$ and $k>1$ separately.
 
 Case $k = 1$.
-In this case $C_k$ consists of two taxa $\{x, y\}$.
+In this case $C_k$ consists of two leaves $\{x, y\}$.
 The node $v = (\{x, y\})_{T'}$ has rank $r > 1$.
 Consider the node $w$ preceding $v$ in $T'$, that is, it has rank $r - 1$.
 If a rank move that swaps $v$ and $w$ is possible then this is the only move on $T'$ that can decrease the rank of $(\{x, y\})_{T'}$.
@@ -253,9 +253,9 @@ It is not hard to see that out of two possible $\nni$ moves only one decreases t
 Case $k > 1$.
 \begin{enumerate}
 \item $C_k = C_i \cup C_j$ for $i, j < k$.
-Suppress $C_i$ and $C_j$ in both $T'$ and $R$ to new taxa $c_i$ and $c_j$ respectively and proceed as in Case $k = 1$.
-\item $C_k = C_i \cup \{x\}$, where $x$ is a taxon not present in $C_1, \ldots, C_k$.
-Suppress $C_i$ in both $T'$ and $R$ to a new taxon $c_i$ and proceed as in Case $k = 1$.
+Suppress $C_i$ and $C_j$ in both $T'$ and $R$ to new leaves $c_i$ and $c_j$ respectively and proceed as in Case $k = 1$.
+\item $C_k = C_i \cup \{x\}$, where $x$ is a leaf not present in $C_1, \ldots, C_k$.
+Suppress $C_i$ in both $T'$ and $R$ to a new leaf $c_i$ and proceed as in Case $k = 1$.
 \item $C_k = \{x, y\}$ where both $x$ and $y$ are not in $C_1, \ldots, C_k$.
 Proceed as in Case $k = 1$.
 \sidma{The end of the proof is missing. Complete the proof. }
@@ -263,7 +263,7 @@ Proceed as in Case $k = 1$.
 \endproof
 
 \sidma{While is highly likely that the worst-case complexity is quadratic, you need to demonstrate why that is the case. The simplest, and most convincing way would be to write this as a proposition and then go line-by-line detailing the running time.}
-Clearly, the worst-case complexity of $\findpath$ is quadratic in the number of taxa.
+Clearly, the worst-case complexity of $\findpath$ is quadratic in the number of leaves.
 %%%%%%%%%% END from rnni_convexity paper
 
 \summary{A few words about the main theorem and its proof.}
