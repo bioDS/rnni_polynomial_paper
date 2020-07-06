@@ -126,7 +126,7 @@ For example, the cluster property holds in $\spr$ even though the shortest path 
 In this paper, we establish that for a certain tree rearrangement operation (a generalisation of $\nni$) the complexity of the shortest path problem is $\O(n^2)$ (Theorem~\ref{thm:rnni_polynomial}).
 This is, to the best of our knowledge, the first tree rearrangement operation with polynomial-time computable shortest paths and distances between trees.
 Our algorithm is practical as it allows to compute distances between trees with thousands of leaves, while in the closely related $\nni$ graph this number is well smaller \autocite{Li1996-zw, Whidden2016-kl} than 20.
-To prove the main result of this paper, Theorem~\ref{thm:rnni_polynomial}, we will show that the algorithm $\findpath$ of \textcite{Collienne2019-ca} computes shortest paths in the ranked nearest neighbour interchange graph ($\rnni$) in polynomial time.
+To prove the main result of this paper, Theorem~\ref{thm:rnni_polynomial}, we will introduce the algorithm $\findpath$ and show that it computes shortest paths in the ranked nearest neighbour interchange graph ($\rnni$) in polynomial time.
 We will also prove that the $\rnni$ graph has the cluster property, which is an important distinction between this graph and $\nni$.
 We then generalise the $\findpath$ algorithm to trees with arbitrary integer-valued branch lengths and show that the shortest path problem for such trees is also polynomial-time.
 We will finish the paper by investigating the question of whether there exists a threshold at which the complexity shifts from $\np$-hard to polynomial.
@@ -190,7 +190,7 @@ FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 Our first goal is to prove that $\decprob{1}$ is polynomial-time solvable.
 We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that $\decprob{0}$ is $\np$-hard.
 We will also study $\decprob{\rho}$ for other values of $\rho$.
-To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol, Collienne2019-ca}, we will denote the graph $\rnni(1)$ by $\rnni$.
+To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol}, we will denote the graph $\rnni(1)$ by $\rnni$.
 
 
 \section{Complexity of computing $\rnni$ distances}
@@ -271,8 +271,6 @@ The following theorem, that $\decprob{1}$ is polynomial, is the main result of o
 The proof of the theorem reduces the problem to establishing a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm.
 The property can intuitively be understood as $\findpath$ always choosing the best tree possible to go to.
 Importantly, this result can be used for an arbitrary vertex proposal algorithm in an arbitrary graph to establish that the algorithm computes a shortest path between vertices in the graph, hence our proof technique is of general interest.
-
-We also note that due to the connection between ranked trees and lattices \autocite{Collienne2019-ca}, Theorem~\ref{thm:rnni_polynomial} can be translated to the language of lattice theory.
 
 \begin{theorem}
 The time complexity of the shortest path problem in the $\rnni$ graph on trees with $n$ leaves is $\O(n^2)$.
@@ -610,7 +608,9 @@ In the following we aim to find values for $\rho$ close to zero for which $\decp
     By the assumption of the lemma, shortest paths between these trees can be computed in any space $\rnni(\rho)$ for $\rho > 0$ in polynmoial time.
 	Let $p_\epsilon$ be such a shortest path in $\rnni(\epsilon)$ with $\epsilon := \frac{1}{r+1}$
 	\todo{$\epsilon$ or $\rho_0$? -- $\rho_0$ results in awkward indexing: $p_{\rho_0}$}
-	, where $r = \Delta(\rnni)$ is the diameter of $\rnni$.
+	, where $r = \Delta(\rnni)$ is the diameter
+	\todo{do we need to prove the diameter here?}
+	of $\rnni$.
     We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_\epsilon$ is a shortest path in $\rnni(0)$.
 
     For contradiction we assume that there is a path $q_0$ shorter than $p_0$ in $\rnni(0)$.
@@ -692,7 +692,9 @@ This geodesic metric space is called $\mathrm t$-space and an efficient algorith
 \renewcommand{\figurename}{Supplementary Figure}
 
 \begin{proof}[Detailed proof of Proposition~\ref{prop:complexity_around_nni}]
-Let $\delta = \frac1r$, where $r$ is the diameter of the graph $\rnni$, which is known \autocite{Collienne2019-ca} to be equal to $\binom{n - 1}{2}$, and $\epsilon < \delta$.
+Let $\delta = \frac1r$, where $r$ is the diameter of the graph $\rnni$, which is equal to $\binom{n - 1}{2}$
+\todo{prove diameter}
+, and $\epsilon < \delta$.
 To prove the Proposition we assume the contrary, that is, there is a polynomial-time algorithm for computing shortest paths in $\rnni(\epsilon)$.
 Let $p_\epsilon$ be a shortest path between trees $T$ and $R$ in $\rnni(\epsilon)$.
 We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_\epsilon$ is a shortest path in $\rnni(0)$.
