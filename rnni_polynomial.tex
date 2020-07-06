@@ -606,9 +606,11 @@ In the following we aim to find values for $\rho$ close to zero for which $\decp
 \end{lemma}
 
 \proof
-	Let $T$ and $R$ be trees in $\rnni(0)$, and let $n$ be the number of their leaves.
+	Let $T$ and $R$ be trees and let $n$ be the number of their leaves.
     By the assumption of the lemma, shortest paths between these trees can be computed in any space $\rnni(\rho)$ for $\rho > 0$ in polynmoial time.
-    Let $p_\epsilon$ be such a shortest path in $\rnni(\epsilon)$ with $\epsilon := \frac{1}{r+1}$, where $r = \Delta(\rnni)$ is the diameter of $\rnni$.
+	Let $p_\epsilon$ be such a shortest path in $\rnni(\epsilon)$ with $\epsilon := \frac{1}{r+1}$
+	\todo{$\epsilon$ or $\rho_0$? -- $\rho_0$ results in awkward indexing: $p_{\rho_0}$}
+	, where $r = \Delta(\rnni)$ is the diameter of $\rnni$.
     We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_\epsilon$ is a shortest path in $\rnni(0)$.
 
     For contradiction we assume that there is a path $q_0$ shorter than $p_0$ in $\rnni(0)$.
@@ -618,37 +620,40 @@ In the following we aim to find values for $\rho$ close to zero for which $\decp
     However, $|q_\epsilon| < |p_\epsilon|$ contradicts the fact that $p_\epsilon$ is a shortest path in $\rnni(\epsilon)$.
 \endproof
 
-The following is a direct result of Lemma~\ref{lemma:if_decprob_poly} and the fact that we cannot compute $\nni$ distances in polynomial time.
+The following corollary is a direct result of Lemma~\ref{lemma:if_decprob_poly} and Theorem~\ref{thm:nni_hard}.
 
 \begin{corollary}
     There is a $\rho_0 > 0$ for which $\decprob{\rho} \notin \p$.
     \label{cor:exists_rho_not_poly}
 \end{corollary}
 
-\summary{Finding a sequence of $\rho$s for which the problem is not in $\p$ and that converges to $0$.}
+\summary{Finding a sequence of $\rho$s converging to zero for which the problem is not in $\p$.}
 
-With the above we will be able to find a sequence of parameters $\rho$ for which $\decprob{\rho}$ is not solvable in polynomial time.
-Therefore, we need the following theorem.
-
-\begin{theorem}
-    Let $0 < \rho_0 < 1$.
-    If $\decprob{\rho} \in \p$ for all $0<\rho<\rho_0$, then it is ${\decprob{0} \in \p}$.
-\end{theorem}
-
-\todo{prove this thm -- the same as the thm above}
-With this theorem and the knowledge that $\decprob{0} \notin \p$ we get the following result.
+The following lemma is one step forward from Lemma~\ref{lemma:if_decprob_poly} towards constructing a sequence of values of $\rho$ for which $\decprob{\rho}$ is not polynmoial.
 
 \begin{lemma}
-    If $\decprob{\rho_0} \notin \p$, then exists a $\rho_1$ with $0 < \rho_1 < \rho_0$ such that ${\decprob{\rho_1} \notin \p}$.
-    \label{lemma:more_rho_not_poly}
+    Let $0 < \rho_0 < 1$.
+    If $\decprob{\rho} \in \p$ for all $0<\rho<\rho_0$, then it is ${\decprob{0} \in \p}$.
 \end{lemma}
+
+\proof
+	This proof is analogous to the one of Lemma~\ref{lemma:if_decprob_poly}.
+	To ensure $\epsilon < \rho_0$, pick $\epsilon := \min\{\frac{1}{r + 1}, \rho_0\}$.
+\endproof
+
+With the previous lemma and $\decprob{0} \notin \p$ (Theorem~\ref{thm:nni_hard}) we get the following result.
+
+\begin{proposition}
+    If $\decprob{\rho_0} \notin \p$, then exists a $\rho_1$ with $0 < \rho_1 < \rho_0$ such that ${\decprob{\rho_1} \notin \p}$.
+    \label{proposition:more_rho_not_poly}
+\end{proposition}
 
 \begin{theorem}
     There is a sequence $\rho_0, \rho_1, \rho_2, \ldots$ with $1 > \rho_0 > \rho_1 > \rho_2 > \ldots > 0$ such that $\decprob{\rho_m} \notin \p$ for all $m \in \mathbb N$ and $\rho_m \underset{m \rightarrow \infty}{\longrightarrow} 0$.
 \end{theorem}
 
 \proof
-    This follows from Theorem~\ref{cor:exists_rho_not_poly} and iteratively applying Lemma~\ref{lemma:more_rho_not_poly}.
+    The Theorem follows from Corollary~\ref{cor:exists_rho_not_poly} and iteratively applying Proposition~\ref{proposition:more_rho_not_poly}.
 \endproof
 %%%%%%%%%%%%%% END stuff from rnni_rho.tex
 
