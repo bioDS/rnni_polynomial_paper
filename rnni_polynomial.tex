@@ -483,6 +483,21 @@ In this case $C_k \subseteq A$ and the first move on $\fp(T', R)$ must be a rank
 Since all possible cases result in a contradiction, we conclude that inequality~(\ref{eqn:iff_inequality}) is true for all trees, which completes the proof of the theorem.
 \endproof
 
+As there are paths of quadratic length computed by $\findpath$, it is not hard to see that the worst-case running time of this algorithm is optimal among all algorithms computing shortest $\rnni$ paths.
+
+\begin{proposition}
+	The quadratic worst-case running time of $\findpath$ is optimal.
+\end{proposition}
+
+\proof
+	\todo{linebreak}
+	Consider the two trees $T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\ldots,\{a_1,a_2,\ldots,a_n\}]$ and $R = [\{a_1,a_n\}, \{a_1,a_n,a_{n-1}\},\ldots,\{a_1,a_n\ldots,a_2\}]$.
+	For these trees, in every \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}), one $\rnni$ move is necessary, hence the length of the output path of $\findpath$ applied on these trees is quadratic.
+	From Theorem~\ref{thm:rnni_polynomial} we know that this path is a shortest path.
+	It follows that the worst-case size of the output of any algorithm computing shortest paths is quadratic.
+	Hence $\findpath$ has the optimal worst-case running time for $\decprob{0}$.
+\endproof
+
 
 \section{Applications}
 
