@@ -43,6 +43,7 @@
 \newcommand{\spr}{\mathrm{SPR}}
 \newcommand{\tbr}{\mathrm{TBR}}
 \newcommand{\fp}{\mathrm{FP}}
+\newcommand{\tfnp}{\mathcal{TFNP}}
 \newcommand{\np}{\mathcal{NP}}
 \newcommand{\p}{\mathcal{P}}
 \newcommand{\decprob}[1]{\rnni(#1)\text{-}\mathrm{SP}}
@@ -677,6 +678,21 @@ With the previous lemma and $\decprob{0} \notin \p$ (Theorem~\ref{thm:nni_hard})
 \endproof
 %%%%%%%%%%%%%% END stuff from rnni_rho.tex
 
+%%% Start: discussion of functional complexity classes
+So far we only discussed the complexity of the decision version of $\decprob{\rho}$.
+The main result of this paper (Theorem~\ref{thm:rnni_polynomial}), however, shows that we can actually find shortest paths and not just distances in polynomial time for $\rho = 1$.
+This gives us the following result.
+
+\begin{corollary}
+	The problem $\decprob{1}$ is member of the complexity class $\fp$.
+\end{corollary}
+
+In general, the problem $\decprob{\rho}$ is member of the class $\tfnp$ \autocite{Megiddo1991-lr} for any $\rho \geq 0$.
+This follows from the fact that the diameter of $\rnni$ is polynomial and that this graph is connected.
+\todo{add PLS}
+%%% END: discussion of functional complecity classes
+
+\todo{Do we want to keep the following proposition?}
 Although the complexity of $\decprob{\rho}$ is not known for $\rho > 1$, the following proposition shows that the $\findpath$ algorithm is not applicable in this case.
 
 \begin{proposition}
