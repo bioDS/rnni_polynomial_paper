@@ -189,7 +189,9 @@ FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 \medskip
 
 Our first goal is to prove that $\decprob{1}$ is polynomial-time solvable.
-We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that $\decprob{0}$ is $\np$-hard.
+We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that the decision version
+\todo{is it OK to mention the decision version without defining it?}
+ of $\decprob{0}$ is $\np$-hard.
 We will also study $\decprob{\rho}$ for other values of $\rho$.
 To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol}, we will denote the graph $\rnni(1)$ by $\rnni$.
 
@@ -509,7 +511,7 @@ In this section we apply Theorem~\ref{thm:rnni_polynomial} to settle further ope
 \summary{Some words on the cluster property}
 Historically in mathematical phylogenetics, the shortest path decision problem was studied hand in hand with the following cluster property \autocite{Dasgupta2000-xa}.
 We say that a graph on trees has the \emph{cluster property} if for every pair of trees sharing a cluster it follows that every tree on every shortest path between the two trees also has this cluster.
-Surprisingly, this property does not hold for the $\nni$ graph \autocite{Li1996-zw} and has been crucial for proving \autocite{Dasgupta2000-xa} that the shortest path problem in $\nni$ is $\np$-hard.
+Surprisingly, this property does not hold for the $\nni$ graph \autocite{Li1996-zw} and has been crucial for proving \autocite{Dasgupta2000-xa} that computing distances in $\nni$ is $\np$-hard.
 In this section, we will prove that the $\rnni$ graph has the cluster property by building on the fact that $\findpath$ computes shortest paths that preserve clusters.
 Note that since paths computed by $\findpath$ preserve clusters, it follows directly that there always exists a shortest path that maintains every shared cluster.
 However, the cluster property is universal and hence requires a proof that \textbf{all} shortest paths have this property.
@@ -579,11 +581,11 @@ Note also that Corollaries~\ref{cluster_thm} and \ref{cor:fp_dtt} imply that the
 
 \summary{Summarising results on complexity of $\decprob{\rho}$ -- $\decprob{1} \in \p$ and $\decprob{0} \in \np$}
 As we have seen in Section~\ref{sec:rnni_complexity}, the shortest path problem $\decprob{1}$ is solvable in polynomial time.
-In this section, we will show that a classical result in mathematical phylogenetics implies that $\decprob{0}$ is $\np$-hard.
+In this section, we will show that a classical result in mathematical phylogenetics implies that the decision version of $\decprob{0}$ is $\np$-hard.
 We will also discuss $\decprob{\rho}$ for other values of $\rho$.
 
 \begin{theorem}[\textcite{Dasgupta2000-xa}]
-$\decprob{0}$ is $\np$-hard.
+The decision version of $\decprob{0}$ is $\np$-hard.
 \label{thm:nni_hard}
 \end{theorem}
 
@@ -616,7 +618,7 @@ In the following we aim to find values for $\rho$ close to zero for which $\decp
 
 \begin{lemma}
 	\todo{we can merge this and the following lemma}
-    If $\decprob{\rho} \in \p$ for all $\rho > 0$, then it is $\rnni(0) \in \p$.
+    If $\decprob{\rho} \in \p$ for all $\rho > 0$, then it is $\decprob{0} \in \p$.
     \label{lemma:if_decprob_poly}
 \end{lemma}
 
@@ -639,8 +641,9 @@ In the following we aim to find values for $\rho$ close to zero for which $\decp
 
 The following corollary is a direct result of Lemma~\ref{lemma:if_decprob_poly} and Theorem~\ref{thm:nni_hard}.
 
+\todo{We cannot use $\decprob{\rho_0} \notin \p$ in the following statements. Sahll we instead add a notation for the decisoin problem and use it here?}
 \begin{corollary}
-    There is a $\rho_0 > 0$ for which $\decprob{\rho} \notin \p$.
+    There is a $\rho_0 > 0$ for which $\decprob{\rho_0} \notin \p$.
     \label{cor:exists_rho_not_poly}
 \end{corollary}
 
