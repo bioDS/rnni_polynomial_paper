@@ -611,6 +611,7 @@ We now show that Theorem~\ref{thm:nni_hard} can be extended to some values of $\
 This suggests a possibility of a threshold $\hat\rho \in [0, 1]$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
 Assuming the threshold exists, the following conjecture implies that $\hat\rho > 0$.
 
+\todo{do we want to keep this conjecture?  If talking about NP-hardness, it should be the decision version}
 \begin{conjecture}
 There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon}$ is $\np$-hard for all $\epsilon < \delta$.
 \label{prop:complexity_around_nni}
@@ -645,7 +646,7 @@ In the following we aim to find values for $\rho$ close to zero for which $\decp
 
 The following corollary is a direct result of Lemma~\ref{lemma:if_decprob_poly} and Theorem~\ref{thm:nni_hard}.
 
-\todo{We cannot use $\decprob{\rho_0} \notin \p$ in the following statements. Sahll we instead add a notation for the decisoin problem and use it here?}
+\todo{We cannot use $\decprob{\rho_0} \notin \p$ in the following statements. Shall we instead add a notation for the decision problem and use it here?}
 \begin{corollary}
     There is a $\rho_0 > 0$ for which $\decprob{\rho_0} \notin \p$.
     \label{cor:exists_rho_not_poly}
