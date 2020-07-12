@@ -495,8 +495,8 @@ As there are paths of quadratic length computed by $\findpath$, it is not hard t
 \end{proposition}
 
 \proof
-	\todo{linebreak}
-	Consider the two trees $T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\ldots,\{a_1,a_2,\ldots,a_n\}]$ and $R = [\{a_1,a_n\}, \{a_1,a_n,a_{n-1}\},\ldots,\{a_1,a_n\ldots,a_2\}]$.
+	\todo{weird linebreak}
+	Consider the two trees $T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\ldots,\{a_1,a_2,\ldots,a_n\}]$ and \linebreak $R = [\{a_1,a_n\}, \{a_1,a_n,a_{n-1}\},\ldots,\{a_1,a_n\ldots,a_2\}]$.
 	For these trees, in every \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}), one $\rnni$ move is necessary, hence the length of the output path of $\findpath$ applied on these trees is quadratic.
 	From Theorem~\ref{thm:rnni_polynomial} we know that this path is a shortest path.
 	It follows that the worst-case size of the output of any algorithm computing shortest paths is quadratic.
