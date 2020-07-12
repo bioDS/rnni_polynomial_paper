@@ -734,8 +734,10 @@ This path consists of two $\nni$ moves with one rank move in between and therefo
 However, there is a path from $T$ to $R$ with trees $[\{a_2,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $[\{a_2,a_3\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ between $T$ and $R$, which only consists of $\nni$ moves.
 This path has weight $3$ and is therefore shorter than $\fp(T,R)$ for $\rho > 1$.
 
-\todo{This second part needs to be extended}
 For $\rho < 1$, the trees $[\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ and $[\{a_1,a_3\},\{a_1,a_3, a_4\},\{a_1,a_2,a_3,a_4\}]$ give a counterexample.
+For these trees $\findpath$ computes a path of length three only consisting of $\nni$ moves.
+However, there is a path of $\rho + 2 < 3$ where first the two cherries of $T$ swap ranks, resulting in $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$, before the cherry $(a_1,a_2)$ resolves to $[\{a_3,a_4\},\{a_3,a_4,a_1\},\{a_1,a_2,a_3,a_4\}]$.
+Finally, $a_1$ moves into the cherry by an $\nni$ move to receive the tree $R$.
 \end{proof}
 
 \begin{proposition}
