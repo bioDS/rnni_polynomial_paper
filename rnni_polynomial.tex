@@ -738,6 +738,39 @@ This path has weight $3$ and is therefore shorter than $\fp(T,R)$ for $\rho > 1$
 For $\rho < 1$, the trees $[\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ and $[\{a_1,a_3\},\{a_1,a_3, a_4\},\{a_1,a_2,a_3,a_4\}]$ give a counterexample.
 \end{proof}
 
+
+\begin{proposition}
+	Let $T$ be a tree and $C \subset \{1, \ldots, n\}$ a subset of leaf labels that is no cluster in $T$.
+	Furthermore, we assume that $C$ is either
+	\begin{itemize}
+		\item the union of two clusters $A$ and $B$ of $T$
+		\item the union of a cluster $A$ of $T$ and a leaf label $x$
+		\item the union of two leaf labels $x$ and $y$
+	\end{itemize}
+	Then there exists a unique $\rnni$ move that decreases the rank of $(C)_T$ by one.
+\end{proposition}
+
+\proof
+We can assume that the rank of $(C)_T$ is greater than one, as $C$ would otherwise be induced by the node of rank one in $T$.
+
+At first we assume that the interval between $(C)_T$ and the node $v$ with rank one less is not an edge.
+In this case it is obvious that the rank move exchanging the ranks of $(C)_T$ and $v$ is the only move that can decrease tha rank of $(C)_T$.
+
+Let us now consider the case that $(C)_T$ and $v$ are connected by an edge.
+The only moves that could possibly decrease the rank of $(C)_T$ are $\nni$ moves on this edge.
+It remains to show that exactly one of the two $\nni$ moves, which result in trees different to $T$, decreases the rank of $(C)_T$.
+
+Let $C_1$ and $C_2$ be the clusters of $T$ induced by the two children of $v$ and let $C_3$ be the cluster induced by the child of $(C)_T$ that is not $v$.
+Note that for simplicity we will call $C_1, C_2,$ and $C_3$ clusters even though they could be sets containing just one leaf label (trivial clusters).
+We will now show that it is either $C \subseteq C_1 \ cup C_3$ or $C \subseteq C_1 \ cup C_3$.
+
+As $C$ is the most recent common ancestor of two clusters of $T$, it must contain some elements of $C_3$.
+By the definition of $C$ in the Proposition we know that it is the union of two clusters that already exist in $T$.
+As one of these clusters must be a subset of $C_3$, the other one can either be a subset of $C_1$ or a subset of $C_2$.
+It cannot contain elements of both, as the cluster of $T$ of lowest rank that has elements in both $C_1$ and $C_2$ is the cluster induced by $v$.
+And if $C$ was the union of the cluster induced by $v$ and a cluster that is subset of $C_3$, $C$ would be induced by $(C)_T$.
+\endproof
+
 The following figure illustrates Case~\ref{case:rank_move_interval_above} from the proof of Theorem~\ref{thm:rnni_polynomial}.
 
 \begin{figure}[ht]
