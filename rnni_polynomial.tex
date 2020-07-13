@@ -269,7 +269,7 @@ Therefore, only the $\nni$ move that exchange the subtree induced by $u$ with th
 Case $k > 1$.
 \begin{enumerate}
 \item $C_k = C_i \cup C_j$ for $i, j < k$.
-Suppress $C_i$ and $C_j$ in both $T'$ and $R$ to new leaves $c_i$ and $c_j$ (with rank zero) respectively and proceed as in Case $k = 1$.
+Suppress $C_i$ and $C_j$ in both $T'$ and $R$ to new leaves $c_i$ and $c_j$ (of rank zero) respectively and proceed as in Case $k = 1$.
 \item $C_k = C_i \cup \{x\}$, where $x$ is a leaf not present in $C_1, \ldots, C_k$.
 Suppress $C_i$ in both $T'$ and $R$ to a new leaf $c_i$ and proceed as in Case $k = 1$.
 \item $C_k = \{x, y\}$ where both $x$ and $y$ are not in $C_1, \ldots, C_k$.
@@ -279,7 +279,7 @@ Proceed as in Case $k = 1$.
 Hence, the choice of the tree $T''$ in the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}) is unique, which concludes the proof.
 \endproof
 
-The worst-case complexity of $\findpath$ is quadratic in the number of leaves, as there can be at most $n-2$ executions of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) and at iteration $k$ of the \textbf{for} loop there are at most $n-1-k$ iterations of the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}).
+The worst-case complexity of $\findpath$ is quadratic in the number of leaves, as there can be at most $n-2$ executions of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) and in every iteration of the \textbf{for} loop at most $n-2$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) are executed.
 
 \summary{A few words about the main theorem and its proof.}
 The following theorem, that $\decprob{1}$ is polynomial, is the main result of our paper.
