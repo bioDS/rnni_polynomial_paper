@@ -680,12 +680,12 @@ In the following we aim to find values for $\rho$ close to zero for which $\decp
     However, $|q_\epsilon| < |p_\epsilon|$ contradicts the fact that $p_\epsilon$ is a shortest path in $\rnni(\epsilon)$.
 \endproof
 
-Note that Theorem~\ref{thm:nni_hard} implies that $\decprob{0} \notin \fp$, if $\p \neq \np$.
+Note that Theorem~\ref{thm:nni_hard} implies that $\decprob{0} \notin \fp$.
 With this and Lemma~\ref{lemma:if_decprob_poly} we get the following corollary.
 
 \todo{We cannot use $\decprob{\rho_0} \notin \p$ in the following statements. Shall we instead add a notation for the decision problem and use it here?}
 \begin{corollary}
-    There is a $\rho_0 > 0$ for which $\decprob{\rho_0} \notin \fpc$, assuming $\p \neq \np$.
+    There is a $\rho_0 > 0$ for which $\decprob{\rho_0} \notin \fpc$.
     \label{cor:exists_rho_not_poly}
 \end{corollary}
 
@@ -706,12 +706,12 @@ The following lemma is one step forward from Lemma~\ref{lemma:if_decprob_poly} t
 With the previous lemma and $\decprob{0} \notin \fpc$ (Theorem~\ref{thm:nni_hard}) we get the following result.
 
 \begin{proposition}
-    If $\decprob{\rho_0} \notin \fpc$, then exists a $\rho_1$ with $0 < \rho_1 < \rho_0$ such that $\decprob{\rho_1} \notin \fpc$, assuming $\p \neq \np$.
+    If $\decprob{\rho_0} \notin \fpc$, then exists a $\rho_1$ with $0 < \rho_1 < \rho_0$ such that $\decprob{\rho_1} \notin \fpc$, assuming.
     \label{proposition:more_rho_not_poly}
 \end{proposition}
 
 \begin{theorem}
-    There is a sequence $\rho_0, \rho_1, \rho_2, \ldots$ with $1 > \rho_0 > \rho_1 > \rho_2 > \ldots > 0$ such that $\decprob{\rho_m} \notin \fpc$ for all $m \in \mathbb N$ and $\rho_m \underset{m \rightarrow \infty}{\longrightarrow} 0$, assuming $\p \neq \np$.
+    There is a sequence $\rho_0, \rho_1, \rho_2, \ldots$ with $1 > \rho_0 > \rho_1 > \rho_2 > \ldots > 0$ such that $\decprob{\rho_m} \notin \fpc$ for all $m \in \mathbb N$ and $\rho_m \underset{m \rightarrow \infty}{\longrightarrow} 0$.
 \end{theorem}
 
 \proof
