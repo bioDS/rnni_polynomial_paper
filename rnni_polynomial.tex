@@ -45,6 +45,7 @@
 \newcommand{\spr}{\mathrm{SPR}}
 \newcommand{\tbr}{\mathrm{TBR}}
 \newcommand{\fp}{\mathrm{FP}}
+\newcommand{\pls}{\mathrm{PLS}}
 \newcommand{\tfnp}{\mathcal{TFNP}}
 \newcommand{\fpc}{\mathcal{FP}}
 \newcommand{\np}{\mathcal{NP}}
@@ -192,10 +193,15 @@ FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 
 \medskip
 
+The shortest path problem $\decprob{\rho}$ is in the complexity class $\tfnp$\autocite{Megiddo1991-lr} for every $\rho$, as $\rnni$ is a connected graph with diameter bounded by a polynomial \autocite{Gavryushkin2018-ol}.
+It can also be seen as a local search problem and member of the class $\pls$ for any $\rho$.
+The question whether $\decprob{\rho}$ is $\pls$-complete for some values of $\rho$ however remains open.
+
+By adding a parameter $k$ the problem $\decprob{\rho}$ can be seen as a decision problem, asking if a path of length less than or equal to $k$ between two given trees exists.
+Whenever we say that $\decprob{rho}$ is $\np$-hard or in $\p$, we refer to this corresponding decision problem.
+
 Our first goal is to prove that $\decprob{1}$ is polynomial-time solvable.
-We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that the decision version
-\todo{is it OK to mention the decision version without defining it?}
- of $\decprob{0}$ is $\np$-hard.
+We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that $\decprob{0}$ is $\np$-hard.
 We will also study $\decprob{\rho}$ for other values of $\rho$.
 To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol}, we will denote the graph $\rnni(1)$ by $\rnni$.
 
@@ -723,8 +729,6 @@ This gives us the following result.
 	The problem $\decprob{1}$ is member of the complexity class $\fpc$.
 \end{corollary}
 
-In general, the problem $\decprob{\rho}$ is member of the class $\tfnp$ \autocite{Megiddo1991-lr} for any $\rho \geq 0$.
-This follows from the fact that the diameter of $\rnni$ is polynomial and that this graph is connected.
 \todo{shall this be a thm? + add PLS conjecture?}
 %%% END: discussion of functional complexity classes
 
