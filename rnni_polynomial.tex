@@ -665,18 +665,16 @@ In the following we aim to find values for $\rho$ close to zero for which $\decp
 
 \proof
 	Let $T$ and $R$ be trees and let $n$ be the number of their leaves.
-    By the assumption of the lemma, shortest paths between these trees can be computed in any space $\rnni(\rho)$ for $\rho > 0$ in polynmoial time.
-	Let $p_\epsilon$ be such a shortest path in $\rnni(\epsilon)$ with $\epsilon := \frac{1}{r+1}$
+    By the assumption of the lemma, shortest paths between these trees can be computed in every space $\rnni(\rho)$ for $\rho > 0$ in polynomial time.
+	Let $p_\epsilon$ be such a shortest path in $\rnni(\epsilon)$ with $\epsilon := \frac{1}{\Delta(\rnni)+1}$
 	\todo{$\epsilon$ or $\rho_0$? -- $\rho_0$ results in awkward indexing: $p_{\rho_0}$}
-	, where $r = \Delta(\rnni)$ is the diameter
-	\todo{do we need to prove the diameter here?}
-	of $\rnni$.
+	, where $\Delta(\rnni)$ is the diameter	of $\rnni$.
     We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_\epsilon$ is a shortest path in $\rnni(0)$.
 
     For contradiction we assume that there is a path $q_0$ shorter than $p_0$ in $\rnni(0)$.
     It follows $|q_0| \leq |p_0| - 1$.
     For the path $q_\epsilon$ in $\rnni(\epsilon)$ it is $|q_\epsilon| = |q_0| + m_r \epsilon < |q_0| + 1 \leq |p_0| \leq |p_\epsilon|$, where $m_r$ is the number of rank moves on $q_0$.
-    Note that there cannot be more than $r$ rank moves $m_r$ on $q_0$ as we assumed that $q_0$ is a shortest path in $\rnni(0)$.
+    Note that there cannot be more than $\Delta(\rnni)$ rank moves $m_r$ on $q_0$ as we assumed that $q_0$ is a shortest path in $\rnni(0)$.
     However, $|q_\epsilon| < |p_\epsilon|$ contradicts the fact that $p_\epsilon$ is a shortest path in $\rnni(\epsilon)$.
 \endproof
 
