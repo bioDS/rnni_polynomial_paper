@@ -671,7 +671,7 @@ In the following we aim to find values for $\rho$ close to zero for which $\decp
 \proof
 	Let $T$ and $R$ be trees and $n$ their number of leaves.
     By the assumption of the lemma, shortest paths between these trees can be computed in polynomial time in $\rnni(\rho)$ for every $\rho > 0$.
-	Let $p_{\rho_1}$ be such a shortest path in $\rnni(\rho_1)$ with $\rho_1 := \min\{\frac{1}{\Delta(\rnni) + 1}, \frac{\rho_0}{2}\}$, where $\Delta(\rnni)$ is the diameter of $\rnni$.
+	Let $p_{\rho_1}$ be such a shortest path in $\rnni(\rho_1)$ with $\rho_1 := \min\{\frac{1}{\Delta(\rnni) + 1}, \frac{\rho_0}{2}\}$, where $\Delta(\rnni)$ is the diameter of $\rnni$, which is known to be quadratic in $n$ \autocite{Gavryushkin2018-ol}.
 	With this choice of $\rho_1$ it is $0 < \rho_1 < rho_0$.
     We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_{\rho_1}$ is a shortest path in $\rnni(0)$.
 
