@@ -653,7 +653,6 @@ We now show that Theorem~\ref{thm:nni_hard} can be extended to some values of $\
 This suggests a possibility of a threshold $\hat\rho \in [0, 1]$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
 Assuming the threshold exists, the following conjecture implies that $\hat\rho > 0$.
 
-\todo{do we want to keep this conjecture?  If talking about NP-hardness, it should be the decision version}
 \begin{conjecture}
 There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon}$ is $\np$-hard for all $\epsilon < \delta$.
 \label{prop:complexity_around_nni}
@@ -664,24 +663,23 @@ There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon
 In the following we aim to find values for $\rho$ close to zero for which $\decprob{\rho}$ is not polynomial.
 
 \begin{lemma}
-	\todo{we could merge this and Lemma 2}
-    If $\decprob{\rho} \in \fpc$ for all $\rho > 0$, then it is $\decprob{0} \in \fpc$.
+    Let $0 < \rho_0 < 1$.
+    If $\decprob{\rho} \in \fpc$ for all $0<\rho<\rho_0$, then it is ${\decprob{0} \in \fpc}$.
     \label{lemma:if_decprob_poly}
 \end{lemma}
 
 \proof
-	Let $T$ and $R$ be trees and let $n$ be the number of their leaves.
-    By the assumption of the lemma, shortest paths between these trees can be computed in every space $\rnni(\rho)$ for $\rho > 0$ in polynomial time.
-	Let $p_\epsilon$ be such a shortest path in $\rnni(\epsilon)$ with $\epsilon := \frac{1}{\Delta(\rnni)+1}$
-	\todo{$\epsilon$ or $\rho_0$? -- $\rho_0$ results in awkward indexing: $p_{\rho_0}$}
-	, where $\Delta(\rnni)$ is the diameter	of $\rnni$.
-    We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_\epsilon$ is a shortest path in $\rnni(0)$.
+	Let $T$ and $R$ be trees and $n$ their number of leaves.
+    By the assumption of the lemma, shortest paths between these trees can be computed in polynomial time in $\rnni(\rho)$ for every $\rho > 0$.
+	Let $p_{\rho_1}$ be such a shortest path in $\rnni(\rho_1)$ with $\rho_1 := \min\{\frac{1}{\Delta(\rnni) + 1}, \frac{\rho_0}{2}\}$, where $\Delta(\rnni)$ is the diameter of $\rnni$.
+	With this choice of $\rho_1$ it is $0 < \rho_1 < rho_0$.
+    We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_{\rho_1}$ is a shortest path in $\rnni(0)$.
 
     For contradiction we assume that there is a path $q_0$ shorter than $p_0$ in $\rnni(0)$.
     It follows $|q_0| \leq |p_0| - 1$.
-    For the path $q_\epsilon$ in $\rnni(\epsilon)$ it is $|q_\epsilon| = |q_0| + m_r \epsilon < |q_0| + 1 \leq |p_0| \leq |p_\epsilon|$, where $m_r$ is the number of rank moves on $q_0$.
+    For the path $q_{\rho_1}$ in $\rnni(\rho_1)$ consisting of the same trees as $q_0$ it is $|q_{\rho_1}| = |q_0| + m_r \rho_1 < |q_0| + 1 \leq |p_0| \leq |p_{\rho_1}|$, where $m_r$ is the number of rank moves on $q_0$.
     Note that there cannot be more than $\Delta(\rnni)$ rank moves $m_r$ on $q_0$ as we assumed that $q_0$ is a shortest path in $\rnni(0)$.
-    However, $|q_\epsilon| < |p_\epsilon|$ contradicts the fact that $p_\epsilon$ is a shortest path in $\rnni(\epsilon)$.
+    However, $|q_{\rho_1}| < |p_{\rho_1}|$ contradicts the fact that $p_{\rho_1}$ is a shortest path in $\rnni(\rho_1)$.
 \endproof
 
 Note that Theorem~\ref{thm:nni_hard} implies that $\decprob{0} \notin \fp$.
@@ -694,13 +692,6 @@ With this and Lemma~\ref{lemma:if_decprob_poly} we get the following corollary.
 \end{corollary}
 
 \summary{Finding a sequence of $\rho$s converging to zero for which the problem is not in $\p$.}
-
-The following lemma is one step forward from Lemma~\ref{lemma:if_decprob_poly} towards constructing a sequence of values of $\rho$ for which $\decprob{\rho}$ is not polynomial.
-
-\begin{lemma}
-    Let $0 < \rho_0 < 1$.
-    If $\decprob{\rho} \in \fpc$ for all $0<\rho<\rho_0$, then it is ${\decprob{0} \in \fpc}$.
-\end{lemma}
 
 \proof
 	This proof is analogous to the one of Lemma~\ref{lemma:if_decprob_poly}.
