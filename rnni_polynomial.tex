@@ -505,6 +505,12 @@ In this case $C_k \subseteq A$ and the first move on $\fp(T', R)$ must be a rank
 Since all possible cases result in a contradiction, we conclude that inequality~(\ref{eqn:iff_inequality}) is true for all trees, which completes the proof of the theorem.
 \endproof
 
+The following corollary is a direct result of Theorem~\ref{thm:rnni_polynomial}.
+
+\begin{corollary}
+	The problem $\decprob{1}$ is member of the complexity class $\fpc$.
+\end{corollary}
+
 As there are paths of quadratic length computed by $\findpath$, it is not hard to see that the worst-case running time of this algorithm is optimal among all algorithms computing shortest $\rnni$ paths.
 
 \begin{proposition}
@@ -722,12 +728,6 @@ With the previous lemma and $\decprob{0} \notin \fpc$ (Theorem~\ref{thm:nni_hard
 So far we only discussed the complexity of the decision version of $\decprob{\rho}$.
 The main result of this paper (Theorem~\ref{thm:rnni_polynomial}), however, shows that we can actually find shortest paths and not just distances in polynomial time for $\rho = 1$.
 This gives us the following result.
-
-\begin{corollary}
-	The problem $\decprob{1}$ is member of the complexity class $\fpc$.
-\end{corollary}
-
-\todo{shall this be a thm? + add PLS conjecture?}
 %%% END: discussion of functional complexity classes
 
 
