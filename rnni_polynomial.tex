@@ -197,8 +197,9 @@ The shortest path problem $\decprob{\rho}$ is in the complexity class $\tfnp$\au
 It can also be seen as a local search problem and member of the class $\pls$ for any $\rho$.
 The question whether $\decprob{\rho}$ is $\pls$-complete for some values of $\rho$ however remains open.
 
-By adding a parameter $k$ the problem $\decprob{\rho}$ can be seen as a decision problem, asking if a path of length less than or equal to $k$ between two given trees exists.
-Whenever we say that $\decprob{rho}$ is $\np$-hard or in $\p$, we refer to this corresponding decision problem.
+To prove $\np$-hardness, the decision version of the shortest path problem is being considered in the literature \autocite{Dasgupta2000-xa,Bordewich2005-nx}.
+The decision versio of $\decprob{\rho}$ can be seen as adding a parameter $k$ to the input of the problem and asking if a path of length less than or equal to $k$ between two given trees exists.
+Whenever we say that $\decprob{\rho}$ is $\np$-hard or in $\p$, we refer to this corresponding decision problem.
 
 Our first goal is to prove that $\decprob{1}$ is polynomial-time solvable.
 We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that $\decprob{0}$ is $\np$-hard.
