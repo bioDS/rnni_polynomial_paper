@@ -119,13 +119,6 @@ To facilitate practical applications, fixed parameter tractable algorithms \auto
 Computing the $\nni$ distance is also known to be fixed parameter tractable \autocite{DasGupta1999-xf}.
 Although important, these algorithms remain impractical for large distances and are only applied to trees with a moderate number of leaves or those with small distances \autocite{Whidden2018-fw}.
 
-The idea utilised by \textcite{Dasgupta2000-xa} to prove that computing distances in $\nni$ is $\np$-hard stems from a result that shortest paths in $\nni$ do not preserve clusters \autocite{Li1996-zw}, that is, sometimes a cluster shared by two trees $T$ and $R$ does not present in trees on shortest paths between $T$ and $R$.
-Not only this counter-intuitive property eventually led to the computational hardness result, the property made little sense biologically as trees clustering the same set of sequences into a subtree should be closer to each other than to a tree that does not have that subtree.
-Indeed, a shared cluster means that both trees support the hypothesis that this cluster has evolved along a subtree.
-It was believed that this so-called cluster property and the computational complexity of the shortest path problem were related \autocite{Li1996-zw}, so the two questions have historically been studied simultaneously \autocite{Dasgupta2000-xa}.
-However, there is little evidence to justify this connection.
-For example, the cluster property holds in $\spr$ even though computing distances is $\np$-hard in that space.
-
 In this paper, we establish that a generalisation of the $\nni$ operation introduced by \textcite{Gavryushkin2018-ol} and called $\rnni$ (for Ranked Nearest Neighbour Interchange) has the shortest path problem computable in $\O(n^2)$, where $n$ is the number tree leaves.
 This makes $\rnni$ the first tree rearrangement operation under which shortest paths and distances between trees are polynomial-time computable.
 To establish this result (Theorem~\ref{thm:rnni_polynomial}), we will introduce the algorithm $\findpath$ and show that it computes shortest paths in the  $\rnni$ graph in $\O(n^2)$ time.
@@ -183,8 +176,7 @@ Our main object of study is the following class of shortest path problems parame
 
 \medskip
 
-\noindent $\decprob{\rho}$
-\medskip\\
+\noindent $\decprob{\rho}$\\
 INSTANCE: A pair of trees on $n$ leaves $T$ and $R$\\
 FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 
@@ -710,20 +702,25 @@ The Theorem follows from Corollary~\ref{cor:exists_rho_not_poly} and iteratively
 %%%%%%%%%%%%%% END stuff from rnni_rho.tex
 
 
-\section{Open problems}
+\section{Additional open problems}
 
-In this framework, we propose to study the following questions.
+The idea utilised by \textcite{Dasgupta2000-xa} to prove that computing distances in $\nni$ is $\np$-hard stems from a result that shortest paths in $\nni$ do not preserve clusters \autocite{Li1996-zw}, that is, sometimes a cluster shared by two trees $T$ and $R$ does not present in trees on shortest paths between $T$ and $R$.
+Not only this counter-intuitive property eventually led to the computational hardness result, the property made little sense biologically as trees clustering the same set of sequences into a subtree should be closer to each other than to a tree that does not have that subtree.
+Indeed, a shared cluster means that both trees support the hypothesis that this cluster has evolved along a subtree.
+In light of this biological argument, the $\np$-hardness result can be interpreted as $\decprob{\rho}$ being hard only when the graph $\rnni(\rho)$ is biologically irrelevant.
+This interpretation resonates with the idea suggested in the beyond worst case analysis framework \autocite{Roughgarden2019-to} that some problems are only computationally hard when their instances are irrelevant in practice.
+The following question is hence natural.
 \begin{enumerate}
-\item Problem~\ref{prblm:rho_range} above.
-Additionally, as discussed in the introduction, since the cluster property is of importance in biological applications, the $\np$-hardness result can be interpreted as $\decprob{\rho}$ being hard only when the graph $\rnni(\rho)$ is biologically irrelevant.
-We hence propose the following question.
-For which values of $\rho$ does $\rnni(\rho)$ have the cluster property?
-
+\item For which values of $\rho$ does $\rnni(\rho)$ have the cluster property?
+How do those compare to the values of $\rho$ for which $\decprob{\rho}$ is efficient?
+\end{enumerate}
+Other natural questions that arise in the context of our results are the following.
+\begin{enumerate}
+\addtocounter{enumi}{1}
 \item The questions we have considered for ranked $\nni$ can be studied in other rearrangement-based graphs on leaf-labelled trees, such as the ranked $\spr$ graph and the ranked $\tbr$ graph \autocite{Semple2003-nj}.
 What is the complexity of the shortest path problem there?
-Does the complexity depend on edge weights?
 
-\item Can our results, e.g.\ the algorithm for computing shortest paths in $\rnni$, be used to establish whether the problem of computing geodesics between trees with real-valued time intervals is polynomial-time solvable?
+\item Can our results be used to establish whether the problem of computing geodesics between trees with real-valued node heights is polynomial-time solvable?
 This geodesic metric space is called $\mathrm t$-space and an efficient algorithm for computing geodesics in $\mathrm t$-space would be of importance for applications \autocite{Gavryushkin2016-uu}.
 \end{enumerate}
 
