@@ -51,6 +51,8 @@
 
 \graphicspath{{figures/}}
 
+\sloppy
+
 
 \title[Computing $\rnni$ distance]{Computing nearest neighbour interchange distances between ranked phylogenetic trees}
 \date{\today}
@@ -150,7 +152,7 @@ Note that $(C)_T = (T)_t$ if the cluster $C$ is induced by the node of rank $t$ 
 We are now ready to introduce our main object of study, a class of graphs $\rnni(\rho)$ for $\rho \geq 0$.
 The vertices of the $\rnni(\rho)$ graph are trees as defined above.
 Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:\\
-(i) A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with consecutive ranks, provided the two nodes are not connected by an edge in the tree $T$.\\
+(i) A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with consecutive ranks, provided the two nodes are not connected by an edge in $T$.\\
 (ii) Trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ both connecting nodes of consecutive ranks in the corresponding trees, such that the (non-binary) trees obtained by shrinking $e$ and $f$ into internal nodes are identical.\\
 Figure~\ref{fig:ranked_trees_ex} gives examples of these tree rearrangements.
 The parameter $\rho \geq 0$ is the weight of the rank move operation, the $\nni$ moves weigh $1$.
@@ -162,8 +164,7 @@ Our main object of study is the following class of shortest path problems parame
 
 \medskip
 
-\noindent $\decprob{\rho}$
-\medskip\\
+\noindent $\decprob{\rho}$\\
 INSTANCE: A pair of trees on $n$ leaves $T$ and $R$\\
 FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 
@@ -172,8 +173,9 @@ FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 In general, the shortest path problem $\decprob{\rho}$ is in the complexity class $\tfnp$ \autocite{Megiddo1991-lr} for every $\rho$, as $\rnni$ is a connected graph with diameter bounded by a polynomial \autocite{Gavryushkin2018-ol}.
 This problem can also be seen as a local search problem, if a path of locally minimal weight is the search objective, and hence a member of the class $\pls$ for any $\rho$.
 Indeed, \textcite{Gavryushkin2018-ol} provided a quadratic algorithm that given two trees on $n$ leaves computes a path between them.
-It is of interest whether the notion of a neighbourhood of a path in $\rnni(\rho)$ can be introduced in such a way that this local search version of $\decprob{\rho}$ becomes $\pls$-complete for certain values of $\rho$.
-Indeed, as we show in this paper $\decprob{1}$ can be solved in polynomial time, so unless $\fpc = \pls$ there is no such neighbourhood notion for $\rho = 1$.
+Their result also implies that the number of possible weights a path in $\rrni(\rho)$ can possible have is bounded by a (quadratic)polynomial in the number of leaves.
+Hence, it is polynomial to find a locally shortest path between a pair of trees for all polynomially computable definitions of locality and all values of $\rho$.
+This observation stands in contrast to the hardness results of finding globally shortest paths that we discuss below.
 
 For $\np$-hardness proofs in this area it is standard to consider the decision version of the shortest path problem \autocite{Dasgupta2000-xa,Bordewich2005-nx}.
 Specifically, the decision version of $\decprob{\rho}$ is introduced by adding a parameter $k$ to the input of the problem and asking whether a path of length less than or equal to $k$ between two given trees exists.
