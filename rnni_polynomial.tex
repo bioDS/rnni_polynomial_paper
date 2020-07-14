@@ -131,16 +131,15 @@ This makes $\rnni$ the first tree rearrangement operation under which shortest p
 To establish this result (Theorem~\ref{thm:rnni_polynomial}), we will introduce the algorithm $\findpath$ and show that it computes shortest paths in the  $\rnni$ graph in $\O(n^2)$ time.
 Our algorithm is optimal as shortest paths often have length quadratic in the number of leaves $n$.
 The algorithm is practical as it takes seconds for a laptop to compute the distance between trees with thousands of leaves, while in the closely related $\nni$ graph the tractable number of leaves is well below 20 \autocite{Li1996-zw, Whidden2016-kl}.
-We will also prove that the $\rnni$ graph has the cluster property, which is an important distinction between this graph and $\nni$.
-We then generalise the $\findpath$ algorithm to trees with arbitrary integer-valued branch lengths and show that the shortest path problem for such trees is also polynomial-time.
-We will finish the paper by investigating the question of whether there exists a threshold at which the complexity shifts from $\np$-hard to polynomial.
+
+Because $\nni$ can be seen as a special case of $\rnni$, we investigate the question of whether there exists a threshold at which the complexity shifts from $\np$-hard to polynomial.
 Specifically, we introduce an edge weight parameter $\rho$ in the $\rnni$ graph and consider a parametrised graph $\rnni(\rho)$.
 We show that the shortest path problem is $\np$-hard in $\rnni(0)$ and quadratic in $\rnni(1)$, so the complexity changes with $\rho$.
-
-We propose to characterise the values of $\rho \geq 0$ for which the complexity of computing distances in the parametrised graph is polynomial.
-We will provide some insights into this characterisation problem at the end of this paper.
-The problem is similar in spirit to the beyond worst-case analysis framework \autocite{Roughgarden2019-to}, because, just like in our result, a $\gamma$-perturbation stable instance of the maximum cut problem is known \autocite{Roughgarden2019-to} to be $\np$-hard for small values of $\gamma$ and polynomial for larger values of $\gamma$.
-Since the problem of identifying the value of $\gamma$ where the complexity switches has largely been resolved \autocite{Makarychev2014-ev}, we hope that the approaches reviewed by \textcite{Roughgarden2019-to} will be helpful for this study.
+Furthermore, as the shortest path problem can be stated as a local search problem, our results show that $\rnni(\rho)$ attains such complexity classes as $\fpc$, $\pls$, and $\tfnp$ depending on the values of $\rho$.
+We hence propose to characterise the complexity classes of the problem $\rnni(\rho)$ for values of $\rho \geq 0$.
+We will provide some insights into this characterisation at the end of this paper.
+This problem is similar in spirit to the beyond worst-case analysis (including parametrised complexity \autocite{Downey2013-nd}) framework \autocite{Roughgarden2019-to}, because for example, just like in our result, a $\gamma$-perturbation stable instance of the maximum cut problem is known \autocite{Roughgarden2019-to} to be $\np$-hard for small values of $\gamma$ and polynomial for larger values of $\gamma$.
+Since the problem of identifying the value of $\gamma$ where the complexity switches has largely been resolved \autocite{Makarychev2014-ev}, we hope that the approaches reviewed by \textcite{Roughgarden2019-to} will be helpful for the proposed study as well.
 
 
 \section{Definitions and background results}
