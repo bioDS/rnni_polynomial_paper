@@ -103,7 +103,7 @@ In this paper we will provide an insight into this approach, motivated by ideas 
 \summary{Motivation: many popular tree search algorithms are based on NNI (e.g. this \url{https://academic.oup.com/mbe/article/28/10/2731/973375} tool has been cited 40K+ times, see also references there to PhyML, RaxML, etc. -- they all use NNI); other applications include tree comparison methods, tree inference methods (proposal distributions), summary statistics, etc.}
 The problem of reconstructing evolutionary histories from sequence data is central for many tree inference methods used in computational biology.
 The most common approaches infer trees from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
-All these methods rely of various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection ($\tbr$).
+All these methods rely on various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection ($\tbr$).
 Hence the tree inference problem can be formulated as a graph search, where vertices are trees and edges are given by the tree rearrangement operation of interest.
 
 \summary{More motivation: Distances that we can compute in polynomial time are not well motivated biologically, all others are $\np$-hard}
@@ -471,29 +471,29 @@ This move results in $T_1 = T'$.
 The following two sub-cases are analogous to case~\ref{case:one_or_two_moves_down}.
 
 \begin{enumerate}[label = \theenumi.\arabic*]
-	\item $(T)_{t+2}$ is a parent of $(T)_t$.
-	The first move on $\fp(T, R)$ builds a cluster $A \cup B_1$ or $A \cup B_2$, and we assume without loss of generality that it is the former, as in Figure~\ref{fig:thm_fp_rank1}.
-	This implies that $C_k \subseteq A \cup B_1$.
-	If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A$ is a cluster in $R$.
-	Therefore, the first move on $\fp(T', R)$ decreases the rank of $(A)_{T'}$, which results in $T_1' = T$.
-	If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
-	Due to the symmetry we can assume that $C_k \subseteq A_1 \cup B_1$, which implies that the move between $T_1$ and $T_2$ exchanges the subtrees induced by $A_2$ and $B_1$, as depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
-	$C_k \subseteq A_1 \cup B_1$ implies that the first two moves on $\fp(T', R)$ result in a tree $T'_2$ that is an $\rnni$ neighbour of $T_2$ -- see Figure~\ref{fig:thm_fp_rank1}.
-	This is a contradiction to the minimality assumption on $|\fp(T,R)|$.
+\item $(T)_{t+2}$ is a parent of $(T)_t$.
+The first move on $\fp(T, R)$ builds a cluster $A \cup B_1$ or $A \cup B_2$, and we assume without loss of generality that it is the former, as in Figure~\ref{fig:thm_fp_rank1}.
+This implies that $C_k \subseteq A \cup B_1$.
+If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A$ is a cluster in $R$.
+Therefore, the first move on $\fp(T', R)$ decreases the rank of $(A)_{T'}$, which results in $T_1' = T$.
+If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
+Due to the symmetry we can assume that $C_k \subseteq A_1 \cup B_1$, which implies that the move between $T_1$ and $T_2$ exchanges the subtrees induced by $A_2$ and $B_1$, as depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
+$C_k \subseteq A_1 \cup B_1$ implies that the first two moves on $\fp(T', R)$ result in a tree $T'_2$ that is an $\rnni$ neighbour of $T_2$ -- see Figure~\ref{fig:thm_fp_rank1}.
+This is a contradiction to the minimality assumption on $|\fp(T,R)|$.
 
-	\item $(T)_{t+2}$ is not a parent of $(T)_t$.
-	In this case, there exists a cluster $C$ induced by the child of $(T)_{t+2}$ which is different from the one that induces $B$ -- see Figure~\ref{fig:thm_fp_rank2}.
+\item $(T)_{t+2}$ is not a parent of $(T)_t$.
+In this case, there exists a cluster $C$ induced by the child of $(T)_{t+2}$ which is different from the one that induces $B$ -- see Figure~\ref{fig:thm_fp_rank2}.
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.4\textwidth]{thm_fp_rank2}
-	\caption{Comparison of paths $\fp(T, R)$ and $\fp(T', R)$ if there is a rank move between $T$ and $T'$ and an $\nni$ move on the edge below the corresponding (rank) interval follows on $\fp(T, R)$.}
-	\label{fig:thm_fp_rank2}
+\centering
+\includegraphics[width=0.4\textwidth]{thm_fp_rank2}
+\caption{Comparison of paths $\fp(T, R)$ and $\fp(T', R)$ if there is a rank move between $T$ and $T'$ and an $\nni$ move on the edge below the corresponding (rank) interval follows on $\fp(T, R)$.}
+\label{fig:thm_fp_rank2}
 \end{figure}
-	We can assume without loss of generality that $C_k \subseteq C \cup B_1$ and the first move on $\fp(T, R)$ builds a new cluster $C \cup B_1$.
-	If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A$ is a cluster in $R$, which implies that $A$ is induced by the node of rank $t$ in both $T$ and $R$.
-	So $T'_1 = T$.
-	If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step -- see Figure~\ref{fig:thm_fp_rank2}.
-	The corresponding first moves on $\fp(T', R)$ are shown on the right in Figure~\ref{fig:thm_fp_rank2}, and we again get that $T_2$ and $T_2'$ are $\rnni$ neighbours.
+We can assume without loss of generality that $C_k \subseteq C \cup B_1$ and the first move on $\fp(T, R)$ builds a new cluster $C \cup B_1$.
+If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A$ is a cluster in $R$, which implies that $A$ is induced by the node of rank $t$ in both $T$ and $R$.
+So $T'_1 = T$.
+If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step -- see Figure~\ref{fig:thm_fp_rank2}.
+The corresponding first moves on $\fp(T', R)$ are shown on the right in Figure~\ref{fig:thm_fp_rank2}, and we again get that $T_2$ and $T_2'$ are $\rnni$ neighbours.
 \end{enumerate}
 
 \item Rank move on interval $[(T)_{t+1}, (T)_{t+2}]$.
@@ -509,21 +509,21 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 The following corollary is a direct result of Theorem~\ref{thm:rnni_polynomial}.
 
 \begin{corollary}
-	The problem $\decprob{1}$ is member of the complexity class $\fpc$.
+The problem $\decprob{1}$ is member of the complexity class $\fpc$.
 \end{corollary}
 
 As there are paths of quadratic length computed by $\findpath$, it is not hard to see that the worst-case running time of this algorithm is optimal among all algorithms computing shortest $\rnni$ paths.
 
 \begin{proposition}
-	The quadratic worst-case running time of $\findpath$ is optimal.
+The quadratic worst-case running time of $\findpath$ is optimal.
 \end{proposition}
 
 \proof
-	Consider the two trees $T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\ldots,\{a_1,a_2,\ldots,a_n\}]$ and \linebreak $R = [\{a_1,a_n\}, \{a_1,a_n,a_{n-1}\},\ldots,\{a_1,a_n\ldots,a_2\}]$.
-	For these trees, in every \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}), one $\rnni$ move is necessary, hence the length of the output path of $\findpath$ applied on these trees is quadratic.
-	From Theorem~\ref{thm:rnni_polynomial} we know that this path is a shortest path.
-	It follows that the worst-case size of the output of any algorithm computing shortest paths is quadratic.
-	Hence $\findpath$ has the optimal worst-case running time for $\decprob{0}$.
+Consider the two trees $T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\ldots,\{a_1,a_2,\ldots,a_n\}]$ and \linebreak $R = [\{a_1,a_n\}, \{a_1,a_n,a_{n-1}\},\ldots,\{a_1,a_n\ldots,a_2\}]$.
+For these trees, in every \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}), one $\rnni$ move is necessary, hence the length of the output path of $\findpath$ applied on these trees is quadratic.
+From Theorem~\ref{thm:rnni_polynomial} we know that this path is a shortest path.
+It follows that the worst-case size of the output of any algorithm computing shortest paths is quadratic.
+Hence $\findpath$ has the optimal worst-case running time for $\decprob{0}$.
 \endproof
 
 The following proposition shows that $\findpath$ computes shortest paths only in $\rnni(1)$ but in no other $\rnni(\rho)$ for $\rho \neq 1$.
@@ -663,53 +663,53 @@ There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon
 In the following we aim to find values for $\rho$ close to zero for which $\decprob{\rho}$ is not polynomial.
 
 \begin{lemma}
-    Let $0 < \rho_0 < 1$.
-    If $\decprob{\rho} \in \fpc$ for all $0<\rho<\rho_0$, then it is ${\decprob{0} \in \fpc}$.
-    \label{lemma:if_decprob_poly}
+Let $0 < \rho_0 < 1$.
+If $\decprob{\rho} \in \fpc$ for all $0<\rho<\rho_0$, then it is ${\decprob{0} \in \fpc}$.
+\label{lemma:if_decprob_poly}
 \end{lemma}
 
 \proof
-	Let $T$ and $R$ be trees and $n$ their number of leaves.
-    By the assumption of the lemma, shortest paths between these trees can be computed in polynomial time in $\rnni(\rho)$ for every $\rho > 0$.
-	Let $p_{\rho_1}$ be such a shortest path in $\rnni(\rho_1)$ with $\rho_1 := \min\{\frac{1}{\Delta(\rnni) + 1}, \frac{\rho_0}{2}\}$, where $\Delta(\rnni)$ is the diameter of $\rnni$, which is known to be quadratic in $n$ \autocite{Gavryushkin2018-ol}.
-	With this choice of $\rho_1$ it is $0 < \rho_1 < rho_0$.
-    We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_{\rho_1}$ is a shortest path in $\rnni(0)$.
+Let $T$ and $R$ be trees and $n$ their number of leaves.
+By the assumption of the lemma, shortest paths between these trees can be computed in polynomial time in $\rnni(\rho)$ for every $\rho > 0$.
+Let $p_{\rho_1}$ be such a shortest path in $\rnni(\rho_1)$ with $\rho_1 := \min\{\frac{1}{\Delta(\rnni) + 1}, \frac{\rho_0}{2}\}$, where $\Delta(\rnni)$ is the diameter of $\rnni$, which is known to be quadratic in $n$ \autocite{Gavryushkin2018-ol}.
+With this choice of $\rho_1$ it is $0 < \rho_1 < rho_0$.
+We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_{\rho_1}$ is a shortest path in $\rnni(0)$.
 
-    For contradiction we assume that there is a path $q_0$ shorter than $p_0$ in $\rnni(0)$.
-    It follows $|q_0| \leq |p_0| - 1$.
-    For the path $q_{\rho_1}$ in $\rnni(\rho_1)$ consisting of the same trees as $q_0$ it is $|q_{\rho_1}| = |q_0| + m_r \rho_1 < |q_0| + 1 \leq |p_0| \leq |p_{\rho_1}|$, where $m_r$ is the number of rank moves on $q_0$.
-    Note that there cannot be more than $\Delta(\rnni)$ rank moves $m_r$ on $q_0$ as we assumed that $q_0$ is a shortest path in $\rnni(0)$.
-    However, $|q_{\rho_1}| < |p_{\rho_1}|$ contradicts the fact that $p_{\rho_1}$ is a shortest path in $\rnni(\rho_1)$.
+For contradiction we assume that there is a path $q_0$ shorter than $p_0$ in $\rnni(0)$.
+It follows $|q_0| \leq |p_0| - 1$.
+For the path $q_{\rho_1}$ in $\rnni(\rho_1)$ consisting of the same trees as $q_0$ it is $|q_{\rho_1}| = |q_0| + m_r \rho_1 < |q_0| + 1 \leq |p_0| \leq |p_{\rho_1}|$, where $m_r$ is the number of rank moves on $q_0$.
+Note that there cannot be more than $\Delta(\rnni)$ rank moves $m_r$ on $q_0$ as we assumed that $q_0$ is a shortest path in $\rnni(0)$.
+However, $|q_{\rho_1}| < |p_{\rho_1}|$ contradicts the fact that $p_{\rho_1}$ is a shortest path in $\rnni(\rho_1)$.
 \endproof
 
-Note that Theorem~\ref{thm:nni_hard} implies that $\decprob{0} \notin \fp$.
+Note that Theorem~\ref{thm:nni_hard} implies that $\decprob{0} \notin \fpc$.
 With this and Lemma~\ref{lemma:if_decprob_poly} we get the following corollary.
 
 \begin{corollary}
-    There is a $\rho_0 > 0$ for which $\decprob{\rho_0} \notin \fpc$.
-    \label{cor:exists_rho_not_poly}
+There is a $\rho_0 > 0$ for which $\decprob{\rho_0} \notin \fpc$.
+\label{cor:exists_rho_not_poly}
 \end{corollary}
 
 \summary{Finding a sequence of $\rho$s converging to zero for which the problem is not in $\p$.}
 
-\proof
-	This proof is analogous to the one of Lemma~\ref{lemma:if_decprob_poly}.
-	To ensure $\epsilon < \rho_0$, pick $\epsilon := \min\{\frac{1}{r + 1}, \rho_0\}$.
+\proo
+This proof is analogous to the one of Lemma~\ref{lemma:if_decprob_poly}.
+To ensure $\epsilon < \rho_0$, pick $\epsilon := \min\{\frac{1}{r + 1}, \rho_0\}$.
 \endproof
 
 With the previous lemma and $\decprob{0} \notin \fpc$ (Theorem~\ref{thm:nni_hard}) we get the following result.
 
 \begin{proposition}
-    If $\decprob{\rho_0} \notin \fpc$, then exists a $\rho_1$ with $0 < \rho_1 < \rho_0$ such that $\decprob{\rho_1} \notin \fpc$, assuming.
-    \label{proposition:more_rho_not_poly}
+If $\decprob{\rho_0} \notin \fpc$, then exists a $\rho_1$ with $0 < \rho_1 < \rho_0$ such that $\decprob{\rho_1} \notin \fpc$, assuming.
+\label{proposition:more_rho_not_poly}
 \end{proposition}
 
 \begin{theorem}
-    There is a sequence $\rho_0, \rho_1, \rho_2, \ldots$ with $1 > \rho_0 > \rho_1 > \rho_2 > \ldots > 0$ such that $\decprob{\rho_m} \notin \fpc$ for all $m \in \mathbb N$ and $\rho_m \underset{m \rightarrow \infty}{\longrightarrow} 0$.
+There is a sequence $\rho_0, \rho_1, \rho_2, \ldots$ with $1 > \rho_0 > \rho_1 > \rho_2 > \ldots > 0$ such that $\decprob{\rho_m} \notin \fpc$ for all $m \in \mathbb N$ and $\rho_m \underset{m \rightarrow \infty}{\longrightarrow} 0$.
 \end{theorem}
 
 \proof
-    The Theorem follows from Corollary~\ref{cor:exists_rho_not_poly} and iteratively applying Proposition~\ref{proposition:more_rho_not_poly}.
+The Theorem follows from Corollary~\ref{cor:exists_rho_not_poly} and iteratively applying Proposition~\ref{proposition:more_rho_not_poly}.
 \endproof
 %%%%%%%%%%%%%% END stuff from rnni_rho.tex
 
