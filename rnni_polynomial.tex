@@ -172,7 +172,7 @@ We are now ready to introduce our main object of study, a class of graphs $\rnni
 The vertices of the $\rnni(\rho)$ graph are trees as defined above.
 Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:\\
 (i) A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with consecutive ranks, provided the two nodes are not connected by an edge in the tree $T$.\\
-(ii) Trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ both connecting nodes of consecutive ranks in the corresponding trees, such that the trees resulting from shrinking $e$ and $f$ to internal nodes gives two identical (non-binary) trees.\\
+(ii) Trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ both connecting nodes of consecutive ranks in the corresponding trees, such that the (non-binary) trees obtained by shrinking $e$ and $f$ into internal nodes are identical.\\
 Figure~\ref{fig:ranked_trees_ex} gives examples of these tree rearrangements.
 The parameter $\rho \geq 0$ is the weight of the rank move operation, the $\nni$ moves weigh $1$.
 The \emph{weight of a path} is the sum of the weights of all moves along the path.
@@ -183,22 +183,24 @@ Our main object of study is the following class of shortest path problems parame
 
 \medskip
 
-\noindent $\decprob{\rho}$\\
-INSTANCE: A pair of trees $T$ and $R$\\
+\noindent $\decprob{\rho}$
+\medskip\\
+INSTANCE: A pair of trees on $n$ leaves $T$ and $R$\\
 FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 
 \medskip
 
-The shortest path problem $\decprob{\rho}$ is in the complexity class $\tfnp$\autocite{Megiddo1991-lr} for every $\rho$, as $\rnni$ is a connected graph with diameter bounded by a polynomial \autocite{Gavryushkin2018-ol}.
-It can also be seen as a local search problem and member of the class $\pls$ for any $\rho$.
-The question whether $\decprob{\rho}$ is $\pls$-complete for some values of $\rho$ however remains open.
+In general, the shortest path problem $\decprob{\rho}$ is in the complexity class $\tfnp$ \autocite{Megiddo1991-lr} for every $\rho$, as $\rnni$ is a connected graph with diameter bounded by a polynomial \autocite{Gavryushkin2018-ol}.
+This problem can also be seen as a local search problem and hence a member of the class $\pls$ for any $\rho$.
+Indeed, \textcite{Gavryushkin2018-ol} provide an algorithm that given two trees on $n$ leaves computes a path of quadratic in $n$ length between them.
+Although it is of interest whether the notion of a neighbourhood of a path in $\rnni(\rho)$ can be introduced in such a way that the problem $\decprob{\rho}$ is $\pls$-complete for certain values of $\rho$, this question goes beyond the scope of this paper.
 
-To prove $\np$-hardness, the decision version of the shortest path problem is being considered in the literature \autocite{Dasgupta2000-xa,Bordewich2005-nx}.
-The decision versio of $\decprob{\rho}$ can be seen as adding a parameter $k$ to the input of the problem and asking if a path of length less than or equal to $k$ between two given trees exists.
-Whenever we say that $\decprob{\rho}$ is $\np$-hard or in $\p$, we refer to this corresponding decision problem.
+To prove $\np$-hardness it is standard to consider the decision version of the shortest path problem \autocite{Dasgupta2000-xa,Bordewich2005-nx}.
+Specifically the decision version of $\decprob{\rho}$ is introduced by adding a parameter $k$ to the input of the problem and asking whether a path of length less than or equal to $k$ between two given trees exists.
+Whenever we use the $\np$ terminology in this paper, we refer to this modification of the problem.
 
-Our first goal is to prove that $\decprob{1}$ is polynomial-time solvable.
-We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that $\decprob{0}$ is $\np$-hard.
+Our first goal is to prove that $\decprob{1}$ is polynomial-time solvable, that is, $\decprob{1} \in \fpc$ and its decision problem is in $\p$.
+We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that (the decision version of) $\decprob{0}$ is $\np$-hard.
 We will also study $\decprob{\rho}$ for other values of $\rho$.
 To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol}, we will denote the graph $\rnni(1)$ by $\rnni$.
 
