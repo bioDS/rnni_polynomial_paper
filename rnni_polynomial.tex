@@ -3,7 +3,6 @@
 %\usepackage[notref,notcite]{showkeys}
 
 \usepackage[style=authoryear,ibidtracker=false,uniquename=false,giveninits=true,terseinits=true,maxbibnames=5,backend=biber]{biblatex}
-% \usepackage[style=nature, date=year]{biblatex}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{todonotes}
@@ -19,13 +18,8 @@
 \usepackage{geometry}
 \usepackage[hidelinks]{hyperref}
 
-%FOCS&SODA margins
-\setlist{leftmargin = 0pt, labelindent = 0pt}
-\geometry{margin=1in}
-
 \renewbibmacro{in:}{}
 \addbibresource{rnni_polynomial.bib}
-% Remove languages from bibliography
 \AtEveryBibitem{
   \clearlist{language}
 }
@@ -53,12 +47,6 @@
 \newcommand{\decprob}[1]{\rnni(#1)\text{-}\mathrm{SP}}
 \renewcommand{\O}{\mathcal O}
 \renewcommand{\epsilon}{\varepsilon}
-
-\newcommand{\sidma}[1]{\todo[color=green]{#1}}
-
-% \newcommand{\summary}[1]{\textbf{#1}} % Print summaries to .pdf
-\newcommand{\summary}[1]{} % Hide summaries in .pdf
-
 \renewcommand{\thesubfigure}{\Alph{subfigure}}
 
 \graphicspath{{figures/}}
@@ -137,7 +125,6 @@ Since the problem of identifying the value of $\gamma$ where the complexity swit
 
 \section{Definitions and background results}
 
-\summary{Defining ranked trees and clusters.}
 Unless stated otherwise, by a \emph{tree} in this paper we mean a \emph{ranked phylogenetic tree}, which is a binary tree where leaves are uniquely labelled by elements of the set $\{a_1, \ldots, a_n\}$ for a fixed integer $n$, and all internal (non-leaf) nodes are uniquely \emph{ranked} by elements of the set $\{1, \ldots, n-1\}$ so that each child has a strictly smaller rank than its parent.
 All leaves are assumed to have rank $0$ but we only refer to the ranks of internal nodes throughout.
 In total there are $\frac{(n - 1)! n!}{2^{n-1}}$ such trees on $n$ leaves \autocite{Gavryushkin2018-ol}.
@@ -160,7 +147,6 @@ For example, the cluster representation of tree $T$ in Figure~\ref{fig:ranked_tr
 For a set $S \subseteq \{a_1, \ldots, a_n\}$ and tree $T$ we denote the \emph{most recent common ancestor} of $S$ in $T$, that is the node of the lowest rank in $T$ that induces a cluster containing all elements of $S$, by $(S)_T$.
 Note that $(C)_T = (T)_t$ if the cluster $C$ is induced by the node of rank $t$ in $T$.
 
-\summary{Defining graph $\rnni(\rho)$.}
 We are now ready to introduce our main object of study, a class of graphs $\rnni(\rho)$ for $\rho \geq 0$.
 The vertices of the $\rnni(\rho)$ graph are trees as defined above.
 Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:\\
@@ -202,7 +188,6 @@ To be consistent with notations used in the literature \autocite{Gavryushkin2018
 \section{Complexity of computing $\rnni$ distances}
 \label{sec:rnni_complexity}
 
-\summary{Introducing $\findpath$.}
 In this section we will prove that the shortest path problem in $\rnni$ is polynomial-time solvable.
 Our proof will be constructive -- we will show that the following quadratic algorithm, called $\findpath$, computes a shortest path between two given trees in $\rnni$.
 $\findpath$ algorithm receives two trees $T$ and $R$ in their cluster representation.
@@ -234,7 +219,6 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 \end{algorithmic}
 \end{algorithm}
 
-%%%%%%%%%% START from rnni_convexity paper
 \begin{proposition}
 $\findpath$ is a correct deterministic algorithm.
 \end{proposition}
@@ -273,7 +257,6 @@ Hence, the choice of the tree $T''$ in the \textbf{while} loop (line~\ref{alg:fi
 
 The worst-case complexity of $\findpath$ is quadratic in the number of leaves, as there can be at most $n-2$ executions of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) and in every iteration of the \textbf{for} loop at most $n-2$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) are executed.
 
-\summary{A few words about the main theorem and its proof.}
 The following theorem, that $\decprob{1}$ is polynomial, is the main result of our paper.
 The proof of the theorem reduces the problem to establishing a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm.
 The property can intuitively be understood as $\findpath$ always choosing the best tree possible to go to.
@@ -540,7 +523,6 @@ Finally, $a_1$ moves into the cherry by an $\nni$ move to receive the tree $R$.
 
 \section{Generalisation to discrete time-trees}
 
-\summary{Generalising $\findpath$ for discrete time-trees}
 In this section we will show how to modify the $\findpath$ algorithm to efficiently solve the shortest path problem for \emph{discrete time-trees} \autocite{Gavryushkin2018-ol}.
 These are trees where all internal nodes are uniquely ranked by elements of the set $\{1, \ldots, m\}$, where $m \geq n - 1$, so that children have strictly smaller ranks than their parents.
 The NNI and rank moves are supplemented by a third type of move called a \emph{length move}, which changes (increases or decreases) the rank of an internal node by one without changing the rank of any other node in the tree.
@@ -573,7 +555,6 @@ Interestingly and in line with this result, the shortest path (geodesic) problem
 
 \section{For what $\rho$ is $\decprob{\rho}$ polynomial?}
 
-\summary{Summarising results on complexity of $\decprob{\rho}$ -- $\decprob{1} \in \p$ and $\decprob{0} \in \np$}
 As we have seen in Section~\ref{sec:rnni_complexity}, the shortest path problem $\decprob{1}$ is solvable in polynomial time.
 In this section, we will show that a classical result in mathematical phylogenetics implies that the decision version of $\decprob{0}$ is $\np$-hard.
 We will also discuss $\decprob{\rho}$ for other values of $\rho$.
@@ -588,7 +569,6 @@ Note that the length of the path required in an instance of $\decprob{0}$ is equ
 This minimum is called the $\nni$ distance and the corresponding decision problem is known to be $\np$-hard \autocite{Dasgupta2000-xa}.
 \endproof
 
-\summary{Complexity of $\decprob{\rho}$ changes somewhere between zero and one -- where remains an open question}
 In the light of Theorem~\ref{thm:rnni_polynomial} and Theorem~\ref{thm:nni_hard} the following problem is natural.
 
 \begin{problem}
@@ -596,7 +576,6 @@ Characterise the complexity of $\decprob{\rho}$ in terms of $\rho$.
 \label{prblm:rho_range}
 \end{problem}
 
-\summary{Getting one step closer to answer this question by considering small neighbourhoods for $\rho$ around zero and one}
 We now show that Theorem~\ref{thm:nni_hard} can be extended to some values of $\rho$ close to $0$.
 This suggests a possibility of a threshold $\hat\rho \in [0, 1]$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
 Assuming the threshold exists, the following conjecture implies that $\hat\rho > 0$.
@@ -606,8 +585,6 @@ There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon
 \label{prop:complexity_around_nni}
 \end{conjecture}
 
-%%%%%%%%%%%%%% START stuff from rnni_rho.tex
-\summary{Finding one $\rho$ between $0$ and $1$ for which $\decprob{\rho} \notin \p$}
 In the following we aim to find values for $\rho$ close to zero for which $\decprob{\rho}$ is not polynomial.
 
 \begin{lemma}
@@ -638,8 +615,6 @@ There is a $\rho_0 > 0$ for which $\decprob{\rho_0} \notin \fpc$.
 \label{cor:exists_rho_not_poly}
 \end{corollary}
 
-\summary{Finding a sequence of $\rho$s converging to zero for which the problem is not in $\p$.}
-
 \proof
 This proof is analogous to the one of Lemma~\ref{lemma:if_decprob_poly}.
 To ensure $\epsilon < \rho_0$, pick $\epsilon := \min\{\frac{1}{r + 1}, \rho_0\}$.
@@ -659,7 +634,6 @@ There is a sequence $\rho_0, \rho_1, \rho_2, \ldots$ with $1 > \rho_0 > \rho_1 >
 \proof
 The Theorem follows from Corollary~\ref{cor:exists_rho_not_poly} and iteratively applying Proposition~\ref{proposition:more_rho_not_poly}.
 \endproof
-%%%%%%%%%%%%%% END stuff from rnni_rho.tex
 
 
 \section{Additional open problems}
