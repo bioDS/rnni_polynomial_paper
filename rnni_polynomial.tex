@@ -544,47 +544,7 @@ Finally, $a_1$ moves into the cherry by an $\nni$ move to receive the tree $R$.
 \endproof
 
 
-\section{Applications}
-
-In this section we apply Theorem~\ref{thm:rnni_polynomial} to settle further open problems about the $\rnni$ graph.
-
-\subsection{Cluster Property}
-
-\summary{Some words on the cluster property}
-Historically in mathematical phylogenetics, the decision version of the shortest path problem was studied hand in hand with the following cluster property \autocite{Dasgupta2000-xa}.
-We say that a graph on trees has the \emph{cluster property} if for every pair of trees sharing a cluster it follows that every tree on every shortest path between the two trees also has this cluster.
-Surprisingly, this property does not hold for the $\nni$ graph \autocite{Li1996-zw} and has been crucial for proving \autocite{Dasgupta2000-xa} that computing distances in $\nni$ is $\np$-hard.
-In this section, we will prove that the $\rnni$ graph has the cluster property by building on the fact that $\findpath$ computes shortest paths that preserve clusters.
-Note that since paths computed by $\findpath$ preserve clusters, it follows directly that there always exists a shortest path that maintains every shared cluster.
-However, the cluster property is universal and hence requires a proof that \textbf{all} shortest paths have this property.
-
-\summary{Proving the Cluster Property for $\rnni$}
-
-\begin{corollary}
-Let $T$ and $R$ be two trees sharing a cluster $C$ and $p$ a shortest path from $T$ to $R$ in $\rnni$.
-Then every tree on $p$ contains the cluster $C$.
-\label{cluster_thm}
-\end{corollary}
-
-\proof
-Assume to the contrary that $T$, $R$, $C$, and $p$ is a counterexample to the statement.
-We can assume that no counterexample exists for paths shorter than $p$, so the first tree $T'$ after $T$ on $p$ does not contain the cluster $C$.
-Therefore $T$ and $T'$ are connected by an $\nni$ move that moves a subtrees rooted at a child of $(C)_T$ out of the subtree induced by $C$ -- see Figure~\ref{fig:cluster_thm_proof}, where by $C_1$, $C_2$ we denote the clusters induced by the children of $(C)_T$.
-Note that the only clusters in $T$ that distinguish $T$ from $T'$ are $C$ and the cluster induced by the node right above $(C)_{T}$, which is of the same rank as $(C)_{T'}$.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.3\textwidth]{cluster_thm_proof}
-\caption{Neighbouring trees $T$ and $T'$, where $T$ contains the cluster $C = C_1 \cup C_2$ and $T'$ does not.
-Dashed lines indicate identical parts of trees.}
-\label{fig:cluster_thm_proof}
-\end{figure}
-
-Since $T$ and $R$ have the minimum distance among all counterexamples to the statement of the corollary, we can assume, using the same argument as in the beginning of proof of Theorem~\ref{thm:rnni_polynomial}, that $C$ is the first cluster considered by $\findpath$ on $\fp(T, R)$.
-But in this case, the first move on $\fp(T',R)$ builds the cluster $C$ and results in tree $T$, which is a contradiction.
-\endproof
-
-\subsection{Generalisation to discrete time-trees}
+\section{Generalisation to discrete time-trees}
 
 \summary{Generalising $\findpath$ for discrete time-trees}
 In this section we will show how to modify the $\findpath$ algorithm to efficiently solve the shortest path problem for \emph{discrete time-trees} \autocite{Gavryushkin2018-ol}.
@@ -616,8 +576,6 @@ The running time bound follows from the running time of $\findpath$.
 \endproof
 
 Interestingly and in line with this result, the shortest path (geodesic) problem is polynomial-time computable in the continuous space of time-trees \autocite{Gavryushkin2016-uu}, where intervals can be of arbitrary real-valued lengths.
-Note also that Corollaries~\ref{cluster_thm} and \ref{cor:fp_dtt} imply that the space of discrete time-trees has the cluster property.
-
 
 \section{For what $\rho$ is $\decprob{\rho}$ polynomial?}
 
