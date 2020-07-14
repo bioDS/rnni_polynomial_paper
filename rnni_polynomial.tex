@@ -91,19 +91,14 @@ In this paper, we settle this problem for the ranked nearest neighbour interchan
 In particular, our result provides the first example of a phylogenetic tree rearrangement operation for which shortest paths, and hence the distance, can be computed efficiently.
 Specifically, our algorithm scales to trees with more than thousands of leaves.
 
-We also connect the problem of computing distances in our graph of ranked trees with the well-known version of this problem on unranked trees by introducing a parameter for weight difference between move types.
+We also connect the problem of computing distances in our graph of ranked trees with the well-known version of this problem on unranked trees by introducing a parameter for the weight difference between move types.
 We propose to study a family of shortest path problems indexed by this parameter and varying their computational complexity from quadratic to $\np$-hard.
-When formulated as a local search problem, the family attains such complexity classes as $\fpc$, $\pls$, and $\tfnp$.
+When formulated as a class of local search problems, the family attains such complexity classes as $\fpc$, $\pls$, and $\tfnp$.
 In this paper we will provide an insight into this approach, motivated by ideas developed in the beyond worst-case analysis framework.
 \end{abstract}
 
 
 \maketitle
-\thispagestyle{empty}
-
-\newpage
-
-\setcounter{page}{1}
 
 \summary{Motivation: many popular tree search algorithms are based on NNI (e.g. this \url{https://academic.oup.com/mbe/article/28/10/2731/973375} tool has been cited 40K+ times, see also references there to PhyML, RaxML, etc. -- they all use NNI); other applications include tree comparison methods, tree inference methods (proposal distributions), summary statistics, etc.}
 The problem of reconstructing evolutionary histories from sequence data is central for many tree inference methods used in computational biology.
@@ -111,7 +106,7 @@ The most common approaches infer trees from sequences via maximum likelihood \au
 All these methods rely of various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection ($\tbr$).
 Hence the tree inference problem can be formulated as a graph search, where vertices are trees and edges are given by the tree rearrangement operation of interest.
 
-\summary{More motication: Distances that we can compute in polyomial time are not well motivated biologically, all others are $\np$-hard}
+\summary{More motivation: Distances that we can compute in polynomial time are not well motivated biologically, all others are $\np$-hard}
 Computing shortest paths and distances between trees is not only essential for tree inference.
 Another example showing the importance of distance measures for trees is summarising trees \autocite{Bansal2010-vr, Whidden2014-sx}.
 A popular tree distance measure used for this is the Robinson-Foulds distance \autocite{Robinson1981-fb}, as it can be computed in linear time.
@@ -194,8 +189,7 @@ Our main object of study is the following class of shortest path problems parame
 
 \medskip
 
-\noindent $\decprob{\rho}$
-\medskip\\
+\noindent $\decprob{\rho}$\\
 INSTANCE: A pair of trees $T$ and $R$\\
 FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 
@@ -738,6 +732,5 @@ This geodesic metric space is called $\mathrm t$-space and an efficient algorith
 \end{enumerate}
 
 
-\newpage
 \printbibliography
 \end{document}
