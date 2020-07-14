@@ -192,8 +192,8 @@ FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 
 In general, the shortest path problem $\decprob{\rho}$ is in the complexity class $\tfnp$ \autocite{Megiddo1991-lr} for every $\rho$, as $\rnni$ is a connected graph with diameter bounded by a polynomial \autocite{Gavryushkin2018-ol}.
 This problem can also be seen as a local search problem and hence a member of the class $\pls$ for any $\rho$.
-Indeed, \textcite{Gavryushkin2018-ol} provide an algorithm that given two trees on $n$ leaves computes a path of quadratic in $n$ length between them.
-Although it is of interest whether the notion of a neighbourhood of a path in $\rnni(\rho)$ can be introduced in such a way that the problem $\decprob{\rho}$ is $\pls$-complete for certain values of $\rho$, this question goes beyond the scope of this paper.
+Indeed, \textcite{Gavryushkin2018-ol} provided a quadratic algorithm that given two trees on $n$ leaves computes a path between them.
+Although it is of interest whether the notion of a neighbourhood of a path in $\rnni(\rho)$ can be introduced in such a way that the problem $\decprob{\rho}$ becomes $\pls$-complete for certain values of $\rho$, this question goes beyond the scope of this paper.
 
 To prove $\np$-hardness it is standard to consider the decision version of the shortest path problem \autocite{Dasgupta2000-xa,Bordewich2005-nx}.
 Specifically the decision version of $\decprob{\rho}$ is introduced by adding a parameter $k$ to the input of the problem and asking whether a path of length less than or equal to $k$ between two given trees exists.
