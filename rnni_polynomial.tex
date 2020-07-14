@@ -91,7 +91,8 @@ In this paper, we settle this problem for the ranked nearest neighbour interchan
 In particular, our result provides the first example of a phylogenetic tree rearrangement operation for which shortest paths, and hence the distance, can be computed efficiently.
 Specifically, our algorithm scales to trees with thousands of leaves.
 
-We also propose a study of the parameter for weight difference between move types, that changes the complexity of the problem of computing distances in our graph from quadratic to $\np$-hard.
+We also connect the problem of computing distances in our graph of ranked trees with the well-known version of this problem on unranked trees by introducing a parameter for weight difference between move types.
+We propose studying this parameter that leads to a family of shortest path problems and changes the complexity from quadratic to $\np$-hard.
 In this paper we will provide an insight into this approach, motivated by ideas developed in the beyond worst-case analysis framework.
 \end{abstract}
 
@@ -109,8 +110,15 @@ The most common approaches infer trees from sequences via maximum likelihood \au
 All these methods rely of various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection ($\tbr$).
 Hence the tree inference problem can be formulated as a graph search, where vertices are trees and edges are given by the tree rearrangement operation of interest.
 
+\summary{More motication: Distances that we can compute in polyomial time are not well motivated biologically, all others are $\np$-hard}
+Computing shortest paths and distances between trees is not only essential for tree inference.
+Another example showing the importance of distance measures for trees is summarising trees \autocite{Bansal2010-vr, Whidden2014-sx}.
+A popular tree distance measure used for this is the Robinson-Foulds distance \autocite{Robinson1981-fb}, as it can be computed in linear time.
+The downside of this approach however is the lack of biological motivation.
+In general, distance measures that are easy to compute have this problem, whereas measures that are biologically relevant are often hard to compute.
+
 \summary{Motivation: However, all known graph-based tree rearrangement distances, including NNI, are NP-hard, and it took many years and paper to prove that; so approach such as practical FPT algorithms is an active area of research to overcome the computational (cite Whidden).}
-Classical results in mathematical phylogenetics imply that computing rearrangement distances between trees, that is, the minimum number of tree rearrangements necessary to convert one tree into another, is $\np$-hard \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky} for all three rearrangement operations $\nni$, $\spr$, and $\tbr$.
+For computing rearrangement distances between trees, that is, the minimum number of tree rearrangements necessary to convert one tree into another, classical results in mathematical phylogenetics imply that this problem is $\np$-hard \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky} for all three rearrangement operations $\nni$, $\spr$, and $\tbr$.
 We will formally introduce all necessary definitions later in the paper.
 Intuitively, the difference between the three operations is how much change can be done to a tree by a single operation, with $\nni$ being the most local type of rearrangement and $\tbr$ the most global one.
 Remarkably, it took over 25 years and a number of published erroneous attempts, as discussed in detail by \textcite{Dasgupta2000-xa}, to prove that computing distances is $\np$-hard in $\nni$ \autocite{Dasgupta2000-xa}.
@@ -126,7 +134,6 @@ Indeed, a shared cluster means that both trees support the hypothesis that this 
 It was believed that this so-called cluster property and the computational complexity of the shortest path problem were related \autocite{Li1996-zw}, so the two questions have historically been studied simultaneously \autocite{Dasgupta2000-xa}.
 However, there is little evidence to justify this connection.
 For example, the cluster property holds in $\spr$ even though computing distances is $\np$-hard there.
-\todo{add a section which states why computing $\rnni$ shortest paths is important}
 
 \summary{Paper summary in light of motivation: We've discovered the first efficiently computable distance, given by a parameter range in known tree spaces, and want to understand the reason for the complexity jump -- cite ``Beyond worst-case complexity.''}
 In this paper, we establish that for a certain tree rearrangement operation (a generalisation of $\nni$) the complexity of the shortest path problem is $\O(n^2)$ (Theorem~\ref{thm:rnni_polynomial}).
