@@ -176,19 +176,21 @@ Our main object of study is the following class of shortest path problems parame
 
 \medskip
 
-\noindent $\decprob{\rho}$\\
+\noindent $\decprob{\rho}$
+\medskip\\
 INSTANCE: A pair of trees on $n$ leaves $T$ and $R$\\
 FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 
 \medskip
 
 In general, the shortest path problem $\decprob{\rho}$ is in the complexity class $\tfnp$ \autocite{Megiddo1991-lr} for every $\rho$, as $\rnni$ is a connected graph with diameter bounded by a polynomial \autocite{Gavryushkin2018-ol}.
-This problem can also be seen as a local search problem and hence a member of the class $\pls$ for any $\rho$.
+This problem can also be seen as a local search problem, if a path of locally minimal weight is the search objective, and hence a member of the class $\pls$ for any $\rho$.
 Indeed, \textcite{Gavryushkin2018-ol} provided a quadratic algorithm that given two trees on $n$ leaves computes a path between them.
-Although it is of interest whether the notion of a neighbourhood of a path in $\rnni(\rho)$ can be introduced in such a way that the problem $\decprob{\rho}$ becomes $\pls$-complete for certain values of $\rho$, this question goes beyond the scope of this paper.
+It is of interest whether the notion of a neighbourhood of a path in $\rnni(\rho)$ can be introduced in such a way that this local search version of $\decprob{\rho}$ becomes $\pls$-complete for certain values of $\rho$.
+Indeed, as we show in this paper $\decprob{1}$ can be solved in polynomial time, so unless $\fpc = \pls$ there is no such neighbourhood notion for $\rho = 1$.
 
-To prove $\np$-hardness it is standard to consider the decision version of the shortest path problem \autocite{Dasgupta2000-xa,Bordewich2005-nx}.
-Specifically the decision version of $\decprob{\rho}$ is introduced by adding a parameter $k$ to the input of the problem and asking whether a path of length less than or equal to $k$ between two given trees exists.
+For $\np$-hardness proofs in this area it is standard to consider the decision version of the shortest path problem \autocite{Dasgupta2000-xa,Bordewich2005-nx}.
+Specifically, the decision version of $\decprob{\rho}$ is introduced by adding a parameter $k$ to the input of the problem and asking whether a path of length less than or equal to $k$ between two given trees exists.
 Whenever we use the $\np$ terminology in this paper, we refer to this modification of the problem.
 
 Our first goal is to prove that $\decprob{1}$ is polynomial-time solvable, that is, $\decprob{1} \in \fpc$ and its decision problem is in $\p$.
