@@ -490,7 +490,30 @@ Hence $\findpath$ has the optimal worst-case running time for $\decprob{0}$.
 
 \section{For what $\rho$ is $\decprob{\rho}$ polynomial?}
 
-We now show that the $\findpath$ algorithm relies on the fact that the rank move and the $\nni$ move have the same weight in the $\rnni$ graph, in an non-trivial way.
+As we have seen in Section~\ref{sec:rnni_complexity}, the shortest path problem $\decprob{1}$ is solvable in polynomial time.
+In this section, we will show that a classical result in mathematical phylogenetics implies that $\decprob{0}$ is $\np$-hard.
+We will also discuss $\decprob{\rho}$ for other values of $\rho$.
+
+\begin{theorem}[\textcite{Dasgupta2000-xa}]
+$\decprob{0}$ is $\np$-hard.
+\label{thm:nni_hard}
+\end{theorem}
+
+\proof
+Note that the length of the path required in an instance of $\decprob{0}$ is equal to the minimum number of $\nni$ moves necessary to convert one tree into another tree where the rankings of internal nodes are ignored and every $\nni$ move is allowed on every edge.
+This minimum is called the $\nni$ distance and the corresponding problem is known to be $\np$-hard \autocite{Dasgupta2000-xa}.
+\endproof
+
+In the light of Theorem~\ref{thm:rnni_polynomial} and Theorem~\ref{thm:nni_hard} the following problem is natural.
+
+\begin{problem}
+Characterise the complexity of $\decprob{\rho}$ in terms of $\rho$.
+\label{prblm:rho_range}
+\end{problem}
+
+In the rest of this section, we will suggest ways to approach this problem.
+
+First, we show that the $\findpath$ algorithm relies on the fact that the rank move and the $\nni$ move have the same weight in the $\rnni$ graph, in an non-trivial way.
 
 \begin{proposition}
 $\findpath$ does not compute shortest paths in $\rnni(\rho)$ for $\rho \neq 1$.
@@ -514,28 +537,7 @@ However, there is a path of length $\rho + 2$ where first the two cherries of $T
 Finally, $a_1$ moves into the cherry by an $\nni$ move to receive the tree $R$.
 \endproof
 
-As we have seen in Section~\ref{sec:rnni_complexity}, the shortest path problem $\decprob{1}$ is solvable in polynomial time.
-In this section, we will show that a classical result in mathematical phylogenetics implies that $\decprob{0}$ is $\np$-hard.
-We will also discuss $\decprob{\rho}$ for other values of $\rho$.
-
-\begin{theorem}[\textcite{Dasgupta2000-xa}]
-$\decprob{0}$ is $\np$-hard.
-\label{thm:nni_hard}
-\end{theorem}
-
-\proof
-Note that the length of the path required in an instance of $\decprob{0}$ is equal to the minimum number of $\nni$ moves necessary to convert one tree into another tree where the rankings of internal nodes are ignored and every $\nni$ move is allowed on every edge.
-This minimum is called the $\nni$ distance and the corresponding problem is known to be $\np$-hard \autocite{Dasgupta2000-xa}.
-\endproof
-
-In the light of Theorem~\ref{thm:rnni_polynomial} and Theorem~\ref{thm:nni_hard} the following problem is natural.
-
-\begin{problem}
-Characterise the complexity of $\decprob{\rho}$ in terms of $\rho$.
-\label{prblm:rho_range}
-\end{problem}
-
-We now show that Theorem~\ref{thm:nni_hard} can be extended to some values of $\rho$ close to $0$.
+Second, we show that Theorem~\ref{thm:nni_hard} can be extended to other values of $\rho$ close to $0$.
 This suggests a possibility of a threshold $\hat\rho \in [0, 1]$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
 Assuming the threshold exists, the following conjecture implies that $\hat\rho > 0$.
 
