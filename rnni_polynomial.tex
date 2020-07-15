@@ -512,39 +512,6 @@ Finally, $a_1$ moves into the cherry by an $\nni$ move to receive the tree $R$.
 \endproof
 
 
-\section{Generalisation to discrete time-trees}
-
-In this section we will show how to modify the $\findpath$ algorithm to efficiently solve the shortest path problem for \emph{discrete time-trees} \autocite{Gavryushkin2018-ol}.
-These are trees where all internal nodes are uniquely ranked by elements of the set $\{1, \ldots, m\}$, where $m \geq n - 1$, so that children have strictly smaller ranks than their parents.
-The NNI and rank moves are supplemented by a third type of move called a \emph{length move}, which changes (increases or decreases) the rank of an internal node by one without changing the rank of any other node in the tree.
-So a length move implies that the length of one of the intervals $[(T)_{t+1},(T)_t]$ or $[(T)_t,(T)_{t-1}]$ for a $t \in \{2, \ldots, m-1\}$ increases by one and the other one decreases by one.
-Note that $\nni$ moves are still only allowed on (edge) intervals bounded by consecutive nodes.
-
-A natural extension of $\findpath$ to discrete time-trees is to simply add all the necessary length moves when a most recent common ancestor needs to be moved down to a particular level.
-\begin{corollary}
-The time complexity of the shortest path problem between discrete time-trees with $n$ leaves and node ranks bounded by $m$ is $\O(nm)$.
-\label{cor:fp_dtt}
-\end{corollary}
-
-\proof
-Let $T$ and $R$ be a pair of discrete time-trees.
-We will convert $T$ and $R$ into $\rnni$ trees $T'$ and $R'$ on $m + 1$ leaves and show that the modified version of $\findpath$ for discrete time-trees is equivalent to the original $\findpath$ on converted trees.
-
-To obtain $T'$, we add a new internal node of rank $m + 1$ as a new root.
-We then add edges to attach this new root to the original root of $T$ and to the root of a new caterpillar tree with leaves labelled by $a_{n + 1}, \ldots, a_{m + 1}$.
-The internal nodes of the caterpillar subtree in $T'$ are ranked by numbers for which there is no internal node of corresponding rank in the original tree $T$.
-Note that all intervals of the resulting tree $T'$ are of length one.
-We obtain $R'$ from $R$ in the same way using an identical caterpillar tree.
-
-Now, a path $p$ between $T$ and $R$ can be transformed to a path $p'$ between $T'$ and $R'$ so that $|p| = |p'|$ by exchanging all length moves on $p$ to rank swaps on $p'$.
-All rank moves and $\nni$ moves on $p'$ remain the same as on $p$.
-In particular, this transformation matches the moves along $\fp(T,R)$ and $\fp(T',R')$ and Theorem~\ref{thm:rnni_polynomial} implies that $\fp(T, R)$ is a shortest path.
-The running time bound follows from the running time of $\findpath$.
-\endproof
-
-Interestingly and in line with this result, the shortest path (geodesic) problem is polynomial-time computable in the continuous space of time-trees \autocite{Gavryushkin2016-uu}, where intervals can be of arbitrary real-valued lengths.
-
-
 \section{For what $\rho$ is $\decprob{\rho}$ polynomial?}
 
 As we have seen in Section~\ref{sec:rnni_complexity}, the shortest path problem $\decprob{1}$ is solvable in polynomial time.
