@@ -530,11 +530,10 @@ However, the path from $T$ to $[\{a_2,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]
 
 For $\rho < 1$ a counterexample is given by trees\\
 $T = [\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ and\\
-$R = [\{a_1,a_3\},\{a_1,a_3, a_4\},\{a_1,a_2,a_3,a_4\}]$.
-\todo{The rest of this paragraph should mimic the previous paragraph.}
-Applied to these trees $\findpath$ computes a path of length three consisting of $\nni$ moves only.
-However, there is a path of length $\rho + 2$ where first the two cherries of $T$ swap ranks, resulting in $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$, before the cherry $(a_1,a_2)$ resolves to $[\{a_3,a_4\},\{a_3,a_4,a_1\},\{a_1,a_2,a_3,a_4\}]$.
-Finally, $a_1$ moves into the cherry by an $\nni$ move to receive the tree $R$.
+$R = [\{a_1,a_3\},\{a_1,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
+Applied to these trees $\findpath$ proceeds from $T$ to $[\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_1,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$.
+This path consists of three $\nni$ moves and therefore has weight $3$.
+However, the path from $T$ to $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_3,a_4\},\{a_3,a_4,a_1\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$ consists of one rank move followed by two $\nni$ moves, which results in the total weight $2+\rho$, and is hence shorter.
 \endproof
 
 Second, we show that Theorem~\ref{thm:nni_hard} can be extended to other values of $\rho$ close to $0$.
