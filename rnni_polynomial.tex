@@ -470,7 +470,7 @@ In this case $C_k \subseteq A$ and the first move on $\fp(T', R)$ must be a rank
 Since all possible cases result in a contradiction, we conclude that inequality~(\ref{eqn:iff_inequality}) is true for all trees, which completes the proof of the theorem.
 \endproof
 
-We finish this section by showing that no algorithm has lower worst-case time complexity than $\findpath$.
+We finish this section by showing that no algorithm has strictly lower worst-case time complexity than $\findpath$.
 
 \begin{corollary}
 The time-complexity of the shortest path problem $\decprob{1}$ is $\Omega(n^2)$.
@@ -479,7 +479,7 @@ The time-complexity of the shortest path problem $\decprob{1}$ is $\Omega(n^2)$.
 \proof
 Consider two ``caterpillar'' trees $T = [\{a_1, a_2\}, \{a_1, a_2, a_3\}, \ldots, \{a_1, a_2, \ldots, a_n\}]$ and\\
 $R = [\{a_1,a_n\}, \{a_1, a_n, a_{n-1}\}, \ldots, \{a_1, a_n, \ldots, a_2\}]$.
-Applied to these trees, in every iteration $k$ of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) $\findpath$ executes the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}) $n-1-k$ times.
+Applied to these trees $\findpath$ executes an $\nni$ move in each of the $n-k-1$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) in every iteration $k$ of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}).
 Hence the length of the output path of $\findpath$ is quadratic in $n$.
 From Theorem~\ref{thm:rnni_polynomial} we know that this path is a shortest path.
 It follows that the worst-case size of the output of any algorithm computing shortest paths is quadratic.
