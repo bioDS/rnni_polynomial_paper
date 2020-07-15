@@ -61,7 +61,7 @@
 \address{Department of Computer Science, University of Otago, New Zealand}
 \author{Alex Gavryushkin\textsuperscript{\Letter}}
 \email{\textsuperscript{\Letter}alex@biods.org}
-\thanks{We thank Alexei Drummond and Kieran Elmes for useful discussions about the weight difference between $\rnni$ moves, scalability and applied aspects of our results, and the generalisation to discrete time-trees.
+\thanks{We thank Alexei Drummond, David Bryant, and Kieran Elmes for useful discussions about the weight difference between $\rnni$ moves, complexity, scalability, and applied aspects of our results.
 Their comments improved our paper.}
 \thanks{We acknowledge support from the Royal Society Te Ap\=arangi through a Rutherford Discovery Fellowship (RDF-UOO1702) awarded to AG.
 This work was partially supported by Ministry of Business, Innovation, and Employment of New Zealand through an Endeavour Smart Ideas grant (CONT-61378-ENDSI-UOO) and a Data Science Programmes grant (UOAX1932).}
@@ -211,7 +211,7 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 \end{algorithm}
 
 \begin{proposition}
-$\findpath$ is a correct deterministic algorithm.
+$\findpath$ is a correct deterministic algorithm that runs in $\O(n^2)$ time.
 \end{proposition}
 
 \proof
@@ -244,11 +244,11 @@ Proceed as in Case $k = 1$.
 \end{enumerate}
 
 Hence, the choice of the tree $T''$ in the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}) is unique, which concludes the proof.
-\endproof
 
-The worst-case complexity of $\findpath$ is quadratic in the number of leaves, as there can be at most $n-2$ executions of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) and in every iteration of the \textbf{for} loop at most $n-2$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) are executed.
-For the quadratic running time we assume the output of $\findpath$ to be a sequence of $\rnni$ moves rather than an actual sequence of trees.
-Otherwise the running time increases to cubic as writing a tree takes time linear in $n$.
+The worst-case time complexity of $\findpath$ is quadratic in the number of leaves, as there can be at most $n-2$ executions of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) and in every iteration of the \textbf{for} loop at most $n-2$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) are executed.
+Here and throughout the paper we assume that the output of $\findpath$ is encoded by a list of $\rnni$ moves rather than an actual list of trees.
+This is because writing out a tree on $n$ leaves takes linear in $n$ time and the complexity becomes cubic.
+\endproof
 
 The following theorem, that $\decprob{1}$ is polynomial, is the main result of our paper.
 The proof of the theorem reduces the problem to establishing a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm.
@@ -473,7 +473,8 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 \endproof
 
 We finish this section by showing that no algorithm has strictly lower worst-case time complexity than $\findpath$.
-Note that we assume here that the output of $\findpath$ is not a sequence of trees, which would result in cubic running time, but a sequence of moves.
+We again assume here that the output of an algorithm for solving $\decprob{1}$ is a list of $\rnni$ moves.
+Requiring the output to be a list of trees would result in cubic complexity but maintain the optimality of $\findpath$.
 
 \begin{corollary}
 The time-complexity of the shortest path problem $\decprob{1}$ is $\Omega(n^2)$.
@@ -485,7 +486,7 @@ $R = [\{a_1,a_n\}, \{a_1, a_n, a_{n-1}\}, \ldots, \{a_1, a_n, \ldots, a_2\}]$.
 Applied to these trees $\findpath$ executes an $\nni$ move in each of the $n-k-1$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) in every iteration $k$ of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}).
 Hence the length of the output path of $\findpath$ is $\sum\limits_{k = 1}^{n - 2} k = \frac{(n-1)(n-2)}{2}$ and therefore quadratic in $n$.
 Theorem~\ref{thm:rnni_polynomial} then implies that this path is a shortest path.
-It follows that the worst-case size of the output of any algorithm for solving $\decprob{1}$ is quadratic.
+It follows that the worst-case size of the output to $\decprob{1}$ is quadratic.
 \endproof
 
 
@@ -525,31 +526,30 @@ $\findpath$ does not compute shortest paths in $\rnni(\rho)$ for $\rho \neq 1$.
 \end{proposition}
 
 \proof
-For $\rho > 1$ a counterexample is given by trees\\
+For $\rho > 1$ a counterexample is given by trees (see Figure~\ref{fig:fp_rho_greater_1_counterexample})\\
 $T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and\\
 $R = [\{a_3,a_4\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
 Applied to these trees $\findpath$ proceeds from $T$ to $[\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$.
 This path consists of two $\nni$ moves with one rank move in between them and therefore has weight $2 + \rho$.
 However, the path from $T$ to $[\{a_2,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ to $[\{a_2,a_3\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ to $R$ consists of three $\nni$ moves and is hence shorter.
-An illustration of these two paths can be found in Figure~\ref{fig:fp_rho_greater_1_counterexample}.
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.6\textwidth]{fp_rho_greater_1_counterexample}
-\caption{Comparison of a path computed by $\findpath$ (top) and an alternative path (bottom) that is shorter for $\rho > 1$.}
+\caption{Path computed by $\findpath$ (top) and a shorter path (bottom) for $\rho > 1$.}
 \label{fig:fp_rho_greater_1_counterexample}
 \end{figure}
 
-For $\rho < 1$ a counterexample is given by trees\\
+For $\rho < 1$ a counterexample is given by trees (see Figure~\ref{fig:fp_rho_less_1_counterexample})\\
 $T = [\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ and\\
 $R = [\{a_1,a_3\},\{a_1,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
 Applied to these trees $\findpath$ proceeds from $T$ to $[\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_1,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$.
 This path consists of three $\nni$ moves and therefore has weight $3$.
-However, the path from $T$ to $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_3,a_4\},\{a_3,a_4,a_1\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$ consists of one rank move followed by two $\nni$ moves, which results in the total weight $2+\rho$, and is hence shorter.
-An illustration of these two paths can be found in Figure~\ref{fig:fp_rho_less_1_counterexample}.
+However, the path from $T$ to $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$ to $[\{a_3,a_4\},\{a_3,a_4,a_1\},\{a_1,a_2,a_3,a_4\}]$ to $R$ consists of one rank move followed by two $\nni$ moves and is hence shorter.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.6\textwidth]{fp_rho_less_1_counterexample}
-\caption{Comparison of a path computed by $\findpath$ (top) and an alternative path (bottom) that is shorter for $\rho < 1$.}
+\caption{Path computed by $\findpath$ (top) and a shorter path (bottom) for $\rho < 1$.}
 \label{fig:fp_rho_less_1_counterexample}
 \end{figure}
 
@@ -557,18 +557,11 @@ An illustration of these two paths can be found in Figure~\ref{fig:fp_rho_less_1
 
 Second, we show that Theorem~\ref{thm:nni_hard} can be extended to other values of $\rho$ close to $0$.
 This suggests a possibility of a threshold $\hat\rho \in [0, 1]$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
-Assuming the threshold exists, the following conjecture implies that $\hat\rho > 0$.
-
-\begin{conjecture}
-There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon}$ is $\np$-hard for all $\epsilon < \delta$.
-\label{prop:complexity_around_nni}
-\end{conjecture}
-
-In the following we aim to find values for $\rho$ close to zero for which $\decprob{\rho}$ is not polynomial.
+In what follows, we provide infinitely many values of $\rho$ for which $\decprob{\rho}$ is $\np$-hard, and leave the question of the threshold existence open.
 
 \begin{lemma}
 Let $0 < \rho_0 < 1$.
-If $\decprob{\rho} \in \fpc$ for all $0<\rho<\rho_0$, then it is ${\decprob{0} \in \fpc}$.
+If $\decprob{\rho} \in \fpc$ for all $0<\rho<\rho_0$, then ${\decprob{\rho_0} \in \fpc}$.
 \label{lemma:if_decprob_poly}
 \end{lemma}
 
