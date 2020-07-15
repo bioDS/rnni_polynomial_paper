@@ -486,7 +486,7 @@ $R = [\{a_1,a_n\}, \{a_1, a_n, a_{n-1}\}, \ldots, \{a_1, a_n, \ldots, a_2\}]$.
 Applied to these trees $\findpath$ executes an $\nni$ move in each of the $n-k-1$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) in every iteration $k$ of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}).
 Hence the length of the output path of $\findpath$ is $\sum\limits_{k = 1}^{n - 2} k = \frac{(n-1)(n-2)}{2}$ and therefore quadratic in $n$.
 Theorem~\ref{thm:rnni_polynomial} then implies that this path is a shortest path.
-It follows that the worst-case size of the output of any algorithm for solving $\decprob{1}$ is quadratic.
+It follows that the worst-case size of the output to $\decprob{1}$ is quadratic.
 \endproof
 
 
@@ -557,18 +557,11 @@ However, the path from $T$ to $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$ to
 
 Second, we show that Theorem~\ref{thm:nni_hard} can be extended to other values of $\rho$ close to $0$.
 This suggests a possibility of a threshold $\hat\rho \in [0, 1]$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
-Assuming the threshold exists, the following conjecture implies that $\hat\rho > 0$.
-
-\begin{conjecture}
-There exists $\delta > 0$ such that the shortest path problem $\decprob{\epsilon}$ is $\np$-hard for all $\epsilon < \delta$.
-\label{prop:complexity_around_nni}
-\end{conjecture}
-
-In the following we aim to find values for $\rho$ close to zero for which $\decprob{\rho}$ is not polynomial.
+In what follows, we provide infinitely many values of $\rho$ for which $\decprob{\rho}$ is $\np$-hard, and leave the question of the threshold existence open.
 
 \begin{lemma}
 Let $0 < \rho_0 < 1$.
-If $\decprob{\rho} \in \fpc$ for all $0<\rho<\rho_0$, then it is ${\decprob{0} \in \fpc}$.
+If $\decprob{\rho} \in \fpc$ for all $0<\rho<\rho_0$, then ${\decprob{0} \in \fpc}$.
 \label{lemma:if_decprob_poly}
 \end{lemma}
 
