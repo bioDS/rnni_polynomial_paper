@@ -61,7 +61,7 @@
 \address{Department of Computer Science, University of Otago, New Zealand}
 \author{Alex Gavryushkin\textsuperscript{\Letter}}
 \email{\textsuperscript{\Letter}alex@biods.org}
-\thanks{We thank Alexei Drummond and Kieran Elmes for useful discussions about the weight difference between $\rnni$ moves, scalability and applied aspects of our results, and the generalisation to discrete time-trees.
+\thanks{We thank Alexei Drummond, David Bryant, and Kieran Elmes for useful discussions about the weight difference between $\rnni$ moves, complexity, scalability, and applied aspects of our results.
 Their comments improved our paper.}
 \thanks{We acknowledge support from the Royal Society Te Ap\=arangi through a Rutherford Discovery Fellowship (RDF-UOO1702) awarded to AG.
 This work was partially supported by Ministry of Business, Innovation, and Employment of New Zealand through an Endeavour Smart Ideas grant (CONT-61378-ENDSI-UOO) and a Data Science Programmes grant (UOAX1932).}
@@ -247,8 +247,8 @@ Hence, the choice of the tree $T''$ in the \textbf{while} loop (line~\ref{alg:fi
 \endproof
 
 The worst-case complexity of $\findpath$ is quadratic in the number of leaves, as there can be at most $n-2$ executions of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) and in every iteration of the \textbf{for} loop at most $n-2$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) are executed.
-For the quadratic running time we assume the output of $\findpath$ to be a sequence of $\rnni$ moves rather than an actual sequence of trees.
-Otherwise the running time increases to cubic as writing a tree takes time linear in $n$.
+Here and throughout the paper we assume that the output of $\findpath$ is encoded by a list of $\rnni$ moves rather than an actual list of trees.
+This is because writing out a tree on $n$ leaves takes linear in $n$ time and the complexity becomes cubic.
 
 The following theorem, that $\decprob{1}$ is polynomial, is the main result of our paper.
 The proof of the theorem reduces the problem to establishing a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm.
@@ -473,7 +473,8 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 \endproof
 
 We finish this section by showing that no algorithm has strictly lower worst-case time complexity than $\findpath$.
-Note that we assume here that the output of $\findpath$ is not a sequence of trees, which would result in cubic running time, but a sequence of moves.
+We again assume here that the output of an algorithm for solving $\decprob{1}$ is a list of $\rnni$ moves.
+Requiring the output to be a list of trees would result in cubic complexity but maintain the optimality of $\findpath$.
 
 \begin{corollary}
 The time-complexity of the shortest path problem $\decprob{1}$ is $\Omega(n^2)$.
