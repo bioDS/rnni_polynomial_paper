@@ -529,6 +529,13 @@ $R = [\{a_3,a_4\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
 Applied to these trees $\findpath$ proceeds from $T$ to $[\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$.
 This path consists of two $\nni$ moves with one rank move in between them and therefore has weight $2 + \rho$.
 However, the path from $T$ to $[\{a_2,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ to $[\{a_2,a_3\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ to $R$ consists of three $\nni$ moves and is hence shorter.
+An illustration of these two paths can be found in Figure~\ref{fig:fp_rho_greater_1_counterexample}.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\textwidth]{fp_rho_greater_1_counterexample}
+\caption{Comparison of a path computed by $\findpath$ (top) and an alternative path (bottom) that is shorter for $\rho > 1$.}
+\label{fig:fp_rho_greater_1_counterexample}
+\end{figure}
 
 For $\rho < 1$ a counterexample is given by trees\\
 $T = [\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ and\\
@@ -536,6 +543,14 @@ $R = [\{a_1,a_3\},\{a_1,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
 Applied to these trees $\findpath$ proceeds from $T$ to $[\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_1,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$.
 This path consists of three $\nni$ moves and therefore has weight $3$.
 However, the path from $T$ to $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_3,a_4\},\{a_3,a_4,a_1\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$ consists of one rank move followed by two $\nni$ moves, which results in the total weight $2+\rho$, and is hence shorter.
+An illustration of these two paths can be found in Figure~\ref{fig:fp_rho_less_1_counterexample}.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\textwidth]{fp_rho_less_1_counterexample}
+\caption{Comparison of a path computed by $\findpath$ (top) and an alternative path (bottom) that is shorter for $\rho < 1$.}
+\label{fig:fp_rho_less_1_counterexample}
+\end{figure}
+
 \endproof
 
 Second, we show that Theorem~\ref{thm:nni_hard} can be extended to other values of $\rho$ close to $0$.
