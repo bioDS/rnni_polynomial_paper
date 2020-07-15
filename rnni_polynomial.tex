@@ -556,17 +556,17 @@ However, the path from $T$ to $[\{a_3, a_4\},\{a_1, a_2\},\{a_1, a_2, a_3, a_4\}
 \endproof
 
 Second, we show that Theorem~\ref{thm:nni_hard} can be extended to other values of $\rho$ close to $0$.
-This suggests a possibility of a threshold $\hat\rho \in [0, 1]$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
-In what follows, we provide infinitely many values of $\rho$ for which $\decprob{\rho}$ is $\np$-hard, and leave the question of the threshold existence open.
+This suggests a possibility of a positive threshold $\hat\rho \leq 1$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
+In what follows, we provide infinitely many values of $\rho$ for which $\decprob{\rho}$ is not polynomial, leaving the question of the threshold existence open.
 
 \begin{lemma}
-Let $0 < \rho_0 < 1$.
-If $\decprob{\rho} \in \fpc$ for all $0<\rho<\rho_0$, then ${\decprob{0} \in \fpc}$.
+Let $0 < \rho_0 \leq 1$.
+If $\decprob{\rho} \in \fpc$ for all positive $\rho < \rho_0$ then ${\decprob{0} \in \fpc}$.
 \label{lemma:if_decprob_poly}
 \end{lemma}
 
 \proof
-Let $T$ and $R$ be trees and $n$ their number of leaves.
+Let $T$ and $R$ be trees on $n$ leaves.
 By the assumption of the lemma, shortest paths between these trees can be computed in polynomial time in $\rnni(\rho)$ for every $\rho > 0$.
 Let $p_{\rho_1}$ be such a shortest path in $\rnni(\rho_1)$ with $\rho_1 := \min\{\frac{1}{\Delta(\rnni) + 1}, \frac{\rho_0}{2}\}$, where $\Delta(\rnni)$ is the diameter of $\rnni$, which is known to be quadratic in $n$ \autocite{Gavryushkin2018-ol}.
 With this choice of $\rho_1$ it is $0 < \rho_1 < rho_0$.
