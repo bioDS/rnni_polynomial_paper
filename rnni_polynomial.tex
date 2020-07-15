@@ -90,8 +90,8 @@ In this paper we will provide an insight into this approach, motivated by ideas 
 
 \maketitle
 
-The problem of reconstructing evolutionary histories from sequence data is central for many tree inference methods used in computational biology.
-The most common approaches infer trees from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
+The problem of reconstructing evolutionary histories from sequence data is central for many popular methods in computational biology.
+Most commonly trees are inferred from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
 All these methods rely on various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection ($\tbr$).
 Hence the tree inference problem can be formulated as a graph search, where vertices are trees and edges are given by the tree rearrangement operation of interest.
 
@@ -149,33 +149,26 @@ For example, the cluster representation of tree $T$ in Figure~\ref{fig:ranked_tr
 For a set $S \subseteq \{a_1, \ldots, a_n\}$ and tree $T$ we denote the \emph{most recent common ancestor} of $S$ in $T$, that is the node of the lowest rank in $T$ that induces a cluster containing all elements of $S$, by $(S)_T$.
 Note that $(C)_T = (T)_t$ if the cluster $C$ is induced by the node of rank $t$ in $T$.
 
-We are now ready to introduce our main object of study, a class of graphs $\rnni(\rho)$ for $\rho \geq 0$.
-The vertices of the $\rnni(\rho)$ graph are trees as defined above.
-Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations:\\
+Our main object of study is the following class of graphs $\rnni(\rho)$ indexed by a real-valued parameter $\rho \geq 0$.
+Vertices of the $\rnni(\rho)$ graph are trees as defined above.
+Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations (see Figure~\ref{fig:ranked_trees_ex}):\\
 (i) A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with consecutive ranks, provided the two nodes are not connected by an edge in $T$.\\
 (ii) Trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ both connecting nodes of consecutive ranks in the corresponding trees, such that the (non-binary) trees obtained by shrinking $e$ and $f$ into internal nodes are identical.\\
-Figure~\ref{fig:ranked_trees_ex} gives examples of these tree rearrangements.
-The parameter $\rho \geq 0$ is the weight of the rank move operation, the $\nni$ moves weigh $1$.
-The \emph{weight of a path} is the sum of the weights of all moves along the path.
+The parameter $\rho \geq 0$ is the weight of the rank move operation, an $\nni$ move weighs $1$.
+
+The \emph{weight of a path} in $\rnni(\rho)$ is the sum of the weights of all moves along the path.
 The \emph{distance} between two trees in $\rnni(\rho)$ is the weight of a path with the minimal weight, which we will call a shortest path.
-We first consider $\rho = 1$, so all edges in the graph have weight $1$ and we assume in this case that the graph is unweighted.
+We first consider $\rho = 1$ and assume in this case that the graph is unweighted.
 
-Our main object of study is the following class of shortest path problems parametrised by a non-negative real number $\rho$.
+We consider the following class of problems parametrised by a real number $\rho \geq 0$.
 
-\medskip
-
-\noindent $\decprob{\rho}$\\
+\noindent\fbox{\parbox{\textwidth}{
+$\decprob{\rho}$\\
 INSTANCE: A pair of trees on $n$ leaves $T$ and $R$\\
 FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
+}}
 
-\medskip
-
-In general, the shortest path problem $\decprob{\rho}$ is in the complexity class $\tfnp$ \autocite{Megiddo1991-lr} for every $\rho$, as $\rnni$ is a connected graph with diameter bounded by a polynomial \autocite{Gavryushkin2018-ol}.
-This problem can also be seen as a local search problem, if a path of locally minimal weight is the search objective, and hence a member of the class $\pls$ for any $\rho$.
-Indeed, \textcite{Gavryushkin2018-ol} provided a quadratic algorithm that given two trees on $n$ leaves computes a path between them.
-Their result also implies that the number of possible weights a path in $\rnni(\rho)$ can possible have is bounded by a (quadratic) polynomial in the number of leaves.
-Hence, it is polynomial to find a locally shortest path between a pair of trees for all polynomially computable definitions of locality and all values of $\rho$.
-This observation stands in contrast to the hardness results of finding globally shortest paths that we discuss below.
+Since $\rnni(\rho)$ is a connected graph with its diameter bounded by a polynomial in the number of tree leaves \autocite{Gavryushkin2018-ol}, the problem $\decprob{\rho}$ in general is in $\tfnp$ complexity class \autocite{Megiddo1991-lr}.
 
 Our first goal now is to prove that $\decprob{1}$ is polynomial-time solvable, that is, $\decprob{1} \in \fpc$.
 We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that $\decprob{0}$ is $\np$-hard.
@@ -183,7 +176,7 @@ We will also study $\decprob{\rho}$ for other values of $\rho$.
 To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol}, we will denote the graph $\rnni(1)$ by $\rnni$.
 
 
-\section{Complexity of computing $\rnni$ distances}
+\section{Complexity of computing $\rnni$ distance}
 \label{sec:rnni_complexity}
 
 In this section we will prove that the shortest path problem in $\rnni$ is polynomial-time solvable.
@@ -551,6 +544,7 @@ The running time bound follows from the running time of $\findpath$.
 
 Interestingly and in line with this result, the shortest path (geodesic) problem is polynomial-time computable in the continuous space of time-trees \autocite{Gavryushkin2016-uu}, where intervals can be of arbitrary real-valued lengths.
 
+
 \section{For what $\rho$ is $\decprob{\rho}$ polynomial?}
 
 As we have seen in Section~\ref{sec:rnni_complexity}, the shortest path problem $\decprob{1}$ is solvable in polynomial time.
@@ -633,6 +627,11 @@ There is a sequence $\rho_0, \rho_1, \rho_2, \ldots$ with $1 > \rho_0 > \rho_1 >
 The Theorem follows from Corollary~\ref{cor:exists_rho_not_poly} and iteratively applying Proposition~\ref{proposition:more_rho_not_poly}.
 \endproof
 
+The problem $\decprob{\rho}$ can also be seen as a local search problem, if a path of locally minimal weight is the search objective, and hence a member of the class $\pls$ for any $\rho$.
+Indeed, \textcite{Gavryushkin2018-ol} provided a quadratic algorithm that given two trees on $n$ leaves computes a path between them.
+Their result also implies that the number of possible weights a path in $\rnni(\rho)$ can possible have is bounded by a (quadratic) polynomial in the number of leaves.
+Hence, it is polynomial to find a locally shortest path between a pair of trees for all polynomially computable definitions of locality and all values of $\rho$.
+This observation stands in contrast to our hardness results of finding globally shortest paths below.
 
 \section{Additional open problems}
 
