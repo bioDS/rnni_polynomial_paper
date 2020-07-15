@@ -565,12 +565,15 @@ If $\decprob{\rho} \in \fpc$ for all positive $\rho < \rho_0$ then ${\decprob{0}
 \label{lemma:if_decprob_poly}
 \end{lemma}
 
+\todo[inline]{This proof has an error: The argument as it is written now relies on the fact that there exists $\decprob{\rho} \in \fpc$ \textbf{uniformly in} $\rho$.
+This has to be proven to prove the lemma.
+Idea for this proof: There are only finitely many values of $\rho$ where shortest paths go via different trees.}
 \proof
 Let $T$ and $R$ be trees on $n$ leaves.
-By the assumption of the lemma, shortest paths between these trees can be computed in polynomial time in $\rnni(\rho)$ for every $\rho > 0$.
-Let $p_{\rho_1}$ be such a shortest path in $\rnni(\rho_1)$ with $\rho_1 := \min\{\frac{1}{\Delta(\rnni) + 1}, \frac{\rho_0}{2}\}$, where $\Delta(\rnni)$ is the diameter of $\rnni$, which is known to be quadratic in $n$ \autocite{Gavryushkin2018-ol}.
-With this choice of $\rho_1$ it is $0 < \rho_1 < rho_0$.
-We will now show that the path $p_0$ in $\rnni(0)$ consisting of the same trees as $p_{\rho_1}$ is a shortest path in $\rnni(0)$.
+We set $\rho_1 = \min\{\frac{1}{n^2 + 1}, \frac{\rho_0}{2}\} < \rho_0$, and use the lemma assumption to compute a shortest path $p_1$ between $T$ and $R$ in $\rnni(\rho_1)$.
+We will now show that the path $p_1$ is also a shortest path between $T$ and $R$ in $\rnni(0)$.
+
+The following paragraph relies on the known \autocite{Gavryushkin2018-ol} fact that the diameter $\Delta(\rnni)$ of the $\rnni$ graph is at most $n^2$.
 
 For contradiction we assume that there is a path $q_0$ shorter than $p_0$ in $\rnni(0)$.
 It follows $|q_0| \leq |p_0| - 1$.
