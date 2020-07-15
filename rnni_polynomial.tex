@@ -540,13 +540,6 @@ However, the path from $T$ to $[\{a_2,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]
 \label{fig:fp_rho_greater_1_counterexample}
 \end{figure}
 
-For $\rho < 1$ a counterexample is given by the following trees (see Figure~\ref{fig:fp_rho_less_1_counterexample})\\
-$T = [\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ and\\
-$R = [\{a_1,a_3\},\{a_1,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
-Applied to these trees $\findpath$ proceeds from $T$ to $[\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_1,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$.
-This path consists of three $\nni$ moves and therefore has weight $3$.
-However, the path from $T$ to $[\{a_3, a_4\},\{a_1, a_2\},\{a_1, a_2, a_3, a_4\}]$ to $[\{a_3,a_4\},\{a_1, a_3, a_4\},\{a_1, a_2, a_3, a_4\}]$ to $R$ consists of one rank move followed by two $\nni$ moves and is hence shorter.
-
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.6\textwidth]{fp_rho_less_1_counterexample}
@@ -554,6 +547,12 @@ However, the path from $T$ to $[\{a_3, a_4\},\{a_1, a_2\},\{a_1, a_2, a_3, a_4\}
 \label{fig:fp_rho_less_1_counterexample}
 \end{figure}
 
+For $\rho < 1$ a counterexample is given by the following trees (see Figure~\ref{fig:fp_rho_less_1_counterexample})\\
+$T = [\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ and\\
+$R = [\{a_1,a_3\},\{a_1,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
+Applied to these trees $\findpath$ proceeds from $T$ to $[\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_1,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$.
+This path consists of three $\nni$ moves and therefore has weight $3$.
+However, the path from $T$ to $[\{a_3, a_4\},\{a_1, a_2\},\{a_1, a_2, a_3, a_4\}]$ to $[\{a_3,a_4\},\{a_1, a_3, a_4\},\{a_1, a_2, a_3, a_4\}]$ to $R$ consists of one rank move followed by two $\nni$ moves and is hence shorter.
 \endproof
 
 Second, we show that Theorem~\ref{thm:nni_hard} can be extended to other values of $\rho$ close to $0$.
