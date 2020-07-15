@@ -510,7 +510,10 @@ Characterise the complexity of $\decprob{\rho}$ in terms of $\rho$.
 \label{prblm:rho_range}
 \end{problem}
 
-In the rest of this section, we will suggest ways to approach this problem.
+This problem is also of applied value.
+For example, trees might come from an inference method with higher certainty of their branching structure and lower certainty of their nodes order, so a comparison method for such trees should have higher penalty for $\nni$ changes and lower penalty for rank changes, which in our notations requires $\rho < 1$.
+
+In the rest of this section, we suggest ways to approach this problem.
 
 First, we show that the $\findpath$ algorithm relies on the fact that the rank move and the $\nni$ move have the same weight in the $\rnni$ graph, in an non-trivial way.
 
