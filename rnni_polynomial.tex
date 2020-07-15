@@ -546,6 +546,7 @@ $R = [\{a_1,a_3\},\{a_1,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
 Applied to these trees $\findpath$ proceeds from $T$ to $[\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_1,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$.
 This path consists of three $\nni$ moves and therefore has weight $3$.
 However, the path from $T$ to $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$ to $[\{a_3,a_4\},\{a_3,a_4,a_1\},\{a_1,a_2,a_3,a_4\}]$ to $R$ consists of one rank move followed by two $\nni$ moves and is hence shorter.
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.6\textwidth]{fp_rho_less_1_counterexample}
@@ -586,11 +587,6 @@ With this and Lemma~\ref{lemma:if_decprob_poly} we get the following corollary.
 There is a $\rho_0 > 0$ for which $\decprob{\rho_0} \notin \fpc$.
 \label{cor:exists_rho_not_poly}
 \end{corollary}
-
-\proof
-This proof is analogous to the one of Lemma~\ref{lemma:if_decprob_poly}.
-To ensure $\epsilon < \rho_0$, pick $\epsilon := \min\{\frac{1}{r + 1}, \rho_0\}$.
-\endproof
 
 With the previous lemma and $\decprob{0} \notin \fpc$ (Theorem~\ref{thm:nni_hard}) we get the following result.
 
