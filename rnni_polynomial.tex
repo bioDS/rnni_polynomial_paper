@@ -105,7 +105,7 @@ Although important, these algorithms remain impractical for large distances and 
 
 Another area where algorithms for computing shortest paths and distances between trees play a central role, is methods for calculating consensus or summary trees \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx}.
 A popular tree distance measure used in such methods is the Robinson-Foulds distance \autocite{Robinson1981-fb}, as it can be computed in linear time.
-Lack of biological motivation however is a downside of this approach, which often results in poor summaries and as a result is not used for summarising samples of trees obtained in a full Bayesian tree inference approach \autocite{Gavryushkin2016-uu}.
+Lack of biological motivation however is a downside of this approach, which often results in poor summaries and hence is not used for summarising samples of trees obtained in a full Bayesian tree inference approach \autocite{Gavryushkin2016-uu}.
 In general, distance measures that are easy to compute typically have this problem, whereas measures that are biologically relevant, including the rearrangement-based distances, are often hard to compute \autocite{Whidden2018-fw}.
 
 In this paper, we establish that a generalisation of the $\nni$ operation introduced by \textcite{Gavryushkin2018-ol} and called $\rnni$ (for Ranked Nearest Neighbour Interchange) has the shortest path problem computable in $\O(n^2)$, where $n$ is the number tree leaves.
@@ -154,36 +154,35 @@ Two trees are connected by an edge if one results from the other by performing o
 The parameter $\rho \geq 0$ is the weight of the rank move operation, an $\nni$ move weighs $1$.
 
 The \emph{weight of a path} in $\rnni(\rho)$ is the sum of the weights of all moves along the path.
-The \emph{distance} between two trees in $\rnni(\rho)$ is the weight of a path with the minimal weight, which we will call a shortest path.
-We first consider $\rho = 1$ and assume in this case that the graph is unweighted.
+The \emph{distance} between two trees in $\rnni(\rho)$ is the weight of a path with the minimal weight, which we will call a \emph{shortest path}.
+When $\rho = 1$ we assume that the graph is unweighted.
 
 We consider the following class of problems parametrised by a real number $\rho \geq 0$.
 
 \noindent\fbox{\parbox{\textwidth}{
 $\decprob{\rho}$\\
-INSTANCE: A pair of trees on $n$ leaves $T$ and $R$\\
+INSTANCE: A pair of trees $T$ and $R$ on $n$ leaves\\
 FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 }}
 
-Since $\rnni(\rho)$ is a connected graph with its diameter bounded by a polynomial in the number of tree leaves \autocite{Gavryushkin2018-ol}, the problem $\decprob{\rho}$ in general is in $\tfnp$ complexity class \autocite{Megiddo1991-lr}.
+Since $\rnni(\rho)$ is a connected graph with its diameter bounded by a polynomial in the number of tree leaves \autocite{Gavryushkin2018-ol}, the problem $\decprob{\rho}$ in general is in complexity class $\tfnp$ \autocite{Megiddo1991-lr}.
 
 Our main goal is to prove that $\decprob{1}$ is polynomial-time solvable.
 We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that $\decprob{0}$ is $\np$-hard.
-We will also study $\decprob{\rho}$ for other values of $\rho$.
 To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol}, we will denote the graph $\rnni(1)$ by $\rnni$.
 
 
 \section{$\findpath$ algorithm}
 \label{sec:rnni_complexity}
 
-In this section we introduce a quadratic, in the number of leaves, algorithm called $\findpath$ that computes paths between trees.
+In this section we introduce a quadratic in the number of leaves algorithm called $\findpath$ that computes paths between trees.
 
 An input of the $\findpath$ algorithm is two trees $T$ and $R$ in their cluster representation.
 We denote the representation of $R$ by $[C_1, \ldots, C_{n-1}]$.
 The algorithm considers the clusters $C_1, \ldots, C_{n-2}$ iteratively in their order and produces a sequence $p$ of trees which becomes a shortest path from $T$ to $R$ after the algorithm terminates.
 During each iteration $k = 1, \ldots, n-2$ new trees are added to $p$ if necessary, and we will refer to the last added tree as $T'$.
 In iteration $k$, the rank of $(C_{k})_{T'}$ is decreased by $\rnni$ moves until $C_k$ is induced by the node of rank $k$ in $T'$.
-Before proving that $\findpath$ computes shortest paths in $\rnni$, we show that $\findpath$ is a deterministic algorithm with running time quadratic in the number of leaves $n$.
+Here, we show that $\findpath$ is a deterministic algorithm with running time quadratic in the number of leaves $n$.
 In particular, there always exists a unique move that decreases the rank of $(C_{k})_{T'}$ as described above.
 
 \begin{algorithm}[H]
@@ -251,7 +250,7 @@ This is because writing out a tree on $n$ leaves takes linear in $n$ time and th
 \section{$\findpath$ computes shortest paths in optimal time}
 
 In this section we prove the main result of this paper, that $\decprob{1}$ is polynomial.
-Specifically we prove that the paths returned by $\findpath$ are always shortest.
+Specifically we prove that paths returned by $\findpath$ are always shortest.
 We also show that $\findpath$ is an optimal algorithm, that is, no sub-quadratic algorithm can solve $\decprob{1}$.
 
 The main ingredient of our proof is to show that a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm is enough to establish that the output paths are shortest.
@@ -477,7 +476,7 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 
 We finish this section by showing that no algorithm has strictly lower worst-case time complexity than $\findpath$.
 We again assume here that the output of an algorithm for solving $\decprob{1}$ is a list of $\rnni$ moves.
-Requiring the output to be a list of trees would result in cubic complexity but maintain the optimality of $\findpath$.
+Requiring the output to be a list of trees would result in the cubic complexity but maintain the optimality of $\findpath$.
 
 \begin{corollary}
 The time-complexity of the shortest path problem $\decprob{1}$ is $\Omega(n^2)$.
@@ -563,7 +562,7 @@ The idea utilised by \textcite{Dasgupta2000-xa} to prove that computing distance
 Not only this counter-intuitive property eventually led to the computational hardness of $\nni$, the property made little sense biologically as trees clustering the same set of sequences into a subtree should be closer to each other than to a tree that does not have that subtree.
 Indeed, a shared cluster means that both trees support the hypothesis that this cluster has evolved along a subtree.
 In light of this biological argument, the $\np$-hardness result can be interpreted as $\decprob{\rho}$ being hard only when the graph $\rnni(\rho)$ is biologically irrelevant.
-Although in sharp contrast with the common belief in the field of computational phylogenetics \autocite{Whidden2018-fw}, this interpretation resonates with the idea suggested in the beyond worst case analysis framework \autocite{Roughgarden2019-to} that some problems are only computationally hard when their instances are irrelevant in practice.
+Although in sharp contrast with the common belief in the field of computational phylogenetics \autocite{Whidden2018-fw}, this interpretation resonates with the idea suggested in the beyond worst case analysis framework \autocite{Roughgarden2019-to} that some problems are only computationally hard when their instances are practically irrelevant.
 The following question is hence natural.
 \begin{enumerate}
 \item For which values of $\rho$ does $\rnni(\rho)$ have the cluster property?
