@@ -2,7 +2,7 @@
 
 %\usepackage[notref,notcite]{showkeys}
 
-\usepackage[style=authoryear,ibidtracker=false,uniquename=false,giveninits=true,terseinits=true,maxbibnames=5,backend=biber]{biblatex}
+\usepackage[ibidtracker=false,uniquename=false,giveninits=true,terseinits=true,backend=biber]{biblatex}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{todonotes}
@@ -42,7 +42,7 @@
 \newcommand{\pls}{\mathcal{PLS}}
 \newcommand{\tfnp}{\mathcal{TFNP}}
 \newcommand{\fpc}{\mathcal{FP}}
-\newcommand{\np}{\mathcal{NP}}
+\newcommand{\np}{\mathbf{NP}}
 \newcommand{\p}{\mathcal{P}}
 \newcommand{\decprob}[1]{\rnni(#1)\text{-}\mathrm{SP}}
 \renewcommand{\O}{\mathcal O}
@@ -67,7 +67,6 @@ Their comments improved our paper.}
 This work was partially supported by Ministry of Business, Innovation, and Employment of New Zealand through an Endeavour Smart Ideas grant (CONT-61378-ENDSI-UOO) and a Data Science Programmes grant (UOAX1932).}
 
 
-
 \begin{document}
 
 \begin{abstract}
@@ -83,25 +82,23 @@ Specifically, our algorithm scales to trees with thousands (and likely hundreds 
 
 We also connect the problem of computing distances in our graph of ranked trees with the well-known version of this problem on unranked trees by introducing a parameter for the weight difference between move types.
 We propose to study a family of shortest path problems indexed by this parameter and varying their computational complexity from quadratic to $\np$-hard.
-When formulated as a class of local search problems, the family attains such complexity classes as $\fpc$, $\pls$, and $\tfnp$.
-In this paper we will provide an insight into this approach, motivated by ideas developed in the beyond worst-case analysis framework.
 \end{abstract}
 
 
 \maketitle
+\newpage
 
 The problem of reconstructing evolutionary histories from sequence data is central for many popular methods in computational biology.
 Most commonly trees are inferred from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
 All these methods rely on various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection ($\tbr$).
-Hence the tree inference problem can be formulated as a graph search, where vertices are trees and edges are given by the tree rearrangement operation of interest.
+Under any such operation, the tree inference problem can be formulated as a graph search, where vertices are trees and edges are given by the tree rearrangement operation.
+For the search algorithms to be efficient, it is important to understand the geometry of these graphs.
+For example, basic geometric properties of the $\nni$ graph have been successfully leveraged to speed up the maximum likelihood method \autocite{Nguyen2015-sp}.
+The most basic geometric characteristic that frequently arises in applications is the minimum number of rearrangements necessary to transform one tree into another \autocite{Semple2003-nj}.
+The problem then amounts to computing the length of a shortest path between trees in the three graphs.
+This can be also bee seen as computing the distance between trees in the corresponding metric space.
 
-Another important area where algorithms for computing shortest paths and distances between trees play a central role, is methods for calculating consensus or summary trees \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx}.
-A popular tree distance measure used in such methods is the Robinson-Foulds distance \autocite{Robinson1981-fb}, as it can be computed in linear time.
-Lack of biological motivation however is a downside of this approach, which often results in poor summaries and as a result is not used for summarising samples of trees obtained in a full Bayesian tree inference approach \autocite{Gavryushkin2016-uu}.
-In general, distance measures that are easy to compute typically have this problem, whereas measures that are biologically relevant are often hard to compute \autocite{Whidden2018-fw}.
-
-Many biologically relevant distance measures are based on local tree rearrangement operations and defined as the minimum number of such operations necessary to convert one tree into another.
-Classical results in mathematical phylogenetics imply that this number is $\np$-hard to compute \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky} for all three main rearrangement operations $\nni$, $\spr$, and $\tbr$.
+Classical results in mathematical phylogenetics imply that this distance is $\np$-hard to compute for all three rearrangement operations $\nni$, $\spr$, and $\tbr$ \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky}.
 Intuitively, the difference between the three operations is how much change can be done to a tree by a single operation, with $\nni$ being the most local type of rearrangement and $\tbr$ the most global one.
 Remarkably, it took over 25 years and a number of published erroneous attempts, as discussed in detail by \textcite{Dasgupta2000-xa}, to prove that computing distances is $\np$-hard in $\nni$ \autocite{Dasgupta2000-xa}.
 Similarly, incorrect proofs for $\spr$ have been discussed in the literature \autocite{Hein1996-em, Allen2001-ky}, before \textcite{Bordewich2005-nx} proved the $\np$-hardness result for rooted trees and \textcite{Hickey2008-wv} utilised this proof to establish the result for unrooted trees.
@@ -109,18 +106,21 @@ To facilitate practical applications, fixed parameter tractable algorithms \auto
 Computing the $\nni$ distance is also known to be fixed parameter tractable \autocite{DasGupta1999-xf}.
 Although important, these algorithms remain impractical for large distances and are only applied to trees with a moderate number of leaves or those with small distances \autocite{Whidden2018-fw}.
 
+Another area where algorithms for computing shortest paths and distances between trees play a central role, is methods for calculating consensus or summary trees \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx}.
+A popular tree distance measure used in such methods is the Robinson-Foulds distance \autocite{Robinson1981-fb}, as it can be computed in linear time.
+Lack of biological motivation however is a downside of this approach, which often results in poor summaries and as a result is not used for summarising samples of trees obtained in a full Bayesian tree inference approach \autocite{Gavryushkin2016-uu}.
+In general, distance measures that are easy to compute typically have this problem, whereas measures that are biologically relevant, including the rearrangement-based distances, are often hard to compute \autocite{Whidden2018-fw}.
+
 In this paper, we establish that a generalisation of the $\nni$ operation introduced by \textcite{Gavryushkin2018-ol} and called $\rnni$ (for Ranked Nearest Neighbour Interchange) has the shortest path problem computable in $\O(n^2)$, where $n$ is the number tree leaves.
 This makes $\rnni$ the first tree rearrangement operation under which shortest paths and distances between trees are polynomial-time computable.
-To establish this result (Theorem~\ref{thm:rnni_polynomial}), we will introduce the algorithm $\findpath$ and show that it computes shortest paths in the  $\rnni$ graph in $\O(n^2)$ time.
+Our proof of this result (Theorem~\ref{thm:rnni_polynomial}) is constructive -- we provide an algorithm called $\findpath$ that computes shortest paths in the $\rnni$ graph in $\O(n^2)$ time.
 Our algorithm is optimal as shortest paths often have length quadratic in the number of leaves $n$.
-The algorithm is practical as it takes seconds for a laptop to compute the distance between trees with thousands of leaves, while in the closely related $\nni$ graph the tractable number of leaves is well below 20 \autocite{Li1996-zw, Whidden2016-kl}.
+The algorithm is practical as it takes seconds on a laptop to compute the distance between trees with thousands of leaves, while in the closely related $\nni$ graph the tractable number of leaves is well below twenty \autocite{Li1996-zw, Whidden2016-kl}.
 
 Because $\nni$ can be seen as a special case of $\rnni$, we investigate the question of whether there exists a threshold at which the complexity shifts from $\np$-hard to polynomial.
 Specifically, we introduce an edge weight parameter $\rho$ in the $\rnni$ graph and consider a parametrised graph $\rnni(\rho)$.
 We show that the shortest path problem is $\np$-hard in $\rnni(0)$ and quadratic in $\rnni(1)$, so the complexity changes with $\rho$.
-Furthermore, as the shortest path problem can be stated as a local search problem, our results show that $\rnni(\rho)$ attains such complexity classes as $\fpc$, $\pls$, and $\tfnp$ depending on the values of $\rho$.
 We hence propose to characterise the complexity classes of the problem $\rnni(\rho)$ for values of $\rho \geq 0$.
-We will provide some insights into this characterisation at the end of this paper.
 This problem is similar in spirit to the beyond worst-case analysis (including parametrised complexity \autocite{Downey2013-nd}) framework \autocite{Roughgarden2019-to}, because for example, just like in our result, a $\gamma$-perturbation stable instance of the maximum cut problem is known \autocite{Roughgarden2019-to} to be $\np$-hard for small values of $\gamma$ and polynomial for larger values of $\gamma$.
 Since the problem of identifying the value of $\gamma$ where the complexity switches has largely been resolved \autocite{Makarychev2014-ev}, we hope that the approaches reviewed by \textcite{Roughgarden2019-to} will be helpful for the proposed study as well.
 
@@ -176,12 +176,12 @@ We will also study $\decprob{\rho}$ for other values of $\rho$.
 To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol}, we will denote the graph $\rnni(1)$ by $\rnni$.
 
 
-\section{Complexity of computing $\rnni$ distance}
+\section{$\findpath$ algorithm}
 \label{sec:rnni_complexity}
 
-In this section we will prove that the shortest path problem in $\rnni$ is polynomial-time solvable.
-Our proof will be constructive -- we will show that the following quadratic algorithm, called $\findpath$, computes a shortest path between two given trees in $\rnni$.
-$\findpath$ algorithm receives two trees $T$ and $R$ in their cluster representation.
+In this section we introduce a quadratic, in the number of leaves, algorithm called $\findpath$ that computes paths between trees.
+
+An input of the $\findpath$ algorithm is two trees $T$ and $R$ in their cluster representation.
 We denote the representation of $R$ by $[C_1, \ldots, C_{n-1}]$.
 The algorithm considers the clusters $C_1, \ldots, C_{n-2}$ iteratively in their order and produces a sequence $p$ of trees which becomes a shortest path from $T$ to $R$ after the algorithm terminates.
 During each iteration $k = 1, \ldots, n-2$ new trees are added to $p$ if necessary, and we will refer to the last added tree as $T'$.
@@ -250,13 +250,19 @@ Here and throughout the paper we assume that the output of $\findpath$ is encode
 This is because writing out a tree on $n$ leaves takes linear in $n$ time and the complexity becomes cubic.
 \endproof
 
-The following theorem, that $\decprob{1}$ is polynomial, is the main result of our paper.
-The proof of the theorem reduces the problem to establishing a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm.
+
+\section{$\findpath$ computes shortest paths in optimal time}
+
+In this section we prove the main result of this paper, that $\decprob{1}$ is polynomial.
+Specifically we prove that the paths returned by $\findpath$ are always shortest.
+We also show that $\findpath$ is an optimal algorithm, that is, no sub-quadratic algorithm can solve $\decprob{1}$.
+
+The main ingredient of our proof is to show that a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm is enough to establish that the output paths are shortest.
 The property can intuitively be understood as $\findpath$ always choosing the best tree possible to go to.
-Importantly, this result can be used for an arbitrary vertex proposal algorithm in an arbitrary graph to establish that the algorithm computes a shortest path between vertices in the graph, hence our proof technique is of general interest.
+Importantly, this result can be used for an arbitrary vertex proposal algorithm in an arbitrary graph to establish that the algorithm always follows a shortest path between vertices in the graph, hence our proof technique is of general interest.
 
 \begin{theorem}
-The time complexity of the shortest path problem in the $\rnni$ graph on trees with $n$ leaves is $\O(n^2)$, and so $\decprob{1} \in \fpc$.
+The time complexity of the shortest path problem in the $\rnni$ graph on trees with $n$ leaves is $\O(n^2)$.
 \label{thm:rnni_polynomial}
 \end{theorem}
 
@@ -516,9 +522,7 @@ Characterise the complexity of $\decprob{\rho}$ in terms of $\rho$.
 This problem is also of applied value.
 For example, trees might come from an inference method with higher certainty of their branching structure and lower certainty of their nodes order, so a comparison method for such trees should have higher penalty for $\nni$ changes and lower penalty for rank changes, which in our notations requires $\rho < 1$.
 
-In the rest of this section, we suggest ways to approach this problem.
-
-First, we show that the $\findpath$ algorithm substantially relies on the fact that the rank move and the $\nni$ move have the same weight in the $\rnni$ graph.
+In the rest of this section, we show that the $\findpath$ algorithm substantially relies on the fact that the rank move and the $\nni$ move have the same weight in the $\rnni$ graph, so a non-trivial algorithmic insight is necessary to extend our polynomial complexity result to other values of $\rho$.
 
 \begin{proposition}
 $\findpath$ does not compute shortest paths in $\rnni(\rho)$ for $\rho \neq 1$.
@@ -555,69 +559,14 @@ This path consists of three $\nni$ moves and therefore has weight $3$.
 However, the path from $T$ to $[\{a_3, a_4\},\{a_1, a_2\},\{a_1, a_2, a_3, a_4\}]$ to $[\{a_3,a_4\},\{a_1, a_3, a_4\},\{a_1, a_2, a_3, a_4\}]$ to $R$ consists of one rank move followed by two $\nni$ moves and is hence shorter.
 \endproof
 
-Second, we show that Theorem~\ref{thm:nni_hard} can be extended to other values of $\rho$ close to $0$.
-This suggests a possibility of a positive threshold $\hat\rho \leq 1$ that separates the values of $\rho$ for which $\decprob{\rho}$ is polynomial from those for which $\decprob{\rho}$ is $\np$-hard.
-In what follows, we provide infinitely many values of $\rho$ for which $\decprob{\rho}$ is not polynomial, leaving the question of the threshold existence open.
-
-\begin{lemma}
-Let $0 < \rho_0 \leq 1$.
-If $\decprob{\rho} \in \fpc$ for all positive $\rho < \rho_0$ then ${\decprob{0} \in \fpc}$.
-\label{lemma:if_decprob_poly}
-\end{lemma}
-
-\todo[inline]{This proof has an error: The argument as it is written now relies on the fact that there exists an algorithm that computes $\decprob{\rho} \in \fpc$ \textbf{uniformly in} $\rho$.
-This has to be proven to prove the lemma.
-Idea for this proof: There are only finitely many values of $\rho$ where shortest paths go via different trees.}
-\proof
-Let $T$ and $R$ be trees on $n$ leaves.
-We set $\rho_1 = \min\{\frac{1}{n^2 + 1}, \frac{\rho_0}{2}\} < \rho_0$, and use the lemma assumption to compute a shortest path $p_1$ between $T$ and $R$ in $\rnni(\rho_1)$.
-We will now show that the path $p_1$ is also a shortest path between $T$ and $R$ in $\rnni(0)$.
-
-The following paragraph relies on the known \autocite{Gavryushkin2018-ol} fact that the diameter $\Delta(\rnni)$ of the $\rnni$ graph is at most $n^2$.
-
-For contradiction we assume that there is a path $q_0$ shorter than $p_0$ in $\rnni(0)$.
-It follows $|q_0| \leq |p_0| - 1$.
-For the path $q_{\rho_1}$ in $\rnni(\rho_1)$ consisting of the same trees as $q_0$ it is $|q_{\rho_1}| = |q_0| + m_r \rho_1 < |q_0| + 1 \leq |p_0| \leq |p_{\rho_1}|$, where $m_r$ is the number of rank moves on $q_0$.
-Note that there cannot be more than $\Delta(\rnni)$ rank moves $m_r$ on $q_0$ as we assumed that $q_0$ is a shortest path in $\rnni(0)$.
-However, $|q_{\rho_1}| < |p_{\rho_1}|$ contradicts the fact that $p_{\rho_1}$ is a shortest path in $\rnni(\rho_1)$.
-\endproof
-
-Note that Theorem~\ref{thm:nni_hard} implies that $\decprob{0} \notin \fpc$.
-With this and Lemma~\ref{lemma:if_decprob_poly} we get the following corollary.
-
-\begin{corollary}
-There is a $\rho_0 > 0$ for which $\decprob{\rho_0} \notin \fpc$.
-\label{cor:exists_rho_not_poly}
-\end{corollary}
-
-With the previous lemma and $\decprob{0} \notin \fpc$ (Theorem~\ref{thm:nni_hard}) we get the following result.
-
-\begin{proposition}
-If $\decprob{\rho_0} \notin \fpc$, then exists a $\rho_1$ with $0 < \rho_1 < \rho_0$ such that $\decprob{\rho_1} \notin \fpc$, assuming.
-\label{proposition:more_rho_not_poly}
-\end{proposition}
-
-\begin{theorem}
-There is a sequence $\rho_0, \rho_1, \rho_2, \ldots$ with $1 > \rho_0 > \rho_1 > \rho_2 > \ldots > 0$ such that $\decprob{\rho_m} \notin \fpc$ for all $m \in \mathbb N$ and $\rho_m \underset{m \rightarrow \infty}{\longrightarrow} 0$.
-\end{theorem}
-
-\proof
-The Theorem follows from Corollary~\ref{cor:exists_rho_not_poly} and iteratively applying Proposition~\ref{proposition:more_rho_not_poly}.
-\endproof
-
-The problem $\decprob{\rho}$ can also be seen as a local search problem, if a path of locally minimal weight is the search objective, and hence a member of the class $\pls$ for any $\rho$.
-Indeed, \textcite{Gavryushkin2018-ol} provided a quadratic algorithm that given two trees on $n$ leaves computes a path between them.
-Their result also implies that the number of possible weights a path in $\rnni(\rho)$ can possible have is bounded by a (quadratic) polynomial in the number of leaves.
-Hence, it is polynomial to find a locally shortest path between a pair of trees for all polynomially computable definitions of locality and all values of $\rho$.
-This observation stands in contrast to our hardness results of finding globally shortest paths below.
 
 \section{Additional open problems}
 
-The idea utilised by \textcite{Dasgupta2000-xa} to prove that computing distances in $\nni$ is $\np$-hard stems from a result that shortest paths in $\nni$ do not preserve clusters \autocite{Li1996-zw}, that is, sometimes a cluster shared by two trees $T$ and $R$ does not present in trees on shortest paths between $T$ and $R$.
-Not only this counter-intuitive property eventually led to the computational hardness result, the property made little sense biologically as trees clustering the same set of sequences into a subtree should be closer to each other than to a tree that does not have that subtree.
+The idea utilised by \textcite{Dasgupta2000-xa} to prove that computing distances in $\nni$ is $\np$-hard stems from a result that shortest paths in $\nni$ do not preserve clusters \autocite{Li1996-zw}, that is, sometimes a cluster shared by two trees $T$ and $R$ presents in no other tree on any shortest path between $T$ and $R$.
+Not only this counter-intuitive property eventually led to the computational hardness of $\nni$, the property made little sense biologically as trees clustering the same set of sequences into a subtree should be closer to each other than to a tree that does not have that subtree.
 Indeed, a shared cluster means that both trees support the hypothesis that this cluster has evolved along a subtree.
 In light of this biological argument, the $\np$-hardness result can be interpreted as $\decprob{\rho}$ being hard only when the graph $\rnni(\rho)$ is biologically irrelevant.
-This interpretation resonates with the idea suggested in the beyond worst case analysis framework \autocite{Roughgarden2019-to} that some problems are only computationally hard when their instances are irrelevant in practice.
+Although in sharp contrast with the common belief in the field of computational phylogenetics \autocite{Whidden2018-fw}, this interpretation resonates with the idea suggested in the beyond worst case analysis framework \autocite{Roughgarden2019-to} that some problems are only computationally hard when their instances are irrelevant in practice.
 The following question is hence natural.
 \begin{enumerate}
 \item For which values of $\rho$ does $\rnni(\rho)$ have the cluster property?
