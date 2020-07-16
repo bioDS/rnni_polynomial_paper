@@ -189,7 +189,7 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 \begin{algorithm}[H]
 \caption{$\findpath$($T,R$)}
 \begin{algorithmic}[1]
-\STATE $T' := T$, $p := [T']$, $[C_1, \ldots, C_{n-2}] := R$
+\STATE $T' := T$, $p := [T']$, $[C_1, \ldots, C_{n-1}] := R$
 \FOR {$k = 1, \dots, n-2$}
 \label{alg:findpath:line:for_loop}
 	\WHILE {$\rank((C_k)_{T'})>k$}
@@ -234,9 +234,9 @@ Case $k > 1$.
 \begin{enumerate}
 \item $C_k = C_i \cup C_j$ for $i, j < k$.
 Suppress $C_i$ and $C_j$ in both $T'$ and $R$ to new leaves $c_i$ and $c_j$ (of rank zero) respectively and proceed as in Case $k = 1$.
-\item $C_k = C_i \cup \{x\}$, where $x$ is a leaf not present in $C_1, \ldots, C_k$.
+\item $C_k = C_i \cup \{x\}$, where $x$ is a leaf not present in $C_1 \cup \ldots \cup C_{k-1}$.
 Suppress $C_i$ in both $T'$ and $R$ to a new leaf $c_i$ and proceed as in Case $k = 1$.
-\item $C_k = \{x, y\}$ where both $x$ and $y$ are not in $C_1, \ldots, C_k$.
+\item $C_k = \{x, y\}$ where neither of $x$, $y$ is in $C_1 \cup \ldots \cup C_{k-1}$.
 Proceed as in Case $k = 1$.
 \end{enumerate}
 
