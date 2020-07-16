@@ -39,11 +39,8 @@
 \newcommand{\spr}{\mathrm{SPR}}
 \newcommand{\tbr}{\mathrm{TBR}}
 \newcommand{\fp}{\mathrm{FP}}
-\newcommand{\pls}{\mathcal{PLS}}
-\newcommand{\tfnp}{\mathcal{TFNP}}
-\newcommand{\fpc}{\mathcal{FP}}
 \newcommand{\np}{\mathbf{NP}}
-\newcommand{\p}{\mathcal{P}}
+\newcommand{\tfnp}{\mathbf{TFNP}}
 \newcommand{\decprob}[1]{\rnni(#1)\text{-}\mathrm{SP}}
 \renewcommand{\O}{\mathcal O}
 \renewcommand{\epsilon}{\varepsilon}
@@ -170,7 +167,7 @@ FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 
 Since $\rnni(\rho)$ is a connected graph with its diameter bounded by a polynomial in the number of tree leaves \autocite{Gavryushkin2018-ol}, the problem $\decprob{\rho}$ in general is in $\tfnp$ complexity class \autocite{Megiddo1991-lr}.
 
-Our first goal now is to prove that $\decprob{1}$ is polynomial-time solvable, that is, $\decprob{1} \in \fpc$.
+Our main goal is to prove that $\decprob{1}$ is polynomial-time solvable.
 We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that $\decprob{0}$ is $\np$-hard.
 We will also study $\decprob{\rho}$ for other values of $\rho$.
 To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol}, we will denote the graph $\rnni(1)$ by $\rnni$.
