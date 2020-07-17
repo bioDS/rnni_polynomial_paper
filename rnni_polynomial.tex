@@ -165,9 +165,9 @@ INSTANCE: A pair of trees $T$ and $R$ on $n$ leaves\\
 FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 }}
 
-Since $\rnni(\rho)$ is a connected graph with its diameter bounded by a polynomial in the number of tree leaves \autocite{Gavryushkin2018-ol}, the problem $\decprob{\rho}$ in general is in complexity class $\tfnp$ \autocite{Megiddo1991-lr}.
+Since $\rnni(\rho)$ is a connected graph with its diameter bounded by a polynomial in $n$ \autocite{Gavryushkin2018-ol}, the problem $\decprob{\rho}$ in general is in complexity class $\tfnp$ \autocite{Megiddo1991-lr}.
 
-Our main goal is to prove that $\decprob{1}$ is polynomial-time solvable.
+Our main goal is to prove that $\decprob{1}$ is polynomial.
 We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that $\decprob{0}$ is $\np$-hard.
 To be consistent with notations used in the literature \autocite{Gavryushkin2018-ol}, we will denote the graph $\rnni(1)$ by $\rnni$.
 
@@ -193,10 +193,12 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 \label{alg:findpath:line:for_loop}
 	\WHILE {$\rank((C_k)_{T'})>k$}
 	\label{alg:findpath:line:while_loop}
-		\IF {$(C_k)_{T'}$ and node $u$ with rank one less than $(C_k)_{T'}$ are connected by an edge}
+		\IF {$(C_k)_{T'}$ and node $u$ preceding $(C_k)_{T'}$ in $T'$ are connected by an edge}
 			\STATE $T''$ is $T'$ with the rank of $(C_k)_{T'}$ decreased by an $\nni$ move
+			\label{alg:nni_step}
 		\ELSE
-			\STATE $T''$ is $T'$ with ranks of nodes $u$ and $(C_k)_{T'}$ swapped
+			\STATE $T''$ is $T'$ with ranks of $u$ and $(C_k)_{T'}$ swapped
+			\label{alg:rank_step}
 		\ENDIF
 		\STATE $T' = T''$
 		\STATE $p = p+T'$
@@ -211,24 +213,23 @@ $\findpath$ is a correct deterministic algorithm that runs in $\O(n^2)$ time.
 \end{proposition}
 
 \proof
-To show that the algorithm terminates with a path ending in $R$, we need to show that in the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) there is always exactly one $\rnni$ move possible to decrease the rank of $(C_k)_{T'}$, until it is $k$.
-Then it follows that the first $k$ clusters of $T'$ and $R$ coincide after iteration $k$ and hence after $n-2$ iterations the path has to arrive at $R$.
-
-To complete the proof, it suffices to show that there is a unique $\rnni$ move that decreases the rank of $(C_k)_{T'}$, which proves that there is a unique, well-defined update operation in each execution of the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}).
-For proving this, we consider the case $k = 1$ and $k>1$ separately.
+To show that $\findpath$ is a deterministic algorithm (see the pseudocode above), we have to prove that tree $T''$ constructed in the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}) of the algorithm is always uniquely defined.
+If $T''$ is obtained in line~\ref{alg:rank_step} from $T'$ by a rank move, the tree is unique because there always exists exactly one rank move on any particular interval.
+It remains to show that the $\nni$ move that decreases the rank of $(C_k)_{T'}$ is always unique also.
+To prove this we consider cases $k = 1$ and $k > 1$ separately.
 
 Case $k = 1$.
 In this case $C_k$ consists of two leaves $\{x, y\}$.
 The node $v = (\{x, y\})_{T'}$ has rank $r > 1$.
-Consider the node $w$ preceding $v$ in $T'$, that is, it has rank $r - 1$.
-If a rank move that swaps $v$ and $w$ is possible then this is the only move on $T'$ that can decrease the rank of $(\{x, y\})_{T'}$.
-If the rank move is impossible then there is an edge in $T'$ connecting $v$ and $w$.
-The only way to decrease the rank of $(\{x, y\})_{T'}$ then is to perform an $\nni$ move on that edge.
-Out of two possible $\nni$ moves only one decreases the rank of this most recent common ancestor.
-The reason for this is that one of the leaves $\{x,y\}$ is contained in the cluster induced by the child $u$ of $v$ that is not $w$, while the other one is part of the cluster induced by one of the nodes that are children of $w$.
-An $\nni$ move exchanges a subtree induced by one of the children of $w$ with the one induced by $u$.
-Therefore, only the $\nni$ move that exchanges the subtree induced by $u$ with the subtree induced by the child of $w$ that does not contain $x$ or $y$ decreased the rank of $(\{x, y\})_{T'}$.
+Consider the node $u$ preceding $v$ in $T'$, so the rank of $u$ is $r - 1$.
+Assume without loss of generality that $x$ is in the cluster induced by $u$, so $y$ has to be outside this cluster.
+Consider the following three disjoint subtrees of $T'$.
+The subtree $T'_1$ induced by a child of $u$ and containing $x$.
+The subtree $T'_2$ induced by the other child of $u$.
+The subtree $T'_3$ induced by a child of $v$ and containing $y$.
+Now observe that out of two $\nni$ moves possible on the edge $(u, v)$ in $T'$, only the one that swaps $T_2$ and $T_3$ can decrease the rank of the most recent common ancestor of $\{x, y\}$.
 
+\todo{This case requires more work}
 Case $k > 1$.
 \begin{enumerate}
 \item $C_k = C_i \cup C_j$ for $i, j < k$.
@@ -239,7 +240,10 @@ Suppress $C_i$ in both $T'$ and $R$ to a new leaf $c_i$ and proceed as in Case $
 Proceed as in Case $k = 1$.
 \end{enumerate}
 
-Hence, the choice of the tree $T''$ in the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}) is unique, which concludes the proof.
+Thus, $\findpath$ is a deterministic algorithm.
+
+To prove correctness, note that the algorithm starts by adding $T$ to the output path, and every new tree added to the output path is an $\rnni$ neighbour of the previously added one (see line~\ref{alg:nni_step} and \ref{alg:rank_step}).
+To see that the output path terminates in $R$, observe that after $k$ iteration of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) of the algorithm, the first $k$ clusters of $T'$ and $R$ must coincide, and so after $n-2$ iterations a path between $T$ and $R$ is constructed.
 
 The worst-case time complexity of $\findpath$ is quadratic in the number of leaves, as there can be at most $n-2$ executions of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) and in every iteration of the \textbf{for} loop at most $n-2$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) are executed.
 Here and throughout the paper we assume that the output of $\findpath$ is encoded by a list of $\rnni$ moves rather than an actual list of trees.
