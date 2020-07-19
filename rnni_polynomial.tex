@@ -24,6 +24,7 @@
   \clearlist{language}
 }
 
+\setlist{leftmargin = 0pt}
 \geometry{margin=1in}
 
 \newtheorem{proposition}{Proposition}
@@ -308,24 +309,24 @@ We will distinguish two cases depending on whether $T$ and $T'$ are connected by
 For each of these we will further distinguish all possible moves between $T$ and $T_1$.
 Note that in all figures illustrating possible moves on $\fp(T,R)$ and $\fp(T',R)$ the position of the tree root is irrelevant, so we have positioned roots to simplify our figures.
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.35\textwidth]{thm_fp_nni1}
+\caption{$\nni$ move between $T$ and $T'$ on the edge $((T)_t,(T)_{t+1})$ indicated in bold, and the third $\rnni$ neighbour resulting from a move on this edge.}
+\label{fig:thm_fp_nni1}
+\end{figure}
+
 \textbf{Case 1.}
 $T$ and $T'$ are connected by an $\nni$ move, so $((T)_t,(T)_{t+1})$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
 Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, and assume that the $\nni$ move between $T$ and $T'$ exchanges the subtrees induced by clusters $B$ and $C$.
 Additionally, denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni1}.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.35\textwidth]{thm_fp_nni1}
-\caption{$\nni$ move between $T$ and $T'$ on the bold edge $((T)_t,(T)_{t+1})$ and the third $\rnni$ neighbour resulting from a move on that edge.}
-\label{fig:thm_fp_nni1}
-\end{figure}
 
 We now consider all possible moves $\findpath$ can perform to go from $T$ to $T_1$ that involve a node of rank $t$ or $t+1$, that is, we will consider three intervals in total.
 In these cases, we will write ``$\rnni$ move" to mean a rank or an $\nni$ move, ``rank move" to mean a rank move, and ``$\nni$ move" to mean an $\nni$ move.
 
 \begin{enumerate}[label = 1.{\arabic*}]
 \item $\rnni$ move on interval $[(T)_t, (T)_{t+1}]$.
-Note that this move has to be the $\nni$ move that is different from the $\nni$ move connecting $T$ and $T'$.
+This move has to be the $\nni$ move that is different from the $\nni$ move connecting $T$ and $T'$.
 
 In this case, the cluster $B \cup C$ is built in $T_1$, as depicted in the bottom of Figure~\ref{fig:thm_fp_nni1}.
 It follows that the cluster $C_k$ that is considered first by $\findpath$ must contain elements from both $B$ and $C$.
@@ -334,6 +335,10 @@ This contradicts our assumption that $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
 \item $\nni$ move on (edge) interval $[(T)_{t+1}, (T)_{t+2}]$ that swaps the subtrees induced by clusters $C$ and $D$.
 This move is shown in Figure~\ref{fig:thm_fp_nni2a} by an arrow from $T$ to the leftmost tree in the middle row.
+
+Note that the cluster $C_k$ that is considered by $\findpath$ in the first step of computing $\fp(T, R)$ must intersect $D$.
+Additionally, $C_k$ must intersect $A$, or $B$, or both of them.
+Hence, we will consider each of these three cases individually, and demonstrate them in Figure~\ref{fig:thm_fp_nni}.
 
 \begin{figure}[ht]
 	\begin{subfigure}[b]{.45\textwidth}
@@ -355,12 +360,6 @@ This move is shown in Figure~\ref{fig:thm_fp_nni2a} by an arrow from $T$ to the 
 	${C_k \subseteq B \cup D}$ is on the left, ${C_k \subseteq A \cup D}$ is in the middle, ${C_k \subseteq C \cup D}$ is on the right.}
 	\label{fig:thm_fp_nni}
 \end{figure}
-
-Note that the cluster $C_k$ that is considered by $\findpath$ in the first step of computing $\fp(T, R)$ must intersect $D$.
-Additionally, $C_k$ must intersect $A$, or $B$, or both of them.
-Hence, we will consider each of these three cases individually.
-
-We will use Figure~\ref{fig:thm_fp_nni} to demonstrate all three cases below.
 
 \begin{enumerate}[label = \theenumi.\arabic*]
 \item $C_k$ intersects each of $A$, $B$, and $D$.
