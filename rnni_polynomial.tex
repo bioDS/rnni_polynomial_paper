@@ -24,6 +24,8 @@
   \clearlist{language}
 }
 
+\geometry{margin=1in}
+
 \newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
@@ -220,7 +222,8 @@ If $T''$ is obtained in line~\ref{alg:rank_step} from $T'$ by a rank move, the t
 It remains to show that the $\nni$ move that decreases the rank of $(C_k)_{T'}$ is always unique also.
 To prove this we consider cases $k = 1$ and $k > 1$ separately.
 
-Case $k = 1$.
+\begin{itemize}
+\item[Case $k = 1$.]
 In this case $C_k$ consists of two leaves $\{x, y\}$.
 The node $v = (\{x, y\})_{T'}$ has rank $r > 1$.
 Consider the node $u$ preceding $v$ in $T'$, so the rank of $u$ is $r - 1$.
@@ -231,16 +234,12 @@ The subtree $T'_2$ induced by the other child of $u$.
 The subtree $T'_3$ induced by a child of $v$ and containing $y$.
 Now observe that out of two $\nni$ moves possible on the edge $(u, v)$ in $T'$, only the one that swaps $T_2$ and $T_3$ can decrease the rank of the most recent common ancestor of $\{x, y\}$.
 
-\todo{This case requires more work}
-Case $k > 1$.
-\begin{enumerate}
-\item $C_k = C_i \cup C_j$ for $i, j < k$.
-Suppress $C_i$ and $C_j$ in both $T'$ and $R$ to new leaves $c_i$ and $c_j$ (of rank zero) respectively and proceed as in Case $k = 1$.
-\item $C_k = C_i \cup \{x\}$, where $x$ is a leaf not present in $C_1 \cup \ldots \cup C_{k-1}$.
-Suppress $C_i$ in both $T'$ and $R$ to a new leaf $c_i$ and proceed as in Case $k = 1$.
-\item $C_k = \{x, y\}$ where neither of $x$, $y$ is in $C_1 \cup \ldots \cup C_{k-1}$.
-Proceed as in Case $k = 1$.
-\end{enumerate}
+\item[Case $k > 1$.]
+In this case $C_k = C_i \cup C_j$ for $i, j < k$.
+In this case the subtree of $T'$ induced by $(C_i)_{T'}$ is identical to the subtree of $R$ induced by $(C_i)_R$, and the same is true for $(C_j)_{T'}$ and $(C_j)_R$.
+Hence, we can reduce this case to $k = 1$ by suppressing $C_i$ and $C_j$ in both $T'$ and $R$ to new leaves $c_i$ and $c_j$ (of rank zero) respectively.
+As in Case $k = 1$, only one of two possible $\nni$ moves can lower the rank of the most recent common ancestor of $c_i$, $c_j$ in $T'$, so the same is true for the most recent common ancestor $(C_k)_{T'}$.
+\end{itemize}
 
 Thus, $\findpath$ is a deterministic algorithm.
 
