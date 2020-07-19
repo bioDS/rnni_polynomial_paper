@@ -255,18 +255,21 @@ In this section we prove the main result of this paper, that $\decprob{1}$ is po
 Specifically we prove that paths returned by $\findpath$ are always shortest.
 We also show that $\findpath$ is an optimal algorithm, that is, no sub-quadratic algorithm can solve $\decprob{1}$.
 
-The main ingredient of our proof is to show that a local property (see~(\ref{eqn:iff_inequality}) below) about the $\findpath$ algorithm is enough to establish that the output paths are shortest.
+The main ingredient of our proof is to show that a local property (see~(\ref{eqn:iff_inequality}) in the proof) of the $\findpath$ algorithm is enough to establish that the output paths are shortest.
 The property can intuitively be understood as $\findpath$ always choosing the best tree possible to go to.
 Importantly, this result can be used for an arbitrary vertex proposal algorithm in an arbitrary graph to establish that the algorithm always follows a shortest path between vertices in the graph, hence our proof technique is of general interest.
 
 \begin{theorem}
-The time complexity of the shortest path problem in the $\rnni$ graph on trees with $n$ leaves is $\O(n^2)$.
+The worst-case time complexity of the shortest path problem in the $\rnni$ graph on trees with $n$ leaves is $\O(n^2)$.
+Hence $\decprob{1}$ is polynomial time solvable.
 \label{thm:rnni_polynomial}
 \end{theorem}
 
 \proof
 We prove this theorem by showing that for every pair of trees $T$ and $R$, the path computed by the $\findpath$ algorithm is a shortest $\rnni$ path.
 We denote this path by $\fp(T, R)$ and its length by $|\fp(T, R)|$.
+By $d(T, R)$ we denote the length of a shortest path between $T$ and $R$, that is, the $\rnni$ distance between trees.
+We hence want to show that $|\fp(T, R)| = d(T, R)$ for all trees.
 
 Assume to the contrary that $T$ and $R$ are two trees with a minimum distance $d(T, R)$ such that $d(T,R) \neq |\fp(T,R)|$, that is, $d(T,R) < |\fp(T,R)|$.
 Let $T'$ be the first tree on a shortest $\rnni$ path from $T$ to $R$.
