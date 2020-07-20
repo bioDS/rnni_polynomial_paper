@@ -1,6 +1,6 @@
 \documentclass[11pt]{amsart}
 
-%\usepackage[notref,notcite]{showkeys}
+\usepackage[notref,notcite]{showkeys}
 
 \usepackage[ibidtracker=false,uniquename=false,giveninits=true,terseinits=true,backend=biber]{biblatex}
 \usepackage{float}
@@ -307,7 +307,7 @@ Hence, the first move on $\fp(T, R)$ has to involve an interval incident to at l
 
 We will distinguish two cases depending on whether $T$ and $T'$ are connected by an $\nni$ or a rank move.
 For each of these we will further distinguish all possible moves between $T$ and $T_1$.
-Note that in all figures illustrating possible moves on $\fp(T,R)$ and $\fp(T',R)$ the position of the tree root is irrelevant, so we have positioned roots to simplify our figures.
+Note that in all figures illustrating possible moves on $\fp(T,R)$ and $\fp(T',R)$ below, the position of the tree root is irrelevant, so we have positioned roots to simplify our figures.
 
 \begin{figure}[ht]
 \centering
@@ -392,6 +392,13 @@ The corresponding trees $T_2$ and $T_2'$ are again $\rnni$ neighbours.
 This move is shown in Figure~\ref{fig:thm_fp_nni2a} by an arrow from $T$ to the second leftmost tree in the middle row.
 In this case, $C_k \subseteq C \cup D$.
 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{thm_fp_nni3}
+	\caption{Comparison of paths $\fp(T, R)$ and $\fp(T', R)$ if there is an $\nni$ move between $T$ and $T'$ and a rank move on the interval above this edge follows on $\fp(T, R)$.}
+	\label{fig:thm_fp_nni3}
+\end{figure}
+
 If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$ is a cluster in $R$.
 Since $A \cup B$ is not a cluster in $T'$, the first $\rnni$ move on $\fp(T', R)$ builds the cluster $A \cup B$ by swapping subtrees induced by cluster $B$ and $C$.
 This move results in $T_1' = T$ contradicting $|\fp(T',R)| < |\fp(T,R)| - 1$.
@@ -409,12 +416,6 @@ If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\fi
 Recall that the interval between nodes of rank $t$ and $t+1$ is an edge in both $T$ and $T'$.
 Hence, the first two moves on $\fp(T', R)$ decrease the rank of $(C_k)_{T'}$ twice resulting in $T'_2$ which is an $\rnni$ neighbour of $T_2$ as depicted in Figure~\ref{fig:thm_fp_nni3}.
 As before, this contradicts our minimality assumption.
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.4\textwidth]{thm_fp_nni3}
-	\caption{Comparison of paths $\fp(T, R)$ and $\fp(T', R)$ if there is an $\nni$ move between $T$ and $T'$ and a rank move on the interval above this edge follows on $\fp(T, R)$.}
-	\label{fig:thm_fp_nni3}
-\end{figure}
 
 \item $\rnni$ move on interval $[(T)_{t-1},(T)_t]$.
 In this case $C_k \subseteq A \cup B$, so the first move on $\fp(T', R)$ decreases the rank of $(C_k)_{T'}$ by exchanging the subtrees induced by $B$ and $C$.
@@ -531,12 +532,6 @@ $\findpath$ does not compute shortest paths in $\rnni(\rho)$ for $\rho \neq 1$.
 \end{proposition}
 
 \proof
-For $\rho > 1$ a counterexample is given by the following trees (see Figure~\ref{fig:fp_rho_greater_1_counterexample})\\
-$T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and\\
-$R = [\{a_3,a_4\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
-Applied to these trees $\findpath$ proceeds from $T$ to $[\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$.
-This path consists of two $\nni$ moves with one rank move in between them and therefore has weight $2 + \rho$.
-However, the path from $T$ to $[\{a_2,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ to $[\{a_2,a_3\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ to $R$ consists of three $\nni$ moves and is hence shorter.
 
 \begin{figure}[ht]
 \centering
@@ -544,6 +539,13 @@ However, the path from $T$ to $[\{a_2,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]
 \caption{Path computed by $\findpath$ (top) and a shorter path (bottom) for $\rho > 1$.}
 \label{fig:fp_rho_greater_1_counterexample}
 \end{figure}
+
+For $\rho > 1$ a counterexample is given by the following trees (see Figure~\ref{fig:fp_rho_greater_1_counterexample})\\
+$T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and\\
+$R = [\{a_3,a_4\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
+Applied to these trees $\findpath$ proceeds from $T$ to $[\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$.
+This path consists of two $\nni$ moves with one rank move in between them and therefore has weight $2 + \rho$.
+However, the path from $T$ to $[\{a_2,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ to $[\{a_2,a_3\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ to $R$ consists of three $\nni$ moves and is hence shorter.
 
 \begin{figure}[ht]
 \centering
