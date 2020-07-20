@@ -364,6 +364,7 @@ Hence, we will consider each of these three cases individually, and demonstrate 
 \item $C_k$ intersects $A$, $B$, and $D$.
 We can assume that $k > 1$ as $C_1$ contains two elements and can therefore not intersect three disjoint sets.
 Since $C_k$ is the first cluster considered by $\findpath$, the two clusters that make up $C_k$ in $R$ must be present in $T$.
+\todo{This claim is incorrect.}
 So $C_{k-1} = A \cup B$.
 Since $A \cup B$ is not a cluster in $T'$, $\findpath$ will decrease the rank of $(C_{k-1})_{T'}$ on $\fp(T', R)$ before considering cluster $C_k$.
 Note that the clusters induced by nodes of rank $i < k - 1$ in $T$ and $T'$ coincide, so all moves, if any, on $\fp(T, R)$ and $\fp(T', R)$ that involve those cluster will be the same.
