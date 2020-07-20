@@ -328,9 +328,8 @@ For some of these intervals, we will have to distinguish between rank and $\nni$
 \begin{enumerate}[label = 1.{\arabic*}]
 \item $\rnni$ move on interval $[(T)_t, (T)_{t+1}]$.
 This move has to be the $\nni$ move that is different from the $\nni$ move connecting $T$ and $T'$.
-
 In this case, the cluster $B \cup C$ is built in $T_1$, as depicted in the bottom of Figure~\ref{fig:thm_fp_nni1}.
-It follows that the cluster $C_k$ that is considered first by $\findpath$ must contain elements from both $B$ and $C$.
+Hence the cluster $C_k$ that is considered first by $\findpath$ must contain elements from both $B$ and $C$ but not from $A$, and the rank of $(C_k)_R$ has to be at most $t$.
 But then $\findpath$ applied to $T'$ and $R$ has to decrease the rank of $(C_k)_{T'}$ in its first step implying that $T'_1 = T_1$, so $|\fp(T',R)| = |\fp(T,R)|$.
 This contradicts our assumption that $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
