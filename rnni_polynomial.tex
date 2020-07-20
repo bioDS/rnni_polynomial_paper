@@ -312,15 +312,15 @@ Note that in all figures illustrating possible moves on $\fp(T,R)$ and $\fp(T',R
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.35\textwidth]{thm_fp_nni1}
-\caption{$\nni$ move between $T$ and $T'$ on the edge $((T)_t,(T)_{t+1})$ indicated in bold, and the third $\rnni$ neighbour resulting from a move on this edge.}
+\caption{$\nni$ move between $T$ and $T'$ on the edge $[(T)_t,(T)_{t+1}]$ indicated in bold, and the third $\rnni$ neighbour resulting from a move on this edge.}
 \label{fig:thm_fp_nni1}
 \end{figure}
 
 \textbf{Case 1.}
-$T$ and $T'$ are connected by an $\nni$ move, so $((T)_t,(T)_{t+1})$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
+$T$ and $T'$ are connected by an $\nni$ move, so $[(T)_t,(T)_{t+1}]$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
 Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, and assume that the $\nni$ move between $T$ and $T'$ exchanges the subtrees induced by clusters $B$ and $C$.
 Additionally, denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni1}.
-Note that $((T)_{t+1}, (T)_{t+2})$ does not have to be an edge in tree $T$ (see Case~\ref{case:rank_move_interval_above}).
+Note that $[(T)_{t+1}, (T)_{t+2}]$ does not have to be an edge in tree $T$ (see Case~\ref{case:rank_move_interval_above}).
 
 We now consider all possible moves $\findpath$ can perform to go from $T$ to $T_1$ that involve a node of rank $t$ or $t+1$, that is, we will consider three intervals in total.
 In these cases, we will write ``$\rnni$ move" to mean a rank or an $\nni$ move, ``rank move" to mean a rank move, and ``$\nni$ move" to mean an $\nni$ move.
@@ -356,7 +356,7 @@ Hence, we will consider each of these three cases individually, and demonstrate 
 		\caption{Possible initial segments of $\fp(T', R)$}
 		\label{fig:thm_fp_nni2b}
 	\end{subfigure}
-	\caption{Comparison of paths $\fp(T, R)$ and $\fp(T', R)$ if $T$ and $T'$ are connected by an $\nni$ move on edge $((T)_{t+1},T_{t+2})$ in $T$.
+	\caption{Comparison of paths $\fp(T, R)$ and $\fp(T', R)$ if $T$ and $T'$ are connected by an $\nni$ move on edge $[(T)_{t+1},T_{t+2}]$ in $T$.
 	The bottom row displays all possibilities for $T_2$ and $T'_2$, depending on the position of cluster $C_k$ that is considered by $\findpath$:
 	${C_k \subseteq B \cup D}$ is on the left, ${C_k \subseteq A \cup D}$ is in the middle, ${C_k \subseteq C \cup D}$ is on the right.}
 	\label{fig:thm_fp_nni}
@@ -421,7 +421,7 @@ As before, this contradicts our minimality assumption.
 \item $\rnni$ move on interval $[(T)_{t-1},(T)_t]$.
 In this case $C_k \subseteq A \cup B$, so the first move on $\fp(T', R)$ decreases the rank of $(C_k)_{T'}$ by exchanging the subtrees induced by $B$ and $C$.
 This results in $T'_1 = T$.
-This argument applies whether or not $((T)_{t-1},(T)_t)$ is an edge in $T$.
+This argument applies whether or not $[(T)_{t-1},(T)_t]$ is an edge in $T$.
 \end{enumerate}
 
 \textbf{Case 2.}
