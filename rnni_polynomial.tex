@@ -329,13 +329,13 @@ For some of these intervals, we will have to distinguish between rank and $\nni$
 \item $\rnni$ move on interval $[(T)_t, (T)_{t+1}]$.
 This move has to be the $\nni$ move that is different from the $\nni$ move connecting $T$ and $T'$.
 In this case, the cluster $B \cup C$ is built in $T_1$, as depicted in the bottom of Figure~\ref{fig:thm_fp_nni1}.
-Hence the cluster $C_k$ that is considered first by $\findpath$ must contain elements from both $B$ and $C$ but not from $A$, and the rank of $(C_k)_R$ has to be at most $t$.
+Hence the first cluster $C_k$ that satisfies the \textbf{while} condition of $\findpath$ must contain elements from both $B$ and $C$ but not from $A$, and the rank of $(C_k)_R$ has to be at most $t$.
 But then $\findpath$ applied to $T'$ and $R$ has to decrease the rank of $(C_k)_{T'}$ in its first step implying that $T'_1 = T_1$, so $|\fp(T',R)| = |\fp(T,R)|$.
 This contradicts our assumption that $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
 \item $\nni$ move on (edge) interval $[(T)_{t+1}, (T)_{t+2}]$ that swaps the subtrees induced by clusters $C$ and $D$.
 This move is shown in Figure~\ref{fig:thm_fp_nni2a} by an arrow from $T$ to the leftmost tree in the middle row.
-In this case, the cluster $C_k$ that is considered by $\findpath$ in the first step of computing $\fp(T, R)$ must intersect $D$ but not $C$.
+In this case, the first cluster $C_k$ that satisfies the \textbf{while} condition of $\findpath$ computing $\fp(T, R)$ must intersect $D$ but not $C$.
 Additionally, $C_k$ must intersect $A$, or $B$, or both of them.
 Hence, we will consider each of these three cases individually, and demonstrate them in Figure~\ref{fig:thm_fp_nni}.
 
@@ -355,20 +355,19 @@ Hence, we will consider each of these three cases individually, and demonstrate 
 		\label{fig:thm_fp_nni2b}
 	\end{subfigure}
 	\caption{Comparison of paths $\fp(T, R)$ and $\fp(T', R)$ if $T$ and $T'$ are connected by an $\nni$ move on edge $[(T)_{t+1},T_{t+2}]$ in $T$.
-	The bottom row displays all possibilities for $T_2$ and $T'_2$, depending on the position of cluster $C_k$ that is considered by $\findpath$:
+	The bottom row displays all possibilities for $T_2$ and $T'_2$, depending on the position of cluster $C_k$ that satisfies the \textbf{while} condition of $\findpath$:
 	${C_k \subseteq B \cup D}$ is on the left, ${C_k \subseteq A \cup D}$ is in the middle, ${C_k \subseteq C \cup D}$ is on the right.}
 	\label{fig:thm_fp_nni}
 \end{figure}
 
 \begin{enumerate}[label = \theenumi.\arabic*]
 \item $C_k$ intersects $A$, $B$, and $D$.
-We can assume that $k > 1$ as $C_1$ contains two elements and can therefore not intersect three disjoint sets.
-Since $C_k$ is the first cluster considered by $\findpath$, the two clusters that make up $C_k$ in $R$ must be present in $T$.
-\todo{This claim is incorrect.}
-So $C_{k-1} = A \cup B$.
-Since $A \cup B$ is not a cluster in $T'$, $\findpath$ will decrease the rank of $(C_{k-1})_{T'}$ on $\fp(T', R)$ before considering cluster $C_k$.
-Note that the clusters induced by nodes of rank $i < k - 1$ in $T$ and $T'$ coincide, so all moves, if any, on $\fp(T, R)$ and $\fp(T', R)$ that involve those cluster will be the same.
-The $\rnni$ move decreases the rank of $(C_{k-1})_{T'}$ by building the cluster $A \cup B$, in which case $T'_1 = T$.
+In this case, since $[(T_1)_t, (T_1)_{t+1}]$ is an edge, no move on $T_1$ can decrease the rank of $(C_k)_{T_1}$, so the \textbf{while} condition of $\findpath$ must be false after this first move for all $j \leq k$.
+\todo{This should follow from $k-1 = t$.
+But why is that?}
+This implies that $C_{k-1} = A \cup B$.
+But then $C_{k-1}$ would be the first cluster for which the \textbf{while} condition of $\findpath$ computing $\fp(T', R)$ is met.
+Hence the first move on $\fp(T', R)$ has to decrease the rank of $(C_{k-1})_{T'}$ by building the cluster $A \cup B$, in which case $T'_1 = T$.
 This however contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
 \item $C_k \subseteq A \cup D$.
