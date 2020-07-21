@@ -392,7 +392,8 @@ The corresponding trees $T_2$ and $T_2'$ are again $\rnni$ neighbours.
 \item $\nni$ move on (edge) interval $[(T)_{t+1}, (T)_{t+2}]$ that builds a cluster $C \cup D$ in $T_1$.
 \label{case:one_or_two_moves_down}
 This move is shown in Figure~\ref{fig:thm_fp_nni2a} by an arrow from $T$ to the second leftmost tree in the middle row.
-In this case, $C_k \subseteq C \cup D$.
+In this case, $C_k$ intersects $C$ and $D$ but not $A$ or $B$.
+And we have the following two possibilities to consider.
 
 \begin{figure}[ht]
 	\centering
@@ -401,14 +402,16 @@ In this case, $C_k \subseteq C \cup D$.
 	\label{fig:thm_fp_nni3}
 \end{figure}
 
-If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$ is a cluster in $R$.
+\begin{enumerate}[label = \theenumi.\arabic*]
+\item If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$ is a cluster in $R$.
 Since $A \cup B$ is not a cluster in $T'$, the first $\rnni$ move on $\fp(T', R)$ builds the cluster $A \cup B$ by swapping subtrees induced by cluster $B$ and $C$.
 This move results in $T_1' = T$ contradicting $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
-If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
+\item If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
 This results in the path from $T$ to the rightmost tree in Figure~\ref{fig:thm_fp_nni2a}.
 Hence, $\fp(T', R)$ also has to begin with two moves that decrease the rank of $(C_k)_{T'}$ twice, resulting in the rightmost path in Figure~\ref{fig:thm_fp_nni2b}.
 Similarly to case~\ref{deep_case_details}, we arrive at a contradiction that trees $T_2$, $T_2'$, and $R$ violate inequality~(\ref{eqn:iff_inequality}) and $|\fp(T_2,R)| < |\fp(T,R)|$.
+\end{enumerate}
 
 \item Rank move on interval $[(T)_{t+1},(T)_{t+2}]$.
 \label{case:rank_move_interval_above}
