@@ -218,26 +218,26 @@ $\findpath$ is a correct deterministic algorithm that runs in $\O(n^2)$ time.
 \end{proposition}
 
 \proof
-\todo{What this proof is missing is why $T''$ exists.}
-To show that $\findpath$ is a deterministic algorithm (see the pseudocode above), we have to prove that tree $T''$ constructed in the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}) of the algorithm is always uniquely defined.
-If $T''$ is obtained in line~\ref{alg:rank_step} from $T'$ by a rank move, the tree is unique because there always exists exactly one rank move on any particular interval.
-It remains to show that the $\nni$ move that decreases the rank of $(C_k)_{T'}$ is always unique also.
+To show that $\findpath$ is a deterministic algorithm (see the pseudocode above), we have to prove that tree $T''$ constructed in the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}) of the algorithm always exists and is uniquely defined.
+If $T''$ is obtained in line~\ref{alg:rank_step} from $T'$ by a rank move, the tree exists and is unique because there always exists exactly one rank move on any particular interval.
+It remains to show that the $\nni$ move that decreases the rank of $(C_k)_{T'}$ always exists and is unique.
 To prove this we consider cases $k = 1$ and $k > 1$ separately.
 
 \begin{itemize}
 \item[Case $k = 1$.]
 In this case $C_k$ consists of two leaves $\{x, y\}$.
-The node $v = (\{x, y\})_{T'}$ has rank $r > 1$.
+Since we assumed that the \textbf{while} condition is satisfied, the node $v = (\{x, y\})_{T'}$ has rank $r > 1$.
 Consider the node $u$ preceding $v$ in $T'$, so the rank of $u$ is $r - 1$.
 Assume without loss of generality that $x$ is in the cluster induced by $u$, so $y$ has to be outside this cluster.
 Consider the following three disjoint subtrees of $T'$: the subtree $T'_1$ induced by a child of $u$ and containing $x$, the subtree $T'_2$ induced by the other child of $u$, the subtree $T'_3$ induced by a child of $v$ and containing $y$.
-Now observe that out of two $\nni$ moves possible on the edge $(u, v)$ in $T'$, only the one that swaps $T_2$ and $T_3$ can decrease the rank of the most recent common ancestor of $\{x, y\}$.
+Now observe that out of two $\nni$ moves possible on the edge $[u, v]$ in $T'$, only the one that swaps $T'_2$ and $T'_3$ does decrease the rank of the most recent common ancestor of $\{x, y\}$.
+Hence $T''$ exists and is unique in this case.
 
 \item[Case $k > 1$.]
 In this case $C_k = C_i \cup C_j$ for $i, j < k$.
 In this case the subtree of $T'$ induced by $(C_i)_{T'}$ is identical to the subtree of $R$ induced by $(C_i)_R$, and the same is true for $(C_j)_{T'}$ and $(C_j)_R$.
 Hence, we can reduce this case to $k = 1$ by suppressing $C_i$ and $C_j$ in both $T'$ and $R$ to new leaves $c_i$ and $c_j$ (of rank zero) respectively.
-As in Case $k = 1$, only one of two possible $\nni$ moves can lower the rank of the most recent common ancestor of $c_i$, $c_j$ in $T'$, so the same is true for the most recent common ancestor $(C_k)_{T'}$.
+As in Case $k = 1$, exactly one of two possible $\nni$ moves deceases the rank of the most recent common ancestor of $c_i$, $c_j$ in $T'$, so the same is true for the most recent common ancestor $(C_k)_{T'}$, and $T''$ is unambiguously defined.
 \end{itemize}
 
 Thus, $\findpath$ is a deterministic algorithm.
