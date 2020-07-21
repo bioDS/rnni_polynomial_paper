@@ -218,6 +218,7 @@ $\findpath$ is a correct deterministic algorithm that runs in $\O(n^2)$ time.
 \end{proposition}
 
 \proof
+\todo{What this proof is missing is why $T''$ exists.}
 To show that $\findpath$ is a deterministic algorithm (see the pseudocode above), we have to prove that tree $T''$ constructed in the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}) of the algorithm is always uniquely defined.
 If $T''$ is obtained in line~\ref{alg:rank_step} from $T'$ by a rank move, the tree is unique because there always exists exactly one rank move on any particular interval.
 It remains to show that the $\nni$ move that decreases the rank of $(C_k)_{T'}$ is always unique also.
