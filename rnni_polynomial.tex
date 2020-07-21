@@ -318,11 +318,14 @@ Note that in all figures illustrating possible moves on $\fp(T,R)$ and $\fp(T',R
 \label{fig:thm_fp_nni1}
 \end{figure}
 
-\textbf{Case 1.}
-$T$ and $T'$ are connected by an $\nni$ move, so $[(T)_t,(T)_{t+1}]$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
+\begin{enumerate}
+\item[\textbf{Case 1.}]
+$T$ and $T'$ are connected by an $\nni$ move.
+So $[(T)_t,(T)_{t+1}]$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
 Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, and assume that the $\nni$ move between $T$ and $T'$ exchanges the subtrees induced by clusters $B$ and $C$.
 Additionally, denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni1}.
 Note that $[(T)_{t+1}, (T)_{t+2}]$ does not have to be an edge in tree $T$ (see Case~\ref{case:rank_move_interval_above}).
+\end{enumerate}
 
 We now consider all possible moves $\findpath$ can perform to go from $T$ to $T_1$ that involve a node of rank $t$ or $t+1$, that is, we will consider three intervals in total.
 For some of these intervals, we will have to distinguish between rank and $\nni$ moves, so we will write ``$\rnni$ move" to mean a rank or an $\nni$ move, ``rank move" to mean a rank move, and ``$\nni$ move" to mean an $\nni$ move.
@@ -430,14 +433,16 @@ This implies that $C_k$ is the first cluster to satisfy the \textbf{while} condi
 This results in $T'_1 = T$.
 \end{enumerate}
 
-\textbf{Case 2.}
-$T$ and $T'$ are connected by a rank move on the interval between nodes of rank $t$ and $t+1$.
+\begin{enumerate}
+\item[\textbf{Case 2.}] $T$ and $T'$ are connected by a rank move.
+We assume that the rank move is performed on the interval $[(T)_t, (T)_{t+1}]$.
 Denote the cluster induced by $(T)_t$ by $A$, the clusters induced by the children of $(T)_t$ by $A_1$ and $A_2$, the cluster induced by $(T)_{t+1}$ by $B$, and the clusters induced by the children of $(T)_{t+1}$ by $B_1$ and $B_2$ -- see Figure~\ref{fig:thm_fp_rank1}.
+\end{enumerate}
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.4\textwidth]{thm_fp_rank1}
-\caption{Rank move between $T$ and $T'$ on the interval above the node of rank $t$, and possible initial segments of $\fp(T, R)$ and $\fp(T', R)$.
+\caption{Rank move between $T$ and $T'$ and possible initial segments of $\fp(T, R)$ and $\fp(T', R)$ when $[(T)_{t+1}, (T)_{t+2}]$ is an edge.
 We use notations ${A = A_1 \cup A_2}$ and $B = B_1 \cup B_2$.}
 \label{fig:thm_fp_rank1}
 \end{figure}
