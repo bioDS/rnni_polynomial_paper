@@ -506,8 +506,6 @@ $R = [\{a_1,a_n\}, \{a_1, a_n, a_{n-1}\}, \ldots, \{a_1, a_n, \ldots, a_2\}]$.
 Applied to these trees $\findpath$ executes an $\nni$ move in each of the $n-k-1$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) in every iteration $k$ of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}).
 Hence the length of the output path of $\findpath$ is $\sum\limits_{k = 1}^{n - 2} k = \frac{(n-1)(n-2)}{2}$ and therefore quadratic in $n$.
 Theorem~\ref{thm:rnni_polynomial} then implies that this path is a shortest path.
-\todo{No.
-Why there is no trees $n^3$ moves apart?}
 It follows that the worst-case size of the output to $\decprob{1}$ is quadratic.
 \endproof
 
