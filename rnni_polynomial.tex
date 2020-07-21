@@ -403,11 +403,13 @@ And we have the following two possibilities to consider.
 \end{figure}
 
 \begin{enumerate}[label = \theenumi.\arabic*]
-\item If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$ is a cluster in $R$.
+\item The ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide.
+In this case, $C_{k-1} = A \cup B$ is a cluster in $R$.
 Since $A \cup B$ is not a cluster in $T'$, the first $\rnni$ move on $\fp(T', R)$ builds the cluster $A \cup B$ by swapping subtrees induced by cluster $B$ and $C$.
 This move results in $T_1' = T$ contradicting $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
-\item If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
+\item The rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$.
+In this case, $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
 This results in the path from $T$ to the rightmost tree in Figure~\ref{fig:thm_fp_nni2a}.
 Hence, $\fp(T', R)$ also has to begin with two moves that decrease the rank of $(C_k)_{T'}$ twice, resulting in the rightmost path in Figure~\ref{fig:thm_fp_nni2b}.
 Similarly to case~\ref{deep_case_details}, we arrive at a contradiction that trees $T_2$, $T_2'$, and $R$ violate inequality~(\ref{eqn:iff_inequality}) and $|\fp(T_2,R)| < |\fp(T,R)|$.
@@ -589,7 +591,6 @@ What is the complexity of the shortest path problem there?
 \item Can our results be used to establish whether the problem of computing geodesics between trees with real-valued node heights is polynomial-time solvable?
 This geodesic metric space is called $\mathrm t$-space and an efficient algorithm for computing geodesics in $\mathrm t$-space would be of importance for applications \autocite{Gavryushkin2016-uu}.
 \end{enumerate}
-
 
 \printbibliography
 \end{document}
