@@ -293,7 +293,7 @@ We will use Figure~\ref{fig:proof_idea} to demonstrate our argument.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.6\textwidth]{proof_idea_ag}
+\includegraphics[width=0.5\textwidth]{proof_idea_ag}
 \caption{Trees $T$, $T'$, and $R$ as in inequality~(\ref{eqn:iff_inequality}).
 Paths $\fp(T,R) = [T,T_1,T_2, \ldots, R]$ and $\fp(T',R) = [T',T'_1,T'_2, \ldots, R]$ are indicated by arrows.}
 \label{fig:proof_idea}
@@ -356,14 +356,14 @@ Hence, we will consider each of these three cases individually, and demonstrate 
 		\caption{Possible initial segments of $\fp(T', R)$}
 		\label{fig:thm_fp_nni2b}
 	\end{subfigure}
-	\caption{Comparison of paths $\fp(T, R)$ and $\fp(T', R)$ if $T$ and $T'$ are connected by an $\nni$ move on edge $[(T)_{t+1},T_{t+2}]$ in $T$.
+	\caption{Comparison of paths $\fp(T, R)$ and $\fp(T', R)$ if $T$ and $T'$ are connected by an $\nni$ move on edge $[(T)_{t},T_{t+1}]$ in $T$.
 	The bottom row displays all possibilities for $T_2$ and $T'_2$, depending on the position of cluster $C_k$ that satisfies the \textbf{while} condition of $\findpath$:
-	${C_k \subseteq B \cup D}$ is on the left, ${C_k \subseteq A \cup D}$ is in the middle, ${C_k \subseteq C \cup D}$ is on the right.}
+	case $C_k$ intersects $B$ and $D$ is on the left, $C_k$ intersects $A$ and $D$ is in the middle, and $C_k$ intersects $C$ and $ D$ is on the right.}
 	\label{fig:thm_fp_nni}
 \end{figure}
 
 \begin{enumerate}[label = \theenumi.\arabic*]
-\item $C_k$ intersects $A$, $B$, and $D$.
+\item $C_k$ intersects $A$, $B$, and $D$ but not $C$.
 In this case, since we assumed $[(T_1)_t, (T_1)_{t+1}]$ to be an edge in the tree, no move on $T_1$ can decrease the rank of $(C_k)_{T_1}$.
 It follows from the proof of Proposition~\ref{prop:fp_correctness} that this can happen only when the subtrees induced by $(C_k)_{T_1}$ and $(C_k)_R$ in the corresponding trees coincide.
 That is, the \textbf{while} condition of $\findpath$ must be false after this first move for all $j \leq k$.
@@ -372,7 +372,7 @@ But since the rank of $(C_{k-1})_{T'}$ is $t + 1 > k - 1$, $C_{k-1}$ has to be t
 Hence the first move on $\fp(T', R)$ must decrease the rank of $(C_{k-1})_{T'}$ by building the cluster $A \cup B$, in which case $T'_1 = T$.
 This however contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
-\item $C_k \subseteq A \cup D$.
+\item $C_k$ intersects $A$ and $D$ but not $B$ or $C$.
 \label{deep_case_details}
 Starting from $T$, $\findpath$ exchanges first subtrees induced by clusters $C$ and $D$ and then by $B$ and $D$.
 This results in trees $T_1$ and $T_2$ -- see the path leading to the tree in the middle of the bottom row in Figure~\ref{fig:thm_fp_nni2a}.
@@ -381,7 +381,7 @@ This results in trees $T_1'$ and $T_2'$ -- see the path leading to the tree in t
 It follows that $T_2$ and $T'_2$ only differ by one interval (indicated by dotted edges in the corresponding trees in Figure~\ref{fig:thm_fp_nni}), and hence are $\rnni$ neighbours.
 This together with the facts that $|\fp(T_2,R)| = |\fp(T,R)|-2$ and $|\fp(T'_2,R)| = |\fp(T',R)|-2$ contradicts the assumption that $|\fp(T,R)|$ is a minimal length violating inequality~(\ref{eqn:iff_inequality}).
 
-\item $C_k \subseteq B \cup D$.
+\item $C_k$ intersects $B$ and $D$ but not $A$ or $C$.
 This case is analogous to the previous one.
 The two initial segments of $\fp(T, R)$ and $\fp(T', R)$ are the paths leading to the leftmost trees in the bottom row of Figures~\ref{fig:thm_fp_nni2a} and \ref{fig:thm_fp_nni2b}, respectively.
 Note that the rank swap leading from $T_1'$ to $T_2'$ is required because the rank of $(C_k)_R$ is at most $t$ as implied by the move leading from $T_1$ to $T_2$.
