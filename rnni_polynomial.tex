@@ -407,7 +407,7 @@ And we have the following two possibilities to consider.
 
 \begin{enumerate}[label = \theenumi.\arabic*]
 \item The ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide.
-In this case, $C_{k-1} = A \cup B$ is a cluster in $R$.
+In this case, the previous cluster $C_{k-1}$ of $R$ has to be $A \cup B$.
 Since $A \cup B$ is not a cluster in $T'$, the first $\rnni$ move on $\fp(T', R)$ builds the cluster $A \cup B$ by swapping subtrees induced by cluster $B$ and $C$.
 This move results in $T_1' = T$ contradicting $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
@@ -421,7 +421,7 @@ Similarly to case~\ref{deep_case_details}, we arrive at a contradiction that tre
 \item Rank move on interval $[(T)_{t+1},(T)_{t+2}]$.
 \label{case:rank_move_interval_above}
 This case is analogous to case~\ref{case:one_or_two_moves_down} (see Figure~\ref{fig:thm_fp_nni3}).
-If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$ is a cluster in $R$, and applying $\findpath$ to $T', R$ we get $T'_1 = T$.
+If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A \cup B$, and applying $\findpath$ to $T', R$ we get $T'_1 = T$.
 If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
 Recall that the interval between nodes of rank $t$ and $t+1$ is an edge in both $T$ and $T'$.
 Hence, the first two moves on $\fp(T', R)$ decrease the rank of $(C_k)_{T'}$ twice resulting in $T'_2$ which is an $\rnni$ neighbour of $T_2$ as depicted in Figure~\ref{fig:thm_fp_nni3}.
@@ -460,7 +460,7 @@ The following two sub-cases are analogous to case~\ref{case:one_or_two_moves_dow
 \item $(T)_{t+2}$ is a parent of $(T)_t$.
 The first move on $\fp(T, R)$ builds a cluster $A \cup B_1$ or $A \cup B_2$, and we assume without loss of generality that it is the former, as in Figure~\ref{fig:thm_fp_rank1}.
 This implies that $C_k$ intersects $A$ and $B_1$ but not $B_2$
-If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A$ is a cluster in $R$.
+If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then the previous cluster $C_{k-1}$ of $R$ has to be $A$.
 Therefore, the first move on $\fp(T', R)$ decreases the rank of $(A)_{T'}$, which results in $T_1' = T$.
 If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
 Due to the symmetry we can assume that $C_k \subseteq A_1 \cup B_1$, which implies that the move between $T_1$ and $T_2$ exchanges the subtrees induced by $A_2$ and $B_1$, as depicted on the left of Figure~\ref{fig:thm_fp_rank1}.
@@ -476,7 +476,7 @@ In this case, there exists a cluster $C$ induced by the child of $(T)_{t+2}$ whi
 \label{fig:thm_fp_rank2}
 \end{figure}
 We can assume without loss of generality that $C_k \subseteq C \cup B_1$ and the first move on $\fp(T, R)$ builds a new cluster $C \cup B_1$.
-If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A$ is a cluster in $R$, which implies that $A$ is induced by the node of rank $t$ in both $T$ and $R$.
+If the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide then $C_{k-1} = A$, which implies that $A$ is induced by the node of rank $t$ in both $T$ and $R$.
 So $T'_1 = T$.
 If the rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$ then $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step -- see Figure~\ref{fig:thm_fp_rank2}.
 The corresponding first moves on $\fp(T', R)$ are shown on the right in Figure~\ref{fig:thm_fp_rank2}, and we again get that $T_2$ and $T_2'$ are $\rnni$ neighbours.
