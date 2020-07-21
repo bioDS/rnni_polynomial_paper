@@ -185,28 +185,28 @@ In this section we introduce a quadratic in the number of leaves algorithm calle
 An input of the $\findpath$ algorithm is two trees $T$ and $R$ in their cluster representation.
 We denote the representation of $R$ by $[C_1, \ldots, C_{n-1}]$.
 The algorithm considers the clusters $C_1, \ldots, C_{n-2}$ iteratively in their order and produces a sequence $p$ of trees which becomes a shortest path from $T$ to $R$ after the algorithm terminates.
-During each iteration $k = 1, \ldots, n-2$ new trees are added to $p$ if necessary, and we will refer to the last added tree as $T'$.
-In iteration $k$, the rank of $(C_{k})_{T'}$ is decreased by $\rnni$ moves until $C_k$ is induced by the node of rank $k$ in $T'$.
+During each iteration $k = 1, \ldots, n-2$ new trees are added to $p$ if necessary, and we will refer to the last added tree as $T_1$.
+In iteration $k$, the rank of $(C_{k})_{T_1}$ is decreased by $\rnni$ moves until $C_k$ is induced by the node of rank $k$ in $T_1$.
 Here, we show that $\findpath$ is a deterministic algorithm with running time quadratic in the number of leaves $n$.
-In particular, there always exists a unique move that decreases the rank of $(C_{k})_{T'}$ as described above.
+In particular, there always exists a unique move that decreases the rank of $(C_{k})_{T_1}$ as described above.
 
 \begin{algorithm}[H]
 \caption{$\findpath$($T,R$)}
 \begin{algorithmic}[1]
-\STATE $T' := T$, $p := [T']$, $[C_1, \ldots, C_{n-1}] := R$
+\STATE $T_1 := T$, $p := [T_1]$, $[C_1, \ldots, C_{n-1}] := R$
 \FOR {$k = 1, \dots, n-2$}
 \label{alg:findpath:line:for_loop}
-	\WHILE {$\rank((C_k)_{T'})>k$}
+	\WHILE {$\rank((C_k)_{T_1})>k$}
 	\label{alg:findpath:line:while_loop}
-		\IF {$(C_k)_{T'}$ and node $u$ preceding $(C_k)_{T'}$ in $T'$ are connected by an edge}
-			\STATE $T''$ is $T'$ with the rank of $(C_k)_{T'}$ decreased by an $\nni$ move
+		\IF {$(C_k)_{T_1}$ and node $u$ preceding $(C_k)_{T_1}$ in $T_1$ are connected by an edge}
+			\STATE $T_2$ is $T_1$ with the rank of $(C_k)_{T_1}$ decreased by an $\nni$ move
 			\label{alg:nni_step}
 		\ELSE
-			\STATE $T''$ is $T'$ with ranks of $u$ and $(C_k)_{T'}$ swapped
+			\STATE $T_2$ is $T_1$ with ranks of $u$ and $(C_k)_{T_1}$ swapped
 			\label{alg:rank_step}
 		\ENDIF
-		\STATE $T' = T''$
-		\STATE $p = p+T'$
+		\STATE $T_1 = T_2$
+		\STATE $p = p+T_1$
 	\ENDWHILE
 \ENDFOR
 \RETURN $p$
@@ -219,32 +219,32 @@ $\findpath$ is a correct deterministic algorithm that runs in $\O(n^2)$ time.
 \end{proposition}
 
 \proof
-To show that $\findpath$ is a deterministic algorithm (see the pseudocode above), we have to prove that tree $T''$ constructed in the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}) of the algorithm always exists and is uniquely defined.
-If $T''$ is obtained in line~\ref{alg:rank_step} from $T'$ by a rank move, the tree exists and is unique because there always exists exactly one rank move on any particular interval.
-It remains to show that the $\nni$ move that decreases the rank of $(C_k)_{T'}$ always exists and is unique.
+To show that $\findpath$ is a deterministic algorithm (see the pseudocode above), we have to prove that tree $T_2$ constructed in the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}) of the algorithm always exists and is uniquely defined.
+If $T_2$ is obtained in line~\ref{alg:rank_step} from $T_1$ by a rank move, the tree exists and is unique because there always exists exactly one rank move on any particular interval.
+It remains to show that the $\nni$ move that decreases the rank of $(C_k)_{T_1}$ always exists and is unique.
 To prove this we consider cases $k = 1$ and $k > 1$ separately.
 
 \begin{itemize}
 \item[Case $k = 1$.]
 In this case $C_k$ consists of two leaves $\{x, y\}$.
-Since we assumed that the \textbf{while} condition is satisfied, the node $v = (\{x, y\})_{T'}$ has rank $r > 1$.
-Consider the node $u$ preceding $v$ in $T'$, so the rank of $u$ is $r - 1$.
+Since we assumed that the \textbf{while} condition is satisfied, the node $v = (\{x, y\})_{T_1}$ has rank $r > 1$.
+Consider the node $u$ preceding $v$ in $T_1$, so the rank of $u$ is $r - 1$.
 Assume without loss of generality that $x$ is in the cluster induced by $u$, so $y$ has to be outside this cluster.
-Consider the following three disjoint subtrees of $T'$: the subtree $T'_1$ induced by a child of $u$ and containing $x$, the subtree $T'_2$ induced by the other child of $u$, the subtree $T'_3$ induced by a child of $v$ and containing $y$.
-Now observe that out of two $\nni$ moves possible on the edge $[u, v]$ in $T'$, only the one that swaps $T'_2$ and $T'_3$ does decrease the rank of the most recent common ancestor of $\{x, y\}$.
-Hence $T''$ exists and is unique in this case.
+Consider the following three disjoint subtrees of $T_1$: the subtree $T_{11}$ induced by a child of $u$ and containing $x$, the subtree $T_{12}$ induced by the other child of $u$, the subtree $T_{13}$ induced by a child of $v$ and containing $y$.
+Now observe that out of two $\nni$ moves possible on the edge $[u, v]$ in $T_1$, only the one that swaps $T_{12}$ and $T_{13}$ does decrease the rank of the most recent common ancestor of $\{x, y\}$.
+Hence $T_2$ exists and is unique in this case.
 
 \item[Case $k > 1$.]
 In this case $C_k = C_i \cup C_j$ for $i, j < k$.
-In this case the subtree of $T'$ induced by $(C_i)_{T'}$ is identical to the subtree of $R$ induced by $(C_i)_R$, and the same is true for $(C_j)_{T'}$ and $(C_j)_R$.
-Hence, we can reduce this case to $k = 1$ by suppressing $C_i$ and $C_j$ in both $T'$ and $R$ to new leaves $c_i$ and $c_j$ (of rank zero) respectively.
-As in Case $k = 1$, exactly one of two possible $\nni$ moves deceases the rank of the most recent common ancestor of $c_i$, $c_j$ in $T'$, so the same is true for the most recent common ancestor $(C_k)_{T'}$, and $T''$ is unambiguously defined.
+In this case the subtree of $T_1$ induced by $(C_i)_{T_1}$ is identical to the subtree of $R$ induced by $(C_i)_R$, and the same is true for $(C_j)_{T_1}$ and $(C_j)_R$.
+Hence, we can reduce this case to $k = 1$ by suppressing $C_i$ and $C_j$ in both $T_1$ and $R$ to new leaves $c_i$ and $c_j$ (of rank zero) respectively.
+As in Case $k = 1$, exactly one of two possible $\nni$ moves deceases the rank of the most recent common ancestor of $c_i$, $c_j$ in $T_1$, so the same is true for the most recent common ancestor $(C_k)_{T_1}$, and $T_2$ is unambiguously defined.
 \end{itemize}
 
 Thus, $\findpath$ is a deterministic algorithm.
 
 To prove correctness, note that the algorithm starts by adding $T$ to the output path, and every new tree added to the output path is an $\rnni$ neighbour of the previously added one (see line~\ref{alg:nni_step} and \ref{alg:rank_step}).
-To see that the output path terminates in $R$, observe that after $k$ iteration of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) of the algorithm, the first $k$ clusters of $T'$ and $R$ must coincide, and so after $n-2$ iterations a path between $T$ and $R$ is constructed.
+To see that the output path terminates in $R$, observe that after $k$ iteration of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) of the algorithm, the first $k$ clusters of $T_1$ and $R$ must coincide, and so after $n-2$ iterations a path between $T$ and $R$ is constructed.
 
 The worst-case time complexity of $\findpath$ is quadratic in the number of leaves, as there can be at most $n-2$ executions of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) and in every iteration of the \textbf{for} loop at most $n-2$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) are executed.
 Here and throughout the paper we assume that the output of $\findpath$ is encoded by a list of $\rnni$ moves rather than an actual list of trees.
