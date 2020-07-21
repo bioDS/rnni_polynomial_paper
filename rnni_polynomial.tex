@@ -500,8 +500,9 @@ The time-complexity of the shortest path problem $\decprob{1}$ is $\Omega(n^2)$.
 \end{corollary}
 
 \proof
-Consider two ``caterpillar" trees $T = [\{a_1, a_2\}, \{a_1, a_2, a_3\}, \ldots, \{a_1, a_2, \ldots, a_n\}]$ and\\
-$R = [\{a_1,a_n\}, \{a_1, a_n, a_{n-1}\}, \ldots, \{a_1, a_n, \ldots, a_2\}]$.
+We prove this by establishing the lower bound on the output size to the problem, that is, the length of a shortest paths.
+
+Consider two ``caterpillar" trees $T = [\{a_1, a_2\}, \{a_1, a_2, a_3\}, \ldots, \{a_1, a_2, \ldots, a_n\}]$ and $R = [\{a_1,a_n\}, \{a_1, a_n, a_{n-1}\}, \ldots, \{a_1, a_n, \ldots, a_2\}]$.
 Applied to these trees $\findpath$ executes an $\nni$ move in each of the $n-k-1$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) in every iteration $k$ of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}).
 Hence the length of the output path of $\findpath$ is $\sum\limits_{k = 1}^{n - 2} k = \frac{(n-1)(n-2)}{2}$ and therefore quadratic in $n$.
 Theorem~\ref{thm:rnni_polynomial} then implies that this path is a shortest path.
