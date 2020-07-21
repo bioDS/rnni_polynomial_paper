@@ -215,6 +215,7 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 
 \begin{proposition}
 $\findpath$ is a correct deterministic algorithm that runs in $\O(n^2)$ time.
+\label{prop:fp_correctness}
 \end{proposition}
 
 \proof
@@ -363,12 +364,12 @@ Hence, we will consider each of these three cases individually, and demonstrate 
 
 \begin{enumerate}[label = \theenumi.\arabic*]
 \item $C_k$ intersects $A$, $B$, and $D$.
-In this case, since $[(T_1)_t, (T_1)_{t+1}]$ is an edge, no move on $T_1$ can decrease the rank of $(C_k)_{T_1}$, so the \textbf{while} condition of $\findpath$ must be false after this first move for all $j \leq k$.
-\todo{This should follow from $k-1 = t$.
-But why is that?}
-This implies that $C_{k-1} = A \cup B$.
-But then $C_{k-1}$ would be the first cluster for which the \textbf{while} condition of $\findpath$ computing $\fp(T', R)$ is met.
-Hence the first move on $\fp(T', R)$ has to decrease the rank of $(C_{k-1})_{T'}$ by building the cluster $A \cup B$, in which case $T'_1 = T$.
+In this case, since we assumed $[(T_1)_t, (T_1)_{t+1}]$ to be an edge in the tree, no move on $T_1$ can decrease the rank of $(C_k)_{T_1}$.
+It follows from the proof of Proposition~\ref{prop:fp_correctness} that this can happen only when the subtrees induced by $(C_k)_{T_1}$ and $(C_k)_R$ in the corresponding trees coincide.
+That is, the \textbf{while} condition of $\findpath$ must be false after this first move for all $j \leq k$.
+This implies that $t = k - 1$ and $C_{k-1} = A \cup B$.
+But since the rank of $(C_{k-1})_{T'}$ is $t + 1 > k - 1$, $C_{k-1}$ has to be the first cluster for which the \textbf{while} condition of $\findpath$ applied to $T'$ and $R$ is met.
+Hence the first move on $\fp(T', R)$ must decrease the rank of $(C_{k-1})_{T'}$ by building the cluster $A \cup B$, in which case $T'_1 = T$.
 This however contradicts $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
 \item $C_k \subseteq A \cup D$.
