@@ -169,7 +169,7 @@ FIND: A path of minimal weight between $T$ and $R$ in $\rnni(\rho)$
 
 Since $\rnni(\rho)$ is a connected graph, there always exists a solution to $\decprob{\rho}$.
 Furthermore, the size of every solution to an instance of $\decprob{\rho}$ is bounded by a polynomial in $n$, despite the search space being super-exponential.
-This is because \autocite{Gavryushkin2018-ol} the diameter of the $\rnni(1)$ graph is bounded from above by $n^2 - 3n - 5/8$.
+This is because the diameter of the $\rnni(1)$ graph is bounded from above by $n^2 - 3n - 5/8$ \autocite{Gavryushkin2018-ol}.
 
 Our main goal is to prove that $\decprob{1}$ can be solved in polynomial time.
 We will see later in the paper that it follows from a classical result \autocite{Dasgupta2000-xa} that $\decprob{0}$ is $\np$-hard.
@@ -179,14 +179,14 @@ To be consistent with notations used in the literature \autocite{Gavryushkin2018
 \section{$\findpath$ algorithm}
 \label{sec:rnni_complexity}
 
-In this section we introduce a quadratic in the number of leaves algorithm called $\findpath$ that computes paths between trees.
+In this section we introduce an algorithm called $\findpath$ that computes paths between trees and is quadratic in the number of leaves.
 
 An input of the $\findpath$ algorithm is two trees $T$ and $R$ in their cluster representation.
 We denote the representation of $R$ by $[C_1, \ldots, C_{n-1}]$.
 The algorithm considers the clusters $C_1, \ldots, C_{n-2}$ iteratively in their order and produces a sequence $p$ of trees which becomes a shortest path from $T$ to $R$ after the algorithm terminates.
 During each iteration $k = 1, \ldots, n-2$ new trees are added to $p$ if necessary, and we will refer to the last added tree as $T_1$.
 In iteration $k$, the rank of $(C_{k})_{T_1}$ is decreased by $\rnni$ moves until $C_k$ is induced by the node of rank $k$ in $T_1$.
-Here, we show that $\findpath$ is a deterministic algorithm with running time quadratic in the number of leaves $n$.
+In Proposition~\ref{prop:fp_correctness} we show that $\findpath$ is a deterministic algorithm with running time quadratic in the number of leaves $n$.
 In particular, there always exists a unique move that decreases the rank of $(C_{k})_{T_1}$ as described above.
 
 \begin{algorithm}[H]
@@ -219,8 +219,8 @@ $\findpath$ is a correct deterministic algorithm that runs in $\O(n^2)$ time.
 
 \proof
 To show that $\findpath$ is a deterministic algorithm (see the pseudocode above), we have to prove that tree $T_2$ constructed in the \textbf{while} loop (line~\ref{alg:findpath:line:while_loop}) of the algorithm always exists and is uniquely defined.
-If $T_2$ is obtained in line~\ref{alg:rank_step} from $T_1$ by a rank move, the tree exists and is unique because there always exists exactly one rank move on any particular interval.
-It remains to show that the $\nni$ move that decreases the rank of $(C_k)_{T_1}$ always exists and is unique.
+If $T_2$ is obtained in line~\ref{alg:rank_step} from $T_1$ by a rank move, the tree exists and is unique because there always exists exactly one rank move on any particular non-edge interval.
+It remains to show that an $\nni$ move that decreases the rank of $(C_k)_{T_1}$ always exists and is unique.
 To prove this we consider cases $k = 1$ and $k > 1$ separately.
 
 \begin{itemize}
@@ -247,7 +247,7 @@ To see that the output path terminates in $R$, observe that after $k$ iteration 
 
 The worst-case time complexity of $\findpath$ is quadratic in the number of leaves, as there can be at most $n-2$ executions of the \textbf{for} loop (line~\ref{alg:findpath:line:for_loop}) and in every iteration of the \textbf{for} loop at most $n-2$ \textbf{while} loops (line~\ref{alg:findpath:line:while_loop}) are executed.
 Here and throughout the paper we assume that the output of $\findpath$ is encoded by a list of $\rnni$ moves rather than an actual list of trees.
-This is because writing out a tree on $n$ leaves takes linear in $n$ time and the complexity becomes cubic.
+This is because writing out a tree on $n$ leaves takes time linear in $n$ and the complexity of $\findpath$ becomes cubic.
 \endproof
 
 
@@ -493,7 +493,7 @@ Since all possible cases result in a contradiction, we conclude that inequality~
 
 We finish this section by showing that no algorithm has strictly lower worst-case time complexity than $\findpath$.
 We again assume here that the output of an algorithm for solving $\decprob{1}$ is a list of $\rnni$ moves.
-Requiring the output to be a list of trees would result in the cubic complexity but maintain the optimality of $\findpath$.
+Requiring the output to be a list of trees would result in cubic complexity while maintaining the optimality of $\findpath$.
 
 \begin{corollary}
 The time-complexity of the shortest path problem $\decprob{1}$ is $\Omega(n^2)$.
@@ -522,7 +522,7 @@ $\decprob{0}$ is $\np$-hard.
 \end{theorem}
 
 \proof
-Note that the length of the path required in an instance of $\decprob{0}$ is equal to the minimum number of $\nni$ moves necessary to convert one tree into another tree where the rankings of internal nodes are ignored and every $\nni$ move is allowed on every edge.
+Note that the length of the path required in an instance of $\decprob{0}$ is equal to the minimum number of $\nni$ moves necessary to convert one tree into another tree where the rankings of internal nodes are ignored and $\nni$ moves are allowed on every edge.
 This minimum is called the $\nni$ distance and the corresponding problem is known to be $\np$-hard \autocite{Dasgupta2000-xa}.
 \endproof
 
@@ -534,9 +534,11 @@ Characterise the complexity of $\decprob{\rho}$ in terms of $\rho$.
 \end{problem}
 
 This problem is also of applied value.
-For example, trees might come from an inference method with higher certainty of their branching structure and lower certainty of their nodes order, so a comparison method for such trees should have higher penalty for $\nni$ changes and lower penalty for rank changes, which in our notations requires $\rho < 1$.
+For example, trees might come from an inference method with higher certainty of their branching structure and lower certainty of their nodes order.
+A comparison method for such trees should have higher penalty for $\nni$ changes and lower penalty for rank changes, which in our notations requires $\rho < 1$.
 
-In the rest of this section, we show that the $\findpath$ algorithm substantially relies on the fact that the rank move and the $\nni$ move have the same weight in the $\rnni$ graph, so a non-trivial algorithmic insight is necessary to extend our polynomial complexity result to other values of $\rho$.
+In the rest of this section, we show that the $\findpath$ algorithm substantially relies on the fact that the rank move and the $\nni$ move have the same weight in the $\rnni$ graph.
+This suggests that a non-trivial algorithmic insight is necessary to extend our polynomial complexity result to other values of $\rho$.
 
 \begin{proposition}
 $\findpath$ does not compute shortest paths in $\rnni(\rho)$ for $\rho \neq 1$.
@@ -553,8 +555,7 @@ $\findpath$ does not compute shortest paths in $\rnni(\rho)$ for $\rho \neq 1$.
 \end{figure}
 
 For $\rho > 1$ a counterexample is given by the following trees (see Figure~\ref{fig:fp_rho_greater_1_counterexample})\\
-$T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and\\
-$R = [\{a_3,a_4\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
+$T = [\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ and $R = [\{a_3,a_4\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.\\
 Applied to these trees $\findpath$ proceeds from $T$ to $[\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_3,a_4\},\{a_1,a_2\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$.
 This path consists of two $\nni$ moves with one rank move in between them and therefore has weight $2 + \rho$.
 However, the path from $T$ to $[\{a_2,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$ to $[\{a_2,a_3\},\{a_2,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ to $R$ consists of three $\nni$ moves and is hence shorter.
@@ -567,8 +568,7 @@ However, the path from $T$ to $[\{a_2,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]
 \end{figure}
 
 For $\rho < 1$ a counterexample is given by the following trees (see Figure~\ref{fig:fp_rho_less_1_counterexample})\\
-$T = [\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ and\\
-$R = [\{a_1,a_3\},\{a_1,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.
+$T = [\{a_1,a_2\},\{a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$ and $R = [\{a_1,a_3\},\{a_1,a_3,a_4\},\{a_1,a_2,a_3,a_4\}]$.\\
 Applied to these trees $\findpath$ proceeds from $T$ to $[\{a_1,a_2\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, then to $[\{a_1,a_3\},\{a_1,a_2,a_3\},\{a_1,a_2,a_3,a_4\}]$, and then to $R$.
 This path consists of three $\nni$ moves and therefore has weight $3$.
 However, the path from $T$ to $[\{a_3, a_4\},\{a_1, a_2\},\{a_1, a_2, a_3, a_4\}]$ to $[\{a_3,a_4\},\{a_1, a_3, a_4\},\{a_1, a_2, a_3, a_4\}]$ to $R$ consists of one rank move followed by two $\nni$ moves and is hence shorter.
@@ -578,7 +578,8 @@ However, the path from $T$ to $[\{a_3, a_4\},\{a_1, a_2\},\{a_1, a_2, a_3, a_4\}
 \section{Additional open problems}
 
 The idea utilised by \textcite{Dasgupta2000-xa} to prove that computing distances in $\nni$ is $\np$-hard stems from a result that shortest paths in $\nni$ do not preserve clusters \autocite{Li1996-zw}, that is, sometimes a cluster shared by two trees $T$ and $R$ is shared by no other tree on any shortest path between $T$ and $R$.
-Not only this counter-intuitive property eventually led to the computational hardness of $\nni$, the property made little sense biologically as trees clustering the same set of sequences into a subtree should be closer to each other than to a tree that does not have that subtree.
+This counter-intuitive property eventually led to the computational hardness of $\nni$.
+Biologically, however, this property makes little sense as trees clustering the same set of sequences into a subtree should be closer to each other than to a tree that does not have that subtree.
 Indeed, a shared cluster means that both trees support the hypothesis that this cluster has evolved along a subtree.
 In light of this biological argument, the $\np$-hardness result can be interpreted as $\decprob{\rho}$ being hard only when the graph $\rnni(\rho)$ is biologically irrelevant.
 Although in sharp contrast with the common belief in the field of computational phylogenetics \autocite{Whidden2018-fw}, this interpretation resonates with the idea suggested in the beyond worst case analysis framework \autocite{Roughgarden2019-to} that some problems are only computationally hard when their instances are practically irrelevant.
