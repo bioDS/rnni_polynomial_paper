@@ -306,6 +306,11 @@ If the rank of $(C_k)_T$ is not in $\{t, t+1\}$ then $(C_k)_T$ and $(C_k)_{T'}$ 
 In this case, paths $\fp(T_1, R)$ and $\fp(T'_1, R)$ violate inequality~(\ref{eqn:iff_inequality}) but $\fp(T_1, R)$ is strictly shorter than $\fp(T, R)$, contradicting our minimality assumption.
 Hence, the first move on $\fp(T, R)$ has to involve an interval incident to at least one of the nodes $(T)_t$, $(T)_{t+1}$.
 
+It is important to observe that all clusters with rank less than $t$ coincide in $T$ and $T'$.
+This includes all clusters $C_j$ with $j < k-1$ that are present in $T$.
+Cluster $C_{k-1}$, however, might not be induced by a node in $T'$ if $k-1 = t$.
+Therefore, in the first move on $\fp(T',R)$ either the rank of the most recent common ancestor of $C_k$ or $C_{k-1}$ decreases.
+
 We will distinguish two cases depending on whether $T$ and $T'$ are connected by an $\nni$ or a rank move.
 For each of these we will further distinguish all possible moves between $T$ and $T_1$.
 Note that in all figures illustrating possible moves on $\fp(T,R)$ and $\fp(T',R)$ below, the position of the tree root is irrelevant, so we have positioned roots to simplify our figures.
