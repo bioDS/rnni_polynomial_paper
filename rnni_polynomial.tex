@@ -150,7 +150,7 @@ Note that $(C)_T = (T)_t$ if the cluster $C$ is induced by the node of rank $t$ 
 
 Our main object of study is the following class of graphs $\rnni(\rho)$ indexed by a real-valued parameter $\rho \geq 0$.
 Vertices of the $\rnni(\rho)$ graph are trees as defined above.
-Two trees are connected by an edge if one results from the other by performing one of the following two tree rearrangement operations (see Figure~\ref{fig:ranked_trees_ex}):\\
+Two trees are connected by an edge if one results from the other by performing one of the following two types of tree rearrangement operation (see Figure~\ref{fig:ranked_trees_ex}):\\
 (i) A \emph{rank move} on a tree $T$ exchanges the ranks of two internal nodes $(T)_t$ and $(T)_{t+1}$ with consecutive ranks, provided the two nodes are not connected by an edge in $T$.\\
 (ii) Trees $T$ and $R$ are connected by an \emph{$\nni$ move} if there are edges $e$ in $T$ and $f$ in $R$ both connecting nodes of consecutive ranks in the corresponding trees, such that the (non-binary) trees obtained by shrinking $e$ and $f$ into internal nodes are identical.\\
 The parameter $\rho \geq 0$ is the weight of the rank move operation, an $\nni$ move weighs $1$.
@@ -327,10 +327,9 @@ Note that $[(T)_{t+1}, (T)_{t+2}]$ does not have to be an edge in tree $T$ (see 
 \end{enumerate}
 
 We now consider all possible moves $\findpath$ can perform to go from $T$ to $T_1$ that involve a node of rank $t$ or $t+1$, that is, we will consider three intervals in total.
-For some of these intervals, we will have to distinguish between rank and $\nni$ moves, so we will write ``$\rnni$ move" to mean a rank or an $\nni$ move, ``rank move" to mean a rank move, and ``$\nni$ move" to mean an $\nni$ move.
 
 \begin{enumerate}[label = 1.{\arabic*}]
-\item $\rnni$ move on interval $[(T)_t, (T)_{t+1}]$.
+\item $\rnni$ move (either type) on interval $[(T)_t, (T)_{t+1}]$.
 This move has to be the $\nni$ move that is different from the $\nni$ move connecting $T$ and $T'$.
 In this case, the cluster $B \cup C$ is built in $T_1$, as depicted in the bottom of Figure~\ref{fig:thm_fp_nni1}.
 Hence the first cluster $C_k$ that satisfies the \textbf{while} condition of $\findpath$ must contain elements from both $B$ and $C$ but not from $A$, and the rank of $(C_k)_R$ has to be at most $t$.
@@ -426,7 +425,7 @@ Recall that the interval between nodes of rank $t$ and $t+1$ is an edge in both 
 Hence, the first two moves on $\fp(T', R)$ decrease the rank of $(C_k)_{T'}$ twice resulting in $T'_2$ which is an $\rnni$ neighbour of $T_2$ as depicted in Figure~\ref{fig:thm_fp_nni3}.
 As before, this contradicts our minimality assumption.
 
-\item $\rnni$ move on interval $[(T)_{t-1},(T)_t]$.
+\item $\rnni$ move (either type) on interval $[(T)_{t-1},(T)_t]$.
 In this case $C_k \subseteq A \cup B$ and the rank of $(C_k)_{R}$ is at most $t - 1$.
 This implies that $C_k$ is the first cluster to satisfy the \textbf{while} condition for $T'$ and the first move on $\fp(T', R)$ decreases the rank of $(C_k)_{T'}$ by exchanging the subtrees induced by $B$ and $C$.
 This results in $T'_1 = T$.
@@ -484,7 +483,7 @@ The corresponding first moves on $\fp(T', R)$ are shown on the right in Figure~\
 \item Rank move on interval $[(T)_{t+1}, (T)_{t+2}]$.
 Again, depending on whether or not the ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide, we arrive at the conclusion that either $T'_1 = T$ or $T_2$ and $T'_2$ are $\rnni$ neighbours, similarly to case~\ref{case:rank_move_interval_above}.
 
-\item $\rnni$ move on interval $[(T)_{t-1},(T)_t]$.
+\item $\rnni$ move (either type) on interval $[(T)_{t-1},(T)_t]$.
 In this case $C_k \subseteq A$ and the first move on $\fp(T', R)$ must be a rank swap resulting in $T'_1 = T$.
 \end{enumerate}
 
