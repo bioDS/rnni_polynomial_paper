@@ -403,18 +403,18 @@ This move is shown in Figure~\ref{fig:thm_fp_nni2a} by an arrow from $T$ to the 
 In this case, $C_k$ intersects $C$ and $D$ but not $A$ or $B$.
 And we have the following two possibilities to consider.
 
+\begin{enumerate}[label = \theenumi.\arabic*]
+\item The ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide.
+In this case, the previous cluster $C_{k-1}$ of $R$ has to be $A \cup B$.
+Since $A \cup B$ is not a cluster in $T'$, the first $\rnni$ move on $\fp(T', R)$ builds the cluster $A \cup B$ by swapping subtrees induced by cluster $B$ and $C$.
+This move results in $T'_1 = T$ contradicting $|\fp(T',R)| < |\fp(T,R)| - 1$.
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.4\textwidth]{thm_fp_nni3}
 	\caption{Comparison of paths $\fp(T, R)$ and $\fp(T', R)$ if there is an $\nni$ move between $T$ and $T'$ and a rank move on the interval above this edge follows on $\fp(T, R)$.}
 	\label{fig:thm_fp_nni3}
 \end{figure}
-
-\begin{enumerate}[label = \theenumi.\arabic*]
-\item The ranks of $(C_k)_{T_1}$ and $(C_k)_R$ coincide.
-In this case, the previous cluster $C_{k-1}$ of $R$ has to be $A \cup B$.
-Since $A \cup B$ is not a cluster in $T'$, the first $\rnni$ move on $\fp(T', R)$ builds the cluster $A \cup B$ by swapping subtrees induced by cluster $B$ and $C$.
-This move results in $T'_1 = T$ contradicting $|\fp(T',R)| < |\fp(T,R)| - 1$.
 
 \item The rank of $(C_k)_{T_1}$ is strictly higher than that of $(C_k)_R$.
 In this case, $\findpath$ decreases the rank of $(C_k)_{T_1}$ in the second step.
@@ -546,19 +546,19 @@ A comparison method for such trees should have higher penalty for $\nni$ changes
 In the rest of this section, we show that the $\findpath$ algorithm substantially relies on the fact that the rank move and the $\nni$ move have the same weight in the $\rnni$ graph.
 This suggests that a non-trivial algorithmic insight is necessary to extend our polynomial complexity result to other values of $\rho$.
 
-\begin{proposition}
-$\findpath$ does not compute shortest paths in $\rnni(\rho)$ for $\rho \neq 1$.
-\label{prop:fp_only_rnni}
-\end{proposition}
-
-\proof
-
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.6\textwidth]{fp_rho_greater_1_counterexample}
 \caption{Path computed by $\findpath$ (top) and a shorter path (bottom) for $\rho > 1$.}
 \label{fig:fp_rho_greater_1_counterexample}
 \end{figure}
+
+\begin{proposition}
+$\findpath$ does not compute shortest paths in $\rnni(\rho)$ for $\rho \neq 1$.
+\label{prop:fp_only_rnni}
+\end{proposition}
+
+\proof
 
 For $\rho > 1$ a counterexample is given by the following trees (see Figure~\ref{fig:fp_rho_greater_1_counterexample})
 \begin{align*}
