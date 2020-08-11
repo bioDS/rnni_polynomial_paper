@@ -115,6 +115,7 @@ This makes $\rnni$ the first tree rearrangement operation under which shortest p
 Our proof of this result (Theorem~\ref{thm:rnni_polynomial}) is constructive -- we provide an algorithm called $\findpath$ that computes shortest paths in the $\rnni$ graph in $\O(n^2)$ time.
 Our algorithm is optimal as shortest paths often have length quadratic in the number of leaves $n$.
 The algorithm is practical as it takes seconds on a laptop to compute the distance between trees with thousands of leaves, while in the closely related $\nni$ graph the tractable number of leaves is well below twenty \autocite{Li1996-zw, Whidden2016-kl}.
+Another and from a biological point of view very important property of our algorithm is that for a pair of trees sharing some information, more specifically clusters, which we introduce later in the paper, this information is preserved on the computed path.
 
 Because $\nni$ can be seen as a special case of $\rnni$, we investigate whether there exists a threshold at which the complexity shifts from $\np$-hard to polynomial.
 Specifically, we introduce an edge weight parameter $\rho$ in the $\rnni$ graph and consider a parametrised graph $\rnni(\rho)$.
