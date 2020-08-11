@@ -80,7 +80,8 @@ In particular, our result provides the first example of a phylogenetic tree rear
 Specifically, our algorithm scales to trees with thousands of leaves (and likely hundreds of thousands if implemented efficiently).
 
 We also connect the problem of computing distances in our graph of ranked trees with the well-known version of this problem on unranked trees by introducing a parameter for the weight difference between move types.
-We propose to study a family of shortest path problems indexed by this parameter, which is both theoretically and biologically relevant, with computational complexity varying from quadratic to $\np$-hard.
+Introducing this parameter is motivated by the fact that in biological applications the certainty of the tree topology is often higher than the certainty of the ranking, which can be taken into account by adapting this parameter.
+We propose to study a family of shortest path problems indexed by this parameter with computational complexity varying from quadratic to $\np$-hard.
 \end{abstract}
 
 
@@ -119,9 +120,9 @@ Because $\nni$ can be seen as a special case of $\rnni$, we investigate whether 
 Specifically, we introduce an edge weight parameter $\rho$ in the $\rnni$ graph and consider a parametrised graph $\rnni(\rho)$.
 We show that the shortest path problem is $\np$-hard in $\rnni(0)$ and quadratic in $\rnni(1)$, so the complexity changes with $\rho$.
 We hence propose to characterise the complexity classes of the problem $\rnni(\rho)$ for values of $\rho \geq 0$.
-This parametrisation is not only of interest because of the varying complexity of $\decprob{\rho}$ depending on $\rho$, but also because of its biological motivation.
+The reason for introducing this parametrisation is its biological motivation.
 When reconstructing a pylogenetic tree, the certainty of the tree topology often is higher than the certainty of the timing of internal nodes, and hence their ranks.
-Therefore, the graphs $\rnni(\rho)$ where rank moves are weighed by $\rho < 1$, and therefore less than $\nni$ moves, are very relevant in practise.
+Therefore, the graphs $\rnni(\rho)$ where rank moves are weighed by $\rho < 1$, and therefore less than $\nni$ moves, are very relevant in practice.
 
 
 \section{Definitions and background results}
