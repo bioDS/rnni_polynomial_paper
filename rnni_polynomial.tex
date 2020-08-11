@@ -213,6 +213,8 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 \end{algorithmic}
 \end{algorithm}
 
+Note that if two trees have a cluster in common, every tree on the path computed by $\findpath$ contains this cluster as well.
+
 \begin{proposition}
 $\findpath$ is a correct deterministic algorithm that runs in $\O(n^2)$ time.
 \label{prop:fp_correctness}
