@@ -87,8 +87,30 @@ We propose to study a family of shortest path problems indexed by this parameter
 
 \maketitle
 
-The problem of reconstructing evolutionary histories from sequence data is central for many popular methods in computational biology.
+% Biological Motivation
+One of the major problems considered in computational biology is the reconstruction of evolutionary histories, which we will refer to as phylogenetic trees, from sequence data such as RNA, DNA, or protein sequences.
+Especially in the fields of cancer \autocite{} and virus \autocite{} research, gaining information about evolutionary relationships of given samples through phylogenetic inference is of importance.
+For cancer evolution in particular, the times of divergence events, which are displayed by internal nodes in phylogenetic trees, give important insights \autocite{}.
+\todo{Why timing in cancer trees? We need a bit more here!} 
+
 Most commonly trees are inferred from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
+All these methods can be formulated as the problem of finding the best tree for some data under a given model as a tree search problem.
+Tree search algorithms consider a tree measure, such as the likelihood, of a start tree and compare it with similar trees to find a better one, e.g. with higher likelihood.
+This is repeated this until a local optimum is reached or a stopping criterion is fulfilled. 
+In order to be able to choose a ``similar'' tree, a measure that tells how similar trees are is needed.
+Not only tree search algorithms, but also computing summary or consensus trees \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx} require such a distance measure for trees.
+\todo{Why do we want summary/consensus trees? Ideally we could relate this to cancer and emphasise that timing is important}
+
+% Mathematical problem
+
+% Solution to this problem
+
+% Link back to biology
+
+% OLD INTRO -- everything that is already added to the new intro is commented out
+
+% The problem of reconstructing evolutionary histories from sequence data is central for many popular methods in computational biology.
+% Most commonly trees are inferred from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
 All these methods rely on various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection ($\tbr$).
 Under any such operation, the tree inference problem can be formulated as a graph search, where vertices are trees and edges are given by tree rearrangement operations.
 For search algorithms to be efficient, it is important to understand the geometry of these graphs.
@@ -105,7 +127,7 @@ To facilitate practical applications, fixed parameter tractable algorithms \auto
 Computing the $\nni$ distance is also known to be fixed parameter tractable \autocite{DasGupta1999-xf}.
 Although important, these algorithms remain impractical for large distances and are only applied to trees with a moderate number of leaves or those with small distances \autocite{Whidden2018-fw}.
 
-Another area where algorithms for computing shortest paths and distances between trees play a central role, is calculating consensus or summary trees \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx}.
+% Another area where algorithms for computing shortest paths and distances between trees play a central role, is calculating consensus or summary trees \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx}.
 A popular tree distance measure used in such methods is the Robinson-Foulds distance \autocite{Robinson1981-fb}, as it can be computed in linear time.
 Lack of biological motivation however is a downside of this approach, which often results in poor summaries and hence is not used for summarising samples of trees obtained in a full Bayesian tree inference approach \autocite{Gavryushkin2016-uu}.
 In general, distance measures that are easy to compute typically have this problem, whereas measures that are biologically relevant, including rearrangement-based distances, are often hard to compute \autocite{Whidden2018-fw}.
