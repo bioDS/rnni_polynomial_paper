@@ -88,30 +88,23 @@ We propose to study a family of shortest path problems indexed by this parameter
 \maketitle
 
 % Biological Motivation
+% In general: Inferring ranked trees
 One of the major problems considered in computational biology is the reconstruction of evolutionary histories, which we will refer to as phylogenetic trees, from sequence data such as RNA, DNA, or protein sequences.
-Especially in the fields of cancer \autocite{} and virus \autocite{} research, gaining information about evolutionary relationships of given samples through phylogenetic inference is of importance.
-For cancer evolution in particular, the times of divergence events, which are displayed by internal nodes in phylogenetic trees, give important insights \autocite{}.
-\todo{Why timing in cancer trees? We need a bit more here!} 
+For example in research fields like cancer and pathogen evolution, phylogenetic inference is used to gain information about evolutionary relationships \autocite{Beerenwinkel2015-cf, Hadfield2018-xp}.
+Often not only the phylogenetic tree itself, but the timing of divergence events, which are displayed by internal nodes in the tree, is the centre of studies.
+Time trees are for instance used for finding the time of a common ancestor of virus strains \autocite{Korber2000-sp} or analysing tumour and metastasis growth in cancer research \autocite{Lote2017-hg}.
 
+% Why we need distances
 Most commonly trees are inferred from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
 All these methods can be formulated as the problem of finding the best tree for some data under a given model as a tree search problem.
-Tree search algorithms consider a tree measure, such as the likelihood, of a start tree and compare it with similar trees to find a better one, e.g. with higher likelihood.
-This is repeated this until a local optimum is reached or a stopping criterion is fulfilled. 
-In order to be able to choose a ``similar'' tree, a measure that tells how similar trees are is needed.
-Not only tree search algorithms, but also computing summary or consensus trees \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx} require such a distance measure for trees.
-\todo{Why do we want summary/consensus trees? Ideally we could relate this to cancer and emphasise that timing is important}
+For those problems a measure that tells how similar trees are is needed in order to compare trees.
+Not only for tree inference, but also for summary or consensus tree methods \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx}, require such a distance measure for trees.
+Most currently known distance measures for trees, however, do not take the order of divergence events into account, but only the tree topology.
+Moreover, most popular tree distances are either hard to compute, or make little sense biologically \autocite{Whidden2018-fw}.
 
 % Mathematical problem
-
-% Solution to this problem
-
-% Link back to biology
-
-% OLD INTRO -- everything that is already added to the new intro is commented out
-
-% The problem of reconstructing evolutionary histories from sequence data is central for many popular methods in computational biology.
-% Most commonly trees are inferred from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
-All these methods rely on various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection ($\tbr$).
+% Why tree rearrangement operations
+Most tree inference methods rely on various tree rearrangement operations \autocite{Semple2003-nj}, the most popular of which are nearest neighbour interchange ($\nni$), subtree prune and regraft ($\spr$), and tree bisection and reconnection ($\tbr$).
 Under any such operation, the tree inference problem can be formulated as a graph search, where vertices are trees and edges are given by tree rearrangement operations.
 For search algorithms to be efficient, it is important to understand the geometry of these graphs.
 For example, basic geometric properties of the $\nni$ graph have been successfully leveraged to speed up the maximum likelihood method \autocite{Nguyen2015-sp}.
@@ -119,6 +112,7 @@ The most basic geometric characteristic that frequently arises in applications i
 The problem then amounts to computing the length of a shortest path between trees in the three graphs.
 This can also be seen as computing the distance between trees in the corresponding metric space.
 
+% Tree rearrangement distances are hard to compute -- some history
 Classical results in mathematical phylogenetics imply that these distances are $\np$-hard to compute for all three rearrangement operations $\nni$, $\spr$, and $\tbr$ \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky}.
 Intuitively, the difference between the three operations is how much change can be done to a tree by a single operation, with $\nni$ being the most local type of rearrangement and $\tbr$ the most global one.
 Remarkably, it took over 25 years and a number of published erroneous attempts, as discussed in detail by \textcite{Dasgupta2000-xa}, to prove that computing distances is $\np$-hard in $\nni$ \autocite{Dasgupta2000-xa}.
@@ -127,30 +121,40 @@ To facilitate practical applications, fixed parameter tractable algorithms \auto
 Computing the $\nni$ distance is also known to be fixed parameter tractable \autocite{DasGupta1999-xf}.
 Although important, these algorithms remain impractical for large distances and are only applied to trees with a moderate number of leaves or those with small distances \autocite{Whidden2018-fw}.
 
-% Another area where algorithms for computing shortest paths and distances between trees play a central role, is calculating consensus or summary trees \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx}.
-A popular tree distance measure used in such methods is the Robinson-Foulds distance \autocite{Robinson1981-fb}, as it can be computed in linear time.
-Lack of biological motivation however is a downside of this approach, which often results in poor summaries and hence is not used for summarising samples of trees obtained in a full Bayesian tree inference approach \autocite{Gavryushkin2016-uu}.
+% Simpler distances such as Robinson Foulds lack biological motivation
+Another popular tree distance measure that does not rely on a tree rearrangement method used in such methods is the Robinson-Foulds distance \autocite{Robinson1981-fb}.
+In contrast to the tree rearrangement methods mentioned above, this distance can be computed efficiently. 
+Lack of biological motivation however is a downside of this approach.
+For example for summarising trees, using the Robinson-Foulds distance often results in poor summaries and hence is not used for summarising samples of trees obtained in a full Bayesian tree inference approach \autocite{Gavryushkin2016-uu}.
 In general, distance measures that are easy to compute typically have this problem, whereas measures that are biologically relevant, including rearrangement-based distances, are often hard to compute \autocite{Whidden2018-fw}.
 
+% Solution to this problem
+% FP to solve the problem of computing distances (between ranked trees) efficiently
 In this paper, we establish that using a generalisation of the $\nni$ operation introduced by \textcite{Gavryushkin2018-ol} called $\rnni$ (for Ranked Nearest Neighbour Interchange), the shortest path problem is computable in $\O(n^2)$, where $n$ is the number of tree leaves.
 This makes $\rnni$ the first tree rearrangement operation under which shortest paths and distances between trees are polynomial-time computable.
 Our proof of this result (Theorem~\ref{thm:rnni_polynomial}) is constructive -- we provide an algorithm called $\findpath$ that computes shortest paths in the $\rnni$ graph in $\O(n^2)$ time.
 Our algorithm is optimal as shortest paths often have length quadratic in the number of leaves $n$.
 The algorithm is practical as it takes seconds on a laptop to compute the distance between trees with thousands of leaves, while in the closely related $\nni$ graph the tractable number of leaves is well below twenty \autocite{Li1996-zw, Whidden2016-kl}.
+$\findpath$ furthermore reveals the following property of the $\rnni$ graph, which is desirable for tree distances from a biological point of view.
+If two trees share some information, more specifically clusters, which we formally introduce later in the paper, there is a shortest paths in $\rnni$ that preserves this information.
+More specifically, the shortest path computed by $\findpath$ maintains clusters, which is not true for $\nni$ \autocite{Li1996-zw}.
+This implies in particular that in the $\rnni$ graph trees that share an evolutionary hypothesis in form of a common subtree are closer to each other than they are to a tree that does not support this hypothesis.
 
+% We connect RNNI and NNI by introducing the parameter rho
 Because $\nni$ can be seen as a special case of $\rnni$, we investigate whether there exists a threshold at which the complexity shifts from $\np$-hard to polynomial.
 Specifically, we introduce an edge weight parameter $\rho$ in the $\rnni$ graph and consider a parametrised graph $\rnni(\rho)$.
 We show that the shortest path problem is $\np$-hard in $\rnni(0)$ and quadratic in $\rnni(1)$, so the complexity changes with $\rho$.
 We hence propose to characterise the complexity classes of the problem $\rnni(\rho)$ for values of $\rho \geq 0$.
 The reason for introducing this parametrisation is its biological motivation.
 When reconstructing a pylogenetic tree, the certainty of the tree topology often is higher than the certainty of the timing of internal nodes, and hence their ranks.
-Therefore, the graphs $\rnni(\rho)$ where rank moves are weighed by $\rho < 1$, and therefore less than $\nni$ moves, are very relevant in practice.
+This underlines that the graphs $\rnni(\rho)$ where rank moves are weighed by $\rho < 1$, and therefore less than $\nni$ moves, are relevant for biological applications.
 
-For biological applications, studying this parametrisation will be highly valuable, as well as having a tool to compute distances between trees in polynomial time.
-With $\findpath$ we have an algorithm that does not only computes distances efficiently, but also is biologically meaningful.
-Shortest paths in $\rnni$ that are computed by $\findpath$ between two trees sharing some information, more specifically clusters, which we introduce later in the paper, preserve this information.
-This implies in particular that in the $\rnni$ graph trees that share an evolutionary hypothesis in form of a common subtree are closer to each other than they are to a tree that does not support this hypothesis.
-Hence the algorithm introduced in this paper is not only efficient, but also biologically relevant and will therefore be useful in many applications.
+% Link back to biology
+The results of this paper show that for ranked trees there is an algorithm that does not only computes distances efficiently, but is also biologically meaningful.
+Hence the $\rnni$ graph of ranked trees overcomes the computational issues of other tree rearrangement methods like $\nni$, $\spr$ and $\tbr$, but does not lack practical relevance like the Robinson-Foulds distance does.
+With our algorithm we have a new way to compute distances between ranked trees, which facilitates the inference of trees where the order of divergence events matters, for example in virus or cancer evolution.
+$\rnni$ operations are not only more suitable for these applications than for example $\nni$ because of its computational efficiency, but also because trees that share an evolutionary hypothesis are closer to each other than to trees that do not share that hypothesis. 
+Being able to efficiently compute distances between trees also provides the opportunity to find new ways of building consensus or summary trees for summarising tree samples.
 
 
 \section{Definitions and background results}
