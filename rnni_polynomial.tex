@@ -89,17 +89,17 @@ We propose to study a family of shortest path problems indexed by this parameter
 
 % Biological Motivation
 % In general: Inferring ranked trees
-One of the major problems considered in computational biology is the reconstruction of evolutionary histories, which we will refer to as phylogenetic trees, from sequence data such as RNA, DNA, or protein sequences.
-Of particular interest in various applications are internal nodes of these trees, and more specifically their ordering, which we will will also refer to as ranking.
-For example in species evolution, where internal nodes of trees correspond to speciation events, the ranking of the tree shows in which order divergence event happened.
+One of the major problems in computational biology is the reconstruction of evolutionary histories, also known as phylogenetic trees, from sequence data such as RNA, DNA, or protein sequences.
+Of particular interest in various applications is the order of internal nodes in these trees, as these nodes represent evolutionary events and their ranking shows the order in which these events happened in time.
+For example in species evolution, where internal nodes of trees correspond to speciation events, the ranking of the tree gives the order of divergence events.
 Often fossils are used to not only rank the tree, but assigning actual times to divergence events \autocite{Gavryushkina2014-xd}.
-Other research fields where ranking trees plays an important role are viral epidemiology, where the ranking shows the order of transmissions \autocite{Ypma2013-zm}, and language evolution \autocite{Bouckaert2018-sf, Gray2009-jy}, which reveals how human populations expanded across different continents.
-Phylogenetic trees are nowadays also commonly used in the research of cancer evolution \autocite{Potter2013-go, Jiao2014-ut}.
-In cancer phylogenies, internal nodes can refer to emergence of metastasic clones, and their ranking shows in which order metastasis grew \autocite{Lote2017-hg}.
+Other research fields where ranked trees play an important role are viral epidemiology, where ranking gives the order of transmissions \autocite{Ypma2013-zm}, and language evolution \autocite{Bouckaert2018-sf, Gray2009-jy}, where phylogenetic trees reveal how and when human populations expanded across different continents.
+Nowadays phylogenetic trees are also commonly used in the research of cancer evolution \autocite{Potter2013-go, Jiao2014-ut}.
+In cancer phylogenies internal nodes can refer to emergence of metastatic clones and their ranking shows in which order metastasis grew \autocite{Lote2017-hg}.
 
 % Why we need distances
 Most commonly trees are inferred from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
-All these methods can be formulated as the problem of finding the best tree for some data under a given model as a tree search problem.
+All these methods can be formulated as the problem of finding a tree optimising some criterion as a tree search problem.
 For those problems a measure that tells how similar trees are is needed in order to compare trees.
 Furthermore, summary or consensus tree methods \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx} require such a distance measure for trees.
 Most of the currently used distance measures for trees, however, do not take the order of divergence events into account, but only the tree topology.
