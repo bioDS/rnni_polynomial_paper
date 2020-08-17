@@ -153,11 +153,12 @@ When reconstructing a pylogenetic tree, the certainty of the tree topology often
 This underlines that the graphs $\rnni(\rho)$ where rank moves are weighed by $\rho < 1$, and therefore less than $\nni$ moves, are relevant for biological applications.
 
 % Link back to biology
-The results of this paper show that for ranked trees there is an algorithm that does not only computes distances efficiently, but is also biologically meaningful.
-Hence the $\rnni$ graph of ranked trees overcomes the computational issues of other tree rearrangement methods like $\nni$, $\spr$ and $\tbr$, but does not lack practical relevance like the Robinson-Foulds distance does.
-With our algorithm we have a new way to compute distances between ranked trees, which facilitates the inference of trees where the order of divergence events matters, for example in virus or cancer evolution.
-$\rnni$ operations are not only more suitable for these applications than for example $\nni$ because of its computational efficiency, but also because trees that share an evolutionary hypothesis are closer to each other than to trees that do not share that hypothesis. 
-Being able to efficiently compute distances between trees also provides the opportunity to find new ways of building consensus or summary trees for summarising tree samples.
+The results of this paper show that for ranked trees there is an algorithm that computes distances efficiently and is biologically meaningful.
+Hence the $\rnni$ graph of ranked trees combines the advantages of computationally tractable distance measures, such as Robinson-Foulds, with biological interpretability, similar to rearrangement methods like $\nni$, $\spr$, and $\tbr$.
+With our algorithm we have a new way to compute distances between ranked trees, which facilitates the inference of trees where the order of divergence events is relevant, for example in virus or cancer evolution.
+$\rnni$ operations more suitable for these applications than for example $\nni$ because of its computational efficiency, and because trees that share an evolutionary hypothesis are closer to each other than to trees that do not share that hypothesis.
+For a cancer phylogeny this can be interpreted as two trees that support the emergence of a metastatic clone early in time are closer to each other than a phylogeny that does not support this hypothesis.
+Efficiently computing distances between trees also motivates using the $\rnni$ space of ranked trees to build consensus or summary trees for summarising tree samples.
 
 
 \section{Definitions and background results}
