@@ -90,17 +90,20 @@ We propose to study a family of shortest path problems indexed by this parameter
 % Biological Motivation
 % In general: Inferring ranked trees
 One of the major problems considered in computational biology is the reconstruction of evolutionary histories, which we will refer to as phylogenetic trees, from sequence data such as RNA, DNA, or protein sequences.
-For example in research fields like cancer and pathogen evolution, phylogenetic inference is used to gain information about evolutionary relationships \autocite{Beerenwinkel2015-cf, Hadfield2018-xp}.
-Often not only the phylogenetic tree itself, but the timing of divergence events, which are displayed by internal nodes in the tree, is the centre of studies.
-Time trees are for instance used for finding the time of a common ancestor of virus strains \autocite{Korber2000-sp} or analysing tumour and metastasis growth in cancer research \autocite{Lote2017-hg}.
+Of particular interest in various applications are internal nodes of these trees, and more specifically their ordering, which we will will also refer to as ranking.
+For example in species evolution, where internal nodes of trees correspond to speciation events, the ranking of the tree shows in which order divergence event happened.
+Often fossils are used to not only rank the tree, but assigning actual times to divergence events \autocite{Gavryushkina2014-xd}.
+Other research fields where ranking trees plays an important role are viral epidemiology, where the ranking shows the order of transmissions \autocite{Ypma2013-zm}, and language evolution \autocite{Bouckaert2018-sf, Gray2009-jy}, which reveals how human populations expanded across different continents.
+Phylogenetic trees are nowadays also commonly used in the research of cancer evolution \autocite{Potter2013-go, Jiao2014-ut}.
+In cancer phylogenies, internal nodes can refer to emergence of metastasic clones, and their ranking shows in which order metastasis grew \autocite{Lote2017-hg}.
 
 % Why we need distances
 Most commonly trees are inferred from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
 All these methods can be formulated as the problem of finding the best tree for some data under a given model as a tree search problem.
 For those problems a measure that tells how similar trees are is needed in order to compare trees.
-Not only for tree inference, but also for summary or consensus tree methods \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx}, require such a distance measure for trees.
-Most currently known distance measures for trees, however, do not take the order of divergence events into account, but only the tree topology.
-Moreover, most popular tree distances are either hard to compute, or make little sense biologically \autocite{Whidden2018-fw}.
+Furthermore, summary or consensus tree methods \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx} require such a distance measure for trees.
+Most of the currently used distance measures for trees, however, do not take the order of divergence events into account, but only the tree topology.
+Moreover, popular tree distances are either hard to compute, or make little sense biologically \autocite{Whidden2018-fw}.
 
 % Mathematical problem
 % Why tree rearrangement operations
@@ -124,8 +127,8 @@ Although important, these algorithms remain impractical for large distances and 
 % Simpler distances such as Robinson Foulds lack biological motivation
 Another popular tree distance measure that does not rely on a tree rearrangement method used in such methods is the Robinson-Foulds distance \autocite{Robinson1981-fb}.
 In contrast to the tree rearrangement methods mentioned above, this distance can be computed efficiently. 
-Lack of biological motivation however is a downside of this approach.
-For example for summarising trees, using the Robinson-Foulds distance often results in poor summaries and hence is not used for summarising samples of trees obtained in a full Bayesian tree inference approach \autocite{Gavryushkin2016-uu}.
+A downside of this approach however is that there is no biologically meaningful interpretation of this distance.
+The Robinson-Foulds distances is not motivated by a biological process, unlike $\spr$, where a trees of distance one can be biologically connected by a hybridisation event \autocite{Bordewich2005-nx}.
 In general, distance measures that are easy to compute typically have this problem, whereas measures that are biologically relevant, including rearrangement-based distances, are often hard to compute \autocite{Whidden2018-fw}.
 
 % Solution to this problem
