@@ -89,7 +89,7 @@ We propose to study a family of shortest path problems indexed by this parameter
 
 % Biological Motivation
 % In general: Inferring ranked trees
-One major problems in computational biology is the reconstruction of evolutionary histories, also known as phylogenetic trees, from sequence data such as RNA, DNA, or protein sequences.
+One of the major problems in computational biology is the reconstruction of evolutionary histories, also known as phylogenetic trees, from sequence data such as RNA, DNA, or protein sequences.
 Of particular interest in various applications is the order of internal nodes in these trees, as these nodes represent evolutionary events and their ranking models the order in which these events happened in time.
 For example in species evolution, where internal nodes of trees correspond to speciation events, the ranking of these nodes represents the order of divergence events in time.
 Often fossils are used to not only rank the tree, but assigning actual times to divergence events \autocite{Gavryushkina2014-xd}.
@@ -153,9 +153,9 @@ When reconstructing a pylogenetic tree, the certainty of the tree topology often
 This underlines that the graphs $\rnni(\rho)$ where rank moves are weighed by $\rho < 1$, and therefore less than $\nni$ moves, are relevant for biological applications.
 
 % Link back to biology
-In this paper we provide an algorithm that computes distances between ranked trees efficiently and is biologically meaningful.
-Hence the $\rnni$ graph of ranked trees combines the advantages of computationally tractable distance measures, such as Robinson-Foulds, with biological interpretability, similar to rearrangement methods like $\nni$, $\spr$, and $\tbr$.
-The with our algorithm efficiently computable $\rnni$ distances between ranked trees facilitates the inference of trees where the order of divergence events is relevant, for example in virus or cancer evolution.
+In this paper we provide an algorithm that efficiently computes shortest paths in the $\rnni$ space of ranked trees, which is based on biologically relevant tree rearrangement operations.
+Hence the $\rnni$ graph of ranked trees combines the advantages of computationally tractable distance measures, such as Robinson-Foulds, with biological interpretability, similar to other rearrangement methods like $\nni$, $\spr$, and $\tbr$.
+The with our algorithm efficient computation of $\rnni$ distances facilitates the inference of trees where the order of divergence events is relevant, for example in virus or cancer evolution.
 $\rnni$ operations are more suitable for these applications than for example $\nni$ because of its computational efficiency, and also because trees that share an evolutionary hypothesis are closer to each other than to trees that do not share that hypothesis.
 For a cancer phylogeny this can be interpreted as two trees supporting the emergence of one particular metastatic clone early in time are closer to each other than a phylogeny that does not support this hypothesis.
 The existence of an efficient algorithm for computing distances between trees also motivates using the $\rnni$ space of ranked trees to build consensus or summary trees for summarising tree samples.
