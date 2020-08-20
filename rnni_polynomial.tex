@@ -247,6 +247,9 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 
 Note that if two trees share a cluster, every tree on the path computed by $\findpath$ contains this cluster as well.
 A Python implementation of this algorithm is available on GitHub~\autocite{Collienne2019}.
+Note that in the version of $\findpath$ in \autocite{Collienne2019} the output is a shortest path as a sequence of trees.
+If just the distance between trees is wanted, the algorithm can be implemented such that is runs in under a minute for tens of thousands of leaves. 
+
 
 \begin{proposition}
 $\findpath$ is a correct deterministic algorithm that runs in $\O(n^2)$ time.
