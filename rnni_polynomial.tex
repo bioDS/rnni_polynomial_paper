@@ -122,7 +122,7 @@ Although important, these algorithms remain impractical for large distances and 
 
 % Simpler distances such as Robinson Foulds lack biological motivation
 Another popular tree distance measure that does not rely on a tree rearrangement method used in such methods is the Robinson-Foulds distance \autocite{Robinson1981-fb}.
-In contrast to the tree rearrangement methods mentioned above, this distance can be computed efficiently. 
+In contrast to the tree rearrangement methods mentioned above, this distance can be computed efficiently.
 A downside of this approach however is that there is no biologically meaningful interpretation of this distance.
 The Robinson-Foulds distances is not motivated by a biological process, unlike $\spr$, where a trees of distance one can be biologically connected by a hybridisation event \autocite{Bordewich2005-nx}.
 In general, distance measures that are easy to compute typically have this problem, whereas measures that are biologically relevant, including rearrangement-based distances, are often hard to compute \autocite{Whidden2018-fw}.
@@ -248,8 +248,7 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 Note that if two trees share a cluster, every tree on the path computed by $\findpath$ contains this cluster as well.
 A Python implementation of this algorithm is available on GitHub~\autocite{Collienne2019}.
 Note that in the version of $\findpath$ in \autocite{Collienne2019} the output is a shortest path as a sequence of trees.
-If just the distance between trees is wanted, the algorithm can be implemented such that is runs in under a minute for tens of thousands of leaves. 
-
+If just the distance between trees is wanted, the algorithm can be implemented such that is runs in under a minute for tens of thousands of leaves.
 
 \begin{proposition}
 $\findpath$ is a correct deterministic algorithm that runs in $\O(n^2)$ time.
