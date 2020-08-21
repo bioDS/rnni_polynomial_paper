@@ -112,7 +112,7 @@ This can also be seen as computing the distance between trees in the correspondi
 
 % Tree rearrangement distances are hard to compute -- some history
 Classical results in mathematical phylogenetics imply that these distances are $\np$-hard to compute for all three rearrangement operations $\nni$, $\spr$, and $\tbr$ \autocite{Dasgupta2000-xa, Bordewich2005-nx, Hickey2008-wv, Allen2001-ky}.
-Intuitively, the difference between the three operations is how much change can be done to a tree by a single operation, with $\nni$ being the most local type of rearrangement and $\tbr$ the most global one.
+Intuitively, the difference between them is how much change can be done to a tree by a single operation, with $\nni$ being the most local type of rearrangement and $\tbr$ the most global one.
 Remarkably, it took over 25 years and a number of published erroneous attempts, as discussed in detail by \textcite{Dasgupta2000-xa}, to prove that computing distances is $\np$-hard in $\nni$ \autocite{Dasgupta2000-xa}.
 Similarly, incorrect proofs for $\spr$ have been discussed in the literature \autocite{Hein1996-em, Allen2001-ky}, before \textcite{Bordewich2005-nx} proved the $\np$-hardness result for rooted trees and \textcite{Hickey2008-wv} utilised this proof to establish the result for unrooted trees.
 To facilitate practical applications, fixed parameter tractable algorithms \autocite{Downey2013-nd} for computing the $\spr$ distance have been developed over the years \autocite{Whidden2010-bw, Bordewich2005-nx, Whidden2018-fw}.
@@ -120,15 +120,16 @@ Computing the $\nni$ distance is also known to be fixed parameter tractable \aut
 Although important, these algorithms remain impractical for large distances and are only applied to trees with a moderate number of leaves or those with small distances \autocite{Whidden2018-fw}.
 
 % Simpler distances such as Robinson Foulds lack biological motivation
-Another popular tree distance measure that does not rely on a tree rearrangement method used in such methods is the Robinson-Foulds distance \autocite{Robinson1981-fb}.
-In contrast to the tree rearrangement methods mentioned above, this distance can be computed efficiently.
-A downside of this approach however is that there is no biologically meaningful interpretation of this distance.
-The Robinson-Foulds distances is not motivated by a biological process, unlike $\spr$, where a trees of distance one can be biologically connected by a hybridisation event \autocite{Bordewich2005-nx}.
+Another popular tree distance measure that does not rely on a tree rearrangement method is the Robinson-Foulds distance \autocite{Robinson1981-fb}.
+In contrast to the tree rearrangement based distances mentioned above, this distance can be computed efficiently.
+A downside of this approach however is a lack of biological interpretability.
+The Robinson-Foulds distance is not motivated by a biological process, unlike $\spr$, where a trees of distance one can be biologically connected by a hybridisation event \autocite{Bordewich2005-nx}.
 In general, distance measures that are easy to compute typically have this problem, whereas measures that are biologically relevant, including rearrangement-based distances, are often hard to compute \autocite{Whidden2018-fw}.
 
 % Solution to this problem
 % FP to solve the problem of computing distances (between ranked trees) efficiently
-In this paper, we establish that using a generalisation of the $\nni$ operation introduced by \textcite{Gavryushkin2018-ol} called $\rnni$ (for Ranked Nearest Neighbour Interchange), the shortest path problem is computable in $\O(n^2)$, where $n$ is the number of tree leaves.
+In this paper, we consider a generalisation of the $\nni$ operation to ranked trees introduced by \textcite{Gavryushkin2018-ol}, which is called $\rnni$ (for Ranked Nearest Neighbour Interchange).
+We show that the shortest path problem in $\rnni$ is computable in $\O(n^2)$, where $n$ is the number of tree leaves.
 This makes $\rnni$ the first tree rearrangement operation under which shortest paths and distances between trees are polynomial-time computable.
 Our proof of this result (Theorem~\ref{thm:rnni_polynomial}) is constructive -- we provide an algorithm called $\findpath$ that computes shortest paths in the $\rnni$ graph in $\O(n^2)$ time.
 Our algorithm is optimal as shortest paths often have length quadratic in the number of leaves $n$.
