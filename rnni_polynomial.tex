@@ -77,7 +77,7 @@ The problem of computing distances, however, is $\np$-hard in each of these grap
 Although ranked phylogenetic trees are one of the central objects of interest in applications such as cancer research, immunology, and epidemiology, the computational complexity of the shortest path problem for these trees remained unsolved for decades.
 In this paper, we settle this problem for the ranked nearest neighbour interchange operation by establishing that the complexity depends on the weight difference between the two types of tree rearrangements (rank moves and edge moves), and varies from quadratic, which is the lowest possible complexity for this problem, to $\np$-hard, which is the highest.
 In particular, our result provides the first example of a phylogenetic tree rearrangement operation for which shortest paths, and hence the distance, can be computed efficiently.
-Specifically, our algorithm scales to trees with thousands of leaves (and likely hundreds of thousands if implemented efficiently).
+Specifically, our algorithm scales to trees with tens of thousands of leaves (and likely hundreds of thousands if implemented efficiently).
 \end{abstract}
 
 
@@ -95,11 +95,10 @@ In cancer phylogenies internal nodes can refer to emergence of metastatic clones
 
 % Why we need distances
 Most commonly trees are inferred from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
-All these methods can be formulated as the problem of finding a tree optimising some criterion as a tree search problem.
-For those problems a measure that tells how similar trees are is needed in order to compare trees.
-Furthermore, summary or consensus tree methods \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx} require such a distance measure for trees.
-Most of the currently used distance measures for trees, however, do not take the order of divergence events into account, but only the tree topology.
-Moreover, popular tree distances are either hard to compute, or make little sense biologically \autocite{Whidden2018-fw}.
+A similarity measure between trees is required for all these methods.
+Furthermore, summary or consensus tree methods \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx} often rely on a tree metric.
+Most of the currently used distance measures for trees, however, do not take the order of divergence events into account -- only the tree topology.
+Moreover, popular tree distances are either hard to compute or lack biological interpretability \autocite{Whidden2018-fw}.
 
 % Mathematical problem
 % Why tree rearrangement operations
