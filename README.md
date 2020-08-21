@@ -13,7 +13,4 @@ The problem of computing distances, however, is **NP**-hard in each of these gra
 Although ranked phylogenetic trees are one of the central objects of interest in applications such as cancer research, immunology, and epidemiology, the computational complexity of the shortest path problem for these trees remained unsolved for decades.
 In this paper, we settle this problem for the ranked nearest neighbour interchange operation by establishing that the complexity depends on the weight difference between the two types of tree rearrangements (rank moves and edge moves), and varies from quadratic, which is the lowest possible complexity for this problem, to **NP**-hard, which is the highest.
 In particular, our result provides the first example of a phylogenetic tree rearrangement operation for which shortest paths, and hence the distance, can be computed efficiently.
-Specifically, our algorithm scales to trees with thousands of leaves (and likely hundreds of thousands if implemented efficiently).
-
-We also connect the problem of computing distances in our graph of ranked trees with the well-known version of this problem on unranked trees by introducing a parameter for the weight difference between move types.
-We propose to study a family of shortest path problems indexed by this parameter with computational complexity varying from quadratic to **NP**-hard.
+Specifically, our algorithm scales to trees with tens of thousands of leaves (and likely hundreds of thousands if implemented efficiently).
