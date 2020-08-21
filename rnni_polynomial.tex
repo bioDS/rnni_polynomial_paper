@@ -121,10 +121,10 @@ Although important, these algorithms remain impractical for large distances and 
 
 % Simpler distances such as Robinson Foulds lack biological motivation
 Another popular tree distance measure that does not rely on a tree rearrangement method is the Robinson-Foulds distance \autocite{Robinson1981-fb}.
-In contrast to the tree rearrangement based distances mentioned above, this distance can be computed efficiently.
+In contrast to the tree rearrangement-based distances mentioned above, this distance can be computed efficiently.
 A downside of this approach however is a lack of biological interpretability.
-The Robinson-Foulds distance is not motivated by a biological process, unlike $\spr$, where a trees of distance one can be biologically connected by a hybridisation event \autocite{Bordewich2005-nx}.
-In general, distance measures that are easy to compute typically have this problem, whereas measures that are biologically relevant, including rearrangement-based distances, are often hard to compute \autocite{Whidden2018-fw}.
+The Robinson-Foulds distance is not motivated by a biological process, unlike for example $\spr$, where the tree rearrangement operation corresponds to a hybridisation event \autocite{Bordewich2005-nx}.
+This pattern is quite common -- tree distance measures that are easy to compute lack biological interpretability, while those that are biologically meaningful are often hard to compute \autocite{Whidden2018-fw}.
 
 % Solution to this problem
 % FP to solve the problem of computing distances (between ranked trees) efficiently
