@@ -134,13 +134,13 @@ This makes $\rnni$ the first tree rearrangement operation under which shortest p
 Our proof of this result (Theorem~\ref{thm:rnni_polynomial}) is constructive -- we provide an algorithm called $\findpath$ that computes shortest paths in the $\rnni$ graph in $\O(n^2)$ time.
 Our algorithm is optimal as shortest paths often have length quadratic in the number of leaves $n$.
 The algorithm is practical as it takes seconds on a laptop to compute the distance between trees with thousands of leaves, while in the closely related $\nni$ graph the tractable number of leaves is well below twenty \autocite{Li1996-zw, Whidden2016-kl}.
-$\findpath$ furthermore reveals the following property of the $\rnni$ graph, which is desirable for tree distances from a biological point of view.
-If two trees share some information, more specifically clusters, which we formally introduce later in the paper, there is a shortest paths in $\rnni$ that preserves this information.
-More specifically, the shortest path computed by $\findpath$ maintains clusters, which is not true for $\nni$ \autocite{Li1996-zw}.
+Furthermore, $\findpath$ reveals the following property of the $\rnni$ graph, which is desirable for tree distances from a biological point of view.
+If two trees share some information, more specifically a cluster, there is a shortest paths in $\rnni$ that preserves this information (cluster).
+More specifically, shortest paths in $\rnni$ maintain clusters, an important property that is not true in $\nni$ \autocite{Li1996-zw}.
 This implies in particular that in the $\rnni$ graph trees that share an evolutionary hypothesis in form of a common subtree are closer to each other than they are to a tree that does not support this hypothesis.
 
 % We connect RNNI and NNI by introducing the parameter rho
-Because $\nni$ can be seen as a special case of $\rnni$, we investigate whether there exists a threshold at which the complexity shifts from $\np$-hard to polynomial.
+Because $\nni$ can be seen as a special case of $\rnni$, we investigate whether there exists a threshold at which the complexity of the shortest path problem shifts from $\np$-hard to polynomial.
 Specifically, we introduce an edge weight parameter $\rho$ in the $\rnni$ graph and consider a parametrised graph $\rnni(\rho)$.
 We show that the shortest path problem is $\np$-hard in $\rnni(0)$ and quadratic in $\rnni(1)$, so the complexity changes with $\rho$.
 We hence propose to characterise the complexity classes of the problem $\rnni(\rho)$ for values of $\rho \geq 0$.
