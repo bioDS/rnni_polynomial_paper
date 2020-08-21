@@ -224,11 +224,6 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 Note that if two trees share a cluster, every tree on the path computed by $\findpath$ contains this cluster as well.
 A Python implementation of this algorithm is available on GitHub~\autocite{Collienne2019}.
 Note that the version of $\findpath$ implemented in \autocite{Collienne2019} outputs a shortest path as a list of trees.
-If only the distance between trees is required, the algorithm can be implemented so that the wall clock running time on a generic laptop is under $30$ seconds for trees with tens of thousands of leaves.
-
-Note that if two trees share a cluster, every tree on the path computed by $\findpath$ contains this cluster as well.
-A Python implementation of this algorithm is available on GitHub~\autocite{Collienne2019}.
-Note that the version of $\findpath$ implemented in \autocite{Collienne2019} outputs a shortest path as a list of trees.
 The algorithm that outputs the length of a shortest path can be implemented so that the wall clock running time on a generic laptop is under $30$ seconds for trees with tens of thousands of leaves.
 
 \begin{algorithm}[h]
