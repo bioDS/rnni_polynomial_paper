@@ -221,6 +221,11 @@ In iteration $k$, the rank of $(C_{k})_{T_1}$ is decreased by $\rnni$ moves unti
 In Proposition~\ref{prop:fp_correctness} we show that $\findpath$ is a deterministic algorithm with running time quadratic in the number of leaves $n$.
 In particular, there always exists a unique move that decreases the rank of $(C_{k})_{T_1}$ as described above.
 
+Note that if two trees share a cluster, every tree on the path computed by $\findpath$ contains this cluster as well.
+A Python implementation of this algorithm is available on GitHub~\autocite{Collienne2019}.
+Note that the version of $\findpath$ implemented in \autocite{Collienne2019} outputs a shortest path as a list of trees.
+If only the distance between trees is required, the algorithm can be implemented so that the wall clock running time on a generic laptop is under $30$ seconds for trees with tens of thousands of leaves.
+
 \begin{algorithm}[h]
 \caption{$\findpath$($T,R$)}
 \begin{algorithmic}[1]
@@ -243,11 +248,6 @@ In particular, there always exists a unique move that decreases the rank of $(C_
 \RETURN $p$
 \end{algorithmic}
 \end{algorithm}
-
-Note that if two trees share a cluster, every tree on the path computed by $\findpath$ contains this cluster as well.
-A Python implementation of this algorithm is available on GitHub~\autocite{Collienne2019}.
-Note that the version of $\findpath$ implemented in \autocite{Collienne2019} outputs a shortest path as a list of trees.
-If only the distance between trees is required, the algorithm can be implemented so that the wall clock running time on a generic laptop is under $30$ seconds for trees with tens of thousands of leaves.
 
 \begin{proposition}
 $\findpath$ is a correct deterministic algorithm that runs in $\O(n^2)$ time.
