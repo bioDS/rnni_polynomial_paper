@@ -95,7 +95,7 @@ In cancer phylogenies internal nodes can refer to emergence of metastatic clones
 
 % Why we need distances
 Most commonly trees are inferred from sequences via maximum likelihood \autocite{Stamatakis2006-xb, Guindon2010-lo}, MCMC \autocite{Ronquist2003-eq, Suchard2018-tw, Bouckaert2019-yr}, distance-, or parsimony-based approaches \autocite{Tamura2011-ky}.
-A similarity measure between trees is required for all these methods.
+A similarity measure between trees is required for the development of algorithms implementing these methods and evaluating the accuracy of reconstructed trees.
 Furthermore, summary or consensus tree methods \autocite{McMorris1994-no, Bansal2010-vr, Whidden2014-sx} often rely on a tree metric.
 Most of the currently used distance measures for trees, however, do not take the order of divergence events into account -- only the tree topology.
 Moreover, popular tree distances are either hard to compute or lack biological interpretability \autocite{Whidden2018-fw}.
@@ -107,7 +107,7 @@ Under any such operation, the tree inference problem can be formulated as a grap
 For search algorithms to be efficient, it is important to understand the geometry of these graphs.
 For example, basic geometric properties of the $\nni$ graph have been successfully leveraged to speed up the maximum likelihood method \autocite{Nguyen2015-sp}.
 The most basic geometric characteristic that frequently arises in applications is the minimum number of rearrangements necessary to transform one tree into another \autocite{Semple2003-nj}.
-The problem then amounts to computing the length of a shortest path between trees in the three graphs.
+The problem then amounts to computing the length of a shortest path between trees in the $\nni$, $\spr$, or $\tbr$ graph.
 This can also be seen as computing the distance between trees in the corresponding metric space.
 
 % Tree rearrangement distances are hard to compute -- some history
@@ -123,7 +123,7 @@ Although important, these algorithms remain impractical for large distances and 
 Another popular tree distance measure that does not rely on a tree rearrangement method is the Robinson-Foulds distance \autocite{Robinson1981-fb}.
 In contrast to the tree rearrangement-based distances mentioned above, this distance can be computed efficiently.
 A downside of this approach however is a lack of biological interpretability.
-The Robinson-Foulds distance is not motivated by a biological process, unlike for example $\spr$, where the tree rearrangement operation corresponds to a hybridisation event \autocite{Bordewich2005-nx}.
+The Robinson-Foulds distance is not motivated by a biological process, unlike for example $\spr$, where the tree rearrangement operation can be used to model hybridisation and other horizontal events.
 This pattern is quite common -- tree distance measures that are easy to compute lack biological interpretability, while those that are biologically meaningful are often hard to compute \autocite{Whidden2018-fw}.
 
 % Solution to this problem
@@ -137,7 +137,7 @@ The algorithm is practical as it takes seconds on a laptop to compute the distan
 Furthermore, $\findpath$ reveals the following property of the $\rnni$ graph, which is desirable for tree distances from a biological point of view.
 If two trees share some information, more specifically a cluster, there is a shortest paths in $\rnni$ that preserves this information (the cluster).
 In other words, shortest paths in $\rnni$ maintain clusters, an important property that is not true in $\nni$ \autocite{Li1996-zw}.
-This implies in particular that trees that share an evolutionary hypothesis in form of a common subtree are closer to each other than they are to a tree that does not support this hypothesis.
+This implies in particular that trees that share an evolutionary hypothesis in form of a common subtree are closer to each other than they are to a tree not sharing a subtree with them.
 For a cancer phylogeny this can be interpreted as two trees supporting the emergence of one particular metastatic clone are closer to each other than a phylogeny that does not support this hypothesis.
 
 % We connect RNNI and NNI by introducing the parameter rho
@@ -234,7 +234,7 @@ The algorithm that outputs the length of a shortest path can be implemented so t
 \label{alg:findpath:line:for_loop}
 	\WHILE {$\rank((C_k)_{T_1})>k$}
 	\label{alg:findpath:line:while_loop}
-		\IF {$(C_k)_{T_1}$ and node $u$ preceding $(C_k)_{T_1}$ in $T_1$ are connected by an edge}
+		\IF {$(C_k)_{T_1}$ and node $u$ with rank one less than $(C_k)_{T_1}$ in $T_1$ are connected by an edge}
 			\STATE $T_2$ is $T_1$ with the rank of $(C_k)_{T_1}$ decreased by an $\nni$ move
 			\label{alg:nni_step}
 		\ELSE
@@ -264,7 +264,7 @@ To prove this we consider cases $k = 1$ and $k > 1$ separately.
 \item[Case $k = 1$.]
 In this case $C_k$ consists of two leaves $\{x, y\}$.
 Since we assumed that the \textbf{while} condition is satisfied, the node $v = (\{x, y\})_{T_1}$ has rank $r > 1$.
-Consider the node $u$ preceding $v$ in $T_1$, so the rank of $u$ is $r - 1$.
+Consider the node $u$ with rank $r - 1$ in $T_1$.
 Assume without loss of generality that $x$ is in the cluster induced by $u$, so $y$ has to be outside this cluster.
 Consider the following three disjoint subtrees of $T_1$: the subtree $T_{11}$ induced by a child of $u$ and containing $x$, the subtree $T_{12}$ induced by the other child of $u$, the subtree $T_{13}$ induced by a child of $v$ and containing $y$.
 Now observe that out of two $\nni$ moves possible on the edge $[u, v]$ in $T_1$, only the one that swaps $T_{12}$ and $T_{13}$ does decrease the rank of the most recent common ancestor of $\{x, y\}$.
@@ -313,7 +313,7 @@ We hence want to show that $|\fp(T, R)| = d(T, R)$ for all trees.
 Assume to the contrary that $T$ and $R$ are two trees with a minimum distance $d(T, R)$ such that $d(T,R) \neq |\fp(T,R)|$, that is, $d(T,R) < |\fp(T,R)|$.
 Let $T'$ be the first tree on a shortest $\rnni$ path from $T$ to $R$.
 Then $d(T',R) = d(T, R) - 1$, implying that the distance between $T'$ and $R$ is strictly smaller than that between $T$ and $R$.
-Hence $d(T', R) = |\fp(T',R)| < |\fp(T,R)| - 1$.
+This implies $|\fp(T',R)| = d(T',R) = d(T,R) - 1 < |\fp(T,R)| - 1$ and hence, $|\fp(T',R)| < |\fp(T,R)| - 1$.
 We finish the proof by showing that no trees satisfy this inequality.
 
 Specifically, we will show that
@@ -366,7 +366,7 @@ Note that in all figures illustrating possible moves on $\fp(T,R)$ and $\fp(T',R
 $T$ and $T'$ are connected by an $\nni$ move.
 So $[(T)_t,(T)_{t+1}]$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
 Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, and assume that the $\nni$ move between $T$ and $T'$ exchanges the subtrees induced by clusters $B$ and $C$.
-Additionally, denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni1}.
+Additionally, if $(T)_{t+2}$ is parent of $(T)_{t+1}$, we denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni1}.
 Note that $[(T)_{t+1}, (T)_{t+2}]$ does not have to be an edge in tree $T$ (see Case~\ref{case:rank_move_interval_above}).
 \end{enumerate}
 
@@ -565,8 +565,10 @@ $\decprob{0}$ is $\np$-hard.
 \end{theorem}
 
 \proof
-Note that the length of the path required in an instance of $\decprob{0}$ is equal to the minimum number of $\nni$ moves necessary to convert one tree into another tree where the rankings of internal nodes are ignored and $\nni$ moves are allowed on every edge.
-This minimum is called the $\nni$ distance and the corresponding problem is known to be $\np$-hard \autocite{Dasgupta2000-xa}.
+Because two trees with the same tree topology but different rankings have distance $0$ in $\rnni(0)$, this is a pseudo-metric space.
+The length of the path required in an instance of $\decprob{0}$ is equal to the minimum number of $\nni$ moves necessary to convert one tree into another tree, as rank moves weigh $0$.
+Therefore, the distance in $\rnni(0)$ equals the $\nni$ distance between trees where the rankings of internal nodes are ignored and $\nni$ moves are allowed on every edge.
+The corresponding shortest path problem is known to be $\np$-hard \autocite{Dasgupta2000-xa}.
 \endproof
 
 In the light of Theorem~\ref{thm:rnni_polynomial} and Theorem~\ref{thm:nni_hard} the following problem is natural.
