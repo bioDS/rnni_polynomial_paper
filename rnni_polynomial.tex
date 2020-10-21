@@ -313,7 +313,7 @@ We hence want to show that $|\fp(T, R)| = d(T, R)$ for all trees.
 Assume to the contrary that $T$ and $R$ are two trees with a minimum distance $d(T, R)$ such that $d(T,R) \neq |\fp(T,R)|$, that is, $d(T,R) < |\fp(T,R)|$.
 Let $T'$ be the first tree on a shortest $\rnni$ path from $T$ to $R$.
 Then $d(T',R) = d(T, R) - 1$, implying that the distance between $T'$ and $R$ is strictly smaller than that between $T$ and $R$.
-This implies $|\fp(T',R)| = d(T',R) = d(T,R) - 1 < |\fp(T,R)| - 1$ and hence, $|\fp(T',R)| < |\fp(T,R)| - 1$.
+This implies that $|\fp(T',R)| = d(T',R) = d(T,R) - 1 < |\fp(T,R)| - 1$ and hence, $|\fp(T',R)| < |\fp(T,R)| - 1$.
 We finish the proof by showing that no trees satisfy this inequality.
 
 Specifically, we will show that
@@ -366,7 +366,7 @@ Note that in all figures illustrating possible moves on $\fp(T,R)$ and $\fp(T',R
 $T$ and $T'$ are connected by an $\nni$ move.
 So $[(T)_t,(T)_{t+1}]$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
 Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, and assume that the $\nni$ move between $T$ and $T'$ exchanges the subtrees induced by clusters $B$ and $C$.
-Additionally, if $(T)_{t+2}$ is parent of $(T)_{t+1}$, we denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni1}.
+Additionally, if $(T)_{t+2}$ is the parent of $(T)_{t+1}$, we denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni1}.
 Note that $[(T)_{t+1}, (T)_{t+2}]$ does not have to be an edge in tree $T$ (see Case~\ref{case:rank_move_interval_above}).
 \end{enumerate}
 
@@ -565,7 +565,7 @@ $\decprob{0}$ is $\np$-hard.
 \end{theorem}
 
 \proof
-Because two trees with the same tree topology but different rankings have distance $0$ in $\rnni(0)$, this is a pseudo-metric space.
+Because two trees with the same tree topology but different rankings have distance $0$ in $\rnni(0)$, this graphs corresponds to a pseudo-metric space.
 The length of the path required in an instance of $\decprob{0}$ is equal to the minimum number of $\nni$ moves necessary to convert one tree into another tree, as rank moves weigh $0$.
 Therefore, the distance in $\rnni(0)$ equals the $\nni$ distance between trees where the rankings of internal nodes are ignored and $\nni$ moves are allowed on every edge.
 The corresponding shortest path problem is known to be $\np$-hard \autocite{Dasgupta2000-xa}.
