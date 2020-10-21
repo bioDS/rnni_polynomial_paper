@@ -366,8 +366,8 @@ Note that in all figures illustrating possible moves on $\fp(T,R)$ and $\fp(T',R
 $T$ and $T'$ are connected by an $\nni$ move.
 So $[(T)_t,(T)_{t+1}]$ is an edge in $T$ -- see Figure~\ref{fig:thm_fp_nni1}.
 Denote the clusters induced by the children of $(T)_t$ by $A$ and $B$ and the cluster induced by the child of $(T)_{t+1}$ that is not $(T)_t$ by $C$, and assume that the $\nni$ move between $T$ and $T'$ exchanges the subtrees induced by clusters $B$ and $C$.
-Additionally, if $(T)_{t+2}$ is the parent of $(T)_{t+1}$, we denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni1}.
-Note that $[(T)_{t+1}, (T)_{t+2}]$ does not have to be an edge in tree $T$ (see Case~\ref{case:rank_move_interval_above}).
+Additionally, if $(T)_{t+2}$ is the parent of $(T)_{t+1}$ (Cases~\ref{case:nni_keep_topology} and \ref{case:one_or_two_moves_down}), we denote the cluster induced by the child of $(T)_{t+2}$ that is not $(T)_{t+1}$ by $D$ -- see Figure~\ref{fig:thm_fp_nni1}.
+
 \end{enumerate}
 
 We now consider all possible moves $\findpath$ can perform to go from $T$ to $T_1$ that involve a node of rank $t$ or $t+1$, that is, we will consider three intervals in total.
@@ -385,6 +385,7 @@ This move is shown in Figure~\ref{fig:thm_fp_nni2a} by an arrow from $T$ to the 
 In this case, the first cluster $C_k$ that satisfies the \textbf{while} condition of $\findpath$ computing $\fp(T, R)$ must intersect $D$ but not $C$.
 Additionally, $C_k$ must intersect $A$, or $B$, or both of them.
 Hence, we will consider each of these three cases individually, and demonstrate them in Figure~\ref{fig:thm_fp_nni}.
+\label{case:nni_keep_topology}
 
 \begin{figure}[ht]
 	\begin{subfigure}[b]{.45\textwidth}
