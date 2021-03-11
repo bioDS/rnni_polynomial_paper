@@ -14,3 +14,5 @@ Although ranked phylogenetic trees are one of the central objects of interest in
 In this paper, we settle this problem for the ranked nearest neighbour interchange operation by establishing that the complexity depends on the weight difference between the two types of tree rearrangements (rank moves and edge moves), and varies from quadratic, which is the lowest possible complexity for this problem, to **NP**-hard, which is the highest.
 In particular, our result provides the first example of a phylogenetic tree rearrangement operation for which shortest paths, and hence the distance, can be computed efficiently.
 Specifically, our algorithm scales to trees with tens of thousands of leaves (and likely hundreds of thousands if implemented efficiently).
+
+[*Journal of Mathematical Biology,* 82, 8, 2021](https://doi.org/10.1007/s00285-021-01567-5)
